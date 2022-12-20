@@ -1,0 +1,205 @@
+﻿@model BroomService.ViewModels.CategoryPropertyModel
+@{
+    var userId = (Request.Cookies["Login"] != null ? Request.Cookies["Login"].Values["UserType"] != null ? Request.Cookies["Login"].Values["UserType"] : "0" : "0");
+}
+
+<style>
+    #auto-price-box {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    #auto-price-input {
+        max-width: 100px;
+        margin-left: 20px;
+    }
+</style>
+<!-- Choose Service box -->
+<section id="all_services_boxes" class="all_services_boxes">
+    <div class="container">
+        <h2>@TempData["CategoryName"]</h2>
+        <p></p>
+        <div class="row choose_service_box">
+            @if (Model.CategoryList.Count > 0)
+            {
+                for (int i = 0; i < Model.CategoryList.Count; i++)
+                {
+                    <div class="col-lg-6 mb-4">
+                        <a Id="/Order/SubSubCategoryList?id=@Model.CategoryList[i].Id&propertyId=@Model.Property_List_Id">
+                            <input type="hidden" value="@Model.CategoryList[i].Id" />
+                            @Html.HiddenFor(m => m.CategoryList[i].SubUserSendRequest)
+                            <div class="d-block d-sm-flex">
+                                <div class="service_image_main">
+                                    <div class="service_image_box">
+                                        @{string categoryPicture = string.Empty;}
+                                        @if (!string.IsNullOrEmpty(Model.CategoryList[i].Icon))
+                                        {
+                                            categoryPicture = "/Content/images/services/" + Model.CategoryList[i].Icon;
+                                        }
+                                        else
+                                        {
+                                            categoryPicture = "/Content/images/services/professonial_service_un_select.png";
+                                        }
+                                        <img class="image_unselect" src="@categoryPicture" alt="service" />
+                                        <img class="image_select" src="@categoryPicture" alt="service" />
+                                    </div>
+                                </div>
+                                <div class="servies_details align-self-center">
+                                    <h3>@Model.CategoryList[i].Name</h3>
+                                    <p class="service_content">@Model.CategoryList[i].Description</p>
+                                    @if (Model.CategoryList[i].HasSubSubCategories == false)
+                                    {
+                                        <input type="hidden" value="@Model.CategoryList[i].Price" />
+                                        if (Model.CategoryList[i].Price != 0)
+                                        {
+                                            <p class="service_price">
+                                                <img src="~/Content/images/currency_symbol.png">
+                                                <span id="service-price-@Model.CategoryList[i].Id">@Model.CategoryList[i].Price</span>
+                                            </p>
+                                        }
+                                        else
+                                        {
+                                            <p class="service_price">
+                                                <img src="~/Content/images/currency_symbol.png">
+                                                <span id="service-price-@Model.CategoryList[i].Id">Ask for quote</span>
+                                            </p>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+        <div class="col-12 text-right submit_box_all">
+            <a href="javascript:history.back();">
+                <button type="button" class="btn arrow_btn_box submit_back">
+                    <img src="~/Content/images/submit_next_btn.png" alt="next arrow">
+                </button>
+            </a>
+        </div>
+    </div>
+</section>
+<!-- Quotes Request  Modal -->
+<div class="modal fade modal_sub_user" id="modalAdminNotify" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="checklist_property_main">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3 id="service-price-title"></h3>
+                    <div class="form-group" id="auto-price-box">
+                        <label>Service Price</label>
+                        <input type="number" id="auto-price-input" class="form-control" value="0" readonly />
+                    </div>
+                    <div class="add_another_service_main">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <div class="custom_input">
+                                    <select id="property_select" class="property" onchange="SelectProperty(event)"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center ">
+                        <input type="button" id="btnContinue" value="Continue" class="btn btn-success" />
+                        <input type="button" id="Cancel" value="Cancel" data-dismiss="modal" aria-label="Close" class="btn btn-danger" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var SubCat_Id = 0;
+    var AutoPriceServices = [12, 26];
+    var propertyId = "";
+    var serviceTitle = "Service price is zero, would you like to send quote request?";
+    $(document).ready(function () {
+        var urlParams = new URLSearchParams(window.location.search);
+        propertyId = urlParams.get("propertyId");
+        LoadProperty();
+    });
+    $('a').click(function () {
+        SubCat_Id = $(this).children('input[type=hidden]').val();
+        var Url = $(this).attr('id');
+        if (AutoPriceServices.includes(parseInt(SubCat_Id)) && (propertyId == "" || propertyId == "0")) {
+
+            $('#service-price-title').attr("class", "text-center");
+            if (SubCat_Id == 12) {
+                $('#service-price-title').text("Check-in Cleaning")
+            } else {
+                $('#service-price-title').text("Windows Cleaning")
+            }
+
+            if (propertyId != "" && propertyId != "0") {
+                LoadAutoPrice(propertyId, SubCat_Id);
+            } else {
+                $("#btnContinue").prop('disabled', true)
+            }
+            $('#modalAdminNotify').modal('show');
+        }
+        else {
+            window.location.href = Url;
+        }
+    });
+
+    function SelectProperty(event) {
+        propertyId = event.target.value;
+        if (propertyId != "" || propertyId != "0") {
+            $("#btnContinue").prop('disabled', false)
+            if (AutoPriceServices.includes(parseInt(SubCat_Id))) {
+                LoadAutoPrice(propertyId, SubCat_Id);
+            }
+        }
+    }
+
+    function LoadAutoPrice(propertyId, subCategoryId) {
+
+        $.ajax({
+            url: `/Property/AutoPriceService?propertyId=${propertyId}&subCategoryId=${subCategoryId}`,
+            type: 'GET',
+            success: function (res) {
+                $('#auto-price-input').val(res.price);
+            },
+            error: function () {
+                //alert('something went wrong');
+            }
+        });
+    }
+
+    function LoadProperty() {
+        $.ajax({
+            url: "/Order/GetPropertyList",
+            data: {},
+            type: 'POST',
+            dataType: "json",
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#property_select').empty();
+                    $('#property_select').append(`<option value='0'>Select Property</option>`);
+                    $.each(data, function (key, value) {
+                        var optionText = value.Text;
+                        var optionValue = value.Value;
+                        $('#property_select').append(`<option class="" value="${optionValue}">${optionText}</option>`);
+
+                    });
+                    $('#modal_selectProp').modal('show');
+                }
+            },
+            error: function () {
+                alert('something went wrong');
+            }
+        });
+    }
+
+    $("#btnContinue").click(function () {
+        if (propertyId != "") {
+            window.location = `/Order/SubSubCategoryList?id=${SubCat_Id}&propertyId=${propertyId}`;
+        }
+    })
+</script>

@@ -1,0 +1,154 @@
+﻿
+/*---spinner and cover spin---*/
+.spinner, .WLspinner, .SMspinner, .MRspinner, .MPspinner, .ImpSMspinner {
+    margin: 0 auto 0;
+    width: 50px;
+    text-align: center;
+    height: 50px;
+    border-radius: 100px;
+    background-color: #fff;
+    line-height: 50px;
+    border: 1px solid #e1e1e1;
+    cursor: pointer;
+}
+
+    .spinner, .MRspinner > div {
+        width: 10px;
+        height: 10px;
+        background-color: #b9b9b9;
+        border-radius: 100%;
+        display: inline-block;
+        -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+
+    .WLspinner > div {
+        width: 10px;
+        height: 10px;
+        background-color: #b9b9b9;
+        border-radius: 100%;
+        display: inline-block;
+        -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+
+
+    .SMspinner > div, .MPspinner > div {
+        width: 10px;
+        height: 10px;
+        background-color: #b9b9b9;
+        border-radius: 100%;
+        display: inline-block;
+        -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+
+    .ImpSMspinner > div {
+        width: 10px;
+        height: 10px;
+        background-color: #b9b9b9;
+        border-radius: 100%;
+        display: inline-block;
+        -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+
+    .spinner .bounce1, .WLspinner .bounce1, .SMspinner .bounce1, .MRspinner .bounce1, .MPspinner .bounce1, .ImpSMspinner .bounce1 {
+        -webkit-animation-delay: -0.32s;
+        animation-delay: -0.32s;
+    }
+
+    .spinner .bounce2, .WLspinner .bounce2, .SMspinner .bounce2, .MRspinner .bounce2, .MPspinner .bounce2, .ImpSMspinner .bounce2 {
+        -webkit-animation-delay: -0.16s;
+        animation-delay: -0.16s;
+    }
+
+@-webkit-keyframes sk-bouncedelay {
+    0%, 80%, 100% {
+        -webkit-transform: scale(0)
+    }
+
+    40% {
+        -webkit-transform: scale(1.0)
+    }
+}
+
+@keyframes sk-bouncedelay {
+    0%, 80%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    40% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+    }
+}
+
+#cover-spin {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.7);
+    z-index: 9999;
+    /*display: none;*/
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#cover-spin::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 48%;
+    top: 40%;
+    width: 40px;
+    height: 40px;
+    border-style: solid;
+    border-color: royalblue;
+    border-top-color: transparent;
+    border-width: 3px;
+    border-radius: 50%;
+    -webkit-animation: spin .8s linear infinite;
+    animation: spin .8s linear infinite;
+}
+
+/*Media queries for small devices*/
+
+
+@media screen and (max-width: 480px) {
+/*AddJobRequest*/
+    .submit_box_all {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .custom-control.fill-checkbox .fill-control-indicator {
+        width: 40px !important;
+    }
+    .category-name {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}

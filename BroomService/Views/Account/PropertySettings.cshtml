@@ -1,0 +1,124 @@
+﻿@model  BroomService.ViewModels.PropertySettingsViewModel
+
+@{
+    ViewBag.Title = "Property Settings";
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+}
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Font awsome kit -->
+    <script src="https://kit.fontawesome.com/40b745dcd8.js" crossorigin="anonymous"></script>
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <title>Offers:: Broom Services</title>
+
+    <style type="text/css">
+        .channel-manager {
+            margin-bottom: 20px;
+        }
+
+        .channel-manager__title {
+            border-bottom: 2px solid #263238;
+            padding: 10px;
+        }
+
+        .channel-manager__logo {
+            width: 50%;
+        }
+
+        .channel-manager__deactivate {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .channel-manager__modal-body {
+            padding: 20px;
+        }
+
+        .services_form {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<section id="bookings">
+    <div class="container">
+        <div class="mx-auto">
+            <div class="mx-auto">
+                <h5 class="mb-1">Integration Settings</h5>
+                <p class="mb-4">Configure this settings for integration automation</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="card channel-manager">
+                        <div class="card-block">
+                            <h4 class="card-title channel-manager__title">@Model.ChannelManagerViewModel.Name</h4>
+                            <div class="text-center mb-3">
+                                <img class="img-fluid channel-manager__logo" src="~/Content/images/channel-managers/@Url.Content(@Model.ChannelManagerViewModel.Logo)" alt="Card image cap">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="card">
+                        @using (Html.BeginForm("UpdateSettings", "ChannelManager", FormMethod.Post, new { @class = "services_form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <h4>Services</h4>
+                            <p class="mb-3">Please select the services you wish to be automatically scheduled for your properties.</p>
+                            @Html.HiddenFor(m => m.UserChannelManagerSettings.UserChannelManagerId)
+                            @Html.HiddenFor(m => m.UserChannelManagerSettings.UserChannelManagerSettingsId)
+                            <div class="form-group">
+                                @Html.CheckBoxFor(m => m.UserChannelManagerSettings.CheckInCleaning)
+                                @Html.LabelFor(m => m.UserChannelManagerSettings.CheckInCleaning, "Check in cleaning")
+                            </div>
+                            <div class="form-group">
+                                @Html.CheckBoxFor(m => m.UserChannelManagerSettings.WindowsCleaning)
+                                @Html.LabelFor(m => m.UserChannelManagerSettings.WindowsCleaning, "Windows cleaning")
+                            </div>
+                            <div class="form-group">
+                                @Html.CheckBoxFor(m => m.UserChannelManagerSettings.LundryPickup)
+                                @Html.LabelFor(m => m.UserChannelManagerSettings.LundryPickup, "Lundry Pickup")
+                            </div>
+                            <div class="form-group">
+                                @Html.CheckBoxFor(m => m.UserChannelManagerSettings.LinenRentals)
+                                @Html.LabelFor(m => m.UserChannelManagerSettings.LinenRentals, "Linen rentals")
+                            </div>
+                            <div class="form-group">
+                                @Html.CheckBoxFor(m => m.UserChannelManagerSettings.Amenties)
+                                @Html.LabelFor(m => m.UserChannelManagerSettings.Amenties)
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    @Html.LabelFor(m => m.UserChannelManagerSettings.FastOrderId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-8">
+                                        @Html.DropDownListFor(model => model.UserChannelManagerSettings.FastOrderId, new SelectList(Model.FastOrders, "Id", "PropertyName"), new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-success">Save Changes</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Shorthand for $( document ).ready()
+    $(function () {
+        console.log("ready!");
+    });
+</script>
+

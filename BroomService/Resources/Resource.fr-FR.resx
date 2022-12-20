@@ -1,0 +1,2157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="about" xml:space="preserve">
+    <value>À propos</value>
+  </data>
+  <data name="about_us" xml:space="preserve">
+    <value>À Propos De Nous</value>
+  </data>
+  <data name="accept" xml:space="preserve">
+    <value>Accepter</value>
+  </data>
+  <data name="accepted_broom_service_request" xml:space="preserve">
+    <value>Vous avez accepté Balai du Service de demande de devis</value>
+  </data>
+  <data name="accepted_your_quote_price" xml:space="preserve">
+    <value>a accepté votre devis demande de prix.</value>
+  </data>
+  <data name="access_property_details" xml:space="preserve">
+    <value>L'accès à la Propriété (Avec Détails)</value>
+  </data>
+  <data name="access_property_options" xml:space="preserve">
+    <value>Pour Ex. portier/elock/coffret/clé/autres</value>
+  </data>
+  <data name="account_deactivate_message" xml:space="preserve">
+    <value>votre compte est désactivé par l'administrateur. Si vous voulez l'activer, veuillez contacter à l'admin.</value>
+  </data>
+  <data name="action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="address" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="add_job_request" xml:space="preserve">
+    <value>Ajouter De Demande De Travail</value>
+  </data>
+  <data name="add_property" xml:space="preserve">
+    <value>Ajouter Une Propriété</value>
+  </data>
+  <data name="add_property_heading" xml:space="preserve">
+    <value>Vous pouvez autant de propriétés que vous voulez pour chaque type.</value>
+  </data>
+  <data name="add_service" xml:space="preserve">
+    <value>Ajouter Un Service</value>
+  </data>
+  <data name="add_service_provider" xml:space="preserve">
+    <value>Ajouter Un Fournisseur De Services</value>
+  </data>
+  <data name="add_sub_service" xml:space="preserve">
+    <value>Ajouter Des Sous Service</value>
+  </data>
+  <data name="add_sub_sub_service" xml:space="preserve">
+    <value>Ajouter Des Sous-Sous-Service</value>
+  </data>
+  <data name="add_testimonial" xml:space="preserve">
+    <value>Ajouter Témoignage</value>
+  </data>
+  <data name="add_text_validation" xml:space="preserve">
+    <value>Veuillez ajouter du texte avant d'ajouter une nouvelle liste de vérification</value>
+  </data>
+  <data name="add_worker" xml:space="preserve">
+    <value>Ajouter Travailleur</value>
+  </data>
+  <data name="ago" xml:space="preserve">
+    <value>il y a</value>
+  </data>
+  <data name="agree_with" xml:space="preserve">
+    <value>Je Suis D'Accord Avec Tous Les</value>
+  </data>
+  <data name="already_have_an_account" xml:space="preserve">
+    <value>Avez déjà un compte?</value>
+  </data>
+  <data name="already_paid" xml:space="preserve">
+    <value>Déjà Payés</value>
+  </data>
+  <data name="already_reject_job" xml:space="preserve">
+    <value>Vous avez déjà rejeté cette demande d'emploi.</value>
+  </data>
+  <data name="aparment_number" xml:space="preserve">
+    <value>Appartement Nombre</value>
+  </data>
+  <data name="apartment" xml:space="preserve">
+    <value>Appartement</value>
+  </data>
+  <data name="apartment_number" xml:space="preserve">
+    <value>Le Numéro D'Appartement</value>
+  </data>
+  <data name="assigned_worker" xml:space="preserve">
+    <value>De Travail Affectées</value>
+  </data>
+  <data name="assign_job" xml:space="preserve">
+    <value>Cédant</value>
+  </data>
+  <data name="assign_worker" xml:space="preserve">
+    <value>Attribuer Travailleur</value>
+  </data>
+  <data name="at" xml:space="preserve">
+    <value>au</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>De retour</value>
+  </data>
+  <data name="back_to_home" xml:space="preserve">
+    <value>Retour À L'Accueil</value>
+  </data>
+  <data name="back_to_profile" xml:space="preserve">
+    <value>Retour Au Profil De</value>
+  </data>
+  <data name="balcony" xml:space="preserve">
+    <value>Balcon</value>
+  </data>
+  <data name="bed_size" xml:space="preserve">
+    <value>Taille Du Lit</value>
+  </data>
+  <data name="bookings_list" xml:space="preserve">
+    <value>Les Réservations Liste</value>
+  </data>
+  <data name="broom_email_address" xml:space="preserve">
+    <value>office@broomservice.co.il</value>
+  </data>
+  <data name="broom_service" xml:space="preserve">
+    <value>Balai De Service</value>
+  </data>
+  <data name="broom_service_added" xml:space="preserve">
+    <value>Balai Service a vous a ajouté comme un</value>
+  </data>
+  <data name="broom_service_has_rejected" xml:space="preserve">
+    <value>Balai Service a rejeté votre</value>
+  </data>
+  <data name="bs_crew" xml:space="preserve">
+    <value>Bs Équipage</value>
+  </data>
+  <data name="building_code" xml:space="preserve">
+    <value>Le Code Du Bâtiment</value>
+  </data>
+  <data name="by_cash" xml:space="preserve">
+    <value>En Espèces</value>
+  </data>
+  <data name="by_cheque" xml:space="preserve">
+    <value>Par Chèque</value>
+  </data>
+  <data name="by_credit_card" xml:space="preserve">
+    <value>Par Carte De Crédit</value>
+  </data>
+  <data name="by_money_transfer" xml:space="preserve">
+    <value>Par Transfert D'Argent</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="cancelled" xml:space="preserve">
+    <value>Annulé</value>
+  </data>
+  <data name="card_number" xml:space="preserve">
+    <value>NUMÉRO DE CARTE DE</value>
+  </data>
+  <data name="change_language" xml:space="preserve">
+    <value>Choisissez La Langue</value>
+  </data>
+  <data name="change_password" xml:space="preserve">
+    <value>Changer De Mot De Passe</value>
+  </data>
+  <data name="chat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="chat_list" xml:space="preserve">
+    <value>Liste De Chat</value>
+  </data>
+  <data name="chat_listing" xml:space="preserve">
+    <value>Chat Inscription</value>
+  </data>
+  <data name="check_list" xml:space="preserve">
+    <value>Liste De Vérification</value>
+  </data>
+  <data name="choose_atleaset_one_subcategory" xml:space="preserve">
+    <value>Choisissez atleaset une sous-catégorie</value>
+  </data>
+  <data name="choose_payment_method" xml:space="preserve">
+    <value>Choisissez La Méthode De Paiement</value>
+  </data>
+  <data name="choose_service" xml:space="preserve">
+    <value>Choisissez Le Service</value>
+  </data>
+  <data name="choose_sub_service" xml:space="preserve">
+    <value>Choisir Les Sous Service</value>
+  </data>
+  <data name="choose_sub_sub_service" xml:space="preserve">
+    <value>Choisissez La Sous Service</value>
+  </data>
+  <data name="choose_worker" xml:space="preserve">
+    <value>Choisissez travailleur</value>
+  </data>
+  <data name="city" xml:space="preserve">
+    <value>Ville</value>
+  </data>
+  <data name="click_on_link" xml:space="preserve">
+    <value>Veuillez cliquer sur le lien ci-dessous pour vérifier votre e-mail</value>
+  </data>
+  <data name="client_price" xml:space="preserve">
+    <value>Client De Prix</value>
+  </data>
+  <data name="client_rating" xml:space="preserve">
+    <value>Client De Notation</value>
+  </data>
+  <data name="comment" xml:space="preserve">
+    <value>Commentaire</value>
+  </data>
+  <data name="completed" xml:space="preserve">
+    <value>Terminé</value>
+  </data>
+  <data name="completed_date_time" xml:space="preserve">
+    <value>Terminé Datetime</value>
+  </data>
+  <data name="complete_job" xml:space="preserve">
+    <value>Le Travail Complet</value>
+  </data>
+  <data name="confirmation_email_sent" xml:space="preserve">
+    <value>Veuillez vérifier votre email, nous vous avons envoyé un mail de confirmation à votre adresse e-mail.</value>
+  </data>
+  <data name="confirm_password" xml:space="preserve">
+    <value>Confirmer Le Mot De Passe</value>
+  </data>
+  <data name="contact_us" xml:space="preserve">
+    <value>Contactez-Nous</value>
+  </data>
+  <data name="country" xml:space="preserve">
+    <value>Pays</value>
+  </data>
+  <data name="created_date" xml:space="preserve">
+    <value>Date De Création</value>
+  </data>
+  <data name="create_account" xml:space="preserve">
+    <value>Créer Un Compte</value>
+  </data>
+  <data name="create_account_as_customer" xml:space="preserve">
+    <value>Créer Un Compte Client</value>
+  </data>
+  <data name="customers" xml:space="preserve">
+    <value>Les clients</value>
+  </data>
+  <data name="customer_details" xml:space="preserve">
+    <value>Détails Sur Le Client</value>
+  </data>
+  <data name="customer_details_info" xml:space="preserve">
+    <value>Détails sur le client info</value>
+  </data>
+  <data name="customer_name" xml:space="preserve">
+    <value>Nom Du Client</value>
+  </data>
+  <data name="customer_not_exists" xml:space="preserve">
+    <value>Le client n'existe pas.</value>
+  </data>
+  <data name="cvv" xml:space="preserve">
+    <value>CVV</value>
+  </data>
+  <data name="dashboard" xml:space="preserve">
+    <value>Tableau de bord</value>
+  </data>
+  <data name="day" xml:space="preserve">
+    <value>jour</value>
+  </data>
+  <data name="days" xml:space="preserve">
+    <value>jours</value>
+  </data>
+  <data name="deactive" xml:space="preserve">
+    <value>Inactif</value>
+  </data>
+  <data name="dear" xml:space="preserve">
+    <value>Chers</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>La description</value>
+  </data>
+  <data name="details" xml:space="preserve">
+    <value>Détails</value>
+  </data>
+  <data name="dishwasher" xml:space="preserve">
+    <value>Lave-vaisselle</value>
+  </data>
+  <data name="display_order" xml:space="preserve">
+    <value>Ordre D'Affichage</value>
+  </data>
+  <data name="done" xml:space="preserve">
+    <value>Fait</value>
+  </data>
+  <data name="dont_have_account" xml:space="preserve">
+    <value>N'avez pas de compte?</value>
+  </data>
+  <data name="doorman" xml:space="preserve">
+    <value>Portier</value>
+  </data>
+  <data name="duplex" xml:space="preserve">
+    <value>Duplex</value>
+  </data>
+  <data name="duvet_size" xml:space="preserve">
+    <value>Taille De La Couette</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="edit_profile" xml:space="preserve">
+    <value>Modifier Le Profil</value>
+  </data>
+  <data name="edit_property" xml:space="preserve">
+    <value>Modifier La Propriété</value>
+  </data>
+  <data name="edit_service" xml:space="preserve">
+    <value>Modifier le service</value>
+  </data>
+  <data name="edit_service_provider" xml:space="preserve">
+    <value>Edit Fournisseur De Services</value>
+  </data>
+  <data name="edit_sub_service" xml:space="preserve">
+    <value>Edit Sous Service</value>
+  </data>
+  <data name="edit_sub_sub_service" xml:space="preserve">
+    <value>Modifier Les Sous-Sous-Service</value>
+  </data>
+  <data name="edit_worker" xml:space="preserve">
+    <value>Edit Travailleur</value>
+  </data>
+  <data name="elevator" xml:space="preserve">
+    <value>Ascenseur</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>E-mail</value>
+  </data>
+  <data name="email_address" xml:space="preserve">
+    <value>Adresse Email</value>
+  </data>
+  <data name="email_already_exists" xml:space="preserve">
+    <value>E-mail existe déjà.</value>
+  </data>
+  <data name="email_post" xml:space="preserve">
+    <value>E-mail:</value>
+  </data>
+  <data name="email_verified_sucess" xml:space="preserve">
+    <value>Votre e-mail est vérifiée avec succès.</value>
+  </data>
+  <data name="end_date" xml:space="preserve">
+    <value>Date De Fin</value>
+  </data>
+  <data name="end_date_time" xml:space="preserve">
+    <value>Fin De La Date Et De L'Heure</value>
+  </data>
+  <data name="end_time" xml:space="preserve">
+    <value>Heure De Fin</value>
+  </data>
+  <data name="end_timer" xml:space="preserve">
+    <value>Fin De La Minuterie</value>
+  </data>
+  <data name="end_time_job_validation" xml:space="preserve">
+    <value>Date de fin de l'heure doit être supérieure à la date de début du temps.</value>
+  </data>
+  <data name="english" xml:space="preserve">
+    <value>Anglais</value>
+  </data>
+  <data name="enteremail" xml:space="preserve">
+    <value>Entrez E-Mail</value>
+  </data>
+  <data name="enter_address" xml:space="preserve">
+    <value>Entrez l'adresse</value>
+  </data>
+  <data name="enter_card_number" xml:space="preserve">
+    <value>Entrez Le Numéro De Carte De</value>
+  </data>
+  <data name="enter_confirm_password" xml:space="preserve">
+    <value>Entrez Confirmer Le Mot De Passe</value>
+  </data>
+  <data name="enter_cvv" xml:space="preserve">
+    <value>Entrez CVV</value>
+  </data>
+  <data name="enter_description" xml:space="preserve">
+    <value>Entrez La Description</value>
+  </data>
+  <data name="enter_display_order" xml:space="preserve">
+    <value>Entrez Ordre D'Affichage</value>
+  </data>
+  <data name="enter_email" xml:space="preserve">
+    <value>Entrez E-Mail</value>
+  </data>
+  <data name="enter_expiry_date" xml:space="preserve">
+    <value>Entrez La Date D'Expiration</value>
+  </data>
+  <data name="enter_first_name" xml:space="preserve">
+    <value>Saisissez d'Abord le nom de</value>
+  </data>
+  <data name="enter_last_name" xml:space="preserve">
+    <value>Saisissez le nom de</value>
+  </data>
+  <data name="enter_message" xml:space="preserve">
+    <value>Entrez Le Message</value>
+  </data>
+  <data name="enter_name" xml:space="preserve">
+    <value>Entrez Le Nom De</value>
+  </data>
+  <data name="enter_new_password" xml:space="preserve">
+    <value>Entrez Le Nouveau Mot De Passe</value>
+  </data>
+  <data name="enter_old_password" xml:space="preserve">
+    <value>Entrez L'Ancien Mot De Passe</value>
+  </data>
+  <data name="enter_password" xml:space="preserve">
+    <value>Entrez Le Mot De Passe</value>
+  </data>
+  <data name="enter_phone_number" xml:space="preserve">
+    <value>Entrez le numéro de Téléphone</value>
+  </data>
+  <data name="enter_title" xml:space="preserve">
+    <value>Saisissez Le Titre</value>
+  </data>
+  <data name="enter_work_for_checklist" xml:space="preserve">
+    <value>Entrez le travail pour liste de contrôle</value>
+  </data>
+  <data name="error_occured" xml:space="preserve">
+    <value>Erreur s'est produite!!</value>
+  </data>
+  <data name="error_requesting_password" xml:space="preserve">
+    <value>Il y a une erreur vous demandant votre mot de passe, Votre email n'existe pas!</value>
+  </data>
+  <data name="expiration_date" xml:space="preserve">
+    <value>DATE D'EXPIRATION</value>
+  </data>
+  <data name="file_extension_invalid" xml:space="preserve">
+    <value>L'Extension de fichier n'Est pas Valide Seulement de Téléchargement jpg/png/jpeg/JPG/PNG/JPEG Fichier</value>
+  </data>
+  <data name="fill_required_records" xml:space="preserve">
+    <value>Veuillez remplir les dossiers nécessaires.</value>
+  </data>
+  <data name="fill_requirements" xml:space="preserve">
+    <value>Les Conditions De Remplissage</value>
+  </data>
+  <data name="first_name" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="floor" xml:space="preserve">
+    <value>Étage</value>
+  </data>
+  <data name="floor_number" xml:space="preserve">
+    <value>Numéro De L'Étage</value>
+  </data>
+  <data name="footer_text" xml:space="preserve">
+    <value>2019 Balai De Services. Tous les droits de reproduction sont réservés</value>
+  </data>
+  <data name="forgot_password_heading" xml:space="preserve">
+    <value>Entrez votre e-Mail et nous vous enverrons un lien pour réinitialiser votre mot de passe.</value>
+  </data>
+  <data name="forgot_your_password" xml:space="preserve">
+    <value>Vous Avez Oublié Votre Mot De Passe</value>
+  </data>
+  <data name="for_workers" xml:space="preserve">
+    <value>Pour Les Travailleurs</value>
+  </data>
+  <data name="french" xml:space="preserve">
+    <value>Français</value>
+  </data>
+  <data name="garden" xml:space="preserve">
+    <value>Jardin</value>
+  </data>
+  <data name="get_back_with_quote" xml:space="preserve">
+    <value>Nous reviendrons vers vous avec un devis sous peu.</value>
+  </data>
+  <data name="has_accepted_job_request" xml:space="preserve">
+    <value>a accepté votre demande d'emploi.</value>
+  </data>
+  <data name="has_assigned_job_to_you" xml:space="preserve">
+    <value>a assigné à ce nouveau travail pour vous.</value>
+  </data>
+  <data name="has_completed_job_for" xml:space="preserve">
+    <value>a terminé le travail pour</value>
+  </data>
+  <data name="has_ended_timer_for" xml:space="preserve">
+    <value>fin de la minuterie pour</value>
+  </data>
+  <data name="has_price" xml:space="preserve">
+    <value>A Prix</value>
+  </data>
+  <data name="has_sent_job_request" xml:space="preserve">
+    <value>a envoyé de demande de travail.</value>
+  </data>
+  <data name="has_sent_quote_for" xml:space="preserve">
+    <value>vient de vous envoyer des devis pour le</value>
+  </data>
+  <data name="has_started_timer_for" xml:space="preserve">
+    <value>a commencé minuterie pour</value>
+  </data>
+  <data name="has_sub_sub_categories" xml:space="preserve">
+    <value>A SubSubCategories</value>
+  </data>
+  <data name="header_title_text_one" xml:space="preserve">
+    <value>Pour la première fois en Israël, un service de chambre 5 étoiles dans votre propriété</value>
+  </data>
+  <data name="header_title_text_two" xml:space="preserve">
+    <value>Contactez-nous pour une offre attractive</value>
+  </data>
+  <data name="hebrew" xml:space="preserve">
+    <value>L'hébreu</value>
+  </data>
+  <data name="hello" xml:space="preserve">
+    <value>Bonjour</value>
+  </data>
+  <data name="here" xml:space="preserve">
+    <value>Ici</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>La maison</value>
+  </data>
+  <data name="hour" xml:space="preserve">
+    <value>heure</value>
+  </data>
+  <data name="hours" xml:space="preserve">
+    <value>heures</value>
+  </data>
+  <data name="icon" xml:space="preserve">
+    <value>Icône</value>
+  </data>
+  <data name="image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="info_update_success" xml:space="preserve">
+    <value>L'Information est mise à jour avec succès</value>
+  </data>
+  <data name="invalid_user" xml:space="preserve">
+    <value>Utilisateur Non Valide.</value>
+  </data>
+  <data name="in_progress" xml:space="preserve">
+    <value>En Cours</value>
+  </data>
+  <data name="in_there_portal" xml:space="preserve">
+    <value>là portail.</value>
+  </data>
+  <data name="job_completed_date_time" xml:space="preserve">
+    <value>Travail Terminé Date Et Heure De L'</value>
+  </data>
+  <data name="job_complete_success" xml:space="preserve">
+    <value>Travail Achevé Avec Succès!!</value>
+  </data>
+  <data name="job_date_time" xml:space="preserve">
+    <value>L'Emploi De La Date Et De L'Heure</value>
+  </data>
+  <data name="job_details" xml:space="preserve">
+    <value>Détails De L'Offre</value>
+  </data>
+  <data name="job_end_success" xml:space="preserve">
+    <value>Travail A Pris Fin Avec Succès!!</value>
+  </data>
+  <data name="job_not_exists" xml:space="preserve">
+    <value>L'emploi n'existe pas.</value>
+  </data>
+  <data name="job_rating" xml:space="preserve">
+    <value>Travail De Notation</value>
+  </data>
+  <data name="job_request" xml:space="preserve">
+    <value>Demande De Travail</value>
+  </data>
+  <data name="job_request_accept_success" xml:space="preserve">
+    <value>Demande de travail est acceptée avec succès.</value>
+  </data>
+  <data name="job_request_add_success" xml:space="preserve">
+    <value>Votre demande de Travail est ajouté avec succès.</value>
+  </data>
+  <data name="job_request_reject_success" xml:space="preserve">
+    <value>Demande de travail est rejetée avec succès.</value>
+  </data>
+  <data name="job_started_success" xml:space="preserve">
+    <value>Le Travail A Débuté Avec Succès!!</value>
+  </data>
+  <data name="job_successfully_assigned" xml:space="preserve">
+    <value>Le travail est attribué à</value>
+  </data>
+  <data name="large" xml:space="preserve">
+    <value>Grand</value>
+  </data>
+  <data name="last_name" xml:space="preserve">
+    <value>Nom De Famille</value>
+  </data>
+  <data name="location" xml:space="preserve">
+    <value>Emplacement</value>
+  </data>
+  <data name="login_credentials" xml:space="preserve">
+    <value>Votre Utilisateur Informations De Connexion:</value>
+  </data>
+  <data name="login_to_admin_account" xml:space="preserve">
+    <value>connexion à un compte admin</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>Déconnexion</value>
+  </data>
+  <data name="log_in" xml:space="preserve">
+    <value>Journal En</value>
+  </data>
+  <data name="medium" xml:space="preserve">
+    <value>Moyen</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="minute" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="minutes" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="month" xml:space="preserve">
+    <value>mois</value>
+  </data>
+  <data name="months" xml:space="preserve">
+    <value>mois</value>
+  </data>
+  <data name="my_bookings" xml:space="preserve">
+    <value>Mes Réservations</value>
+  </data>
+  <data name="my_properties" xml:space="preserve">
+    <value>Mes Propriétés</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="name_property" xml:space="preserve">
+    <value>Nom de la propriété</value>
+  </data>
+  <data name="new_password" xml:space="preserve">
+    <value>Nouveau Mot De Passe</value>
+  </data>
+  <data name="new_password_sent_success" xml:space="preserve">
+    <value>Veuillez Vérifier Votre Email, Votre demande de nouveau mot de passe envoyé avec succès!</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>Prochaine</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>Pas de</value>
+  </data>
+  <data name="notifications" xml:space="preserve">
+    <value>Les Notifications</value>
+  </data>
+  <data name="no_customers" xml:space="preserve">
+    <value>PAS de. CLIENTS ENREGISTRÉS</value>
+  </data>
+  <data name="no_data_canceled_bookings" xml:space="preserve">
+    <value>Nous n'arrivons pas à trouver toutes les réservations qui ont été annulées. Lorsque les réservations seront annulées, ils apparaissent ici dans cette section.</value>
+  </data>
+  <data name="no_data_completed_bookings" xml:space="preserve">
+    <value>Nous n'arrivons pas à trouver toutes les réservations sont terminées. Lorsque les réservations seront terminés, ils seront tous ici apparaître dans cette section.</value>
+  </data>
+  <data name="no_data_found" xml:space="preserve">
+    <value>Pas de données disponibles.</value>
+  </data>
+  <data name="no_data_heading" xml:space="preserve">
+    <value>Nous Sommes Désolés!!!</value>
+  </data>
+  <data name="no_data_notifications" xml:space="preserve">
+    <value>Nous n'arrivons pas à trouver toute notification qui est lié à votre compte. Quand il n'y a aucune notification, ils seront tous ici apparaître dans cette section.</value>
+  </data>
+  <data name="no_data_pending_bookings" xml:space="preserve">
+    <value>Nous n'arrivons pas à trouver toutes les réservations qui sont en attente. Lorsque les réservations seront en attendant, ils apparaissent ici dans cette section.</value>
+  </data>
+  <data name="no_data_progress_booking" xml:space="preserve">
+    <value>Nous n'arrivons pas à trouver toutes les réservations qui sont actuellement en cours. Quand il n'y a aucune réservation qui est dans le progrès, ils apparaissent ici dans cette section.</value>
+  </data>
+  <data name="no_data_property" xml:space="preserve">
+    <value>Nous n'arrivons pas à trouver toutes les propriétés qui sont ajoutées par vous. Lorsque vous ajoutez une propriété, ils apparaissent ici dans cette section. Essayez d'ajouter une propriété à partir de l'ajout de la propriété bouton ci-dessous.</value>
+  </data>
+  <data name="no_of_bed_rooms" xml:space="preserve">
+    <value>Pas de Chambres à coucher</value>
+  </data>
+  <data name="no_of_toilets" xml:space="preserve">
+    <value>Pas de Toilettes</value>
+  </data>
+  <data name="no_providers" xml:space="preserve">
+    <value>PAS de. DE FOURNISSEURS INSCRITS</value>
+  </data>
+  <data name="no_text_box_to_remove" xml:space="preserve">
+    <value>Pas plus de zone de texte à supprimer</value>
+  </data>
+  <data name="no_workers" xml:space="preserve">
+    <value>PAS de. DE TRAVAILLEURS ENREGISTRÉS</value>
+  </data>
+  <data name="number_of_bathrooms" xml:space="preserve">
+    <value>Nombre de salles de Bains</value>
+  </data>
+  <data name="number_of_double_beds" xml:space="preserve">
+    <value>Nombre de Lits Doubles</value>
+  </data>
+  <data name="number_of_double_sopha_beds" xml:space="preserve">
+    <value>Nombre de Double Sopha Lits</value>
+  </data>
+  <data name="number_of_duvets" xml:space="preserve">
+    <value>Nombre de Couettes</value>
+  </data>
+  <data name="number_of_pillows" xml:space="preserve">
+    <value>Nombre d'Oreillers</value>
+  </data>
+  <data name="number_of_queen_beds" xml:space="preserve">
+    <value>Nombre de Lits Queen-size</value>
+  </data>
+  <data name="number_of_single_beds" xml:space="preserve">
+    <value>Nombre de Lits Simples</value>
+  </data>
+  <data name="number_of_single_sopha_beds" xml:space="preserve">
+    <value>Nombre de Lits Sopha</value>
+  </data>
+  <data name="old_password" xml:space="preserve">
+    <value>Ancien Mot De Passe</value>
+  </data>
+  <data name="orders" xml:space="preserve">
+    <value>Les commandes</value>
+  </data>
+  <data name="order_detail" xml:space="preserve">
+    <value>Afin De Détail</value>
+  </data>
+  <data name="our_services" xml:space="preserve">
+    <value>nos services</value>
+  </data>
+  <data name="parking" xml:space="preserve">
+    <value>Parking</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="password_changed_success" xml:space="preserve">
+    <value>Votre mot de passe est modifié avec succès.</value>
+  </data>
+  <data name="password_confirm_mismatch" xml:space="preserve">
+    <value>Nouveau mot de passe et confirmer le mot de passe ne correspondent pas.</value>
+  </data>
+  <data name="password_details" xml:space="preserve">
+    <value>Mot de passe les Détails suivants:- Balai du Service</value>
+  </data>
+  <data name="password_post" xml:space="preserve">
+    <value>Mot de passe:</value>
+  </data>
+  <data name="pay" xml:space="preserve">
+    <value>Payer</value>
+  </data>
+  <data name="payment_method" xml:space="preserve">
+    <value>Méthode De Paiement</value>
+  </data>
+  <data name="payment_success" xml:space="preserve">
+    <value>Le paiement est effectué avec succès.</value>
+  </data>
+  <data name="pay_now" xml:space="preserve">
+    <value>Payer Maintenant</value>
+  </data>
+  <data name="pending" xml:space="preserve">
+    <value>En attendant</value>
+  </data>
+  <data name="penthouse" xml:space="preserve">
+    <value>Penthouse</value>
+  </data>
+  <data name="personal_details" xml:space="preserve">
+    <value>Données Personnelles</value>
+  </data>
+  <data name="phone_number" xml:space="preserve">
+    <value>Numéro De Téléphone</value>
+  </data>
+  <data name="please_choose_category" xml:space="preserve">
+    <value>Veuillez choisir la Catégorie</value>
+  </data>
+  <data name="please_complete_checklist" xml:space="preserve">
+    <value>Veuillez remplir la liste de contrôle</value>
+  </data>
+  <data name="please_enter_display_order" xml:space="preserve">
+    <value>Veuillez Saisir L'Ordre D'Affichage</value>
+  </data>
+  <data name="please_enter_price_prcnt" xml:space="preserve">
+    <value>Veuillez saisir Prix %</value>
+  </data>
+  <data name="please_enter_text" xml:space="preserve">
+    <value>Veuillez entrer le texte.</value>
+  </data>
+  <data name="please_enter_valid_email" xml:space="preserve">
+    <value>Veuillez entrer un Courriel valide.</value>
+  </data>
+  <data name="please_enter_valid_old_password" xml:space="preserve">
+    <value>Veuillez entrer l'ancien mot de passe valide</value>
+  </data>
+  <data name="please_enter_valid_password" xml:space="preserve">
+    <value>Veuillez entrer un mot de passe valide.</value>
+  </data>
+  <data name="pool" xml:space="preserve">
+    <value>Piscine</value>
+  </data>
+  <data name="price" xml:space="preserve">
+    <value>Prix</value>
+  </data>
+  <data name="price_of_service" xml:space="preserve">
+    <value>Prix de Service</value>
+  </data>
+  <data name="price_percnt" xml:space="preserve">
+    <value>Prix %</value>
+  </data>
+  <data name="privacy_policy" xml:space="preserve">
+    <value>Politique De Confidentialité</value>
+  </data>
+  <data name="profile_update_success" xml:space="preserve">
+    <value>Votre profil est mis à jour avec succès</value>
+  </data>
+  <data name="properties" xml:space="preserve">
+    <value>Propriétés</value>
+  </data>
+  <data name="properties_list" xml:space="preserve">
+    <value>Liste Des Propriétés</value>
+  </data>
+  <data name="property" xml:space="preserve">
+    <value>Propriété</value>
+  </data>
+  <data name="property_access" xml:space="preserve">
+    <value>L'Accès À La Propriété</value>
+  </data>
+  <data name="property_add_success" xml:space="preserve">
+    <value>Votre propriété est enregistrée avec succès.</value>
+  </data>
+  <data name="property_details" xml:space="preserve">
+    <value>Détails De La Propriété</value>
+  </data>
+  <data name="property_not_exists" xml:space="preserve">
+    <value>La propriété n'existe pas.</value>
+  </data>
+  <data name="property_update_success" xml:space="preserve">
+    <value>Votre propriété est mis à jour avec succès.</value>
+  </data>
+  <data name="quote" xml:space="preserve">
+    <value>Citation</value>
+  </data>
+  <data name="quote_accepted_success" xml:space="preserve">
+    <value>Devis est accepté avec succès.</value>
+  </data>
+  <data name="quote_already_accepted" xml:space="preserve">
+    <value>La citation est d'ores et déjà acceptées.</value>
+  </data>
+  <data name="quote_already_rejected" xml:space="preserve">
+    <value>La citation est déjà rejetés.</value>
+  </data>
+  <data name="quote_already_sent" xml:space="preserve">
+    <value>La citation est déjà envoyé.</value>
+  </data>
+  <data name="quote_canceled" xml:space="preserve">
+    <value>Citation Annulé</value>
+  </data>
+  <data name="quote_rejected_success" xml:space="preserve">
+    <value>Devis est rejetée avec succès.</value>
+  </data>
+  <data name="quote_sent" xml:space="preserve">
+    <value>Citation Envoyé</value>
+  </data>
+  <data name="quote_sent_success" xml:space="preserve">
+    <value>Citation Envoyé Avec Succès!!</value>
+  </data>
+  <data name="rating" xml:space="preserve">
+    <value>Cote</value>
+  </data>
+  <data name="read_more" xml:space="preserve">
+    <value>Lire Plus</value>
+  </data>
+  <data name="recent_chat" xml:space="preserve">
+    <value>causerie récente</value>
+  </data>
+  <data name="reference_images" xml:space="preserve">
+    <value>Les Images De Référence</value>
+  </data>
+  <data name="reject" xml:space="preserve">
+    <value>Rejeter</value>
+  </data>
+  <data name="rejected_broom_service_request" xml:space="preserve">
+    <value>Vous avez rejeté Balai du Service de demande de devis.</value>
+  </data>
+  <data name="rejected_your_quote_price" xml:space="preserve">
+    <value>a rejeté votre devis demande de prix.</value>
+  </data>
+  <data name="remember_me" xml:space="preserve">
+    <value>Se Souvenir De Moi</value>
+  </data>
+  <data name="required_validation" xml:space="preserve">
+    <value>Veuillez remplir ce champ</value>
+  </data>
+  <data name="review_success" xml:space="preserve">
+    <value>Votre commentaire est soumis avec succès.</value>
+  </data>
+  <data name="review_success_submit" xml:space="preserve">
+    <value>Votre commentaire est soumis avec succès.</value>
+  </data>
+  <data name="russian" xml:space="preserve">
+    <value>Russe</value>
+  </data>
+  <data name="save_changes" xml:space="preserve">
+    <value>Enregistrer Les Modifications</value>
+  </data>
+  <data name="second" xml:space="preserve">
+    <value>deuxième</value>
+  </data>
+  <data name="seconds" xml:space="preserve">
+    <value>secondes</value>
+  </data>
+  <data name="select" xml:space="preserve">
+    <value>Sélectionnez</value>
+  </data>
+  <data name="select_duvet_size" xml:space="preserve">
+    <value>Sélectionnez la taille de la couette</value>
+  </data>
+  <data name="select_no_of_double_sopha_beds" xml:space="preserve">
+    <value>Sélectionnez le nombre de double sopha lits</value>
+  </data>
+  <data name="select_no_of_single_sopha_beds" xml:space="preserve">
+    <value>Sélectionnez le nombre de unique sopha lits</value>
+  </data>
+  <data name="select_number_of_double_beds" xml:space="preserve">
+    <value>Sélectionnez le nombre de lits doubles</value>
+  </data>
+  <data name="select_number_of_queen_beds" xml:space="preserve">
+    <value>Sélectionnez le nombre de lits queen-size</value>
+  </data>
+  <data name="select_number_of_single_beds" xml:space="preserve">
+    <value>Sélectionnez le nombre de lits simples</value>
+  </data>
+  <data name="select_property" xml:space="preserve">
+    <value>Sélectionnez La Propriété</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Envoyer</value>
+  </data>
+  <data name="send_quote" xml:space="preserve">
+    <value>Envoyer Devis</value>
+  </data>
+  <data name="service" xml:space="preserve">
+    <value>Un service</value>
+  </data>
+  <data name="service_add_success" xml:space="preserve">
+    <value>Le Service est ajouté avec succès.</value>
+  </data>
+  <data name="service_list" xml:space="preserve">
+    <value>Service De Liste</value>
+  </data>
+  <data name="service_name_already_exists" xml:space="preserve">
+    <value>Service de nom existe déjà.</value>
+  </data>
+  <data name="service_not_exists" xml:space="preserve">
+    <value>Le Service n'existe pas.</value>
+  </data>
+  <data name="service_providers" xml:space="preserve">
+    <value>Les Fournisseurs De Services</value>
+  </data>
+  <data name="service_provider_detail" xml:space="preserve">
+    <value>Du Fournisseur de services de Détail</value>
+  </data>
+  <data name="service_provider_job_rating" xml:space="preserve">
+    <value>Job Fournisseur De Services De Notation</value>
+  </data>
+  <data name="service_provider_job_rating_validation" xml:space="preserve">
+    <value>S'Il Vous Plaît Ajouter Job Fournisseur De Services De Notation</value>
+  </data>
+  <data name="service_provider_list" xml:space="preserve">
+    <value>Liste Des Fournisseurs De Services</value>
+  </data>
+  <data name="service_provider_name" xml:space="preserve">
+    <value>Nom Du Fournisseur De Service</value>
+  </data>
+  <data name="service_provider_rating" xml:space="preserve">
+    <value>Fournisseur De Services De Notation</value>
+  </data>
+  <data name="service_provider_rating_validation" xml:space="preserve">
+    <value>Veuillez Ajouter Un Fournisseur De Services De Notation</value>
+  </data>
+  <data name="service_update_success" xml:space="preserve">
+    <value>Le Service est mis à jour avec succès.</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Paramètres</value>
+  </data>
+  <data name="short_term_airbnb_apartment" xml:space="preserve">
+    <value>À Court Terme Appartement Airbnb</value>
+  </data>
+  <data name="size" xml:space="preserve">
+    <value>Taille</value>
+  </data>
+  <data name="small" xml:space="preserve">
+    <value>Petit</value>
+  </data>
+  <data name="some_error_occured" xml:space="preserve">
+    <value>Une erreur s'est produite, veuillez essayer de nouveau.</value>
+  </data>
+  <data name="start_date" xml:space="preserve">
+    <value>Date De Début De</value>
+  </data>
+  <data name="start_date_time" xml:space="preserve">
+    <value>Date De Début Et Heure</value>
+  </data>
+  <data name="start_job" xml:space="preserve">
+    <value>Démarrer Le Travail</value>
+  </data>
+  <data name="start_time" xml:space="preserve">
+    <value>Heure De Début</value>
+  </data>
+  <data name="start_timer" xml:space="preserve">
+    <value>Démarrer La Minuterie</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>Statut</value>
+  </data>
+  <data name="status_update_sucess" xml:space="preserve">
+    <value>l'état est mis à jour avec succès.</value>
+  </data>
+  <data name="subcategory_not_exists" xml:space="preserve">
+    <value>Sous-catégorie n'existe pas.</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>Soumettre</value>
+  </data>
+  <data name="sub_category_not_exists" xml:space="preserve">
+    <value>SubSubCategory n'existe pas.</value>
+  </data>
+  <data name="sub_service" xml:space="preserve">
+    <value>Sous Service</value>
+  </data>
+  <data name="sub_service_add_success" xml:space="preserve">
+    <value>SubService est ajouté avec succès.</value>
+  </data>
+  <data name="sub_service_list" xml:space="preserve">
+    <value>Sous Liste Des Services</value>
+  </data>
+  <data name="sub_service_name_already_exists" xml:space="preserve">
+    <value>SubService nom existe déjà dans cette Catégorie.</value>
+  </data>
+  <data name="sub_service_update_success" xml:space="preserve">
+    <value>SubService est mis à jour avec succès.</value>
+  </data>
+  <data name="sub_sub_service_add_success" xml:space="preserve">
+    <value>SubSubService est ajouté avec succès.</value>
+  </data>
+  <data name="sub_sub_service_list" xml:space="preserve">
+    <value>Sous-Sous-Service De Liste</value>
+  </data>
+  <data name="sub_sub_service_name_already_exists" xml:space="preserve">
+    <value>SubSubService nom existe déjà dans cette sous-catégorie.</value>
+  </data>
+  <data name="sub_sub_service_not_exists" xml:space="preserve">
+    <value>SubSubService n'existe pas.</value>
+  </data>
+  <data name="sub_sub_service_update_success" xml:space="preserve">
+    <value>SubSubService est mis à jour avec succès.</value>
+  </data>
+  <data name="success" xml:space="preserve">
+    <value>Succès</value>
+  </data>
+  <data name="s_job_request" xml:space="preserve">
+    <value>s de demande de travail.</value>
+  </data>
+  <data name="s_quote_request" xml:space="preserve">
+    <value>s de demande de devis.</value>
+  </data>
+  <data name="terms_conditins_job_request" xml:space="preserve">
+    <value>Veuillez accepter les termes et conditions pour ajouter de la demande de travail.</value>
+  </data>
+  <data name="terms_conditions" xml:space="preserve">
+    <value>Termes &amp; Conditions</value>
+  </data>
+  <data name="terms_conditions_validation" xml:space="preserve">
+    <value>Veuillez acceptez les termes et conditions</value>
+  </data>
+  <data name="testimonials" xml:space="preserve">
+    <value>Témoignages</value>
+  </data>
+  <data name="testimonials_list" xml:space="preserve">
+    <value>Liste Des Témoignages</value>
+  </data>
+  <data name="testimonial_add_success" xml:space="preserve">
+    <value>Le témoignage est ajouté avec succès.</value>
+  </data>
+  <data name="testimonial_delete_success" xml:space="preserve">
+    <value>Le témoignage est supprimé avec succès.</value>
+  </data>
+  <data name="testimonial_not_exist" xml:space="preserve">
+    <value>Témoignage n'existe pas.</value>
+  </data>
+  <data name="testimonial_update_success" xml:space="preserve">
+    <value>Le témoignage est mis à jour avec succès.</value>
+  </data>
+  <data name="text_here" xml:space="preserve">
+    <value>Le texte ici</value>
+  </data>
+  <data name="thank_you" xml:space="preserve">
+    <value>Je vous remercie.</value>
+  </data>
+  <data name="timer_already_ended" xml:space="preserve">
+    <value>La minuterie est déjà terminé.</value>
+  </data>
+  <data name="timer_already_started" xml:space="preserve">
+    <value>À rebours est déjà commencé.</value>
+  </data>
+  <data name="timer_ended_success" xml:space="preserve">
+    <value>La minuterie est terminé avec succès.</value>
+  </data>
+  <data name="timer_started_success" xml:space="preserve">
+    <value>Timer est démarré avec succès.</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Titre</value>
+  </data>
+  <data name="title_text" xml:space="preserve">
+    <value>Balai Services</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>pour</value>
+  </data>
+  <data name="transaction_does_not_exists" xml:space="preserve">
+    <value>La Transaction n'existe pas.</value>
+  </data>
+  <data name="try_again" xml:space="preserve">
+    <value>Essayez à nouveau</value>
+  </data>
+  <data name="type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="type_of_property" xml:space="preserve">
+    <value>Type de propriété:</value>
+  </data>
+  <data name="type_of_service" xml:space="preserve">
+    <value>Type de Service</value>
+  </data>
+  <data name="update_payment_method" xml:space="preserve">
+    <value>Mise À Jour De La Méthode De Paiement</value>
+  </data>
+  <data name="update_profile" xml:space="preserve">
+    <value>Mettre À Jour Le Profil</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>Les utilisateurs</value>
+  </data>
+  <data name="user_credentials" xml:space="preserve">
+    <value>D'identification de l'utilisateur:- Balai Service</value>
+  </data>
+  <data name="user_detail_add_success" xml:space="preserve">
+    <value>L'utilisateur du détail est ajouté avec succès.</value>
+  </data>
+  <data name="user_detail_update_success" xml:space="preserve">
+    <value>Détails de l'utilisateur est mis à jour avec succès.</value>
+  </data>
+  <data name="user_logged_in_successfully" xml:space="preserve">
+    <value>L'utilisateur est connecté avec succès.</value>
+  </data>
+  <data name="user_name" xml:space="preserve">
+    <value>Nom D'Utilisateur</value>
+  </data>
+  <data name="user_not_exist" xml:space="preserve">
+    <value>L'utilisateur n'existe pas</value>
+  </data>
+  <data name="verify_email" xml:space="preserve">
+    <value>De Vérifier E-Mail</value>
+  </data>
+  <data name="verify_email_before_signing" xml:space="preserve">
+    <value>veuillez vérifier votre e-mail avant de vous connecter.</value>
+  </data>
+  <data name="verify_email_broom_service" xml:space="preserve">
+    <value>De vérifier e - Mail: - Balai du Service</value>
+  </data>
+  <data name="view_details" xml:space="preserve">
+    <value>Afficher Les Détails</value>
+  </data>
+  <data name="view_profile" xml:space="preserve">
+    <value>Voir Le Profil</value>
+  </data>
+  <data name="villa" xml:space="preserve">
+    <value>Villa</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Bienvenue</value>
+  </data>
+  <data name="welcome_to" xml:space="preserve">
+    <value>Bienvenue</value>
+  </data>
+  <data name="workers" xml:space="preserve">
+    <value>Les travailleurs</value>
+  </data>
+  <data name="workers_list" xml:space="preserve">
+    <value>Travailleur Liste</value>
+  </data>
+  <data name="worker_assigned_message" xml:space="preserve">
+    <value>a assignée par le Balai de Service pour votre travail.</value>
+  </data>
+  <data name="worker_details" xml:space="preserve">
+    <value>Travailleur de Détails</value>
+  </data>
+  <data name="write_apt_number" xml:space="preserve">
+    <value>Écrire le nombre apt</value>
+  </data>
+  <data name="write_building_code" xml:space="preserve">
+    <value>Écrire le code du bâtiment</value>
+  </data>
+  <data name="write_here" xml:space="preserve">
+    <value>Écrire Ici</value>
+  </data>
+  <data name="write_number_of_bathrooms" xml:space="preserve">
+    <value>Écrire nombre de salles de bains</value>
+  </data>
+  <data name="write_number_of_bedrooms" xml:space="preserve">
+    <value>Écrire le nombre de chambres</value>
+  </data>
+  <data name="write_number_of_duvets" xml:space="preserve">
+    <value>Écrire le nombre de couettes</value>
+  </data>
+  <data name="write_number_of_pillows" xml:space="preserve">
+    <value>Écrire le nombre d'oreillers</value>
+  </data>
+  <data name="write_number_of_toilets" xml:space="preserve">
+    <value>Écrire le nombre de toilettes</value>
+  </data>
+  <data name="write_size" xml:space="preserve">
+    <value>Taille d'écriture</value>
+  </data>
+  <data name="write_the_address" xml:space="preserve">
+    <value>Écrire l'adresse</value>
+  </data>
+  <data name="write_the_floor_number" xml:space="preserve">
+    <value>Écrire le numéro de l'étage</value>
+  </data>
+  <data name="year" xml:space="preserve">
+    <value>année</value>
+  </data>
+  <data name="years" xml:space="preserve">
+    <value>ans</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="your_login_credentials" xml:space="preserve">
+    <value>Vos Identifiants De Connexion:</value>
+  </data>
+  <data name="you_have_accepted" xml:space="preserve">
+    <value>Vous avez accepté</value>
+  </data>
+  <data name="you_have_new_msg" xml:space="preserve">
+    <value>Vous avez un nouveau message à partir de</value>
+  </data>
+  <data name="you_have_rejected" xml:space="preserve">
+    <value>Vous avez rejeté</value>
+  </data>
+  <data name="you_have_to_pay" xml:space="preserve">
+    <value>Vous avez à payer</value>
+  </data>
+  <data name="zip_code" xml:space="preserve">
+    <value>Code Postal</value>
+  </data>
+  <data name="please_select_end_date" xml:space="preserve">
+    <value>Veuillez sélectionner la date de fin</value>
+  </data>
+  <data name="please_select_start_date" xml:space="preserve">
+    <value>Veuillez sélectionner la date de début</value>
+  </data>
+  <data name="forgot_password" xml:space="preserve">
+    <value>Mot de passe oublié</value>
+  </data>
+  <data name="check_card_details" xml:space="preserve">
+    <value>Veuillez vérifier les détails de votre carte</value>
+  </data>
+  <data name="edit_codes" xml:space="preserve">
+    <value>Modifier les détails du code</value>
+  </data>
+  <data name="billing_address" xml:space="preserve">
+    <value>Adresse de facturation</value>
+  </data>
+  <data name="company_name" xml:space="preserve">
+    <value>Nom de la compagnie</value>
+  </data>
+  <data name="coffee_machine" xml:space="preserve">
+    <value>Cafetière</value>
+  </data>
+  <data name="location_of_key" xml:space="preserve">
+    <value>Emplacement de la clé</value>
+  </data>
+  <data name="number_of_bedrooms" xml:space="preserve">
+    <value>Nombre de chambres</value>
+  </data>
+  <data name="size_in_sqm" xml:space="preserve">
+    <value>Taille en m2</value>
+  </data>
+  <data name="wi_fi_login" xml:space="preserve">
+    <value>Nom du travailleur</value>
+  </data>
+  <data name="add_inventory" xml:space="preserve">
+    <value>Ajouter un inventaire</value>
+  </data>
+  <data name="edit_inventory" xml:space="preserve">
+    <value>Modifier l'inventaire</value>
+  </data>
+  <data name="edit_testimonial" xml:space="preserve">
+    <value>Modifier le témoignage</value>
+  </data>
+  <data name="inventory_added_success" xml:space="preserve">
+    <value>L'inventaire a été ajouté avec succès</value>
+  </data>
+  <data name="inventory_update_success" xml:space="preserve">
+    <value>L'inventaire a été mis à jour avec succès</value>
+  </data>
+  <data name="inventory_not_exist" xml:space="preserve">
+    <value>L'inventaire n'existe pas</value>
+  </data>
+  <data name="inventory_delete_success" xml:space="preserve">
+    <value>L'inventaire a été supprimé avec succès</value>
+  </data>
+  <data name="inventory" xml:space="preserve">
+    <value>Inventaire</value>
+  </data>
+  <data name="stock" xml:space="preserve">
+    <value>Stock</value>
+  </data>
+  <data name="enter_price" xml:space="preserve">
+    <value>Entrez le prix</value>
+  </data>
+  <data name="enter_stock" xml:space="preserve">
+    <value>Entrer en stock</value>
+  </data>
+  <data name="delete_confirm_message" xml:space="preserve">
+    <value>Etes-vous sûr que vous voulez supprimer?</value>
+  </data>
+  <data name="available_time" xml:space="preserve">
+    <value>Temps disponible</value>
+  </data>
+  <data name="add_available_time" xml:space="preserve">
+    <value>Ajouter du temps disponible</value>
+  </data>
+  <data name="available_time_details" xml:space="preserve">
+    <value>Détails du temps disponible</value>
+  </data>
+  <data name="from_time" xml:space="preserve">
+    <value>De temps</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>enregistrer</value>
+  </data>
+  <data name="schedule_added_successfully" xml:space="preserve">
+    <value>Calendrier ajouté avec succès.</value>
+  </data>
+  <data name="schedule_already_added" xml:space="preserve">
+    <value>Horaire déjà ajouté.</value>
+  </data>
+  <data name="select_day_of_week" xml:space="preserve">
+    <value>Sélectionnez le jour de la semaine</value>
+  </data>
+  <data name="select_from_time" xml:space="preserve">
+    <value>Sélectionnez dans le temps</value>
+  </data>
+  <data name="select_to_time" xml:space="preserve">
+    <value>Sélectionnez pour l'heure</value>
+  </data>
+  <data name="to_time" xml:space="preserve">
+    <value>Au temps</value>
+  </data>
+  <data name="enter_shift_number" xml:space="preserve">
+    <value>Entrez le numéro de quart</value>
+  </data>
+  <data name="no_of_shifts" xml:space="preserve">
+    <value>No de quarts</value>
+  </data>
+  <data name="enter_time_for_service" xml:space="preserve">
+    <value>Entrez l'heure du service</value>
+  </data>
+  <data name="time_for_service" xml:space="preserve">
+    <value>Temps de service</value>
+  </data>
+  <data name="choose_icon" xml:space="preserve">
+    <value>Choisissez l'icône</value>
+  </data>
+  <data name="choose_image" xml:space="preserve">
+    <value>Choisissez une image</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Chercher</value>
+  </data>
+  <data name="messages_list" xml:space="preserve">
+    <value>Liste des messages</value>
+  </data>
+  <data name="data_added_success" xml:space="preserve">
+    <value>Données ajoutées avec succès</value>
+  </data>
+  <data name="add_data" xml:space="preserve">
+    <value>Ajouter des données</value>
+  </data>
+  <data name="edit_data" xml:space="preserve">
+    <value>Modifier les données</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="select_service" xml:space="preserve">
+    <value>Sélectionnez un service</value>
+  </data>
+  <data name="no_orders" xml:space="preserve">
+    <value>De commandes</value>
+  </data>
+  <data name="no_services" xml:space="preserve">
+    <value>Nbre de services</value>
+  </data>
+  <data name="no_supervisors" xml:space="preserve">
+    <value>Nbre de superviseurs</value>
+  </data>
+  <data name="send_offer" xml:space="preserve">
+    <value>Envoyer une offre</value>
+  </data>
+  <data name="sub_sub_service" xml:space="preserve">
+    <value>Sous sous-service</value>
+  </data>
+  <data name="booked_timings" xml:space="preserve">
+    <value>Horaires réservés</value>
+  </data>
+  <data name="worker_name" xml:space="preserve">
+    <value>Nom du travailleur</value>
+  </data>
+  <data name="by_day" xml:space="preserve">
+    <value>De jour</value>
+  </data>
+  <data name="by_week" xml:space="preserve">
+    <value>Par semaine</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>Aucune</value>
+  </data>
+  <data name="services_offered_by_supervisors" xml:space="preserve">
+    <value>Services offerts par les superviseurs</value>
+  </data>
+  <data name="accepted" xml:space="preserve">
+    <value>Accepté</value>
+  </data>
+  <data name="no_action" xml:space="preserve">
+    <value>Pas d'action</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>Rejetée</value>
+  </data>
+  <data name="supervisor_name" xml:space="preserve">
+    <value>Nom du superviseur</value>
+  </data>
+  <data name="client_status" xml:space="preserve">
+    <value>Statut du client</value>
+  </data>
+  <data name="fast_order" xml:space="preserve">
+    <value>Commande rapide</value>
+  </data>
+  <data name="fast_order_name" xml:space="preserve">
+    <value>Nom de la commande rapide</value>
+  </data>
+  <data name="services" xml:space="preserve">
+    <value>Prestations de service</value>
+  </data>
+  <data name="worker_assigned_jobs" xml:space="preserve">
+    <value>Emplois assignés aux travailleurs</value>
+  </data>
+  <data name="provider_assigned_jobs" xml:space="preserve">
+    <value>Tâches attribuées par le fournisseur</value>
+  </data>
+  <data name="stand_by" xml:space="preserve">
+    <value>Etre prêt</value>
+  </data>
+  <data name="change_job_time" xml:space="preserve">
+    <value>Changer l'heure du travail</value>
+  </data>
+  <data name="time_updated_successfully" xml:space="preserve">
+    <value>Heure mise à jour avec succès</value>
+  </data>
+  <data name="wait_for_confirmation" xml:space="preserve">
+    <value>Votre demande de changement d'heure a été générée, veuillez attendre l'approbation de l'administrateur.</value>
+  </data>
+  <data name="have_some_problem" xml:space="preserve">
+    <value>Si vous rencontrez un problème concernant le travail, vous pouvez le signaler à l'administrateur</value>
+  </data>
+  <data name="user_reviews" xml:space="preserve">
+    <value>Critiques d'utilisateurs</value>
+  </data>
+  <data name="review_from" xml:space="preserve">
+    <value>Avis de</value>
+  </data>
+  <data name="review_to" xml:space="preserve">
+    <value>Revoir à</value>
+  </data>
+  <data name="action_text" xml:space="preserve">
+    <value>action</value>
+  </data>
+  <data name="cancel_request_job" xml:space="preserve">
+    <value>Annuler la demande de travail</value>
+  </data>
+  <data name="job_request_id" xml:space="preserve">
+    <value>ID de la demande de travail</value>
+  </data>
+  <data name="property_name" xml:space="preserve">
+    <value>Nom de la propriété</value>
+  </data>
+  <data name="status_text" xml:space="preserve">
+    <value>Statut</value>
+  </data>
+  <data name="text" xml:space="preserve">
+    <value>Texte</value>
+  </data>
+  <data name="user_id" xml:space="preserve">
+    <value>Identifiant d'utilisateur</value>
+  </data>
+  <data name="Cashflow" xml:space="preserve">
+    <value>Flux de trésorerie</value>
+  </data>
+  <data name="Meeting_Requests" xml:space="preserve">
+    <value>Demandes de réunion</value>
+  </data>
+  <data name="Month_Invoice" xml:space="preserve">
+    <value>Facture mensuelle</value>
+  </data>
+  <data name="pending_income" xml:space="preserve">
+    <value>Revenus en attente</value>
+  </data>
+  <data name="Price_Change_Requests" xml:space="preserve">
+    <value>Demandes de changement de prix</value>
+  </data>
+  <data name="Questions" xml:space="preserve">
+    <value>Des questions</value>
+  </data>
+  <data name="send_sms" xml:space="preserve">
+    <value>Envoyer un SMS</value>
+  </data>
+  <data name="Supervisor_request" xml:space="preserve">
+    <value>Demande de superviseur</value>
+  </data>
+  <data name="total_income" xml:space="preserve">
+    <value>Revenus totaux</value>
+  </data>
+  <data name="total_outcome" xml:space="preserve">
+    <value>Résultats totaux</value>
+  </data>
+  <data name="greeting_messages" xml:space="preserve">
+    <value>Messages d'accueil</value>
+  </data>
+  <data name="user_status" xml:space="preserve">
+    <value>Statut de l'utilisateur</value>
+  </data>
+  <data name="about_broom_service" xml:space="preserve">
+    <value>À propos des services de balai</value>
+  </data>
+  <data name="access_to_change_properties" xml:space="preserve">
+    <value>Accès aux propriétés aad / change</value>
+  </data>
+  <data name="access_to_edit_change_card" xml:space="preserve">
+    <value>Accès pour ajouter / modifier la carte</value>
+  </data>
+  <data name="access_to_order_change_services" xml:space="preserve">
+    <value>Accès aux services de commande / modification</value>
+  </data>
+  <data name="access_to_property" xml:space="preserve">
+    <value>Accès à la propriété</value>
+  </data>
+  <data name="access_to_see_bill_price" xml:space="preserve">
+    <value>Accès pour voir les informations de facturation / prix</value>
+  </data>
+  <data name="account_created_successfully" xml:space="preserve">
+    <value>Votre compte a été créé avec succès.</value>
+  </data>
+  <data name="add_another_service" xml:space="preserve">
+    <value>Ajouter un autre service</value>
+  </data>
+  <data name="add_billing_address" xml:space="preserve">
+    <value>Ajouter une adresse de facturation</value>
+  </data>
+  <data name="add_check_list" xml:space="preserve">
+    <value>Ajouter une liste de contrôle</value>
+  </data>
+  <data name="add_email" xml:space="preserve">
+    <value>Ajouter un e-mail</value>
+  </data>
+  <data name="add_manual" xml:space="preserve">
+    <value>Ajouter un manuel</value>
+  </data>
+  <data name="add_manually" xml:space="preserve">
+    <value>Ajouter manuellement</value>
+  </data>
+  <data name="add_property_choose_single_option" xml:space="preserve">
+    <value>Vous pouvez ajouter une propriété à la fois en choisissant cette option</value>
+  </data>
+  <data name="add_property_multiple_option" xml:space="preserve">
+    <value>Importez-les tous à la fois avec une simple feuille de calcul</value>
+  </data>
+  <data name="add_property_pms_option" xml:space="preserve">
+    <value>Vous pouvez utiliser l'une de nos intégrations avec certains des meilleurs systèmes de gestion immobilière</value>
+  </data>
+  <data name="add_sub_user" xml:space="preserve">
+    <value>Ajouter un sous-utilisateur</value>
+  </data>
+  <data name="amercianexpress" xml:space="preserve">
+    <value>AMERCIANEXPRESS</value>
+  </data>
+  <data name="android" xml:space="preserve">
+    <value>Android</value>
+  </data>
+  <data name="apple" xml:space="preserve">
+    <value>Pomme</value>
+  </data>
+  <data name="ask_about_adding_another_service" xml:space="preserve">
+    <value>Souhaitez-vous commander un autre service en même temps?</value>
+  </data>
+  <data name="ask_about_adding_checklist" xml:space="preserve">
+    <value>Souhaitez-vous ajouter une liste de contrôle?</value>
+  </data>
+  <data name="ask_about_adding_service" xml:space="preserve">
+    <value>Souhaitez-vous ajouter un service de base normal pour cette propriété</value>
+  </data>
+  <data name="ask_about_add_job_desc" xml:space="preserve">
+    <value>Souhaitez-vous ajouter une description de poste?</value>
+  </data>
+  <data name="ask_about_end_date_time" xml:space="preserve">
+    <value>Souhaitez-vous ajouter une date / heure de fin?</value>
+  </data>
+  <data name="ask_about_image_video" xml:space="preserve">
+    <value>Souhaitez-vous ajouter une image / vidéo?</value>
+  </data>
+  <data name="ask_about_inventory_service" xml:space="preserve">
+    <value>Souhaitez-vous commander l'inventaire dans le même temps?</value>
+  </data>
+  <data name="ask_about_job_for_fast_order" xml:space="preserve">
+    <value>Souhaitez-vous enregistrer les détails du travail en tant que commande rapide pour la prochaine? (Y compris l'inventaire si AirBNB).</value>
+  </data>
+  <data name="bathrooms" xml:space="preserve">
+    <value>Salles de bain</value>
+  </data>
+  <data name="bedrooms" xml:space="preserve">
+    <value>Chambres</value>
+  </data>
+  <data name="before_a_job" xml:space="preserve">
+    <value>Avant un travail</value>
+  </data>
+  <data name="best_regards" xml:space="preserve">
+    <value>Meilleures salutations,</value>
+  </data>
+  <data name="booked_services" xml:space="preserve">
+    <value>Services réservés</value>
+  </data>
+  <data name="bookings_details" xml:space="preserve">
+    <value>Détails des réservations</value>
+  </data>
+  <data name="call_us_now" xml:space="preserve">
+    <value>Appelez-nous maintenant</value>
+  </data>
+  <data name="cancel_job" xml:space="preserve">
+    <value>Annuler le travail</value>
+  </data>
+  <data name="card_add_success" xml:space="preserve">
+    <value>Carte ajoutée avec succès.</value>
+  </data>
+  <data name="change" xml:space="preserve">
+    <value>Changer</value>
+  </data>
+  <data name="change_access" xml:space="preserve">
+    <value>Modifier l'accès</value>
+  </data>
+  <data name="checklists" xml:space="preserve">
+    <value>Listes de contrôle</value>
+  </data>
+  <data name="choose_from_list" xml:space="preserve">
+    <value>Choisissez dans la liste</value>
+  </data>
+  <data name="choose_option_for_property" xml:space="preserve">
+    <value>Choisissez l'une des options ci-dessous pour continuer.</value>
+  </data>
+  <data name="choose_package" xml:space="preserve">
+    <value>Choisissez un forfait</value>
+  </data>
+  <data name="choose_services" xml:space="preserve">
+    <value>Choisissez les services</value>
+  </data>
+  <data name="coffe_machine" xml:space="preserve">
+    <value>Cafetière</value>
+  </data>
+  <data name="contact_us_for_offers" xml:space="preserve">
+    <value>Contactez-nous pour une offre attractive</value>
+  </data>
+  <data name="Credit_card" xml:space="preserve">
+    <value>Carte de crédit</value>
+  </data>
+  <data name="debit_credit_card" xml:space="preserve">
+    <value>Carte de débit / crédit</value>
+  </data>
+  <data name="delete_email_if_not_belong" xml:space="preserve">
+    <value>Vous avez reçu cet e-mail, car vous avez accès aux propriétés de votre compte. Si cet e-mail ne vous appartient pas, vous pouvez supprimer cet e-mail en toute sécurité.</value>
+  </data>
+  <data name="delete_msg" xml:space="preserve">
+    <value>Etes-vous sûr que vous voulez supprimer?</value>
+  </data>
+  <data name="dont_have_account_yet" xml:space="preserve">
+    <value>Vous n’avez pas encore de compte?</value>
+  </data>
+  <data name="double_beds" xml:space="preserve">
+    <value>Lits doubles</value>
+  </data>
+  <data name="double_sofa_beds" xml:space="preserve">
+    <value>Canapés-lits doubles</value>
+  </data>
+  <data name="download_template" xml:space="preserve">
+    <value>Télécharger le fichier modèle pour la propriété</value>
+  </data>
+  <data name="drop_message_for_contact" xml:space="preserve">
+    <value>Envoyez-nous un message, nous vous contacterons bientôt</value>
+  </data>
+  <data name="enter_apartment_number" xml:space="preserve">
+    <value>Entrez le numéro de l'appartement</value>
+  </data>
+  <data name="enter_billing_address" xml:space="preserve">
+    <value>Entrez l'adresse de facturation</value>
+  </data>
+  <data name="enter_building_code" xml:space="preserve">
+    <value>Entrez le code du bâtiment</value>
+  </data>
+  <data name="enter_comment" xml:space="preserve">
+    <value>Entrez un commentaire</value>
+  </data>
+  <data name="enter_company_name" xml:space="preserve">
+    <value>Введите название компании</value>
+  </data>
+  <data name="enter_emails_for_grant_access" xml:space="preserve">
+    <value>Entrez les e-mails et envoyez l'accès à la propriété</value>
+  </data>
+  <data name="enter_fast_order_name" xml:space="preserve">
+    <value>Entrez le nom de la commande rapide *</value>
+  </data>
+  <data name="enter_floor" xml:space="preserve">
+    <value>Entrez dans l'étage</value>
+  </data>
+  <data name="enter_full_address" xml:space="preserve">
+    <value>Entrez l'adresse complète</value>
+  </data>
+  <data name="enter_full_name" xml:space="preserve">
+    <value>Entrez le nom complet</value>
+  </data>
+  <data name="enter_job_desc" xml:space="preserve">
+    <value>Entrez la description du poste</value>
+  </data>
+  <data name="enter_location_of_key" xml:space="preserve">
+    <value>Entrez l'emplacement de la clé</value>
+  </data>
+  <data name="enter_name_of_property" xml:space="preserve">
+    <value>Entrez le nom de la propriété</value>
+  </data>
+  <data name="enter_property_name_address" xml:space="preserve">
+    <value>Entrez le nom et l'adresse de la propriété</value>
+  </data>
+  <data name="explore_service_provider" xml:space="preserve">
+    <value>Prestataire de services expert dans tout le</value>
+  </data>
+  <data name="full_address" xml:space="preserve">
+    <value>Adresse complète</value>
+  </data>
+  <data name="full_address_property" xml:space="preserve">
+    <value>Adresse complète de la propriété</value>
+  </data>
+  <data name="full_name" xml:space="preserve">
+    <value>Nom et prénom</value>
+  </data>
+  <data name="get_on" xml:space="preserve">
+    <value>Monter</value>
+  </data>
+  <data name="give_access_add_change_properties" xml:space="preserve">
+    <value>Souhaitez-vous donner accès pour ajouter / modifier des propriétés?</value>
+  </data>
+  <data name="give_access_order_change_services" xml:space="preserve">
+    <value>Souhaitez-vous donner accès aux services de commande / modification?</value>
+  </data>
+  <data name="give_access_to_add_change_credit_card" xml:space="preserve">
+    <value>Souhaitez-vous donner accès pour ajouter / modifier une carte de crédit?</value>
+  </data>
+  <data name="give_access_to_see_billing_info" xml:space="preserve">
+    <value>Souhaitez-vous donner accès aux informations de facturation et aux prix?</value>
+  </data>
+  <data name="granted_access_users" xml:space="preserve">
+    <value>Utilisateurs bénéficiant d'un accès autorisé</value>
+  </data>
+  <data name="granted_access_user_list" xml:space="preserve">
+    <value>Liste des utilisateurs à accès autorisé</value>
+  </data>
+  <data name="grant_access" xml:space="preserve">
+    <value>Accorder l'accès</value>
+  </data>
+  <data name="grant_access_heading" xml:space="preserve">
+    <value>vous a fourni l'accès aux propriétés du compte enregistré dans notre système.</value>
+  </data>
+  <data name="grant_access_successfully" xml:space="preserve">
+    <value>Accorder la propriété d'accès avec succès.</value>
+  </data>
+  <data name="grant_access_title" xml:space="preserve">
+    <value>Accès à l'application de service Broom accordé</value>
+  </data>
+  <data name="happy_clients" xml:space="preserve">
+    <value>Clients satisfaits</value>
+  </data>
+  <data name="heading_one" xml:space="preserve">
+    <value>Première fois en Israël</value>
+  </data>
+  <data name="heading_two" xml:space="preserve">
+    <value>vivre à la maison et se sentir dans un hôtel 5 étoiles avec service de chambre pour votre maison</value>
+  </data>
+  <data name="images_videos" xml:space="preserve">
+    <value>Images / Vidéos</value>
+  </data>
+  <data name="import_from_file" xml:space="preserve">
+    <value>Importer depuis un fichier</value>
+  </data>
+  <data name="israel" xml:space="preserve">
+    <value>Israël</value>
+  </data>
+  <data name="i_agree_with_all" xml:space="preserve">
+    <value>Je suis d'accord avec tous</value>
+  </data>
+  <data name="job_description" xml:space="preserve">
+    <value>Description de l'emploi</value>
+  </data>
+  <data name="job_request_detail" xml:space="preserve">
+    <value>Détails de la demande d'emploi</value>
+  </data>
+  <data name="king_beds" xml:space="preserve">
+    <value>Très grands lits</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="lets_see_how_it_works" xml:space="preserve">
+    <value>Voyons comment cela fonctionne.</value>
+  </data>
+  <data name="lets_start_by_creating_account" xml:space="preserve">
+    <value>Commençons par créer un compte</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Connexion</value>
+  </data>
+  <data name="login_now" xml:space="preserve">
+    <value>Connecte-toi maintenant</value>
+  </data>
+  <data name="login_Registration" xml:space="preserve">
+    <value>S'identifier S'enregistrer</value>
+  </data>
+  <data name="manage_access_code" xml:space="preserve">
+    <value>Gérer le code d'accès</value>
+  </data>
+  <data name="manage_building_code" xml:space="preserve">
+    <value>Gérer le code du bâtiment</value>
+  </data>
+  <data name="message_sent_success" xml:space="preserve">
+    <value>Message envoyé avec succès.</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>Suite</value>
+  </data>
+  <data name="my_fast_order" xml:space="preserve">
+    <value>Commandes rapides</value>
+  </data>
+  <data name="my_review" xml:space="preserve">
+    <value>Mon avis</value>
+  </data>
+  <data name="name_of_property" xml:space="preserve">
+    <value>Nom de la propriété</value>
+  </data>
+  <data name="name_placeholder_contact" xml:space="preserve">
+    <value>nouveau mot de passe</value>
+  </data>
+  <data name="Offers" xml:space="preserve">
+    <value>Des offres</value>
+  </data>
+  <data name="offer_accepted_success" xml:space="preserve">
+    <value>Offre acceptée avec succès</value>
+  </data>
+  <data name="offer_rejected_success" xml:space="preserve">
+    <value>Offre rejetée avec succès</value>
+  </data>
+  <data name="once_in_month" xml:space="preserve">
+    <value>Une fois par mois</value>
+  </data>
+  <data name="only_excel_file_format" xml:space="preserve">
+    <value>Seul le format de fichier Excel est autorisé</value>
+  </data>
+  <data name="order_service" xml:space="preserve">
+    <value>Service de commande</value>
+  </data>
+  <data name="other_features" xml:space="preserve">
+    <value>Autres caractéristiques</value>
+  </data>
+  <data name="our_specialization_area" xml:space="preserve">
+    <value>Nos domaines de spécialisation</value>
+  </data>
+  <data name="Payment_detail" xml:space="preserve">
+    <value>Détail du paiement</value>
+  </data>
+  <data name="payment_info" xml:space="preserve">
+    <value>Information de paiement</value>
+  </data>
+  <data name="please_choose_excel_file" xml:space="preserve">
+    <value>Veuillez choisir un fichier Excel</value>
+  </data>
+  <data name="please_enter_fast_order_name" xml:space="preserve">
+    <value>Veuillez saisir le nom de la commande rapide</value>
+  </data>
+  <data name="please_select_service" xml:space="preserve">
+    <value>Veuillez sélectionner un service</value>
+  </data>
+  <data name="please_select_sub_service" xml:space="preserve">
+    <value>Veuillez sélectionner un sous-service</value>
+  </data>
+  <data name="pms" xml:space="preserve">
+    <value>Système de gestion immobilière</value>
+  </data>
+  <data name="professional_services" xml:space="preserve">
+    <value>Services professionnels</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="property_heading" xml:space="preserve">
+    <value>Vous pouvez répertorier autant de propriétés que vous le souhaitez pour chaque type.</value>
+  </data>
+  <data name="property_listing" xml:space="preserve">
+    <value>Liste de propriété</value>
+  </data>
+  <data name="provided_with_grant_access" xml:space="preserve">
+    <value>L'accès suivant vous a été fourni</value>
+  </data>
+  <data name="provide_professional_services" xml:space="preserve">
+    <value>Fournir des services professionnels à tous Aronund The</value>
+  </data>
+  <data name="queen_double_beds" xml:space="preserve">
+    <value>Grand lit / lits doubles (160x200</value>
+  </data>
+  <data name="recommend_to_use_template" xml:space="preserve">
+    <value>Nous recommandons l'utilisation de notre modèle pour importer les propriétés. C'est facile et simple.</value>
+  </data>
+  <data name="register_now" xml:space="preserve">
+    <value>S'inscrire maintenant</value>
+  </data>
+  <data name="repeat_service_in_future" xml:space="preserve">
+    <value>Souhaitez-vous répéter le même service à l'avenir?</value>
+  </data>
+  <data name="review" xml:space="preserve">
+    <value>Mon avis</value>
+  </data>
+  <data name="save_change_fast_order_name" xml:space="preserve">
+    <value>Vous pouvez enregistrer et modifier le nom de la commande rapide</value>
+  </data>
+  <data name="search_here" xml:space="preserve">
+    <value>Cherche ici...</value>
+  </data>
+  <data name="search_properties" xml:space="preserve">
+    <value>Propriétés de la recherche ...</value>
+  </data>
+  <data name="select_type_of_property" xml:space="preserve">
+    <value>Sélectionnez le type de propriété</value>
+  </data>
+  <data name="send_message" xml:space="preserve">
+    <value>Envoyer le message</value>
+  </data>
+  <data name="service_name" xml:space="preserve">
+    <value>Nom du service</value>
+  </data>
+  <data name="short_term_apartment" xml:space="preserve">
+    <value>Appartement Airbnb à court terme</value>
+  </data>
+  <data name="short_term_propety_access_code" xml:space="preserve">
+    <value>Souhaitez-vous changer de code ou accéder généralement?</value>
+  </data>
+  <data name="single_beds" xml:space="preserve">
+    <value>Lits simples</value>
+  </data>
+  <data name="single_sofa_beds" xml:space="preserve">
+    <value>Canapés-lits simples</value>
+  </data>
+  <data name="sms_verification" xml:space="preserve">
+    <value>Vérification par SMS envoyée!</value>
+  </data>
+  <data name="sofa_beds" xml:space="preserve">
+    <value>Canapés-lits</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>Matière</value>
+  </data>
+  <data name="sub_service_name" xml:space="preserve">
+    <value>Nom du sous-service</value>
+  </data>
+  <data name="sub_user_login_details" xml:space="preserve">
+    <value>Détails de connexion des sous-utilisateurs comme ci-dessous</value>
+  </data>
+  <data name="testimonial_heading" xml:space="preserve">
+    <value>Les gens adorent parler des services de balai</value>
+  </data>
+  <data name="toilets" xml:space="preserve">
+    <value>Toilettes</value>
+  </data>
+  <data name="total_added_inventory_cost" xml:space="preserve">
+    <value>Coût total de l'inventaire ajouté</value>
+  </data>
+  <data name="to_proceed_your_account" xml:space="preserve">
+    <value>Pour ouvrir votre compte</value>
+  </data>
+  <data name="upload_excel_files_several_files" xml:space="preserve">
+    <value>Téléchargez des fichiers Excel avec plusieurs propriétés à la fois</value>
+  </data>
+  <data name="upload_file" xml:space="preserve">
+    <value>Téléverser un fichier</value>
+  </data>
+  <data name="upload_image_video" xml:space="preserve">
+    <value>Télécharger l'image / vidéo de la propriété</value>
+  </data>
+  <data name="view_all_properties" xml:space="preserve">
+    <value>Voir toutes les propriétés</value>
+  </data>
+  <data name="view_edit_profile_heading" xml:space="preserve">
+    <value>Vérifiez les détails de votre profil et modifiez-les</value>
+  </data>
+  <data name="wi_fi_login_key" xml:space="preserve">
+    <value>Clé de connexion Wi-Fi</value>
+  </data>
+  <data name="Click_to_select_card" xml:space="preserve">
+    <value>Veuillez cliquer sur la carte de crédit que vous souhaitez sélectionner</value>
+  </data>
+  <data name="Quotes" xml:space="preserve">
+    <value>Devis</value>
+  </data>
+  <data name="Mission" xml:space="preserve">
+    <value>Mission</value>
+  </data>
+  <data name="edit_job_request" xml:space="preserve">
+    <value>Modifier la demande d'emploi</value>
+  </data>
+  <data name="getExisting" xml:space="preserve">
+    <value>ObtenirExistant</value>
+  </data>
+  <data name="service_requests" xml:space="preserve">
+    <value>Demandes de service</value>
+  </data>
+  <data name="worker_detail" xml:space="preserve">
+    <value>Détail du travailleur</value>
+  </data>
+  <data name="after_a_job" xml:space="preserve">
+    <value>Après un travail</value>
+  </data>
+  <data name="sub_sub_service_name" xml:space="preserve">
+    <value>Nom du sous-sous-service</value>
+  </data>
+</root>

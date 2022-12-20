@@ -1,0 +1,647 @@
+﻿@using BroomService.Resources;
+@model BroomService.Models.User
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Font awsome kit -->
+<script src="https://kit.fontawesome.com/40b745dcd8.js" crossorigin="anonymous"></script>
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<link href="~/Content/owl.carousel.min.css" rel="stylesheet" />
+<link href="~/Content/owl.theme.default.min.css" rel="stylesheet" />
+
+<!-- owl javascript -->
+<script src="~/Content/js/jquery.min.js"></script>
+<script src="~/Content/js/owl.carousel.js"></script>
+
+<!-- Custom Css -->
+<link href="~/Content/style.css" rel="stylesheet" />
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+<!-- register Section -->
+<section id="register" class="register_main">
+    <div class="container">
+        <div class="register_box mx-auto">
+            <div class="register_content mx-auto">
+
+                @if (TempData["ErrorMsg"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @TempData["ErrorMsg"]
+                    </div>
+                }
+                @if (TempData["SuccessMsg"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @TempData["SuccessMsg"]
+                    </div>
+                }
+                <div class="d-block d-sm-flex justify-content-between">
+                    <a href="/Home/Index"><img src="~/Content/images/logo_login.png" class="back_home" alt="image of coloured logo" /></a>
+                    <a href="/Home/Index" class="back_home align-self-center"><img src="~/Content/images/back_to_home_arrow.png" alt="back arrow" />@Resource.back_to_home</a>
+                </div>
+                <h2>@Resource.create_account</h2>
+                <h3>@Resource.lets_start_by_creating_account</h3>
+                <div class="register_form">
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "row", enctype = "multipart/form-data" }))
+                    {
+                        <div class="col-12 text-center upload_photo_box">
+                            <div class="upload_photo_image_box">
+                                <img src="~/Content/images/dafault_img.png" id="profile-pic" alt="default user" />
+                                <div class="upload_btn_box">
+                                    <button class="up_btn"><i class="fa fa-camera"></i></button>
+                                    <input type="file" name="PicturePath" id="PicturePath" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="custom-register-label">@Resource.full_name</label>
+                                <div class="custom_input">
+                                    @Html.TextBoxFor(m => m.FullName,
+                                   new
+                                        {
+                                            @class = "form-control form_edit_input",
+                                       placeholder = Resource.enter_full_name,
+                                       @required = "required"
+                                        })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="custom-register-label">@Resource.company_name</label>
+                                <div class="d-flex">
+                                    <div class="cus_on_of">
+                                        <label class="switch">
+                                            <input type="checkbox" id="companyNameCheck">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                    <div class="custom_input" id="company_name_frame">
+                                        @Html.TextBoxFor(m => m.CompanyName,
+                                             new
+                                                  {
+                                                      @class = "form-control form_edit_input",
+                                                 placeholder = Resource.enter_company_name
+                                                  })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="custom-register-label">@Resource.email</label>
+                                <div class="custom_input">
+                                    @Html.TextBoxFor(m => m.Email,
+                                   new
+                                        {
+                                            @class = "form-control form_edit_input",
+                                       placeholder = Resource.enter_email,
+                                       @type = "email",
+                                       @required = "required"
+                                        })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="custom-register-label">@Resource.phone_number</label>
+                                <div class="d-flex pl-3 my-2 custom_input">
+                                    @*@Html.TextBoxFor(m => m.CountryCode
+                        , new
+                             {
+                                 @class = "my-3 ml-4",
+                                 @required = "required",
+                            style = "width:60px;border:transparent;border-right:1px solid #000;",
+                            onKeyPress = "if(this.value.length==4) return false;",
+                            title = "Enter Country code"
+                             })*@
+
+                                    @Html.DropDownListFor(x => x.CountryCode, new SelectList(
+                                   new[]{
+                                   new{ value="972",Text ="Israel (+972)"},
+                                    new{ value="44" ,Text ="UK (+44)"},
+                                    new{ value="1",Text ="USA (+1)"},
+                                    new{ value="213",Text ="Algeria (+213)"},
+                                    new{ value="376",Text ="Andorra (+376)"},
+                                    new{ value="244",Text ="Angola (+244)"},
+                                    new{ value="1264",Text ="Anguilla (+1264)"},
+                                    new{ value="1268",Text ="Antigua &amp; Barbuda (+1268)"},
+                                    new{ value="54",Text ="Argentina (+54)"},
+                                    new{ value="374",Text ="Armenia (+374)"},
+                                    new{ value="297",Text ="Aruba (+297)"},
+                                    new{ value="61",Text ="Australia (+61)"},
+                                    new{ value="43",Text ="Austria (+43)"},
+                                    new{ value="994",Text ="Azerbaijan (+994)"},
+                                    new{ value="1242",Text ="Bahamas (+1242)"},
+                                    new{ value="973",Text ="Bahrain (+973)"},
+                                    new{ value="880",Text ="Bangladesh (+880)"},
+                                    new{ value="1246",Text ="Barbados (+1246)"},
+                                    new{ value="375",Text ="Belarus (+375)"},
+                                    new{ value="32",Text ="Belgium (+32)"},
+                                    new{ value="501",Text ="Belize (+501)"},
+                                    new{ value="229",Text ="Benin (+229)"},
+                                    new{ value="1441",Text ="Bermuda (+1441)"},
+                                    new{ value="975",Text ="Bhutan (+975)"},
+                                    new{ value="591",Text ="Bolivia (+591)"},
+                                    new{ value="387",Text ="Bosnia Herzegovina (+387)"},
+                                    new{ value="267",Text ="Botswana (+267)"},
+                                    new{ value="55",Text ="Brazil (+55)"},
+                                    new{ value="673",Text ="Brunei (+673)"},
+                                    new{ value="359",Text ="Bulgaria (+359)"},
+                                    new{ value="226",Text ="Burkina Faso (+226)"},
+                                    new{ value="257",Text ="Burundi (+257)"},
+                                    new{ value="855",Text ="Cambodia (+855)"},
+                                    new{ value="237",Text ="Cameroon (+237)"},
+                                    new{ value="1",Text ="Canada (+1)"},
+                                    new{ value="238",Text ="Cape Verde Islands (+238)"},
+                                    new{ value="1345",Text ="Cayman Islands (+1345)"},
+                                    new{ value="236",Text ="Central African Republic (+236)"},
+                                    new{ value="56",Text ="Chile (+56)"},
+                                    new{ value="86",Text ="China (+86)"},
+                                    new{ value="57",Text ="Colombia (+57)"},
+                                    new{ value="269",Text ="Comoros (+269)"},
+                                    new{ value="242",Text ="Congo (+242)"},
+                                    new{ value="682",Text ="Cook Islands (+682)"},
+                                    new{ value="506",Text ="Costa Rica (+506)"},
+                                    new{ value="385",Text ="Croatia (+385)"},
+                                    new{ value="53",Text ="Cuba (+53)"},
+                                    new{ value="90392",Text ="Cyprus North (+90392)"},
+                                    new{ value="357",Text ="Cyprus South (+357)"},
+                                    new{ value="42",Text ="Czech Republic (+42)"},
+                                    new{ value="45",Text ="Denmark (+45)"},
+                                    new{ value="253",Text ="Djibouti (+253)"},
+                                    new{ value="1809",Text ="Dominica (+1809)"},
+                                    new{ value="1809",Text ="Dominican Republic (+1809)"},
+                                    new{ value="593",Text ="Ecuador (+593)"},
+                                    new{ value="20",Text ="Egypt (+20)"},
+                                    new{ value="503",Text ="El Salvador (+503)"},
+                                    new{ value="240",Text ="Equatorial Guinea (+240)"},
+                                    new{ value="291",Text ="Eritrea (+291)"},
+                                    new{ value="372",Text ="Estonia (+372)"},
+                                    new{ value="251",Text ="Ethiopia (+251)"},
+                                    new{ value="500",Text ="Falkland Islands (+500)"},
+                                    new{ value="298",Text ="Faroe Islands (+298)"},
+                                    new{ value="679",Text ="Fiji (+679)"},
+                                    new{ value="358",Text ="Finland (+358)"},
+                                    new{ value="33",Text ="France (+33)"},
+                                    new{ value="594",Text ="French Guiana (+594)"},
+                                    new{ value="689",Text ="French Polynesia (+689)"},
+                                    new{ value="241",Text ="Gabon (+241)"},
+                                    new{ value="220",Text ="Gambia (+220)"},
+                                    new{ value="7880",Text ="Georgia (+7880)"},
+                                    new{ value="49",Text ="Germany (+49)"},
+                                    new{ value="233",Text ="Ghana (+233)"},
+                                    new{ value="350",Text ="Gibraltar (+350)"},
+                                    new{ value="30",Text ="Greece (+30)"},
+                                    new{ value="299",Text ="Greenland (+299)"},
+                                    new{ value="1473",Text ="Grenada (+1473)"},
+                                    new{ value="590",Text ="Guadeloupe (+590)"},
+                                    new{ value="671",Text ="Guam (+671)"},
+                                    new{ value="502",Text ="Guatemala (+502)"},
+                                    new{ value="224",Text ="Guinea (+224)"},
+                                    new{ value="245",Text ="Guinea - Bissau (+245)"},
+                                    new{ value="592",Text ="Guyana (+592)"},
+                                    new{ value="509",Text ="Haiti (+509)"},
+                                    new{ value="504",Text ="Honduras (+504)"},
+                                    new{ value="852",Text ="Hong Kong (+852)"},
+                                    new{ value="36",Text ="Hungary (+36)"},
+                                    new{ value="354",Text ="Iceland (+354)"},
+                                    new{ value="91",Text ="India (+91)"},
+                                    new{ value="62",Text ="Indonesia (+62)"},
+                                    new{ value="98",Text ="Iran (+98)"},
+                                    new{ value="964",Text ="Iraq (+964)"},
+                                    new{ value="353",Text ="Ireland (+353)"},
+                                    new{ value="39",Text ="Italy (+39)"},
+                                    new{ value="1876",Text ="Jamaica (+1876)"},
+                                    new{ value="81",Text ="Japan (+81)"},
+                                    new{ value="962",Text ="Jordan (+962)"},
+                                    new{ value="7",Text ="Kazakhstan (+7)"},
+                                    new{ value="254",Text ="Kenya (+254)"},
+                                    new{ value="686",Text ="Kiribati (+686)"},
+                                    new{ value="850",Text ="Korea North (+850)"},
+                                    new{ value="82",Text ="Korea South (+82)"},
+                                    new{ value="965",Text ="Kuwait (+965)"},
+                                    new{ value="996",Text ="Kyrgyzstan (+996)"},
+                                    new{ value="856",Text ="Laos (+856)"},
+                                    new{ value="371",Text ="Latvia (+371)"},
+                                    new{ value="961",Text ="Lebanon (+961)"},
+                                    new{ value="266",Text ="Lesotho (+266)"},
+                                    new{ value="231",Text ="Liberia (+231)"},
+                                    new{ value="218",Text ="Libya (+218)"},
+                                    new{ value="417",Text ="Liechtenstein (+417)"},
+                                    new{ value="370",Text ="Lithuania (+370)"},
+                                    new{ value="352",Text ="Luxembourg (+352)"},
+                                    new{ value="853",Text ="Macao (+853)"},
+                                    new{ value="389",Text ="Macedonia (+389)"},
+                                    new{ value="261",Text ="Madagascar (+261)"},
+                                    new{ value="265",Text ="Malawi (+265)"},
+                                    new{ value="60",Text ="Malaysia (+60)"},
+                                    new{ value="960",Text ="Maldives (+960)"},
+                                    new{ value="223",Text ="Mali (+223)"},
+                                    new{ value="356",Text ="Malta (+356)"},
+                                    new{ value="692",Text ="Marshall Islands (+692)"},
+                                    new{ value="596",Text ="Martinique (+596)"},
+                                    new{ value="222",Text ="Mauritania (+222)"},
+                                    new{ value="269",Text ="Mayotte (+269)"},
+                                    new{ value="52",Text ="Mexico (+52)"},
+                                    new{ value="691",Text ="Micronesia (+691)"},
+                                    new{ value="373",Text ="Moldova (+373)"},
+                                    new{ value="377",Text ="Monaco (+377)"},
+                                    new{ value="976",Text ="Mongolia (+976)"},
+                                    new{ value="1664",Text ="Montserrat (+1664)"},
+                                    new{ value="212",Text ="Morocco (+212)"},
+                                    new{ value="258",Text ="Mozambique (+258)"},
+                                    new{ value="95",Text ="Myanmar (+95)"},
+                                    new{ value="264",Text ="Namibia (+264)"},
+                                    new{ value="674",Text ="Nauru (+674)"},
+                                    new{ value="977",Text ="Nepal (+977)"},
+                                    new{ value="31",Text ="Netherlands (+31)"},
+                                    new{ value="687",Text ="New Caledonia (+687)"},
+                                    new{ value="64",Text ="New Zealand (+64)"},
+                                    new{ value="505",Text ="Nicaragua (+505)"},
+                                    new{ value="227",Text ="Niger (+227)"},
+                                    new{ value="234",Text ="Nigeria (+234)"},
+                                    new{ value="683",Text ="Niue (+683)"},
+                                    new{ value="672",Text ="Norfolk Islands (+672)"},
+                                    new{ value="670",Text ="Northern Marianas (+670)"},
+                                    new{ value="47",Text ="Norway (+47)"},
+                                    new{ value="968",Text ="Oman (+968)"},
+                                    new{ value="680",Text ="Palau (+680)"},
+                                    new{ value="507",Text ="Panama (+507)"},
+                                    new{ value="675",Text ="Papua New Guinea (+675)"},
+                                    new{ value="595",Text ="Paraguay (+595)"},
+                                    new{ value="51",Text ="Peru (+51)"},
+                                    new{ value="63",Text ="Philippines (+63)"},
+                                    new{ value="48",Text ="Poland (+48)"},
+                                    new{ value="351",Text ="Portugal (+351)"},
+                                    new{ value="1787",Text ="Puerto Rico (+1787)"},
+                                    new{ value="974",Text ="Qatar (+974)"},
+                                    new{ value="262",Text ="Reunion (+262)"},
+                                    new{ value="40",Text ="Romania (+40)"},
+                                    new{ value="7",Text ="Russia (+7)"},
+                                    new{ value="250",Text ="Rwanda (+250)"},
+                                    new{ value="378",Text ="San Marino (+378)"},
+                                    new{ value="239",Text ="Sao Tome &amp; Principe (+239)"},
+                                    new{ value="966",Text ="Saudi Arabia (+966)"},
+                                    new{ value="221",Text ="Senegal (+221)"},
+                                    new{ value="381",Text ="Serbia (+381)"},
+                                    new{ value="248",Text ="Seychelles (+248)"},
+                                    new{ value="232",Text ="Sierra Leone (+232)"},
+                                    new{ value="65",Text ="Singapore (+65)"},
+                                    new{ value="421",Text ="Slovak Republic (+421)"},
+                                    new{ value="386",Text ="Slovenia (+386)"},
+                                    new{ value="677",Text ="Solomon Islands (+677)"},
+                                    new{ value="252",Text ="Somalia (+252)"},
+                                    new{ value="27",Text ="South Africa (+27)"},
+                                    new{ value="34",Text ="Spain (+34)"},
+                                    new{ value="94",Text ="Sri Lanka (+94)"},
+                                    new{ value="290",Text ="St. Helena (+290)"},
+                                    new{ value="1869",Text ="St. Kitts (+1869)"},
+                                    new{ value="1758",Text ="St. Lucia (+1758)"},
+                                    new{ value="249",Text ="Sudan (+249)"},
+                                    new{ value="597",Text ="Suriname (+597)"},
+                                    new{ value="268",Text ="Swaziland (+268)"},
+                                    new{ value="46",Text ="Sweden (+46)"},
+                                    new{ value="41",Text ="Switzerland (+41)"},
+                                    new{ value="963",Text ="Syria (+963)"},
+                                    new{ value="886",Text ="Taiwan (+886)"},
+                                    new{ value="7",Text ="Tajikstan (+7)"},
+                                    new{ value="66",Text ="Thailand (+66)"},
+                                    new{ value="228",Text ="Togo (+228)"},
+                                    new{ value="676",Text ="Tonga (+676)"},
+                                    new{ value="1868",Text ="Trinidad &amp; Tobago (+1868)"},
+                                    new{ value="216",Text ="Tunisia (+216)"},
+                                    new{ value="90",Text ="Turkey (+90)"},
+                                    new{ value="7",Text ="Turkmenistan (+7)"},
+                                    new{ value="993",Text ="Turkmenistan (+993)"},
+                                    new{ value="1649",Text ="Turks &amp; Caicos Islands (+1649)"},
+                                    new{ value="688",Text ="Tuvalu (+688)"},
+                                    new{ value="256",Text ="Uganda (+256)"},
+                                    new{ value="44",Text ="UK (+44)"},
+                                    new{ value="380",Text ="Ukraine (+380)"},
+                                    new{ value="971",Text ="United Arab Emirates (+971)"},
+                                    new{ value="598",Text ="Uruguay (+598)"},
+                                    new{ value="1",Text ="USA (+1)"},
+                                    new{ value="7",Text ="Uzbekistan (+7)"},
+                                    new{ value="678",Text ="Vanuatu (+678)"},
+                                    new{ value="379",Text ="Vatican City (+379)"},
+                                    new{ value="58",Text ="Venezuela (+58)"},
+                                    new{ value="84",Text ="Vietnam (+84)"},
+                                    new{ value="84",Text ="Virgin Islands - British (+1284)"},
+                                    new{ value="84",Text ="Virgin Islands - US (+1340)"},
+                                    new{ value="681",Text ="Wallis &amp; Futuna (+681)"},
+                                    new{ value="969",Text ="Yemen (North)(+969)"},
+                                    new{ value="967",Text ="Yemen (South)(+967)"},
+                                    new{ value="260",Text ="Zambia (+260)"},
+                                    new{ value="263",Text ="Zimbabwe (+263)"},
+                               },
+                                     "Value",
+                                     "Text"), new
+                                          {
+                                              @class = "form-control",
+                                         style = "margin-top:12px;width:150px;"
+                                     })
+                                    @Html.TextBoxFor(m => m.PhoneNumber,
+                                   new
+                                   {
+                                       @class = "form-control form_edit_input pl-3",
+                                       placeholder = Resource.enter_phone_number,
+                                       style = "margin-bottom:10px;margin-left:3px;",
+                                        @type = "number",
+                                       @required = "required"
+                                   })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="custom-register-label">@Resource.password</label>
+                                <div class="custom_input">
+                                    @Html.PasswordFor(m => m.Password,
+                                   new
+                                        {
+                                            @class = "form-control form_edit_input",
+                                       placeholder = Resource.enter_password,
+                                       autocomplete = "new-password",
+                                       @required = "required"
+                                        })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="custom-register-label">Id/Company Number</label>
+                                <div class="custom_input">
+                                    @Html.TextBoxFor(m => m.IdNumber,
+                                   new
+                                        {
+                                        @class = "form-control form_edit_input",
+                                        placeholder = "Enter Id/Company Number",                                     
+                                        @required = "required"
+                                        })
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="custom-register-label">@Resource.full_address</label>
+                                <div class="custom_input">
+                                    @Html.TextBoxFor(m => m.Address,
+                                    new
+                                         {
+                                             @class = "form-control form_edit_input",
+                                        placeholder = Resource.enter_full_address,
+                                        autocomplete = "new-password",
+                                        @required = "required"
+                                         })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label class="custom-register-label">@Resource.add_billing_address</label>
+                            <label class="switch">
+                                <input type="checkbox" id="checkboxBillingAddress">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="form-group" id="billingAddressDiv">
+                                <label class="custom-register-label">@Resource.billing_address</label>
+                                <div class="custom_input">
+
+                                    @Html.TextBoxFor(m => m.BillingAddress,
+                                    new
+                                         {
+                                             @class = "form-control form_edit_input",
+                                        placeholder = Resource.enter_billing_address
+                                         })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 d-flex justify-content-between">
+                            <div class="custom-controls-stacked d-block d-sm-flex align-item-center">
+                                <div class="custom-control custom-checkbox w-100 text-left">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck2" required>
+                                    <label class="custom-control-label terms_condition_checkbox" for="customCheck2">
+                                        <span>@Resource.i_agree_with_all </span><a href="https://bell-boy.com/terms-and-conditions/" target="_blank"> @Resource.terms_conditions</a>
+                                    </label>
+
+                                </div>
+
+
+                            </div>
+                            <button type="submit" class="btn arrow_btn_box">
+                                <img src="~/Content/images/submit_next_btn.png" alt="next arrow" />
+                            </button>
+                        </div>
+                    }
+                    <div class="sign_up">
+                        @Resource.already_have_an_account
+                        <a href="/Account/Login">@Resource.login_now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal Terms And Conditions-->
+<div class="modal fade modal_sub_user" id="terms_conditions_modal">
+    <div class="modal-dialog modal_max modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="box_body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3 class="manage-heading">@Resource.terms_conditions</h3>
+                    <div class="terms-text"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCFomQKPynvwJ7o_aMUvFtfVfru2Wu-xCw"></script>
+<script>
+    //---------------------------------google Autocomplete Address Code--------------------------------
+
+    google.maps.event.addDomListener(window, 'load', function () {
+
+        $('#Address').val('');
+        $("#Latitude").val('');
+        $("#Longitude").val('');
+
+        var cityBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(32.072176, 34.808871),  // Giv'atayim, Israel
+            new google.maps.LatLng(32.162413, 34.844675), // Herzliya, Israel
+            new google.maps.LatLng(32.137793, 34.840278), // Ramat Hasharon
+            new google.maps.LatLng(32.068424, 34.824785), // Ramat Gan, Israel
+            new google.maps.LatLng(32.0852999, 34.78176759999999)// Tel Aviv
+        );
+
+        var options = {
+            /*bounds: cityBounds,*/
+            //types: ["geocode"]
+            //, componentRestrictions: { country: "il" }
+
+            fields: ["formatted_address", "geometry", "name"],
+            strictBounds: false,
+            componentRestrictions: { country: "il" },
+            types: ["geocode"]
+        };
+
+        var input = document.getElementById('Address');
+        var places = new google.maps.places.Autocomplete(input, options);
+
+        google.maps.event.addListener(places, 'place_changed', function () {
+            var place = places.getPlace();
+            var lat = place.geometry.location.lat();
+            var long = place.geometry.location.lng();
+
+
+            var geoCodingUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + long + "&key=AIzaSyCFomQKPynvwJ7o_aMUvFtfVfru2Wu-xCw";
+            $.ajax({
+                url: geoCodingUrl,
+                method: "GET",
+                success: function (res) {
+                    var address = place.address_components;
+                    console.log(address);
+                    $("#Latitude").val(lat);
+                    $("#Longitude").val(long);
+                    for (var i = 0; i < address.length; i++) {
+                        console.log(address[i]);
+                        if (address[i].types[0] == "administrative_area_level_2") {
+
+                        }
+                    }
+                }
+            });
+        });
+    });
+    //---------------------------------google Autocomplete Address Code End--------------------------------
+
+    //---------------------------------google Autocomplete Address Code Billing Address--------------------------------
+    google.maps.event.addDomListener(window, 'load', function () {
+        //var options = {
+        //    componentRestrictions: { country: "isr" },
+        //    fields: ["formatted_address", "geometry", "name"],
+        //    strictBounds: false,
+        //    types: ["establishment"],
+        //};
+
+        $('#BillingAddress').val('');
+        $("#Latitude").val('');
+        $("#Longitude").val('');
+
+        var cityBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(32.072176, 34.808871),  // Giv'atayim, Israel
+            new google.maps.LatLng(32.162413, 34.844675), // Herzliya, Israel
+            new google.maps.LatLng(32.137793, 34.840278), // Ramat Hasharon
+            new google.maps.LatLng(32.068424, 34.824785), // Ramat Gan, Israel
+            new google.maps.LatLng(32.0852999, 34.78176759999999)// Tel Aviv
+        );
+
+
+
+        var options = {
+            /*  bounds: cityBounds,*/
+            //types: ["geocode"]
+            //, componentRestrictions: { country: "il" }
+
+            fields: ["formatted_address", "geometry", "name"],
+            strictBounds: false,
+            componentRestrictions: { country: "il" },
+            types: ["geocode"]
+        };
+
+        var input = document.getElementById('BillingAddress');
+        var places = new google.maps.places.Autocomplete(input, options);
+
+        google.maps.event.addListener(places, 'place_changed', function () {
+            var place = places.getPlace();
+            var lat = place.geometry.location.lat();
+            var long = place.geometry.location.lng();
+
+            var geoCodingUrl = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + long + "&key=AIzaSyCFomQKPynvwJ7o_aMUvFtfVfru2Wu-xCw";
+            $.ajax({
+                url: geoCodingUrl,
+                method: "GET",
+                success: function (res) {
+                    var address = place.address_components;
+                    console.log(address);
+                    $("#Latitude").val(lat);
+                    $("#Longitude").val(long);
+                    for (var i = 0; i < address.length; i++) {
+                        console.log(address[i]);
+                        if (address[i].types[0] == "administrative_area_level_2") {
+
+                        }
+                    }
+
+                }
+            });
+
+        });
+    });
+    //---------------------------------google Autocomplete Billing Address Code End--------------------------------
+    $("#company_name_frame").css('display', 'none');
+    $("#billingAddressDiv").css('display', 'none');
+
+    $(document).ready(function () {
+        $('#companyNameCheck').change(function () {
+            if (this.checked) {
+                $("#company_name_frame").css('display', 'block');
+            }
+            else {
+                $("#company_name_frame").css('display', 'none');
+            }
+        });
+
+        $("#checkboxBillingAddress").change(function () {
+            if (this.checked) {
+                $("#billingAddressDiv").css('display', 'block');
+            }
+            else {
+                $("#billingAddressDiv").css('display', 'none');
+            }
+        });
+    });
+
+    $('#PicturePath').on('change', function () {
+
+        var input = this;
+        var url = $(this).val();
+        var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+        if (input.files && input.files[0] && (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#profile-pic').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+        else {
+            $('#profile-pic').attr('src', '../Template/imgs/user_profle.png');
+        }
+    });
+</script>
+

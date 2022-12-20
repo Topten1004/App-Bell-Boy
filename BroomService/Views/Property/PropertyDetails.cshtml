@@ -1,0 +1,334 @@
+﻿@model BroomService.ViewModels.PropertyViewModel
+@using BroomService.Resources
+
+<!-- Property Sections -->
+<section id="property-details-main">
+    <div class="container">
+        <div class="property-details-main">
+            <h3>@Resource.property_details</h3>
+            <p>Property details</p>
+        </div>
+        <!-- Property Slider -->
+        @if (Model.PropertyImages != null)
+        {
+            if (Model.PropertyImages.Count > 0)
+            {
+                <div id="property_slider" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner property-slider">
+                        @for (int i = 0; i < Model.PropertyImages.Count; i++)
+                        {
+                            if (i == 0)
+                            {
+                                <div class="carousel-item active">
+                                    @if (Model.PropertyImages[i].IsImage == true)
+                                    { 
+                                        <img src="~/Images/Property/@Model.PropertyImages[i].ImageUrl" class="img-fluid">
+                                    }
+                                    else
+                                    {
+                                        <video height="100%" width="100%">
+                                            <source src="~/Images/Property/@Model.PropertyImages[i].VideoUrl" />
+                                        </video>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="carousel-item">
+                                    @if (Model.PropertyImages[i].IsImage == true)
+                                    {
+                                        <img src="~/Images/Property/@Model.PropertyImages[i].ImageUrl" class="img-fluid">
+                                    }
+                                    else
+                                    {
+                                        <video>
+                                            <source src="~/Images/Property/@Model.PropertyImages[i].VideoUrl" />
+                                        </video>
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#property-slider" data-slide="prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                    <a class="carousel-control-next" href="#property-slider" data-slide="next">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </div>
+            }
+            else
+            {
+                <br /><br />
+            }
+        }
+        else
+        {
+            <br /><br />
+        }
+
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-7">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between mb-5 align-items-center">
+                            <h4 class="mb-0 property-feature-heading">@Resource.property_details</h4>
+                            @if (Request.Cookies["Login"] != null)
+                            {
+                                if (Request.Cookies["Login"].Values["UserType"] != "7")
+                                {
+                                    <a href="/Property/EditProperty?id=@Model.PropertyModel.Id" class="p_edit"><i class="fas fa-edit"></i>@Resource.edit</a>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 my-2 text-center text-md-left">
+                        <div class="bg-light property-details-box">
+                            <h4>@Resource.floor</h4>
+                            @Model.PropertyModel.FloorNumber
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 my-2 text-center text-md-left">
+                        <div class="bg-light property-details-box">
+                            <h4>@Resource.apartment</h4>
+                            @Model.PropertyModel.ApartmentNumber
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 my-2 text-center text-md-left">
+                        <div class="bg-light property-details-box">
+                            <h4>@Resource.bathrooms</h4>
+                            @Model.PropertyModel.NoOfBathrooms
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 my-2 text-center text-md-left">
+                        <div class="bg-light property-details-box">
+                            <h4>@Resource.toilets</h4>
+                            @Model.PropertyModel.NoOfToilets
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 my-2 text-center text-md-left">
+                        <div class="bg-light property-details-box">
+                            <h4>@Resource.bedrooms</h4>
+                            @Model.PropertyModel.NoOfBedRooms
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 my-2 text-center text-md-left">
+                        <div class="bg-light property-details-box">
+                            <h4>@Resource.double_beds</h4>
+                            @Model.PropertyModel.NoOfQueenBeds
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 my-2 text-center text-md-left">
+                        <div class="bg-light property-details-box">
+                            <h4>@Resource.single_beds</h4>
+                            @Model.PropertyModel.NoOfSingleBeds
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 my-2 text-center text-md-left">
+                        <div class="bg-light property-details-box">
+                            <h4>@Resource.single_sofa_beds</h4>
+                            @Model.PropertyModel.NoOfSingleSofaBeds
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 my-2 text-center text-md-left">
+                        <div class="bg-light property-details-box">
+                            <h4>@Resource.double_sofa_beds</h4>
+                            @Model.PropertyModel.NoOfDoubleSofaBeds
+                        </div>
+                    </div>
+                </div>
+                <!-- Other Features -->
+                <div class="row my-5">
+                    <div class="col-12">
+                        <h4 class="property-feature-heading">@Resource.other_features</h4>
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            @if (Model.PropertyModel.Doorman.HasValue)
+                            {
+                                if (Model.PropertyModel.Doorman.Value)
+                                {
+                                    <div class="col-12 col-md-6 col-lg-4 my-3">
+                                        <span class="property-other-deatils">@Resource.doorman</span>
+                                    </div>
+                                }
+                            }
+                            @if (Model.PropertyModel.Parking.HasValue)
+                            {
+                                if (Model.PropertyModel.Parking.Value)
+                                {
+                                    <div class="col-12 col-md-6 col-lg-4 my-3">
+                                        <span class="property-other-deatils">@Resource.parking</span>
+                                    </div>
+                                }
+                            }
+                            @if (Model.PropertyModel.Balcony.HasValue)
+                            {
+                                if (Model.PropertyModel.Balcony.Value)
+                                {
+                                    <div class="col-12 col-md-6 col-lg-4 my-3">
+                                        <span class="property-other-deatils">@Resource.balcony</span>
+                                    </div>
+                                }
+                            }
+                            @if (Model.PropertyModel.Garden.HasValue)
+                            {
+                                if (Model.PropertyModel.Garden.Value)
+                                {
+                                    <div class="col-12 col-md-6 col-lg-4 my-3">
+                                        <span class="property-other-deatils">@Resource.garden</span>
+                                    </div>
+                                }
+                            }
+                            @if (Model.PropertyModel.Pool.HasValue)
+                            {
+                                if (Model.PropertyModel.Pool.Value)
+                                {
+                                    <div class="col-12 col-md-6 col-lg-4 my-3">
+                                        <span class="property-other-deatils">@Resource.pool</span>
+                                    </div>
+                                }
+                            }
+                            @if (Model.PropertyModel.Dishwasher.HasValue)
+                            {
+                                if (Model.PropertyModel.Dishwasher.Value)
+                                {
+                                    <div class="col-12 col-md-6 col-lg-4 my-3">
+                                        <span class="property-other-deatils">@Resource.dishwasher</span>
+                                    </div>
+                                }
+                            }
+                            @if (Model.PropertyModel.Elevator.HasValue)
+                            {
+                                if (Model.PropertyModel.Elevator.Value)
+                                {
+                                    <div class="col-12 col-md-6 col-lg-4 my-3">
+                                        <span class="property-other-deatils">@Resource.elevator</span>
+                                    </div>
+                                }
+                            }
+                            @if (Model.PropertyModel.CoffeeMachine.HasValue)
+                            {
+                                if (Model.PropertyModel.CoffeeMachine.Value)
+                                {
+                                    <div class="col-12 col-md-6 col-lg-4 my-3">
+                                        <span class="property-other-deatils">@Resource.coffe_machine</span>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-5 property-detail-right">
+                <div class="property-address">
+                    <h4>@Model.PropertyModel.Name</h4>
+                    <p class="property-type">@Resource.type_of_property: @Model.PropertyModel.Type</p>
+                    @if (Model.PropertyModel.ShortTermApartment.Value)
+                    {
+                        <p class="property-type short-term">@Resource.short_term_apartment</p>
+                    }
+                    <p class="property-type address">
+                        <i class="fas fa-map-marker-alt mr-2">
+                        </i> @Model.PropertyModel.Address
+                    </p>
+                    <p class="property-type address">@Resource.size_in_sqm: @Model.PropertyModel.Size
+                    </p>
+                </div>
+                <div class="building-code-main my-4 align-items-center justify-content-between">
+                    <div class="d-flex justify-content-between">
+                        <div class="building-code">
+                            <h4>@Resource.building_code</h4>
+                            <p class="mb-md-0">@Model.PropertyModel.BuildingCode</p>
+                        </div>
+                        <div class="building-code">
+                            <h4>@Resource.wi_fi_login</h4>
+                            <p class="mb-md-0">@Model.PropertyModel.WifiLogin</p>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="building-code mt-4">
+                            <h4>@Resource.access_to_property</h4>
+                            <p class="mb-md-0">@Model.PropertyModel.AccessToProperty</p>
+                        </div>
+                        <div class="building-code mt-4">
+                            <h4>@Resource.location_of_key</h4>
+                            <p class="mb-md-0">@Model.PropertyModel.LocationOfKey</p>
+                        </div>
+                    </div>
+                        <div class="mt-4">
+                            <button class="change-btn" style="cursor:pointer;" data-toggle="modal" data-target="#access-code-modal">@Resource.change</button>
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Access Code -->
+<div class="modal fade modal_sub_user" id="access-code-modal">
+    <div class="modal-dialog modal_max modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="box_body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3 class="manage-heading">@Resource.manage_access_code</h3>
+                    <form>
+                        <div class="col-12 form-group">
+                            <label>@Resource.access_to_property</label>
+                            <div class="custom_input">
+                                <input type="text" class="form-control form_edit_input"
+                                       name="access_property" id="access_property"
+                                       placeholder="@Resource.access_property_options"
+                                       value="@Model.PropertyModel.AccessToProperty">
+
+                            </div>
+                            <div class="col-12 form-group">
+                                <label>@Resource.building_code</label>
+                                <div class="custom_input">
+                                    <input type="text" class="form-control form_edit_input"
+                                           name="building_code" id="building_code"
+                                           placeholder="@Resource.enter_building_code"
+                                           value="@Model.PropertyModel.BuildingCode">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group submit_box_all text-center building-btn">
+                            <button type="button" id="access_property_submit_btn" class="btn arrow_btn_box">
+                                <img src="~/Content/images/submit_next_btn.png" alt="next arrow">
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#access_property_submit_btn").click(function () {
+        $.ajax({
+            url: "@Url.Action("EditAccessCodeDetails", "Property")",
+             data: {
+                 propertyID: @Model.PropertyModel.Id,
+                 buildingCode: $("#building_code").val(),
+                 accessToProperty: $("#access_property").val(),
+             },
+            dataType: "json",
+            type: "POST",
+            error: function () {
+                // alert(" An error occurred.");
+            },
+             success: function (data) {
+                 alert(data);
+                 window.location.reload();
+            }
+        });
+    });
+</script>

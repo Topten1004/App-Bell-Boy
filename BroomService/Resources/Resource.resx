@@ -1,0 +1,1074 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="already_have_an_account" xml:space="preserve">
+    <value>Already have an account ?</value>
+  </data>
+  <data name="back_to_home" xml:space="preserve">
+    <value>Back To Home</value>
+  </data>
+  <data name="click_on_link" xml:space="preserve">
+    <value>Please click on the below link to verify your email</value>
+  </data>
+  <data name="company_name" xml:space="preserve">
+    <value>Company Name</value>
+  </data>
+  <data name="confirmation_email_sent" xml:space="preserve">
+    <value>Please check your email, we have sent a confirmation mail to your registered email.</value>
+  </data>
+  <data name="confirm_password" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="create_account" xml:space="preserve">
+    <value>Create Account</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="email_already_exists" xml:space="preserve">
+    <value>Email already exist</value>
+  </data>
+  <data name="enter_company_name" xml:space="preserve">
+    <value>Enter Company Name</value>
+  </data>
+  <data name="enter_confirm_password" xml:space="preserve">
+    <value>Enter Confirm Password</value>
+  </data>
+  <data name="enter_email" xml:space="preserve">
+    <value>Enter Email</value>
+  </data>
+  <data name="enter_full_address" xml:space="preserve">
+    <value>Enter Full Address</value>
+  </data>
+  <data name="enter_full_name" xml:space="preserve">
+    <value>Enter Full Name</value>
+  </data>
+  <data name="enter_password" xml:space="preserve">
+    <value>Enter Password</value>
+  </data>
+  <data name="enter_phone_number" xml:space="preserve">
+    <value>Enter Phone Number</value>
+  </data>
+  <data name="file_extension_invalid" xml:space="preserve">
+    <value>File Extension Is InValid - Only Upload jpg/png/jpeg/JPG/PNG/JPEG File</value>
+  </data>
+  <data name="full_address" xml:space="preserve">
+    <value>Full Address</value>
+  </data>
+  <data name="full_name" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="hello" xml:space="preserve">
+    <value>Hello</value>
+  </data>
+  <data name="i_agree_with_all" xml:space="preserve">
+    <value>I Agree with all</value>
+  </data>
+  <data name="lets_start_by_creating_account" xml:space="preserve">
+    <value>Let’s Start By Creating An Account</value>
+  </data>
+  <data name="login_now" xml:space="preserve">
+    <value>Login Now</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="phone_number" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="terms_conditions" xml:space="preserve">
+    <value>Terms &amp; Conditions</value>
+  </data>
+  <data name="thank_you" xml:space="preserve">
+    <value>Thank you.</value>
+  </data>
+  <data name="verify_email" xml:space="preserve">
+    <value>Verify Email</value>
+  </data>
+  <data name="verify_email_broom_service" xml:space="preserve">
+    <value>Verify Email :- Bell Boy Service's</value>
+  </data>
+  <data name="account_deactivate_message" xml:space="preserve">
+    <value>your account is deactivated by admin. If you want to activate, please contact to admin.</value>
+  </data>
+  <data name="add_billing_address" xml:space="preserve">
+    <value>Add Billing Address</value>
+  </data>
+  <data name="billing_address" xml:space="preserve">
+    <value>Billing Address</value>
+  </data>
+  <data name="broom_service" xml:space="preserve">
+    <value>Bell Boy System</value>
+  </data>
+  <data name="dear" xml:space="preserve">
+    <value>Dear</value>
+  </data>
+  <data name="dont_have_account_yet" xml:space="preserve">
+    <value>Don’t have account yet?</value>
+  </data>
+  <data name="email_address" xml:space="preserve">
+    <value>Email address</value>
+  </data>
+  <data name="email_post" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="email_verified_sucess" xml:space="preserve">
+    <value>Your email is verified successfuly.</value>
+  </data>
+  <data name="enter_billing_address" xml:space="preserve">
+    <value>Enter Billing Address</value>
+  </data>
+  <data name="error_requesting_password" xml:space="preserve">
+    <value>There was an error requesting your password, Your email does not exist!</value>
+  </data>
+  <data name="forgot_password" xml:space="preserve">
+    <value>Forgot Password</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="new_password_sent_success" xml:space="preserve">
+    <value>Please Check Your Email, Your request for new password sent successfully!</value>
+  </data>
+  <data name="password_details" xml:space="preserve">
+    <value>Password Detail:- Bell Boy Service's</value>
+  </data>
+  <data name="password_post" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="please_enter_valid_email" xml:space="preserve">
+    <value>Please enter valid email</value>
+  </data>
+  <data name="please_enter_valid_password" xml:space="preserve">
+    <value>Please enter valid password</value>
+  </data>
+  <data name="register_now" xml:space="preserve">
+    <value>Register Now</value>
+  </data>
+  <data name="to_proceed_your_account" xml:space="preserve">
+    <value>To Proceed Your Account</value>
+  </data>
+  <data name="try_again" xml:space="preserve">
+    <value>Try again</value>
+  </data>
+  <data name="user_logged_in_successfully" xml:space="preserve">
+    <value>User logged in successfully.</value>
+  </data>
+  <data name="verify_email_before_signing" xml:space="preserve">
+    <value>please verify your phone or email before signing in.</value>
+  </data>
+  <data name="welcome_to" xml:space="preserve">
+    <value>Welcome to</value>
+  </data>
+  <data name="your_login_credentials" xml:space="preserve">
+    <value>Your Login Credentials:</value>
+  </data>
+  <data name="about_us" xml:space="preserve">
+    <value>About Us</value>
+  </data>
+  <data name="about_us_heading" xml:space="preserve">
+    <value>Providing Excellent Service and Customer Satisfaction</value>
+  </data>
+  <data name="android" xml:space="preserve">
+    <value>Android</value>
+  </data>
+  <data name="apple" xml:space="preserve">
+    <value>Apple</value>
+  </data>
+  <data name="chat" xml:space="preserve">
+    <value>Chat</value>
+  </data>
+  <data name="contact_us" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="contact_us_for_offers" xml:space="preserve">
+    <value>Contact Support</value>
+  </data>
+  <data name="fast_order" xml:space="preserve">
+    <value>Fast Order</value>
+  </data>
+  <data name="footer_text" xml:space="preserve">
+    <value>All copyrights are reserved</value>
+  </data>
+  <data name="get_on" xml:space="preserve">
+    <value>Get On</value>
+  </data>
+  <data name="heading_one" xml:space="preserve">
+    <value>Enjoy your stay</value>
+  </data>
+  <data name="heading_two" xml:space="preserve">
+    <value>Bell boy is a smart room service system to enhance your hospitality experience</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="lets_see_how_it_works" xml:space="preserve">
+    <value>See How It Works.</value>
+  </data>
+  <data name="my_bookings" xml:space="preserve">
+    <value>My Bookings</value>
+  </data>
+  <data name="my_properties" xml:space="preserve">
+    <value>My Properties</value>
+  </data>
+  <data name="notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="our_specialization_area" xml:space="preserve">
+    <value>Our Specialization Areas</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="property_listing" xml:space="preserve">
+    <value>Property Listing</value>
+  </data>
+  <data name="provide_professional_services" xml:space="preserve">
+    <value>Providing Professional Services All Aronund The</value>
+  </data>
+  <data name="read_more" xml:space="preserve">
+    <value>Read More</value>
+  </data>
+  <data name="services" xml:space="preserve">
+    <value>Services</value>
+  </data>
+  <data name="testimonials" xml:space="preserve">
+    <value>Testimonials</value>
+  </data>
+  <data name="testimonial_heading" xml:space="preserve">
+    <value>People Love To Talk About Bell Boy Services</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="access_property_options" xml:space="preserve">
+    <value>For Ex. Doorman, Keybox, Key other</value>
+  </data>
+  <data name="access_to_property" xml:space="preserve">
+    <value>Access To Property</value>
+  </data>
+  <data name="add_property" xml:space="preserve">
+    <value>Add Property</value>
+  </data>
+  <data name="add_sub_user" xml:space="preserve">
+    <value>Add Sub User</value>
+  </data>
+  <data name="apartment" xml:space="preserve">
+    <value>Apartment</value>
+  </data>
+  <data name="apartment_number" xml:space="preserve">
+    <value>Apartment Number</value>
+  </data>
+  <data name="balcony" xml:space="preserve">
+    <value>Balcony</value>
+  </data>
+  <data name="building_code" xml:space="preserve">
+    <value>Building Code</value>
+  </data>
+  <data name="city" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="coffe_machine" xml:space="preserve">
+    <value>Coffee Machine</value>
+  </data>
+  <data name="country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="dishwasher" xml:space="preserve">
+    <value>Dishwasher</value>
+  </data>
+  <data name="doorman" xml:space="preserve">
+    <value>Doorman</value>
+  </data>
+  <data name="duplex" xml:space="preserve">
+    <value>Duplex</value>
+  </data>
+  <data name="edit_property" xml:space="preserve">
+    <value>Edit Property</value>
+  </data>
+  <data name="elevator" xml:space="preserve">
+    <value>Elevator</value>
+  </data>
+  <data name="enter_apartment_number" xml:space="preserve">
+    <value>Enter Apartment Number</value>
+  </data>
+  <data name="enter_building_code" xml:space="preserve">
+    <value>Enter Building Code</value>
+  </data>
+  <data name="enter_floor" xml:space="preserve">
+    <value>Enter Floor</value>
+  </data>
+  <data name="enter_name_of_property" xml:space="preserve">
+    <value>Enter Name of Property</value>
+  </data>
+  <data name="floor" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+  <data name="full_address_property" xml:space="preserve">
+    <value>Full Address of Property (including st. number)</value>
+  </data>
+  <data name="garden" xml:space="preserve">
+    <value>Garden</value>
+  </data>
+  <data name="king_beds" xml:space="preserve">
+    <value>King Beds</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="name_of_property" xml:space="preserve">
+    <value>Name of Property</value>
+  </data>
+  <data name="no_of_toilets" xml:space="preserve">
+    <value>Number of Toilets</value>
+  </data>
+  <data name="number_of_bathrooms" xml:space="preserve">
+    <value>Number of Bathrooms</value>
+  </data>
+  <data name="number_of_bedrooms" xml:space="preserve">
+    <value>Number of Bedrooms</value>
+  </data>
+  <data name="parking" xml:space="preserve">
+    <value>Parking</value>
+  </data>
+  <data name="penthouse" xml:space="preserve">
+    <value>Penthouse</value>
+  </data>
+  <data name="pool" xml:space="preserve">
+    <value>Pool</value>
+  </data>
+  <data name="property_add_success" xml:space="preserve">
+    <value>Your property is saved successfully.</value>
+  </data>
+  <data name="property_heading" xml:space="preserve">
+    <value>You can list as many properties you want for each kind.</value>
+  </data>
+  <data name="property_not_exists" xml:space="preserve">
+    <value>Property does not exists.</value>
+  </data>
+  <data name="property_update_success" xml:space="preserve">
+    <value>Your property is updated successfully.</value>
+  </data>
+  <data name="queen_double_beds" xml:space="preserve">
+    <value>Queen/Double Beds (160x200</value>
+  </data>
+  <data name="short_term_apartment" xml:space="preserve">
+    <value>Short Term Airbnb Apartment</value>
+  </data>
+  <data name="short_term_propety_access_code" xml:space="preserve">
+    <value>Would you like to change code or access-usually?</value>
+  </data>
+  <data name="single_beds" xml:space="preserve">
+    <value>Single beds</value>
+  </data>
+  <data name="size_in_sqm" xml:space="preserve">
+    <value>Size in SQM</value>
+  </data>
+  <data name="sofa_beds" xml:space="preserve">
+    <value>Sofa Beds</value>
+  </data>
+  <data name="some_error_occured" xml:space="preserve">
+    <value>Some error has occured, please try again.</value>
+  </data>
+  <data name="type_of_property" xml:space="preserve">
+    <value>Type of property</value>
+  </data>
+  <data name="upload_image_video" xml:space="preserve">
+    <value>Upload Property Image / Video</value>
+  </data>
+  <data name="villa" xml:space="preserve">
+    <value>Villa</value>
+  </data>
+  <data name="wi_fi_login" xml:space="preserve">
+    <value>Wifi Login</value>
+  </data>
+  <data name="wi_fi_login_key" xml:space="preserve">
+    <value>Wifi Login Key</value>
+  </data>
+  <data name="search_properties" xml:space="preserve">
+    <value>Search Properties...</value>
+  </data>
+  <data name="success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="user_not_exist" xml:space="preserve">
+    <value>User does not exist</value>
+  </data>
+  <data name="add_email" xml:space="preserve">
+    <value>Add Email</value>
+  </data>
+  <data name="add_manual" xml:space="preserve">
+    <value>Add Manual</value>
+  </data>
+  <data name="bathrooms" xml:space="preserve">
+    <value>Bathrooms</value>
+  </data>
+  <data name="bedrooms" xml:space="preserve">
+    <value>Bedrooms</value>
+  </data>
+  <data name="change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="change_access" xml:space="preserve">
+    <value>Change Access</value>
+  </data>
+  <data name="choose_from_list" xml:space="preserve">
+    <value>Choose From List</value>
+  </data>
+  <data name="double_beds" xml:space="preserve">
+    <value>Double Beds</value>
+  </data>
+  <data name="double_sofa_beds" xml:space="preserve">
+    <value>Double Sofa Beds</value>
+  </data>
+  <data name="enter_emails_for_grant_access" xml:space="preserve">
+    <value>Enter Emails and send property access</value>
+  </data>
+  <data name="grant_access" xml:space="preserve">
+    <value>Grant Access</value>
+  </data>
+  <data name="manage_building_code" xml:space="preserve">
+    <value>Manage Building Code</value>
+  </data>
+  <data name="order_service" xml:space="preserve">
+    <value>Order Service</value>
+  </data>
+  <data name="other_features" xml:space="preserve">
+    <value>Other Features</value>
+  </data>
+  <data name="property_details" xml:space="preserve">
+    <value>Property Details</value>
+  </data>
+  <data name="single_sofa_beds" xml:space="preserve">
+    <value>Single Sofa Beds</value>
+  </data>
+  <data name="toilets" xml:space="preserve">
+    <value>Toilets</value>
+  </data>
+  <data name="upload_file" xml:space="preserve">
+    <value>Upload File</value>
+  </data>
+  <data name="view_all_properties" xml:space="preserve">
+    <value>View All Properties</value>
+  </data>
+  <data name="info_update_success" xml:space="preserve">
+    <value>Information updated successfully.</value>
+  </data>
+  <data name="about_broom_service" xml:space="preserve">
+    <value>About Bell Boy Services</value>
+  </data>
+  <data name="call_us_now" xml:space="preserve">
+    <value>Call Us Now</value>
+  </data>
+  <data name="drop_message_for_contact" xml:space="preserve">
+    <value>Drop a message to us we will contact you soon</value>
+  </data>
+  <data name="email_placeholder_contact" xml:space="preserve">
+    <value>Ex. user@gmail.com</value>
+  </data>
+  <data name="explore_service_provider" xml:space="preserve">
+    <value>Expert service provider all around the</value>
+  </data>
+  <data name="happy_clients" xml:space="preserve">
+    <value>Happy Clients</value>
+  </data>
+  <data name="israel" xml:space="preserve">
+    <value>Israel</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="name_placeholder_contact" xml:space="preserve">
+    <value>Ex. James</value>
+  </data>
+  <data name="professional_services" xml:space="preserve">
+    <value>Professonial Services</value>
+  </data>
+  <data name="select_type_of_property" xml:space="preserve">
+    <value>Select Type of Property</value>
+  </data>
+  <data name="send_message" xml:space="preserve">
+    <value>Send Message</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="message_sent_success" xml:space="preserve">
+    <value>Message sent successfully.</value>
+  </data>
+  <data name="privacy_policy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="fill_required_records" xml:space="preserve">
+    <value>Please fill required fields</value>
+  </data>
+  <data name="password_changed_success" xml:space="preserve">
+    <value>Password has been changed successfully.</value>
+  </data>
+  <data name="please_enter_valid_old_password" xml:space="preserve">
+    <value>Please enter valid old password</value>
+  </data>
+  <data name="profile_update_success" xml:space="preserve">
+    <value>Profile update successfully.</value>
+  </data>
+  <data name="change_password" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="edit_profile" xml:space="preserve">
+    <value>Edit Profile</value>
+  </data>
+  <data name="view_edit_profile_heading" xml:space="preserve">
+    <value>Check your profile details and edit</value>
+  </data>
+  <data name="enter_new_password" xml:space="preserve">
+    <value>Enter new password</value>
+  </data>
+  <data name="enter_old_password" xml:space="preserve">
+    <value>Enter old password</value>
+  </data>
+  <data name="new_password" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="old_password" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="delete_msg" xml:space="preserve">
+    <value>Are you sure you want to delete?</value>
+  </data>
+  <data name="no_data_found" xml:space="preserve">
+    <value>No data found</value>
+  </data>
+  <data name="sub_user_login_details" xml:space="preserve">
+    <value>Sub-Users Login Details As Below</value>
+  </data>
+  <data name="user_name" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="add_manually" xml:space="preserve">
+    <value>Add Manually</value>
+  </data>
+  <data name="add_property_choose_single_option" xml:space="preserve">
+    <value>You can add one property at a time choosing this option</value>
+  </data>
+  <data name="add_property_multiple_option" xml:space="preserve">
+    <value>Import all of them at once with a simple spreadsheet</value>
+  </data>
+  <data name="add_property_pms_option" xml:space="preserve">
+    <value>You can use one of our integrations with some of the best Property Management Systems</value>
+  </data>
+  <data name="choose_option_for_property" xml:space="preserve">
+    <value>Choose one of the options below to continue.</value>
+  </data>
+  <data name="download_template" xml:space="preserve">
+    <value>Download template file for property</value>
+  </data>
+  <data name="import_from_file" xml:space="preserve">
+    <value>Import From File</value>
+  </data>
+  <data name="pms" xml:space="preserve">
+    <value>Property Management System</value>
+  </data>
+  <data name="properties" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="recommend_to_use_template" xml:space="preserve">
+    <value>We recommend the use of our template to import the properties. It is easy and simple.</value>
+  </data>
+  <data name="upload_excel_files_several_files" xml:space="preserve">
+    <value>Upload Excel files with several properties all at once</value>
+  </data>
+  <data name="only_excel_file_format" xml:space="preserve">
+    <value>Only Excel file format is allowed</value>
+  </data>
+  <data name="please_choose_excel_file" xml:space="preserve">
+    <value>Please choose excel file</value>
+  </data>
+  <data name="choose_package" xml:space="preserve">
+    <value>Choose Package</value>
+  </data>
+  <data name="choose_services" xml:space="preserve">
+    <value>Our Services</value>
+  </data>
+  <data name="add_another_service" xml:space="preserve">
+    <value>Add Another Service</value>
+  </data>
+  <data name="add_check_list" xml:space="preserve">
+    <value>Add check list</value>
+  </data>
+  <data name="add_edit_card_details" xml:space="preserve">
+    <value>Add/Edit Card Details</value>
+  </data>
+  <data name="add_inventory" xml:space="preserve">
+    <value>Add Inventory</value>
+  </data>
+  <data name="ask_about_adding_checklist" xml:space="preserve">
+    <value>Would You Like To Add Checklist?</value>
+  </data>
+  <data name="ask_about_end_date_time" xml:space="preserve">
+    <value>Would You Like To Add End Date/Time?</value>
+  </data>
+  <data name="ask_about_add_job_desc" xml:space="preserve">
+    <value>Would You Like Add Job Description?</value>
+  </data>
+  <data name="ask_about_image_video" xml:space="preserve">
+    <value>Would you like to add Image / Video?</value>
+  </data>
+  <data name="ask_about_inventory_service" xml:space="preserve">
+    <value>Would you like to order inventory in the same time?</value>
+  </data>
+  <data name="ask_about_job_for_fast_order" xml:space="preserve">
+    <value>Would you like to save job details as fast order for next? (Including inventory if AirBNB).</value>
+  </data>
+  <data name="before_a_job" xml:space="preserve">
+    <value>Before A Job</value>
+  </data>
+  <data name="card_number" xml:space="preserve">
+    <value>Card Number</value>
+  </data>
+  <data name="debit_credit_card" xml:space="preserve">
+    <value>Debit / Credit Card</value>
+  </data>
+  <data name="enter_job_desc" xml:space="preserve">
+    <value>Enter Job Description</value>
+  </data>
+  <data name="job_request" xml:space="preserve">
+    <value>Job Request</value>
+  </data>
+  <data name="once_in_month" xml:space="preserve">
+    <value>Once In Month</value>
+  </data>
+  <data name="payment_info" xml:space="preserve">
+    <value>Payment Info</value>
+  </data>
+  <data name="service_name" xml:space="preserve">
+    <value>Service Name</value>
+  </data>
+  <data name="start_date_time" xml:space="preserve">
+    <value>Start Date/Time</value>
+  </data>
+  <data name="sub_service_name" xml:space="preserve">
+    <value>Sub Service Name</value>
+  </data>
+  <data name="total_added_inventory_cost" xml:space="preserve">
+    <value>Total added inventory cost</value>
+  </data>
+  <data name="enter_property_name_address" xml:space="preserve">
+    <value>Enter Property Name &amp; Address</value>
+  </data>
+  <data name="job_request_add_success" xml:space="preserve">
+    <value>You job request has been added successfully.</value>
+  </data>
+  <data name="get_back_with_quote" xml:space="preserve">
+    <value>We will get back to you with the quote price shortly.</value>
+  </data>
+  <data name="add_text_validation" xml:space="preserve">
+    <value>Please add the work for the checklist</value>
+  </data>
+  <data name="enter_work_for_checklist" xml:space="preserve">
+    <value>Enter work for checklist</value>
+  </data>
+  <data name="no_text_box_to_remove" xml:space="preserve">
+    <value>No checklist to remove</value>
+  </data>
+  <data name="repeat_service_in_future" xml:space="preserve">
+    <value>Would you like to repeat the same service in the future?</value>
+  </data>
+  <data name="ask_about_adding_another_service" xml:space="preserve">
+    <value>Would you like to order another service in the same time?</value>
+  </data>
+  <data name="enter_fast_order_name" xml:space="preserve">
+    <value>Enter Fast Order Name *</value>
+  </data>
+  <data name="please_enter_fast_order_name" xml:space="preserve">
+    <value>Please enter fast order name</value>
+  </data>
+  <data name="save_change_fast_order_name" xml:space="preserve">
+    <value>You can save &amp; change fast order name</value>
+  </data>
+  <data name="manage_access_code" xml:space="preserve">
+    <value>Manage Access Code</value>
+  </data>
+  <data name="please_select_service" xml:space="preserve">
+    <value>Please select service</value>
+  </data>
+  <data name="please_select_sub_service" xml:space="preserve">
+    <value>Please select sub-service</value>
+  </data>
+  <data name="enter_location_of_key" xml:space="preserve">
+    <value>Enter location of key</value>
+  </data>
+  <data name="location_of_key" xml:space="preserve">
+    <value>Location of key</value>
+  </data>
+  <data name="ask_about_adding_service" xml:space="preserve">
+    <value>Would you like to add normal basis service for this property</value>
+  </data>
+  <data name="select_property" xml:space="preserve">
+    <value>Select property</value>
+  </data>
+  <data name="you_have_new_msg" xml:space="preserve">
+    <value>You have new message from</value>
+  </data>
+  <data name="cancelled" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="in_progress" xml:space="preserve">
+    <value>In Progress</value>
+  </data>
+  <data name="pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="search_here" xml:space="preserve">
+    <value>Search here...</value>
+  </data>
+  <data name="comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="enter_comment" xml:space="preserve">
+    <value>Enter comment</value>
+  </data>
+  <data name="give_access_add_change_properties" xml:space="preserve">
+    <value>Would you like to give access to add/change properties?</value>
+  </data>
+  <data name="give_access_order_change_services" xml:space="preserve">
+    <value>Would you like to give access to order/change services?</value>
+  </data>
+  <data name="give_access_to_add_change_credit_card" xml:space="preserve">
+    <value>Would you like to give access to add/change credit card?</value>
+  </data>
+  <data name="give_access_to_see_billing_info" xml:space="preserve">
+    <value>Would you like to give access to see billing information and prices?</value>
+  </data>
+  <data name="grant_access_successfully" xml:space="preserve">
+    <value>Grant access property successfully.</value>
+  </data>
+  <data name="access_to_change_properties" xml:space="preserve">
+    <value>Access to aad/change properties</value>
+  </data>
+  <data name="access_to_edit_change_card" xml:space="preserve">
+    <value>Access to add/change card</value>
+  </data>
+  <data name="access_to_order_change_services" xml:space="preserve">
+    <value>Access to order/change services</value>
+  </data>
+  <data name="access_to_see_bill_price" xml:space="preserve">
+    <value>Access to see billing info/price</value>
+  </data>
+  <data name="granted_access_users" xml:space="preserve">
+    <value>Granted Access Users</value>
+  </data>
+  <data name="granted_access_user_list" xml:space="preserve">
+    <value>Granted Access Users List</value>
+  </data>
+  <data name="bookings_details" xml:space="preserve">
+    <value>Bookings Details</value>
+  </data>
+  <data name="booked_services" xml:space="preserve">
+    <value>Booked Services</value>
+  </data>
+  <data name="checklists" xml:space="preserve">
+    <value>Checklists</value>
+  </data>
+  <data name="images_videos" xml:space="preserve">
+    <value>Images/Videos</value>
+  </data>
+  <data name="job_description" xml:space="preserve">
+    <value>Job Description</value>
+  </data>
+  <data name="by_cash" xml:space="preserve">
+    <value>By Cash</value>
+  </data>
+  <data name="by_cheque" xml:space="preserve">
+    <value>By Cheque</value>
+  </data>
+  <data name="by_credit_card" xml:space="preserve">
+    <value>By Credit Card</value>
+  </data>
+  <data name="by_money_transfer" xml:space="preserve">
+    <value>By Money Transfer</value>
+  </data>
+  <data name="card_add_success" xml:space="preserve">
+    <value>Card added successfully.</value>
+  </data>
+  <data name="details_sent_success" xml:space="preserve">
+    <value>Details sent successfully.</value>
+  </data>
+  <data name="best_regards" xml:space="preserve">
+    <value>Best Regards,</value>
+  </data>
+  <data name="delete_email_if_not_belong" xml:space="preserve">
+    <value>You received this email because you have been provided access of the properties for your account. If this email doesn't belong to you then you can safely delete this email.</value>
+  </data>
+  <data name="grant_access_heading" xml:space="preserve">
+    <value>has provided you the access of the properties of the account registered in our system.</value>
+  </data>
+  <data name="grant_access_title" xml:space="preserve">
+    <value>Bell Boy service app access granted</value>
+  </data>
+  <data name="link_not_working" xml:space="preserve">
+    <value>If that doesn't work, copy and paste the following link in your browser:</value>
+  </data>
+  <data name="provided_with_grant_access" xml:space="preserve">
+    <value>You have been provided with the following access</value>
+  </data>
+  <data name="account_created_successfully" xml:space="preserve">
+    <value>Your account has been created successfully.</value>
+  </data>
+  <data name="offer_accepted_success" xml:space="preserve">
+    <value>Offer accepted successfully</value>
+  </data>
+  <data name="offer_rejected_success" xml:space="preserve">
+    <value>Offer rejected successfully</value>
+  </data>
+  <data name="job_complete_success" xml:space="preserve">
+    <value>Job request has been successfully completed.</value>
+  </data>
+  <data name="job_not_exists" xml:space="preserve">
+    <value>Job does not exists</value>
+  </data>
+  <data name="review_success" xml:space="preserve">
+    <value>Your review has been successfully submitted.</value>
+  </data>
+  <data name="timer_already_ended" xml:space="preserve">
+    <value>Timer for the job has been ended already.</value>
+  </data>
+  <data name="timer_already_started" xml:space="preserve">
+    <value>Timer for the job has been started already.</value>
+  </data>
+  <data name="timer_ended_success" xml:space="preserve">
+    <value>Timer for the job has been successfully ended.</value>
+  </data>
+  <data name="timer_started_success" xml:space="preserve">
+    <value>Timer for the job has been successfully started.</value>
+  </data>
+  <data name="schedule_added_successfully" xml:space="preserve">
+    <value>Schedule added successfully</value>
+  </data>
+  <data name="my_fast_order" xml:space="preserve">
+    <value>Fast Orders</value>
+  </data>
+  <data name="my_review" xml:space="preserve">
+    <value>My Review</value>
+  </data>
+  <data name="review" xml:space="preserve">
+    <value>My Review</value>
+  </data>
+  <data name="job_request_detail" xml:space="preserve">
+    <value>Job Request Details</value>
+  </data>
+  <data name="amercianexpress" xml:space="preserve">
+    <value>AMERCIANEXPRESS</value>
+  </data>
+  <data name="discover" xml:space="preserve">
+    <value>DISCOVER</value>
+  </data>
+  <data name="jcb" xml:space="preserve">
+    <value>JCB</value>
+  </data>
+  <data name="mastercard" xml:space="preserve">
+    <value>MASTERCARD</value>
+  </data>
+  <data name="visa" xml:space="preserve">
+    <value>VISA</value>
+  </data>
+  <data name="sms_verification" xml:space="preserve">
+    <value>SMS Verification Sent!</value>
+  </data>
+  <data name="cancel_job" xml:space="preserve">
+    <value>Cancel Job</value>
+  </data>
+  <data name="login_Registration" xml:space="preserve">
+    <value>Login/Register</value>
+  </data>
+  <data name="english" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="french" xml:space="preserve">
+    <value>French</value>
+  </data>
+  <data name="hebrew" xml:space="preserve">
+    <value>Hebrew</value>
+  </data>
+  <data name="russian" xml:space="preserve">
+    <value>Russian</value>
+  </data>
+  <data name="Credit_card" xml:space="preserve">
+    <value>Credit Card</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Offers" xml:space="preserve">
+    <value>Offers</value>
+  </data>
+  <data name="Payment_detail" xml:space="preserve">
+    <value>Payment Detail</value>
+  </data>
+  <data name="Click_to_select_card" xml:space="preserve">
+    <value>Please click the credit card you want to be selected</value>
+  </data>
+  <data name="Quotes" xml:space="preserve">
+    <value>Quotes</value>
+  </data>
+  <data name="Mission" xml:space="preserve">
+    <value>Mission</value>
+  </data>
+  <data name="edit_job_request" xml:space="preserve">
+    <value>Edit Job Request</value>
+  </data>
+  <data name="getExisting" xml:space="preserve">
+    <value>GetExisting</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>save</value>
+  </data>
+  <data name="service_requests" xml:space="preserve">
+    <value>Service Requests</value>
+  </data>
+  <data name="worker_detail" xml:space="preserve">
+    <value>Worker Detail</value>
+  </data>
+  <data name="after_a_job" xml:space="preserve">
+    <value>After A Job</value>
+  </data>
+  <data name="sub_sub_service_name" xml:space="preserve">
+    <value>Sub Sub Service Name</value>
+  </data>
+  <data name="kitchen" xml:space="preserve">
+    <value>Kitchen</value>
+  </data>
+  <data name="how_it_works" xml:space="preserve">
+    <value>Bell Boy beta system is free to use single platform smart room services system that offers high-end 5-star luxury hotel services for both renters and hosts.  We supply 5-star services by demand through our smart system.</value>
+  </data>
+  <data name="our_services" xml:space="preserve">
+    <value>Our Services</value>
+  </data>
+  <data name="account_locked_message" xml:space="preserve">
+    <value>your account is locked by admin. If you want to unlock, please contact to admin.</value>
+  </data>
+</root>

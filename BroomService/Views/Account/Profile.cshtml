@@ -1,0 +1,242 @@
+﻿@using BroomService.Resources;
+@model BroomService.ViewModels.UserViewModel
+
+@{
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+}
+
+<!-- Profile box -->
+<section id="view_edit_page_main" class="view_edit_page">
+    <div class="container">
+        <h2>@Resource.profile</h2>
+        <p>@Resource.view_edit_profile_heading</p>
+        @if (TempData["ErrorMsg"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMsg"]
+            </div>
+        }
+        @if (TempData["SuccessMsg"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMsg"]
+            </div>
+        }
+        
+
+        <div class="view_edit_box">
+            @using (Html.BeginForm("Profile", "Account", FormMethod.Post, new { @class = "row", enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(a => a.UserId)
+                <div class="col-12 text-center upload_photo_box">
+                    <div class="upload_photo_image_box">
+                        @if (string.IsNullOrEmpty(Model.PicturePath))
+                        {
+                            <img src="/Content/images/logo_login.png" id="profile-pic" alt="default user">
+                        }
+                        else
+                        {
+                            <img src="https://appmantechnologies.com:6082/Images/User/@Model.PicturePath" alt="default user" />  
+                            @*<img src="https://appmantechnologies.com:6082/Images/User/@Model.PicturePath" alt="default user" />*@  
+                            <!--<img src="~/Images/User/@Model.PicturePath" id="profile-pic" alt="default user">-->
+                        }
+                         <div class="upload_btn_box">
+                            <button class="up_btn"><i class="fa fa-camera"></i></button>
+                            <input type="file" name="PicturePath" id="PicturePath" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="custom-register-label">@Resource.full_name</label>
+                        <div class="custom_input">
+                            @Html.TextBoxFor(m => m.FullName,
+                            new { @class = "form-control form_edit_input",
+                                placeholder = Resource.enter_full_name,
+                                @required = "required" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="custom-register-label">@Resource.company_name</label>
+                        <div class="d-flex">
+                            <div class="cus_on_of">
+                                <label class="switch">
+                                    <input type="checkbox" id="companyNameCheck">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="custom_input" id="company_name_frame">
+                                @Html.TextBoxFor(m => m.CompanyName,
+                                        new { @class = "form-control form_edit_input",
+                                            placeholder = Resource.enter_company_name })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="custom-register-label">@Resource.email</label>
+                        <div class="custom_input">
+                            @Html.TextBoxFor(m => m.Email,
+                              new { @class = "form-control form_edit_input",
+                                  placeholder = Resource.enter_email,
+                                  @type="email",
+                                  @required = "required" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="custom-register-label">@Resource.phone_number</label>
+                        <div class="d-flex pl-3 my-2 custom_input">
+                            @Html.TextBoxFor(m => m.CountryCode
+                          , new { @class = "my-3 ml-4", @required = "required",
+                              style = "width:60px;border:transparent;border-right:1px solid #000;" })
+
+                            @Html.TextBoxFor(m => m.PhoneNumber,
+                           new { @class = "form-control form_edit_input pl-3",
+                               placeholder = Resource.enter_phone_number,
+                               @type="number",
+                               @required = "required" })
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="custom-register-label">@Resource.full_address</label>
+                        <div class="custom_input">
+                            @Html.TextBoxFor(m => m.Address,
+                              new { @class = "form-control form_edit_input",
+                                  placeholder = Resource.enter_full_address,
+                                  @required = "required" })
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <label class="custom-register-label">@Resource.add_billing_address</label>
+                    <label class="switch">
+                        <input type="checkbox" id="checkboxBillingAddress">
+                        <span class="slider round"></span>
+                    </label>
+                </div>         
+                <div class="col-12">
+                    <div class="form-group" id="billingAddressDiv">
+                        <label class="custom-register-label">@Resource.billing_address</label>
+                        <div class="custom_input">
+                            @Html.TextBoxFor(m => m.BillingAddress, 
+                            new { @class = "form-control form_edit_input",
+                                placeholder = Resource.enter_billing_address })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-block view_margin d-sm-flex justify-content-end">
+                    @*<a href="/Account/ChangePassword" class="edit_profile_btn">@Resource.change_password</a>*@
+                    <button type="submit" class="btn edit_profile_btn">@Resource.edit_profile</button>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCFomQKPynvwJ7o_aMUvFtfVfru2Wu-xCw"></script>
+<script>
+
+    google.maps.event.addDomListener(window, 'load', function () {
+        //var options = {
+        //    componentRestrictions: { country: "isr" },
+        //    fields: ["formatted_address", "geometry", "name"],
+        //    strictBounds: false,
+        //    types: ["establishment"],
+        //};
+        var options = {
+            componentRestrictions: { country: "il" },
+            types: ["geocode"]
+        };
+
+        var input = document.getElementById('BillingAddress');
+        var places = new google.maps.places.Autocomplete(input, options);
+        google.maps.event.addListener(places, 'place_changed', function () {
+            var place = places.getPlace();
+            var lat = place.geometry.location.lat();
+            var long = place.geometry.location.lng();
+
+            var address = place.address_components;
+            //$("#BillingAddress").val(place.formatted_address);
+
+            // alert("3" + Json.stringify(place + address));
+            //console.log(address);
+
+            //for (var i = 0; i < address.length; i++) {
+            //    //   alert("4" + JSON.stringify(address[i]));
+            //    if (address[i].types[0] == "administrative_area_level_2") {
+            //        //$("#Address").val(address[i].long_name);
+            //       // $("#Latitude").val(lat);
+            //       // $("#Longitude").val(long);
+            //    }
+            //}
+        });
+
+    });
+
+    var getCompanyName = "@Model.CompanyName";
+    var getBillingAddress = "@Model.BillingAddress";
+    if (getCompanyName.length!=0) {
+        $("#company_name_frame").css('display', 'block');
+        $('#companyNameCheck').attr('checked', true);
+    }
+    else {
+        $("#company_name_frame").css('display', 'none');
+        $('#companyNameCheck').attr('checked', false);
+    }
+    if (getBillingAddress.length != 0) {
+        $("#billingAddressDiv").css('display', 'block');
+        $('#checkboxBillingAddress').attr('checked', true);
+    }
+    else {
+        $("#billingAddressDiv").css('display', 'none');
+        $('#checkboxBillingAddress').attr('checked', false);
+    }
+
+    $(document).ready(function () {
+        $('#companyNameCheck').change(function () {
+            $("#CompanyName").val('');
+            if (this.checked) {
+                $("#company_name_frame").css('display', 'block');
+            }
+            else {
+                $("#company_name_frame").css('display', 'none');
+            }
+        });
+
+        $("#checkboxBillingAddress").change(function () {
+            $("#BillingAddress").val('');
+            if (this.checked) {
+                $("#billingAddressDiv").css('display', 'block');
+            }
+            else {
+                $("#billingAddressDiv").css('display', 'none');
+            }
+        });
+    });
+
+    $('#PicturePath').on('change', function () {
+
+        var input = this;
+        var url = $(this).val();
+        var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+        if (input.files && input.files[0] && (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#profile-pic').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+        else {
+            $('#profile-pic').attr('src', '../Template/imgs/user_profle.png');
+        }
+    });
+</script>

@@ -1,0 +1,27 @@
+﻿<section id="send_message_main_box" class="send_message_main">
+    <div class="container">
+        <h2>Unable to Process payment</h2>    
+        <br />
+        <div class="add_payment_form">                       
+                <div class="col-md-7">
+                    <div class="row">                        
+                        <div class="col-12">
+                            <div class="form-group">
+                                @if (TempData["ErrorMsg"] != null)
+                                {
+                                    <div class="alert alert-danger" role="alert">
+                                        @TempData["ErrorMsg"]
+                                    </div>
+                                }
+                                <p>Service: @ViewBag.description</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>              
+            
+        </div>
+    </div>
+</section>
+
+

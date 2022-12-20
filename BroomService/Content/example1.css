@@ -1,0 +1,266 @@
+.first-example{
+    margin-top: 80px;
+}
+
+.first-example input {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    width: 100%;
+    font-family: Arial, serif;
+    font-size: 16px;
+}
+
+.first-example input:focus {
+    outline: 0;
+}
+
+.first-example input.invalid {
+    color: #FF0000;
+}
+
+.first-example input.valid {
+    color: #fff;
+}
+
+.first-example ::placeholder {
+    color: #ACD7E4;
+}
+
+.first-example .wrap-block {
+    background: #D7E6EC;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 20px;
+    max-width: 750px;
+    min-height: 640px;
+    margin: 0 auto;
+}
+
+.first-example .wrap-block form {
+    max-width: 475px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.first-example .form-control, .first-example .input-group-text {
+    background-color: transparent;
+    border: none;
+}
+.first-example .input-group, .first-example .input-group-text {
+    border: none;
+}
+
+.first-example button {
+    background: #158A89;
+    border: none;
+    color: #fff;
+}
+
+.first-example button:hover {
+    background: #158A89;
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.first-example .row-wrap-for-all-input {
+    padding-bottom: 35px;
+}
+
+.first-example .one-block-for-all-divided-input {
+    background: #619D9E;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.first-example .wrap-for-input {
+    font-size: 20px;
+    padding: 3px;
+    border-bottom: 1px solid #158A89;
+}
+
+.first-example .wrap-for-input:last-child {
+    border-bottom: none;
+}
+
+.first-example .wrap-for-input label {
+    color: #ffffff;
+    padding-left: 0;
+}
+
+.first-example .wrap-for-input .input-group-prepend {
+    width: 90px;
+}
+
+.first-example .block-for-validate-errors {
+    width: 100%;
+    min-height: 45px;
+    padding-top: 20px;
+}
+
+.first-example .block-for-validate-errors p {
+    text-align: center;
+    color: #000000;
+}
+
+.first-example .line-for-several-input {
+    background: #619D9E;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.first-example .line-for-several-input i {
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.first-example .form-control {
+    padding: .375rem 0;
+    height: 40px;
+}
+
+.first-example .icon-for-card {
+    width: 12%;
+    justify-content: center;
+}
+
+.first-example .block-for-card-number {
+    width: 56%;
+}
+
+.first-example .block-for-expiration-card {
+    width: 20%;
+    -moz-transform: translateX(-50px);
+    -ms-transform: translateX(-50px);
+    -webkit-transform: translateX(-50px);
+    -o-transform: translateX(-50px);
+    transform: translateX(-50px);
+    -webkit-transition: transform .3s;
+    transition: transform .3s;
+}
+
+.first-example .block-for-cvv-card {
+    width: 12%;
+    -moz-transform: translateX(-30px);
+    -ms-transform: translateX(-30px);
+    -webkit-transform: translateX(-30px);
+    -o-transform: translateX(-30px);
+    transform: translateX(-30px);
+    -webkit-transition: transform .3s;
+    transition: transform .3s;
+}
+
+.first-example .animate-card-option {
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+    -webkit-transition: transform .3s;
+    transition: all .3s;
+}
+
+.first-example .success{
+    max-width: 450px;
+    margin: 0 auto;
+    background: #619D9E;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    color: #ffffff;
+    margin-top: 140px;
+    position: relative;
+}
+
+.first-example .success span{
+    min-width: 80px;
+}
+
+.first-example .success .query-info{
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    border-bottom: 1px solid #158A89;
+}
+
+.first-example .success .back-on-form1{
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+}
+
+@media only screen and (max-width : 425px) {
+    .first-example .icon-for-card {
+        width: 15%;
+    }
+
+    .first-example .block-for-card-number {
+        width: 85%;
+    }
+
+    .first-example .block-for-expiration-card {
+        width: 50%;
+        -moz-transform: translateX(0);
+        -ms-transform: translateX(0);
+        -webkit-transform: translateX(0);
+        -o-transform: translateX(0);
+        transform: translateX(0);
+        padding-left: 15px;
+    }
+
+    .first-example .block-for-cvv-card {
+        width: 50%;
+        -moz-transform: translateX(0);
+        -ms-transform: translateX(0);
+        -webkit-transform: translateX(0);
+        -o-transform: translateX(0);
+        transform: translateX(0);
+        padding-left: 15px;
+    }
+
+}
+
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.first-example .wrap-loading {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0, 0.4);
+}
+
+.first-example .loading {
+    border-radius: 50%;
+    position: absolute;
+    top: calc(50% - 25px);
+    left: calc(50% - 25px);
+    width: 50px;
+    height: 50px;
+    border: .5rem solid rgba(0,0,0, 0.6);
+    border-top-color: rgb(255,255,255);
+    animation: spin 1s infinite linear;
+}

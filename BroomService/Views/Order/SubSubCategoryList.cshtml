@@ -1,0 +1,284 @@
+﻿@model BroomService.ViewModels.SubCategoryPropertyModel
+@using BroomService.Resources;
+
+<!-- Choose Service box -->
+<section id="all_services_boxes" class="all_services_boxes">
+    <div class="container">
+        <h2>@Resource.choose_package</h2>
+        <p></p>
+        <div class="row choose_service_box">
+            @if (Model.SubCategoryList.Count > 0)
+            {
+                for (int i = 0; i < Model.SubCategoryList.Count; i++)
+                {
+            <div class="col-lg-6 mb-4">
+                @{
+                    string link = string.Empty;
+                    long SubSubCatId = 0;
+                }
+                @if (Request.Cookies["Login"] != null)
+                {
+                    if (Request.Cookies["Login"].Values["UserId"] != null)
+                    {
+                        link = "/Order/AddJobRequest?categoryId=" + @Model.SubCategoryList[i].CategoryId + "&subCategoryId=" + @Model.SubCategoryList[i].SubCategoryId + "&subSubCategoryId=" + @Model.SubCategoryList[i].Id + "&propertyId=" + Model.Property_List_Id;
+                    }
+                    else
+                    {
+                        link = "#";
+                        SubSubCatId = @Model.SubCategoryList[i].Id;
+                    }
+                }
+                else
+                {
+                    link = "#";
+                    SubSubCatId = @Model.SubCategoryList[i].Id;
+                }
+                    <a name="saveinfo" id="@SubSubCatId">
+                        <input type="hidden" name="SubCatId" value="@Model.SubCategoryList[i].Id" />
+                        <input type="hidden" name="link" value="@link" />
+                        <div class="d-block d-sm-flex">
+                            <div class="service_image_main">
+                                <div class="service_image_box">
+                                    @{string categoryPicture = string.Empty;}
+                                    @if (!string.IsNullOrEmpty(Model.SubCategoryList[i].Icon))
+                                    {
+                                        categoryPicture = "/Content/images/services/" + Model.SubCategoryList[i].Icon;
+                                    }
+                                    else
+                                    {
+                                        categoryPicture = "/Content/images/logo.png";
+                                    }
+                                    <img class="image_unselect" src="@categoryPicture" alt="service" />
+                                    <img class="image_select" src="@categoryPicture" alt="service" />
+                                </div>
+                            </div>
+                            <div class="servies_details align-self-center">
+                                <h3>@Model.SubCategoryList[i].Name</h3>
+
+                                @if(Model.SubCategoryList[i].Price != null)
+                                {
+                                int displayprice = ((int)Model.SubCategoryList[i].Price.Value) / 10;
+                                displayprice = displayprice * 10;
+
+                                <input type="hidden" value="@displayprice" />
+                                <p class="service_price number_count">
+                                    <img src="~/Content/images/currency_symbol.png">@displayprice
+                                </p>
+                                }
+                                
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                }
+            }
+        </div>
+        <div class="col-12 text-right submit_box_all">
+            <a href="javascript:history.back()">
+                <button type="submit" class="btn arrow_btn_box submit_back"><img src="~/Content/images/submit_next_btn.png" alt="next arrow"></button>
+            </a>
+        </div>
+    </div>
+</section>
+<!-- save Visitor Info Modal -->
+<div class="modal fade modal_sub_user" id="addVisitorInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="checklist_property_main">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    @*<h3>@Resource.add_another_service</h3>*@
+                    <form id="SaveInfo">
+                        <div class="add_another_service_main">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="property_label">Enter your Email </label>
+                                    <div class="custom_input">
+                                        <input type="email" class="form-control form_edit_input" id="txtEmail" name="txtemail" placeholder="abc@gmail.com" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12" id="subServiceSection">
+                                <div class="form-group">
+                                    <label class="property_label">Enter Your Contact No</label>
+                                    <div class="custom_input">
+                                        <input type="text" class="form-control form_edit_input" id="txtContactNo" name="txtContactNo" placeholder="+9721111111111" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 text-center inventory_popup_btn">
+                            <a href="#" class="arrow_btn_box" onclick="fnClick()">
+                                <img src="~/Content/images/submit_next_btn.png" alt="next arrow">
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quotes Request  Modal -->
+<div class="modal fade modal_sub_user" id="modalAdminNotify" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="checklist_property_main">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3>Service Price is Zero Would You Like to notify admin Quote Request</h3>
+                    <div class="add_another_service_main">
+                        <div class="col-12">
+                            <div class="form-group">
+                                @*<label class="property_label">Property</label>*@
+                                <div class="custom_input">
+                                    <select id="property_select" class="property"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center ">
+                        <input type="button" id="btnSendQuotesRequest" value="Yes" class="btn btn-success" />
+                        <input type="button" id="Cancel" value="Cancel" data-dismiss="modal" aria-label="Close" class="btn btn-danger" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //---------------------------------Quotes Request Code--------------------------------
+    var SubSubCat_Id = 0;
+    $(document).ready(function () {
+        LoadProperty();
+    });
+    $('a').click(function () {
+        var valu = $(this).children().children().next().children('input[type=hidden]').val();
+        SubSubCat_Id = $(this).children('input:hidden[name=SubCatId]').val(); 
+        var Url = $(this).attr('id');
+        valu = parseInt(valu);
+        if (valu < 1)
+        {
+            $('#modalAdminNotify').modal('show');
+        }
+        else
+        {
+            window.location.href = $(this).children('input:hidden[name=link]').val();
+        }
+    });
+
+    function LoadProperty()
+    {
+        $.ajax({
+            url: "/Order/GetPropertyList",
+            data: {},
+            type: 'POST',
+            dataType: "json",
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#property_select').empty();
+                    $('#property_select').append(`<option value='0'>Select Property</option>`);
+                    $.each(data, function (key, value) {
+                        var optionText = value.Text;
+                        var optionValue = value.Value;
+                        $('#property_select').append(`<option class="" value="${optionValue}">${optionText}</option>`);
+
+                    });
+                    $('#modal_selectProp').modal('show');
+                }
+            },
+            error: function () {
+                alert('something went wrong');
+            }
+        });
+    }
+
+    $('#btnSendQuotesRequest').click(function () {
+            var PropertyId = $("#property_select").val();
+            var ServiceId =  @Session["CategoryId"] != null ? @Session["CategoryId"]:0;
+            var SubCatId = @Request.QueryString["id"] != null ? @Request.QueryString["id"]:0;
+            var SubSubCatId = SubSubCat_Id;
+
+            if (PropertyId !=0)
+            {
+                //alert(PropertyId);
+                $('#cover-spin').show();
+                $.ajax({
+                    url: "@Url.Action("SendQuotesRequestToAdmin", "Order")",
+                    data: {
+                        "PropId": PropertyId,
+                        "ServiceId": ServiceId,
+                        "SubCatId": SubCatId,
+                        "SubSubCatId": SubSubCatId
+                    },
+                    type: 'POST',
+                    success: function (data) {
+                        if (data) {
+                            $('#modalAdminNotify').modal('hide');
+                            alert("Quotes Request Send Successfully");
+                            window.location.href = '/Home/Index';
+                        }
+                        $('#cover-spin').hide();
+                    },
+                    error: function () {
+                        alert('something went wrong');
+                        $('#cover-spin').hide();
+                    }
+                });
+            }
+            else {
+                alert("Please select Property");
+            }
+    });
+    //--------------------------------End Quotes Request Code--------------------------------
+    $(document).ready(function () {
+        var userlogin = @(Request.Cookies["Login"] != null?"true":"false");
+            //alert(userlogin);
+        if(userlogin != true)
+        {
+                //alert(userlogin);
+                $("[name='saveinfo']").attr("data-toggle", "modal");
+                $("[name='saveinfo']").attr("data-target", "#addVisitorInfo");
+        }
+    });
+    var SubSubCatId = 0;
+    $("[name='saveinfo']").click(function () {
+            var id = $(this).attr('id');
+            SubSubCatId = id;
+    });
+
+    function fnClick() {
+            var email = $("#txtEmail").val();
+            var contactNo = $("#txtContactNo").val();
+            if (email != "" && contactNo !="")
+            {
+                //alert(email);
+                //alert(contactNo);
+                $.ajax({
+                    url: "@Url.Action("SaveVisitorInfo", "Account")",
+                    data: { "Email": email, "ContactNo": contactNo },
+                    type: "Post",
+                    error: function () {
+                        //alert(" An error occurred.");
+                    },
+                    success: function (data) {
+                        //alert(data);
+                        if (data=='True')
+                        {
+                            window.location.href ="/Order/VisitorAddJobRequest?categoryId=7&subCategoryId=12&subSubCategoryId=" + SubSubCatId;
+                        }
+                    }
+                });
+            }
+            else
+            {
+                alert("please enter you email and contact no");
+            }
+    }
+
+</script>

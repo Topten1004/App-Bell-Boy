@@ -1,0 +1,88 @@
+﻿@using BroomService.Resources;
+@model BroomService.Models.User
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<!-- Font awsome kit -->
+<script src="https://kit.fontawesome.com/40b745dcd8.js" crossorigin="anonymous"></script>
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<link href="~/Content/owl.carousel.min.css" rel="stylesheet" />
+<link href="~/Content/owl.theme.default.min.css" rel="stylesheet" />
+
+<!-- owl javascript -->
+<script src="~/Content/js/jquery.min.js"></script>
+<script src="~/Content/js/owl.carousel.js"></script>
+
+<!-- Custom Css -->
+<link href="~/Content/style.css" rel="stylesheet" />
+<!-- Login Section -->
+<section class="login_main d-flex align-items-center justify-content-center">
+    <div class="container">
+        <div class="login_box mx-auto">
+            <div class="login_content mx-auto">
+
+                <div class="d-block d-sm-flex justify-content-between">
+                    <a href="/Home/Index"><img src="~/Content/images/logo_login.png" class="back_home" alt="image of coloured logo" /></a>
+                </div>
+                <h2>@Resource.create_account</h2>
+                <div class="login_form">
+                    @using (Html.BeginForm("CreateAccount", "Account", FormMethod.Post))
+                    {
+                        if (TempData["ErrorMsg"] != null)
+                        {
+                            <div class="alert alert-danger" role="alert">
+                                @TempData["ErrorMsg"]
+                            </div>
+                        }
+                        if (TempData["SuccessMsg"] != null)
+                        {
+                            <div class="alert alert-success" role="alert">
+                                @TempData["SuccessMsg"]
+                            </div>
+                        }
+
+                        @Html.HiddenFor(a=>a.DeviceId)
+                        <div class="form-group">
+                            <label class="custom-register-label">@Resource.email_address</label>
+                            <div class="custom_input">
+                                @Html.TextBoxFor(m => m.Email,
+                                          new
+                                          {
+                                              @class = "form-control form_edit_input",
+                                              placeholder = Resource.enter_email,
+                                              @required = "required",
+                                              @type = "email",
+                                              @readonly="readonly"
+                                          })
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="custom-register-label">@Resource.password</label>
+                            <div class="custom_input">
+
+                                @Html.PasswordFor(m => m.Password,
+                                            new
+                                            {
+                                                @class = "form-control form_edit_input",
+                                                @required = "required",
+                                                placeholder = Resource.enter_password
+                                            })
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn arrow_btn_box"><img src="~/Content/images/submit_next_btn.png"
+                              alt="next arrow" /></button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

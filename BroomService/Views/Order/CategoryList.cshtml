@@ -1,0 +1,65 @@
+﻿@model BroomService.ViewModels.CategoryPropertyModel
+@using BroomService.Resources;
+
+<!-- Choose Service box -->
+<section id="all_services_boxes" class="all_services_boxes">
+    <div class="container">
+        <h2>@Resource.choose_services
+</h2>
+        @*<p>Lorem Ipsum is simply dummy text of the printing</p>*@
+        <div class="row choose_service_box">
+            @if (Model.CategoryList.Count > 0)
+            {
+                for (int i = 0; i < Model.CategoryList.Count; i++)
+                {
+                    <div class="col-lg-6 mb-4">
+                        <a onclick="RedirectSubServices('@Model.CategoryList[i].Name',@Model.CategoryList[i].Id);" href="#">
+                            <div class="d-block d-sm-flex">
+                                <div class="service_image_main">
+                                    <div class="service_image_box">
+                                        @{string categoryPicture = string.Empty;}
+                                        @if (!string.IsNullOrEmpty(Model.CategoryList[i].Icon))
+                                        {
+                                            categoryPicture = "/Content/images/services/" + Model.CategoryList[i].Icon;
+                                        }
+                                        else
+                                        {
+                                            categoryPicture = "/Content/images/services/professonial_service_un_select.png";
+                                        }
+                                        <img class="image_unselect" src="@categoryPicture" alt="service" />
+                                        <img class="image_select" src="@categoryPicture" alt="service" />
+                                    </div>
+                                </div>
+                                <div class="servies_details align-self-center">
+                                    <h3>
+                                        @Model.CategoryList[i].Name
+                                    </h3>
+                                    <p class="service_content">
+                                        @Model.CategoryList[i].Description
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    function RedirectSubServices(name, id) {
+        var propertyId = "@Model.Property_List_Id";
+        
+        window.location.href =
+     "@Url.Action("SubCategoryList", "Order")" + "?id=" + id + "&Name=" + 
+        encodeURIComponent(name) + "&propertyId=" + propertyId;
+    }
+
+    $(document).ready(function () {
+        localStorage.removeItem('Desc');
+        localStorage.removeItem('PropertyId');
+    });
+</script>
+

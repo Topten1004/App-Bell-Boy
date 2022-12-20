@@ -1,0 +1,2389 @@
+﻿
+@using BroomService.Resources;
+@model BroomService.ViewModels.EditJobRequestViewModel
+@using BroomService.ViewModels;
+@{
+    var svalue = ViewData["SelectCardData"] as CardViewModel;
+    var data = "";
+}
+<link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+<script src="~/Content/js/datetimepicker.js" type="text/javascript"></script>
+<link href="~/Content/datetimepicker.css" rel="stylesheet" type="text/css" />
+<style>
+    .multiselect-container.dropdown-menu.show {
+        max-height: 500px;
+        overflow: auto;
+    }
+
+    #weeklylist {
+        width: 50%;
+        margin: 20px 0;
+        justify-content: center;
+        align-items: center;
+    }
+
+        #weeklylist select {
+            width: 90% !important;
+        }
+
+    .show_value {
+        width: 100%;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 15px;
+    }
+
+    .show_mltipl {
+        display: inline-block;
+        background: #214378;
+        color: #fff;
+        padding: 5px;
+        border-radius: 10px;
+        position: relative;
+    }
+
+        .show_mltipl i {
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+    #weeklylist {
+        width: 100%;
+        margin: 20px 0;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        box-shadow: none !important
+    }
+
+        #weeklylist select {
+            width: 50% !important;
+            box-shadow: none;
+            height: 46px;
+            border-radius: 20px;
+            padding: 0 15px;
+            /* background: transparent; */
+            margin: 0 auto;
+            border: 2px solid #edecec;
+        }
+
+
+
+    #div1 {
+        width: 700px;
+        height: 300px;
+        padding: 10px;
+        border: 1px solid #aaaaaa;
+    }
+
+    .draggable {
+        filter: alpha(opacity=100);
+        opacity: 1.0;
+    }
+
+    .dropped {
+        position: static !important;
+        z-index: 100;
+    }
+
+    #dragIcons {
+        padding: 5px;
+        min-height: 120px;
+        width: 500px;
+    }
+
+    #briefcase {
+        border: 5px solid #ccc;
+        height: 300px;
+        width: 380px;
+        margin-left: auto;
+        margin-right: auto;
+        position: absolute;
+        background: url("http://digitalblowfish.synology.me/tomato_dev/assets/img/briefcase.svg");
+    }
+
+    .custom-invent label {
+        color: #000;
+        font-weight: 500;
+    }
+
+    .custom-invent .add_values {
+        box-shadow: 0 0 5px rgb(0 0 0 / 25%);
+        height: 45px;
+        line-height: 25px;
+        margin-left: 0;
+    }
+
+        .custom-invent .add_values input[type="text"]:focus {
+            outline: none;
+        }
+
+    .custom-invent li {
+        border-bottom: 1px solid #e2e2e2;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+
+        .custom-invent li:last-child {
+            border-bottom: 0px solid #ccc;
+            padding-bottom: 0px;
+            margin-bottom: 0px;
+        }
+
+    .custom-invent .form_edit_input {
+        border: 0;
+        background-color: transparent;
+        font-size: 15px;
+        color: #000;
+        font-weight: 400;
+        box-shadow: none;
+        height: 40px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 50px;
+        width: 75px;
+        box-shadow: 0 0 5px rgba(0,0,0,.15);
+    }
+
+    .custom-invent .custom_input {
+        background-color: rgb(255, 255, 255);
+        box-shadow: 0px 7px 16.56px 1.44px rgb(0 0 0 / 8%);
+        height: 40px;
+        border: 0;
+        border-radius: 50px;
+    }
+
+    .minus, .plus {
+        cursor: pointer !important;
+    }
+
+    #Property_List_Id_chosen {
+        width: 100%;
+        padding-top: 12px;
+        padding-right: 30px;
+        padding-bottom: 12px;
+        padding-left: 10px;
+        background: white;
+    }
+
+        #Property_List_Id_chosen .chosen-single {
+            background: white;
+            border-style: none;
+        }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        background: transparent;
+        bottom: 0;
+        color: transparent;
+        cursor: pointer;
+        height: auto;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: auto;
+    }
+
+    .gj-picker-bootstrap table tr td.today {
+        background: #efefef;
+    }
+
+        .gj-picker-bootstrap table tr td.today div {
+            color: black !important;
+        }
+</style>
+<!-- Choose Service box -->
+<section id="all_services_boxes" class="all_services_boxes">
+    <div class="container">
+        <h2>@Resource.edit_job_request</h2>
+        <p></p>
+        <div class="job_request_form">
+            <form class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="property_label">@Resource.service_name</label>
+                        <div id="Category_add_another">
+                            <div class="custom_input">
+                                <div class="d-flex">
+                                    <div class="service_input_image">
+                                        <img src="https://app.broomservice.co.il/Images/Category/@Model.CategoryData.Icon" alt="services">
+                                    </div>
+                                    @Html.HiddenFor(a => a.CategoryData.Id)
+                                    @Html.TextBoxFor(a => a.CategoryData.Name, new { @class = "form-control form_edit_input", @readonly = "readonly" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12" style="display:none">
+                    <div class="form-group">
+                        @Html.HiddenFor(a => a.SubCategoryData.Id)
+                        <label class="property_label">@Resource.sub_service_name</label>
+                        <div id="SubCategory_add_another">
+                            <div class="custom_input">
+                                <div class="d-flex">
+                                    <div class="service_input_image">
+                                        <img src="https://app.broomservice.co.il/Images/SubCategory/@Model.SubCategoryData.Icon" alt="services">
+                                    </div>
+                                    @Html.TextBoxFor(a => a.SubCategoryData.Name, new { @class = "form-control form_edit_input", @readonly = "readonly" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if (Model.SubSubCategoryData != null)
+                {
+                    <div class="col-12" style="display:none">
+                        <div class="form-group">
+                            @Html.HiddenFor(a => a.SubSubCategoryData.Id)
+                            <label class="property_label">@Resource.sub_service_name</label>
+                            <div id="SubSubCategory_add_another">
+                                <div class="custom_input">
+                                    <div class="d-flex">
+                                        <div class="service_input_image">
+                                            <img src="https://app.broomservice.co.il/Images/SubSubCategory/@Model.SubSubCategoryData.Icon" alt="services">
+                                        </div>
+                                        @Html.TextBoxFor(a => a.SubSubCategoryData.Name, new { @class = "form-control form_edit_input", @readonly = "readonly" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="col-12">
+                    <div class="form-group ">
+                        <label class="property_label">@Resource.enter_property_name_address</label>
+                        <div id="SubCategory_add_another">
+                            <div class="custom_input">
+                                <div class="d-flex">
+                                    @*<div class="service_input_image">
+                                            <img src="https://app.broomservice.co.il/Images/SubCategory/@Model.SubCategoryData.Icon" alt="services">
+                                        </div>*@
+                                    @Html.HiddenFor(m => m.JobReqId)
+                                    @Html.DropDownListFor(m => m.Property_List_Id, new SelectList(ViewBag.Properties, "Value", "Text", "Text"), "Select Property", new { @style = "width:75%", @class = "form-control form_edit_input" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="property_label">@Resource.start_date_time*</label>
+                        @*<div class="custom_input">
+                                @Html.TextBoxFor(a => a.JobStartDateTime, new
+                                {
+                                    @class = "form-control form_edit_input_icon number_count",
+                               placeholder = "MM/DD/YYYY"
+                                })
+                                <div class="form_edit_input_icon_img">
+                                    <img src="~/Content/images/date.png" alt="calendar" />
+                                </div>
+                            </div>*@
+                        <div class="custom_input mb-3">
+                           @Html.HiddenFor(a => a.AssignWorker)
+                            @Html.HiddenFor(a => a.JobStartDateTime) 
+                            @Html.TextBoxFor(a => a.JobStartDateTime, new { id = "JobStartDate", @class ="form_edit_input_icon number_count", placeholder="MM/DD/YYYY", autocomplete="off" })
+                            <script>
+                                $('#JobStartDate').datepicker({
+                                    uiLibrary: 'bootstrap4',
+                                    modal: true,
+                                    footer: true,
+                                    minDate: new Date()
+                                });
+                            </script>
+                        </div>
+                        <div class="col-12 align-items-center" id="divMeetingContent" style="display:none">
+                            <h6 class="mr-3">Didn't Find The Right Solutions</h6>
+                            <button type="button" id="btnMeetingRequest" data-toggle="modal" data-target="#modal_MeetingRequest" class="btn  submit_back">Meeting Request</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="property_label">@Resource.ask_about_end_date_time</label>
+                        <div class="d-flex">
+                            <div class="cus_on_of">
+                                <label class="switch switch_2">
+                                    <input type="checkbox" id="EndDateTime">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="custom_input" id="end_date_time" style="display:none;width:385px" ;>
+                                @Html.TextBoxFor(a => a.JobEndDateTime, new { @class="form_edit_input_icon number_count", placeholder="MM/DD/YYYY" })                        
+                                <script>
+                                    $('#JobEndDateTime').timepicker({
+                                        uiLibrary: 'bootstrap4',
+                                        modal: true,
+                                        timeFormat: 'HH:mm'
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" id="inventorySection">
+                    <div class="form-group">
+                        <label class="property_label">@Resource.ask_about_inventory_service</label>
+                        <div class="row">
+                            <div class="col-12 h-60">
+                                <label class="switch switch_2">
+                                    <input type="checkbox" id="InventorySwitch">
+                                    <span class="slider round"></span>
+                                </label>
+                                <div class="row p-80" id="InventorySection" style="display: none;">
+                                    @*AnotherServiceSection*@
+                                    <div class="add_sub_category_list" id="AddInventory">@Resource.add_inventory</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="property_label">@Resource.ask_about_adding_another_service</label>
+                        <div class="row">
+                            <div class="col-12 h-60">
+                                <label class="switch switch_2">
+                                    <input type="checkbox" id="AnotherServiceSwitch">
+                                    <span class="slider round"></span>
+                                </label>
+                                <div class="row p-80" id="AnotherServiceSection" style="display: none; ">
+                                    <div class="add_sub_category_list ml-3">@Resource.add_another_service</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="property_label">@Resource.ask_about_adding_checklist</label>
+                        <div class="row">
+                            <div class="col-12 h-60">
+                                <label class="switch switch_2">
+                                    <input type="checkbox" id="ChecklistSwitch">
+                                    <span class="slider round"></span>
+                                </label>
+                                <div class="row p-80" id="ChecklistSection" style="display:none;">
+                                    <div class="col-md-6 mb-3">
+                                        <div id='TextBoxesGroup'>
+                                            @*<div id="TextBoxDiv1" class="d-flex">*@
+                                            @if (ViewBag.CheckList != null)
+                                            {
+                                                int counter = 0;
+                                                foreach (var item in ViewBag.CheckList)
+                                                {
+                                                    //var count = ViewBag.CheckList.Count;
+                                                    counter++;
+                                                    <div id="TextBoxDiv @counter" class="d-flex">
+                                                        <div class="custom_input">
+                                                            <input type='text' class="form-control form_edit_input_icon number_count" id='textbox @counter' value="@(item.TaskDetail!=null?item.TaskDetail:"")" placeholder="@Resource.enter_work_for_checklist" readonly="readonly">
+                                                        </div>
+                                                        @*@if (count == counter)
+                                                        {
+                                                            <button type='button' style="border:0;" onclick="add(this)" class='add_sub_category_list_add addButton'><i class="fa fa-plus"></i></button>
+                                                            <button type='button' onclick="remove(this)" style="border:0;display:none;" class='add_sub_category_list_add removeButton'><i class="fa fa-times"></i></button>
+                                                        }
+                                                        else
+                                                        { 
+                                                            <button type='button' style="border:0;display:none;" onclick="add(this)" class='add_sub_category_list_add addButton'><i class="fa fa-plus"></i></button>
+                                                        }*@
+                                                        <button type='button' style="border:0;" class='add_sub_category_list_add removeButton'><i class="fa fa-times"></i></button>
+                                                    </div>
+                                                }
+                                            }
+                                            @*else
+                                            {
+                                                <div id="TextBoxDiv1" class="d-flex">
+                                                    <div class="custom_input">
+                                                        <input type='text' class="form-control form_edit_input_icon number_count" id='textbox1' value="" placeholder="@Resource.enter_work_for_checklist">
+                                                    </div>
+                                                    <button type='button' style="border:0;" onclick="add(this)" class='add_sub_category_list_add addButton'><i class="fa fa-plus"></i></button>
+                                                    <button type='button' onclick="remove(this)" style="display:none;border:0;" class='add_sub_category_list_add removeButton'><i class="fa fa-times"></i></button>
+                                                </div>
+                                            }*@
+                                            @*</div>*@
+                                        </div>
+                                        @*<div>
+                                            <span class="add_another_card" id="OpenCheckList">GetExisting</span> &nbsp;
+                                            <span id="saveCheckList" class="add_another_card">save</span>
+                                        </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="col-12">
+                    <div class="form-group">
+                        <label class="property_label">@Resource.repeat_service_in_future</label>
+                        <div class="row">
+                            <div class="col-12 h-60">
+                                <label class="switch switch_2">
+                                    <input type="checkbox" id="RepeatServiceSwitch">
+                                    <span class="slider round"></span>
+                                </label>
+                                <div class="row p-80" id="RepeatServiceSection" style="display:none;padding-top:1em">
+                                    <div>
+                                        <input type="radio" id="weekly" name="repeat" value="Weekly" onclick="displayRadioValue(this)">
+                                        <label for="weekly">Weekly</label><br>
+                                    </div> &nbsp;  &nbsp; &nbsp;
+                                    <div>
+                                        <input type="radio" id="monthly" name="repeat" value="Monthly" onclick="displayRadioValue(this)">
+                                        <label for="monthly">Monthly</label><br>
+                                    </div>  &nbsp; &nbsp; &nbsp;
+                                    <div>
+                                        <input type="radio" id="yearly" name="repeat" value="Yearly" onclick="displayRadioValue(this)">
+                                        <label for="yearly">Yearly</label>
+                                    </div>
+                                </div>
+
+                                <div class="row p-80" id="RepeatServiceSectionList" style="display:none;padding-top:1em">
+                                        <div id="weeklylist" style="display:none;padding-top:1em">
+                                            <select id='second' onchange="Repeatlist(this.value)" style="width:150px"></select>
+                                        </div> &nbsp;  &nbsp; &nbsp;
+                                    </div>
+                                <div class="col-md-6">
+                                    <div class="form-group" id="RepeatServiceSectionList" style="display:none;padding-top:1em">
+                                        <div class="custom_input" id="weeklylist" style="display:none;padding-top:1em">
+                                            <select id='second' onchange="Repeatlist(this.value)" style="width:150px"></select>
+                                            <div class="show_value" id="repeatDay" style="display:none">
+                                                <div class="show_mltipl">Clay <i class="fas fa-times"></i></div>
+                                                    <div class="show_mltipl">Clay <i class="fas fa-times"></i></div>
+                                                    <div class="show_mltipl">Clay <i class="fas fa-times"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="property_label">@Resource.ask_about_add_job_desc</label>
+                        <div class="row">
+                            <div class="col-12 h-60">
+                                <label class="switch switch_2">
+                                    <input type="checkbox" id="JobDescSwitch">
+                                    <span class="slider round"></span>
+                                </label>
+                                <div class="row p-80" id="job_desc" style="display:none;">
+                                    <div class="col-12">
+                                   @Html.TextAreaFor(a => a.JobDesc, new
+                                   {
+                                       @class = "form-control job_taxtarea",
+                                       placeholder = @Resource.enter_job_desc
+                                   })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="col-12">
+                    <div class="form-group">
+                        <label class="property_label">@Resource.payment_info</label>
+                        <div class="row">
+                            <div class="col-12 d-flex">
+                                <div class="d-flex align-items-center pay_types">
+                                    <img src="~/Content/images/pay.png" alt="card"><span>@Resource.debit_credit_card</span>
+                                </div>
+                                <div class="d-flex align-items-center pay_types">
+                                    <img src="~/Content/images/vacuum-cleaner.png" alt="cleaner"><span>@Resource.before_a_job</span>
+                                </div>
+                                <div class="d-flex align-items-center pay_types">
+                                    <img src="~/Content/images/deadline.png" alt="calendar"><span>@Resource.once_in_month</span>
+                                </div>
+                            </div>
+                            <div class="col-12" id="CardDetail">
+                                <div class="d-flex flex-nowrap mt-4">
+                                    <div class="card_box custom_switch align-items-center d-flex justify-content-between">
+                                        <div class="card_info">
+                                            <p>@Resource.card_number</p>
+                                            @if (ViewBag.CardDetail != null)
+                                            {
+                                                <p>**** **** **** @ViewBag.CardDetail.CardNumber.Substring(@ViewBag.CardDetail.CardNumber.Length - 4, 4)</p>
+                                            }
+                                            else
+                                            {
+                                                <p>**** **** **** ****</p>
+                                            }
+
+                                        </div>
+                                        <div class="card_logo">
+                                            @if (ViewBag.CardDetail != null)
+                                            {
+                                                if (@ViewBag.CardDetail.CardType.ToUpper() == Resource.visa)
+                                                {
+                                                    <img src="~/Content/images/visa_logo.png" class="img-fluid" alt="card" />
+                                                }
+                                                else if (@ViewBag.CardDetail.CardType.ToUpper() == Resource.mastercard)
+                                                {
+                                                    <img src="~/Content/images/mastercard.png" class="img-fluid" alt="card" />
+                                                }
+                                                else if (@ViewBag.CardDetail.CardType.ToUpper() == Resource.amercianexpress)
+                                                {
+                                                    <img src="~/Content/images/americanexpress.png" class="img-fluid" alt="card" />
+                                                }
+                                                else if (@ViewBag.CardDetail.CardType.ToUpper() == Resource.discover)
+                                                {
+                                                    <img src="~/Content/images/discover.png" class="img-fluid" alt="card" />
+                                                }
+                                                else if (@ViewBag.CardDetail.CardType.ToUpper() == Resource.jcb)
+                                                {
+                                                    <img src="~/Content/images/jcb.png" class="img-fluid" alt="card" />
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="add_another_card"><a href="~/Order/CardsList" target="_blank">@Resource.add_edit_card_details</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+                @*<div class="col-12">
+                    <div class="form-group">
+                        <label class="property_label">@Resource.ask_about_image_video</label>
+                    </div>
+                </div>
+                <div class="col-12 mb-5">
+                    <label class="switch switch_2">
+                        <input type="checkbox" id="ImageVideo">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="col-12 mt-3" id="image_video" style="display:none;">
+                    <div class="w-100 mt-4" id="upload_image_div">
+                        <div class="upload_show_image mb-4">
+                            <div class="upload_property_box_small">
+                                <button class="btn btn_upload">+</button>
+                                <input type="file" id="upload_file" name="upload_file" multiple>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+                <div class="col-12 d-flex justify-content-between submit_box_all">
+                    <div class="custom-controls-stacked d-block d-sm-flex align-item-center">
+                        @*<label class="custom-control fill-checkbox" >
+                            <input type="checkbox" id="fast_order_checkbox" class="fill-control-input">
+                            <span class="fill-control-indicator"></span>
+                            <span class="fill-control-description">@Resource.ask_about_job_for_fast_order</span>
+                        </label>*@                    
+                    </div>
+                    <button type="button" onclick="javascript:history.back()" style="margin-left: auto;" class="btn arrow_btn_box submit_back"><img src="~/Content/images/submit_next_btn.png" alt="next arrow"></button>
+                    <button type="button" id="submit_btn" class="btn arrow_btn_box submit_back"><img src="~/Content/images/submit_prev_btn.png" alt="next arrow"></button>
+                </div>
+                @*<div class="col-12 d-flex align-items-center">
+                        <h6 class="mr-3">Didn't Find The Right Solutions</h6>
+                        <button type="button" id="btnMeetingRequest" data-toggle="modal" data-target="#modal_MeetingRequest" class="btn  submit_back">Meeting Request</button>
+                    </div>*@
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- JobREquest Alternative timing Modal -->
+<div class="modal fade modal_sub_user" id="JobRequestTiming" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="checklist_property_main">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3>Select Job Start Timing</h3>
+                    <div class="col-12 text-left " id="TimeSlot">
+
+                    </div>
+                    <div class="col-12 text-right ">
+                        <input type="button" id="AvailableTiemSlot_Ok" onclick="" value="OK" class="btn btn-success" />
+                        <input type="button" id="No" value="Cancel" class="btn btn-danger" data-dismiss="modal" aria-label="Close" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add Meeting Request Modal -->
+<div class="modal fade modal_sub_user" id="modal_MeetingRequest" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="checklist_property_main">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3 class="text-center">Schedule a Meeting </h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="property_label">Select Date*</label>
+                                <div class="">
+                                    <input type="date" name="MeetingDate" id="MeetingDate" placeholder="MM/DD/YYYY" class="form-control form_edit_input_icon number_count" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="property_label">Select Time*</label>
+                                <div class="">
+                                    <input type="text" autocomplete="off" id="MeetingTime" name="MeetingTime" data-time-format="H:i" data-show-2400="true" class="form-control form_edit_input_icon number_count" placeholder="10:00" required />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center inventory_popup_btn">
+                        <a id="add_MeetingRequest" class="arrow_btn_box" style="color: white;">submit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Repeat service Confirmation Modal Modal -->
+<div class="modal fade modal_sub_user" id="RepeatServiceConfirmation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="checklist_property_main">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3>Would You Like to Repeat Service For Another Selected Service</h3>
+                    <div class="col-12 text-center ">
+                        <input type="button" id="Yes" onclick="RepeatServiceStatus(true)" value="Yes" class="btn btn-success" />
+                        <input type="button" id="No" value="No" onclick="RepeatServiceStatus(false)" class="btn btn-danger" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Notify admin when servioce price is 0 Modal -->
+<div class="modal fade modal_sub_user" id="modalAdminNotify" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="checklist_property_main">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3>Service Price is Zero Would You Like to notify admin Quote Request</h3>
+                    <div class="col-12 text-center ">
+                        <input type="button" id="btnSendQuotesRequest" value="Yes" class="btn btn-success" />
+                        <input type="button" id="Cancel" value="Cancel" data-dismiss="modal" aria-label="Close" class="btn btn-danger" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------ Add Inventory Modal ------------------------->
+<div class="modal fade modal_sub_user" id="add_inventory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="checklist_property_main inventpopup">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3>@Resource.add_inventory</h3>
+                    <div class="add_inventory_main" style="max-height: 350px; overflow-y: auto; overflow-y: auto">
+                        @if (ViewBag.Inventory != null)
+                        {
+                            <ul id="ChkBoxInventory" class="custom-invent">
+                                @foreach (var item in ViewBag.Inventory)
+                                {
+                                    <li>
+                                        <div class="d-flex justify-content-between">
+                                            <div class="custom-controls-stacked main-invent">
+                                                @if (item.Image != null)
+                                                {
+                                                    <img src="https://appmantechnologies.com:6083/Images/Inventory/@item.Image" style=" height: 75px; width: 75px;" alt="img" class="mr-2" />
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/Content/images/custom.png" alt="img" class="mr-2" />
+                                                }
+                                                <span class="fill-control-description">@item.Name</span>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div id="add_values_single_sofa">
+                                                    <label class="property_label">Qty</label>
+                                                    <div class="add_values">
+                                                        <input type="hidden" value="@item.InventoryId" />
+                                                        <button type="button" class="minus" onclick="qtyMinus(this)"><i class="fas fa-minus" aria-hidden="true"></i></button>
+                                                        <input type="text" name="qtyNumber" placeholder="0" value="@(item.Qty!=null?item.Qty:0)" readonly="readonly">
+                                                        <button type="button" class="plus" onclick="qtyPlus(this)"><i class="fas fa-plus" aria-hidden="true"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="invent-desc">, @item.Description</p>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                    <div class="col-12 text-center inventory_popup_btn">
+                        <a id="add_inventory_btn" class="arrow_btn_box">
+                            <img src="/Content/images/submit_next_btn.png" alt="next arrow">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Another Service Modal -->
+<div class="modal fade modal_sub_user" id="add_another_service" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="checklist_property_main">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3>@Resource.add_another_service</h3>
+                    <div class="add_another_service_main">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="property_label">@Resource.service_name</label>
+                                <div class="custom_input">
+                                    <select id="category_select" class="property"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" id="subServiceSection" style="display:none;">
+                            <div class="form-group">
+                                <label class="property_label">@Resource.sub_service_name</label>
+                                <div class="custom_input">
+                                    <select id="sub_category_select" class="property"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12" id="subSubServiceSection" style="display:none;">
+                            <div class="form-group">
+                                <label class="property_label">@Resource.sub_service_name</label>
+                                <div class="custom_input">
+                                    <select id="sub_sub_category_select" class="property"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center inventory_popup_btn">
+                        <a href="#" class="arrow_btn_box" onclick="AddServiceClick();">
+                            <img src="~/Content/images/submit_next_btn.png" alt="next arrow">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Fast Order Modal -->
+<div class="modal fade modal_sub_user" id="fast_popup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="checklist_property_main">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3>@Resource.fast_order</h3>
+                    <p class="mb-3">@Resource.save_change_fast_order_name</p>
+                    <div class="add_inventory_main_2">
+                        <div class="custom_input">
+                            <input type="text"
+                                   class="form-control form_edit_input" required id="fast_order_name"
+                                   name="fast_order_name" placeholder="@Resource.enter_fast_order_name">
+                            <label class="field-validation-error" id="fast_order_required" style="display:none;">
+                                @Resource.please_enter_fast_order_name
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center inventory_popup_btn">
+                        <a href="#" onclick="FastOrderClick();" class="arrow_btn_box">
+                            <img src="~/Content/images/submit_next_btn.png" alt="next arrow">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add View Image Modal -->
+<div class="modal fade modal_sub_user" id="view_img_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="checklist_property_main" style="height:700px; width:400px;position:relative">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3>Add Checklist</h3>
+
+                    <div id="photo">
+                        <div id="briefcase" style="height:300px;width:700px" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <img class="" src="" id="imgModal" style="height:300px; width:700px;" />
+                    </div>
+                    <br />
+                    <br />
+
+                    <div id="dragIcons" style="display:inline-flex;  padding:15px">
+                        <div style="padding-left:10px;padding-right:10px;padding-bottom:5px;text-align:center">
+                            <img width="70" id="1" alt="image2" height="70" ondragstart="drag(event)" src="~/Content/images/custom.png">
+                            <br />
+                            <label style="text-align:center">Custom</label>
+                        </div>
+
+                        <div style="padding-left:10px;padding-right:10px;padding-bottom:5px;text-align:center">
+                            <img width="70" id="2" alt="image2" height="70" ondragstart="drag(event)" src="~/Content/images/look.png">
+                            <br />
+                            <label style="text-align:center">look</label>
+                        </div>
+
+                        <div style="padding-left:10px;padding-right:10px;padding-bottom:5px;text-align:center">
+                            <img width="70" id="3" alt="image2" height="70" ondragstart="drag(event)" src="~/Content/images/laundry.png">
+                            <br />
+                            <label style="text-align:center">Laundry</label>
+                        </div>
+
+                        <div style="padding-left:10px;padding-right:10px;padding-bottom:5px;text-align:center">
+                            <img width="70" id="4" alt="image2" height="70" ondragstart="drag(event)" src="~/Content/images/wipe.png">
+                            <br />
+                            <label style="text-align:center">Wipe</label>
+                        </div>
+
+                        <div style="padding-left:10px;padding-right:10px;padding-bottom:5px;text-align:center">
+                            @*<img width="70" alt="image2" height="70" ondragstart="drag(event)" src="~/Content/images/happy_clients.png" onclick="btnConvert_Click()">*@
+                            <img width="70" id="5" alt="image2" height="70" ondragstart="drag(event)" src="~/Content/images/refil.png">
+                            <br />
+                            <label style="text-align:center">Refill</label>
+                        </div>
+                        <div style="padding-left:10px;padding-right:10px;padding-bottom:5px;text-align:center">
+                            <img width="70" id="6" alt="image2" height="70" ondragstart="drag(event)" src="~/Content/images/lock.png">
+                            <br />
+                            <label style="text-align:center">Lock</label>
+                        </div>
+                        <div style="padding-left:10px;padding-right:10px;padding-bottom:5px;text-align:center">
+                            <img width="70" id="7" alt="image2" height="70" ondragstart="drag(event)" src="~/Content/images/unlock.png">
+                            <br />
+                            <label style="text-align:center">unlock</label>
+                        </div>
+                        <div style="padding-left:10px;padding-right:10px;padding-bottom:5px;text-align:center">
+                            <img width="70" id="8" alt="image2" height="70" ondragstart="drag(event)" src="~/Content/images/Empty.png">
+                            <br />
+                            <label style="text-align:center">Empty</label>
+                        </div>
+
+                        @*<button onclick="btnConvert_Click()">Save Image</button>*@
+                    </div>
+
+
+
+                    @*<div id="briefcase"></div>*@
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Save checkList Modal -->
+<div class="modal fade modal_sub_user" id="SaveChecklist" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="checklist_property_main">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3>Enter CheckList Name</h3>
+                    @*<p class="mb-3">@Resource.save_change_fast_order_name</p>*@
+                    <div class="add_inventory_main_2">
+                        <div class="custom_input">
+                            <input type="text" class="form-control form_edit_input" id="ChecklistName" name="ChecklistName" placeholder="enter checkLsit name" required>
+                        </div>
+                    </div>
+                    <div class="col-12 text-center inventory_popup_btn">
+                        <a href="#" onclick="SaveCheckList();" class="arrow_btn_box">
+                            <img src="~/Content/images/submit_next_btn.png" alt="next arrow">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Get Existing checklist Modal -->
+<div class="modal fade modal_sub_user" id="GetChecklist" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="checklist_property_main">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h4>Click to select checklist</h4>
+                    <div class="add_another_service_main">
+                        <div class="col-12">
+                            <div class="form-group" id="divchecklist">
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="col-12 text-center inventory_popup_btn">
+                            <a href="#" class="arrow_btn_box" onclick="GetExistingChecklist();">
+                                <img src="~/Content/images/submit_next_btn.png" alt="next arrow">
+                            </a>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="~/Content/multiselect.css" rel="stylesheet" type="text/css" />
+<script src="~/Content/js/multiselect.js" type="text/javascript"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+
+<script>
+    //function goBack()
+    //{
+    //    localStorage.setItem('PropertyId', $('#Property_List_Id').val());
+    //    localStorage.setItem('Desc', $('#JobDesc').val());
+    //    history.back();
+    //}
+
+    $(document).ready(function () {
+
+        
+        ////---------------------------page back arrow icon click contain propId and description--------------
+        //if (localStorage.getItem('PropertyId') != "" && localStorage.getItem('PropertyId') != null )
+        //{
+        //    $('#Property_List_Id').val(localStorage.getItem('PropertyId'));
+        //}
+        //if (localStorage.getItem('Desc') != "" && localStorage.getItem('Desc') != null)
+        //{
+        //    $("#JobDescSwitch").prop("checked", true);
+        //    $("#job_desc").css('display', 'block');
+        //    $('#JobDesc').val(localStorage.getItem('Desc'));
+        //}
+        ////----------------------------------------------------------
+
+            var CheckList = false;
+            var Inventory = false;
+            var PropId = false;
+            var JobDesc = false;
+            var JobEndDateTime = false;
+            CheckList =   @(ViewBag.CheckList != null? "true" : "false");
+            Inventory = @(ViewBag.Inventory != null ? "true" : "false");
+            PropId = @(Model.Property_List_Id != 0 ? "true" : "false");
+            JobDesc = @(Model.JobDesc != null? "true" : "false");
+            JobEndDateTime = @(Model.JobEndDateTime != null ? "true" : "false");
+            if (CheckList==true)
+            {
+                $("#ChecklistSwitch").prop("checked", true);
+                $("#ChecklistSection").css('display', 'block');
+            }
+            if (Inventory == true)
+            {
+                $("#InventorySwitch").prop("checked", true);
+                $("#InventorySection").css('display', 'block');
+            }
+            if (PropId == true)
+            {
+                $('#Property_List_Id').val(@Model.Property_List_Id);
+            }
+            if (JobDesc == true)
+            {
+                $("#JobDescSwitch ").prop("checked", true);
+                $("#JobDesc").css('display', 'block');
+            }
+            if (JobEndDateTime == true)
+            {   $('#JobEndDateTime').val('@Model.JobEndDateTime');
+                $("#EndDateTime ").prop("checked", true);
+                $("#JobEndDateTime").css('display', 'block');
+
+            }
+
+            $('#MeetingTime').timepicker({
+                timeFormat: 'HH:mm',
+                startTime: '06:00',
+                dropdown: true,
+                scrollbar: true
+            });
+
+            $('#AvailableTiemSlot_Ok').click(function () {
+                var WorkerId = $("#TimeSlot input[name='AvailableTimeSlot']:checked").val();
+                var Time = $("#TimeSlot input[name='AvailableTimeSlot']:checked").next('span').text();
+                $('#AssignedWorker').val(WorkerId);
+                $("#JobRequestTiming").modal('hide');
+                var date = $("#JobStartDate").val();
+                var datetime = Time + " " + date;
+                var datetime2 = date + " " + Time;
+                $("#JobStartDateTime").val(datetime);
+                $("#JobStartDate").val(datetime2);
+                //alert($("#JobStartDateTime").val());
+            });
+
+
+
+        while (repeatlistData.length > 0) {
+            repeatlistData.pop
+            repeatlistDay.pop
+        }
+
+        $('#add_MeetingRequest').click(function(){
+            var date = $('#MeetingDate').val();
+            var time =$('#MeetingTime').val();
+            if(time != "" && date !="")
+            {
+                $.ajax({
+                            url: "@Url.Action("AddMeetingRequest","Order")",
+                    data: {
+                        "MeetingDate": date,
+                        "MeetingTime": time
+                    },
+                    type: 'POST',
+                    success: function (data) {
+                        if (data) {
+                            alert("Meeting Request Send Successfully");
+                            $("#modal_MeetingRequest").modal('hide');
+                        }
+                    },
+                    error: function () {
+                        alert('something went wrong');
+                    }
+                });
+
+            }
+            else {
+                alert("Please select date and time");
+            }
+        });
+
+
+        $('#btnSendQuotesRequest').click(function(){
+            var PropertyId = $("#Property_List_Id").val();
+            var ServiceId = $("#CategoryData_Id").val();
+            var SubCatId = $("#SubCategoryData_Id").val();
+            var SubSubCatId = 0;
+            if ($("#SubSubCategoryData_Id").val())
+            {
+                SubSubCatId = $("#SubSubCategoryData_Id").val();
+            }
+            if (PropertyId!=0)
+            {
+                $.ajax({
+                    url: "@Url.Action("SendQuotesRequestToAdmin", "Order")",
+                    data: {
+                        "PropId": PropertyId,
+                        "ServiceId": ServiceId,
+                        "SubCatId": SubCatId,
+                        "SubSubCatId": SubSubCatId
+                    },
+                    type: 'POST',
+                    success: function (data) {
+                        if (data) {
+                            $('#modalAdminNotify').modal('hide');
+                            alert("Quotes Request Send Successfully");
+
+                        }
+                    },
+                    error: function () {
+                        alert('something went wrong');
+                    }
+                });
+
+            }
+            else {
+                alert("Please select Property");
+            }
+        });
+
+    });
+</script>
+
+
+<script>
+
+    $('.listbox').multiselect({
+        includeSelectAllOption: true
+    });
+
+    $(document).ready(function () {
+
+        //setInterval(function () {
+        //    $("#CardDetail").load(window.location.href + " #CardDetail");
+        //}, 2000);
+
+        //alert($("#textbox1").val());
+        if ($("#textbox1").val()) {
+            $("#ChecklistSection").css('display', 'block');
+        }
+
+        // alert($("JobDesc").val());
+        if ($("#JobDesc").val()) {
+            $("#job_desc").css('display', 'block');
+        }
+        var ele = document.getElementsByName('repeat');
+
+        for (i = 0; i < ele.length; i++) {
+            if (ele[i].checked) {
+                //  alert(ele[i]);
+                // alert("Value Select " + ele[i].checked + "section" + ele[i].value);
+                $("#RepeatServiceSection").css('display', 'flex');
+                $("#RepeatServiceSectionList").css('display', 'flex');
+                $("#weeklylist").css('display', 'flex');
+                ele[i].click();
+                // alert($("second").value);
+                //Repeatlist(this.value)
+            }
+        }
+
+        if ($("#Property_List_Id :selected").text().length > 5) {
+            $('#Property_List_Id').next().children().children('span').text($("#Property_List_Id :selected").text());
+            //alert("Name" + $("#Property_List_Id :selected").text())
+        }
+
+    });
+
+
+    var inventoryData = new Array();
+    var _propertyVal = new Array();
+
+
+
+
+
+    $("#AddInventory").click(function () {
+
+       $("#add_inventory").modal('show');
+    });
+</script>
+
+<script>
+    // Add Another Service Section
+    $("#AnotherServiceSection").click(function () {
+        $("#add_another_service").modal('show');
+        $('#sub_sub_category_select').empty();
+        $("#subSubServiceSection").css('display', 'none');
+        $('#sub_category_select').empty();
+        $("#subServiceSection").css('display', 'none');
+        bindCategories();
+    });
+
+
+    function bindCategories() {
+                $.ajax({
+                    url: "/Order/GetCategories",
+                    data: {},
+                    type: 'POST',
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.length > 0) {
+                            $('#category_select').empty();
+                            $('#category_select').append(`<option value=@Resource.service_name>@Resource.service_name</option>`);
+                            $.each(data, function (key, value) {
+                                var optionText = value.Name;
+                                var optionValue = value.Id;
+                                var optionIcon = value.Icon;
+                                $('#category_select').append(`<option class="${optionIcon}" value="${optionValue}">${optionText}</option>`);
+
+                            });
+                        }
+                    },
+                    error: function () {
+                    }
+                });
+    }
+
+    $("#category_select").change(function () {
+        $("#subServiceSection").css('display', 'block');
+        $('#sub_sub_category_select').empty();
+        $("#subSubServiceSection").css('display', 'none');
+        var catId = $('#category_select option:selected').val();
+        bindSubCategories(catId);
+    });
+
+    function bindSubCategories(categoryId) {
+        $.ajax({
+            url: "/Order/GetSubCategories",
+            data: { category_id:categoryId},
+            type: 'POST',
+            dataType: "json",
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#sub_category_select').empty();
+                    $('#sub_category_select').append(`<option value=@Resource.sub_service_name>@Resource.sub_service_name</option>`);
+                    $.each(data, function (key, value) {
+                        var optionText = value.Name;
+                        var optionValue = value.Id;
+                        var optionIcon = value.Icon;
+                        $('#sub_category_select').append(`<option class="${optionIcon}" value="${optionValue}">${optionText}</option>`);
+
+                    });
+                }
+            },
+            error: function () {
+            }
+        });
+    }
+
+    $("#sub_category_select").change(function () {
+        $('#sub_sub_category_select').empty();
+        $("#subSubServiceSection").css('display', 'none');
+        var catId = $('#sub_category_select option:selected').val();
+        bindSubSubCategories(catId);
+    });
+
+    function bindSubSubCategories(subCategoryId) {
+        $.ajax({
+            url: "/Order/GetSubSubCategories",
+            data: { sub_category_id: subCategoryId},
+            type: 'POST',
+            dataType: "json",
+            success: function (data) {
+                if (data.length > 0) {
+                    $("#subSubServiceSection").css('display', 'block');
+                    $('#sub_sub_category_select').empty();
+                    $('#sub_sub_category_select').append(`<option value=@Resource.sub_service_name>@Resource.sub_service_name</option>`);
+                    $.each(data, function (key, value) {
+                        var optionText = value.Name;
+                        var optionValue = value.Id;
+                        var optionIcon = value.Icon;
+                        $('#sub_sub_category_select').append(`<option class="${optionIcon}" value="${optionValue}">${optionText}</option>`);
+
+                    });
+                }
+                else {
+                    $("#subSubServiceSection").css('display', 'none');
+                }
+            },
+            error: function () {
+            }
+        });
+    }
+</script>
+
+<script>
+    var fileData = new Array();
+    var checkListData = new Array();
+    var subSubCategories = new Array();
+    var counter = 2;
+    var isFastOrder = false;
+    var ServicePropertyList = new Array();
+    var repeatlistData = new Array();
+    var repeatlistDay = new Array();
+    var isPaymentDone = false;
+    var RootUrl = '@Url.Content("~/")';
+    var html = '';
+    var RepeatAnotherServieceStatus=false;
+    var IsAnotherService=false;
+
+    function RepeatServiceStatus(status)
+    {
+        RepeatAnotherServieceStatus =status;
+       // alert(RepeatAnotherServieceStatus);
+        $("#RepeatServiceConfirmation").modal('hide');
+    }
+
+    subSubCategories.push({
+        CategoryId: $("#CategoryData_Id").val(),
+        SubCategoryId: $("#SubCategoryData_Id").val(),
+        SubSubCategoryyId: $("#SubSubCategoryData_Id").val() == undefined ? "0" : $("#SubSubCategoryData_Id").val()
+    });
+
+
+    $('#fast_order_checkbox').change(function () {
+        if ($(this).is(":checked")) {
+            // it is checked
+            isFastOrder = true;
+        }
+        else {
+            isFastOrder = false;
+        }
+    });
+    var inventoryData = new Array();
+    $('#add_inventory_btn').click(function () {
+        inventoryData.length = 0;
+        var qty = 0;
+        var InventId = 0;
+        var propId = $("#Property_List_Id").val();
+        var jobReqPropServiceId = $("#JobReqId").val();
+        $('#ChkBoxInventory input[name=qtyNumber]').each(function (i) {
+            if ($(this).val() > 0) {
+                qty = $(this).val();
+                InventId = $(this).prev().prev('input[type=hidden]').val();
+
+                inventoryData.push({
+                    InventoryId: InventId,
+                    Qty: qty,
+                    PropertyId: propId,
+                    JobReqPropServiceId: jobReqPropServiceId
+                });
+            }
+        });
+        if (inventoryData.length > 0) {
+            @*$.ajax({
+                url: "@Url.Action("AddInventory", "Admin")",
+                data: { InventoryList: inventoryData },
+                type: 'POST',
+                success: function (data) {
+                    if (data) {
+                        alert("Inventory Added Successfully");
+                        window.location.reload();
+                    }
+                },
+                error: function () {
+                    alert("some_error_occured");
+                },
+            });*@
+            }
+        else {
+            alert('Please add quantity');
+        }
+        $("#add_inventory").modal('hide');
+    });
+    $("#submit_btn").click(function () {
+
+        if($("#Property_List_Id").val() != null && $("#Property_List_Id").val() != 0)
+        {
+            if ($("#JobStartDateTime").val() != "")
+            {
+                submitForm();
+            }
+        }
+    });
+
+    function submitForm() {
+        var Files = new FormData();
+        Files.append('JobStartDatetime', $("#JobStartDateTime").val());
+        if ($("#EndDateTime").prop('checked') == true) {
+            Files.append('JobEndDatetime', $("#JobEndDateTime").val());
+        }
+        Files.append('Property_List_Id', $("#Property_List_Id").val());
+        Files.append('JobDesc', $("#JobDesc").val()); 
+        Files.append('JobReqId', $("#JobReqId").val());
+        Files.append('AssignWorker', $("#AssignWorker").val());
+        Files.append('InventoryList', JSON.stringify(inventoryData));
+        $.ajax({
+            url: "@Url.Action("EditJobRequest", "Order")",
+            data: Files,
+            async: false,
+            type: 'POST',
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                alert('Request Send successfully..');
+                if (data) {                   
+                }
+            },
+            error: function () {
+                alert("@Resource.some_error_occured");
+            },
+        });
+    } 
+
+
+    //function displayRadioValue(t) {
+    //    var ele = document.getElementsByName('repeat');
+    //   // alert("DisplayRadioValue call")
+    //    for(i = 0; i < ele.length; i++) {
+    //        if (ele[i].checked) {
+    //            if (ele[i].value == "Weekly") {
+    //                $("#weeklylist").css('display', 'flex');
+    //                    $("#weeklylist").css('display', 'block');
+    //    	            var week = ['Select Option','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+	   //                 var month = ['Select Option','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
+	   //                 var year = ['Select Option','January','Febrary','March','April','May','June','July','August','September','October','November','December'];
+	   //                 s = document.getElementById('second');
+	   //                 var sl = s.options.length;
+	   //                 for(var i = sl-1; i >= 0 ; i--) { s.options[i] = null; }
+	   //                 if(t.value != 0){
+    //                        var z;
+    //                       // alert("TValue " + t.value);
+    //                        switch (t.value) {
+    //                            case 'Weekly': z = week; break;
+    //                            case 'Monthly': z = month; break;
+			 //                   case 'Yearly' : z = year;  break;
+			 //                   default : alert('Invalid entry'); break;
+		  //              }
+		  //              var l = z.length;
+		  //              for(i = 0; i < l; i++ ) {
+		  //              s.options[i] = new Option(z[i],z[i],false,false);
+		  //              }
+    //                    }
+
+    //            }
+    //            else if (ele[i].value == "Monthly") {
+    //                $("#weeklylist").css('display', 'none');
+
+    //                    $("#weeklylist").css('display', 'block');
+    //    	            var week = ['Select Option','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+	   //                 var month = ['Select Option','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
+	   //                 var year = ['Select Option','January','Febrary','March','April','May','June','July','August','September','October','November','December'];
+	   //                 s = document.getElementById('second');
+	   //                 var sl = s.options.length;
+	   //                 for(var i = sl-1; i >= 0 ; i--) { s.options[i] = null; }
+	   //                 if(t.value != 0){
+    //                        var z;
+    //                        //alert("TValue " + t.value);
+    //                    switch (t.value) {
+    //                        case 'Weekly': z = week; break;
+    //                        case 'Monthly': z = month; break;
+			 //               case 'Yearly' : z = year;  break;
+			 //               default : alert('Invalid entry'); break;
+		  //          }
+		  //          var l = z.length;
+		  //          for(i = 0; i < l; i++ ) {
+		  //          s.options[i] = new Option(z[i],z[i],false,false);
+		  //          }
+    //                }
+    //            }
+    //            else if (ele[i].value == "Yearly") {
+    //                $("#weeklylist").css('display', 'none');
+
+    //                    $("#weeklylist").css('display', 'block');
+    //    	            var week = ['Select Option','Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+	   //                 var month = ['Select Option','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
+	   //                 var year = ['Select Option','January','Febrary','March','April','May','June','July','August','September','October','November','December'];
+	   //                 s = document.getElementById('second');
+	   //                 var sl = s.options.length;
+	   //                 for(var i = sl-1; i >= 0 ; i--) { s.options[i] = null; }
+	   //                 if(t.value != 0){
+    //                        var z;
+    //                       // alert("TValue " + t.value);
+    //                    switch (t.value) {
+    //                        case 'Weekly': z = week; break;
+    //                        case 'Monthly': z = month; break;
+			 //               case 'Yearly' : z = year;  break;
+			 //               default : alert('Invalid entry'); break;
+		  //                  }
+		  //                  var l = z.length;
+		  //                  for(i = 0; i < l; i++ ) {
+		  //                  s.options[i] = new Option(z[i],z[i],false,false);
+		  //                  }
+	   //                     }
+    //            }
+    //        }
+
+    //    }
+    //  //      $("#weeklylist").css('display', 'flex');
+    //  //  	var week = ['Sunday','Monday','Tuesday','Wednesday','Thrusday','Friday','Saturday'];
+	   //  //   var month = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31'];
+	   //  //   var year = ['January','Febrary','March','April','May','June','July','August','September','October','November','December'];
+	   //  //   s = document.getElementById('second');
+	   //  //   var sl = s.options.length;
+	   //  //   for(var i = sl-1; i >= 0 ; i--) { s.options[i] = null; }
+	   //  //   if(t.value != 0){
+		  //  //var z;
+    //  //          switch (t.value) {
+    //  //              case 'Weekly': z = week; break;
+    //  //              case 'Monthly': z = month; break;
+			 //  //     case 'Yearly' : z = year;  break;
+			 //  //     default : alert('Invalid entry'); break;
+		  //  //}
+		  //  //var l = z.length;
+		  //  //for(i = 0; i < l; i++ ) {
+		  //  //s.options[i] = new Option(z[i],z[i],false,false);
+		  //  //}
+	   //  //   }
+    //}
+
+    //function FastOrderClick() {
+    //    var getFastOrder = $("#fast_order_name").val();
+    //    //alert(getFastOrder)
+    //    if (getFastOrder == '' || getFastOrder == null) {
+    //       // alert("1")
+    //        $("#fast_order_required").css('display', 'block');
+    //    }
+    //    else {
+    //        $("#fast_popup").modal('hide');
+    //        submitForm();
+    //    }
+    //}
+
+
+    //function Repeatlist(value) {
+    //   // alert("Select " + value);
+    //    while (repeatlistData.length > 0) {
+    //        repeatlistData.pop();
+    //    }
+    //    repeatlistDay.push(value);
+    //   // alert(repeatlistDay);
+    //   // RepeatCondition(value);
+    //    RepeatDay(value);
+    //}
+
+    //function RepeatDay(value) {
+    //   $("#repeatDay").css('display', 'block');
+    //   html += '<div class="show_mltipl">' + value +  '<i onclick="deletediv(this)" name='+value+' class="fas fa-times" aria-hidden="true"></i></div > &nbsp';
+    //   $("#repeatDay").html(html);
+    //}
+
+    //function deletediv(div)
+    //{
+    //    $(div).click(function () {
+    //        html = "";
+    //        var value = $(this).attr('name');
+    //        //alert($(this).attr('name'));
+    //        $(this).parent().remove();
+    //        html = document.getElementById("repeatDay").innerHTML;
+
+    //       // alert(JSON.stringify(repeatlistDay));
+    //        for (let i = 0; i < repeatlistDay.length; i++) {
+    //            if (repeatlistDay[i] == value) {
+    //                repeatlistDay.splice(i, 1);
+    //            }
+    //        }
+    //       // alert(JSON.stringify(repeatlistDay));
+    //    });
+    //}
+
+    //function getNextWeekDay (startDate, dayOfWeek){
+    //var dayOffset = dayOfWeek > startDate.getDay()
+    //    ? dayOfWeek - startDate.getDay()
+    //    : dayOfWeek - startDate.getDay() + 7;
+    //    startDate.setDate(startDate.getDate() + dayOffset);
+    //    return startDate.toLocaleDateString();
+    //}
+
+    //function getNextMonth(startDate, dayOfMonth) {
+    //    var dayOffset = dayOfMonth > startDate.getMonth()
+    //        ? dayOfMonth - startDate.getMonth()
+    //        : dayOfMonth - startDate.getMonth() + 12;
+    //    startDate.setMonth(startDate.getMonth() + dayOffset);
+    //    return startDate.toLocaleDateString();
+    //}
+
+    function AddServiceClick() {
+        var catId = $('#category_select option:selected').val();
+        var subCatId = $('#sub_category_select option:selected').val();
+        var subSubCatId = $('#sub_sub_category_select option:selected').val();
+
+        var subSubVisible = $("#subSubServiceSection").is(":visible");
+
+        if (catId == "Service") {
+            alert("@Resource.please_select_service");
+            return;
+        }
+        if (subCatId == "Sub") {
+            alert("@Resource.please_select_sub_service");
+            return;
+        }
+        if (subSubVisible == true) {
+            if (subSubCatId == "Sub") {
+                alert("@Resource.please_select_sub_service");
+                return;
+            }
+        }
+
+        var found = false;var foundCat = false; var foundSubCat = false; var foundSubSubCat = false;
+        for (var i = 0; i < subSubCategories.length; i++) {
+            if (subSubCategories[i].CategoryId == catId
+                && subSubCategories[i].SubCategoryId == subCatId
+                && subSubCategories[i].SubSubCategoryyId == subSubCatId) {
+                found = true;
+                break;
+            }
+            if (subSubCategories[i].CategoryId == catId) {
+                foundCat = true;
+            }
+            if (subSubCategories[i].SubCategoryId == subCatId) {
+                foundSubCat = true;
+            }
+            if (subSubCategories[i].SubSubCategoryyId == subSubCatId) {
+                foundSubSubCat = true;
+            }
+        }
+        IsAnotherService=true;
+        if (found == false) {
+            $("#loader").show();
+
+            subSubCategories.push({
+                CategoryId: catId,
+                SubCategoryId: subCatId,
+                SubSubCategoryyId: subSubCatId == undefined ? "0" : subSubCatId
+            });
+
+            if (foundCat == false) {
+                var catName = $('#category_select option:selected').text();
+                var catImage = $('#category_select option:selected').attr('class');
+                $("#Category_add_another").append(`<div class="custom_input" style="display:none;">
+<div class="d-flex">
+<div class="service_input_image">
+<img src="https://app.broomservice.co.il/Images/Category/${catImage}" alt="services">
+</div>
+<input class="form-control form_edit_input" readonly="readonly" type="text"
+value="${catName}">
+</div></div>`);
+            }
+            if (foundSubCat == false) {
+                var subCatName = $('#sub_category_select option:selected').text();
+                var subCatIcon = $('#sub_category_select option:selected').attr('class');
+                $("#SubCategory_add_another").append(`<div class="custom_input">
+<div class="d-flex">
+<div class="service_input_image">
+<img src="https://app.broomservice.co.il/Images/SubCategory/${subCatIcon}" alt="services">
+</div>
+<input class="form-control form_edit_input" readonly="readonly" type="text"
+value="${subCatName}">
+</div></div>`);
+            }
+
+            if (subSubVisible == true) {
+                if (foundSubSubCat == false) {
+                    var subSubCatName = $('#sub_sub_category_select option:selected').text();
+                    var subSubCatIcon = $('#sub_sub_category_select option:selected').attr('class');
+                    $("#SubSubCategory_add_another").append(`<div class="custom_input">
+<div class="d-flex">
+<div class="service_input_image">
+<img src="https://app.broomservice.co.il/Images/SubSubCategory/${subSubCatIcon}" alt="services">
+</div>
+<input class="form-control form_edit_input" readonly="readonly" type="text"
+value="${subSubCatName}">
+</div></div>`);
+                }
+            }
+
+            $("#loader").hide();
+        }
+            $("#add_another_service").modal('hide');
+    };
+
+
+
+    @*function submitForm() {
+        var Files = new FormData();
+        Files.append('JobStartDatetime', $("#JobStartDateTime").val());
+            if ($("#EndDateTime").prop('checked') == true) {
+                Files.append('JobEndDatetime', $("#JobEndDateTime").val());
+        }
+        Files.append('CheckList', JSON.stringify(checkListData));
+        //alert("CheckList" +  JSON.stringify(checkListData));
+        Files.append('JobDesc', $("#JobDesc").val());
+        Files.append('ReferenceImages', JSON.stringify(fileData));
+        Files.append('IsFastOrder', isFastOrder);
+        Files.append('FastOrderName', $("#fast_order_name").val());
+        //alert("CheckList 1" );
+        Files.append('InventoryList', JSON.stringify(inventoryData));
+        Files.append('UserId', @ViewBag.UserId);
+        //alert("CheckList 2" );
+        Files.append('Categories', JSON.stringify(subSubCategories));
+        Files.append('PropertyService', JSON.stringify(ServicePropertyList));
+        //alert("CheckList Test Payment Method" );
+        Files.append('PaymentInfo',@Request.Cookies["Login"].Values["PaymentMethod"]);
+        //alert("CheckList 4" );
+        Files.append('isPaymentDone', isPaymentDone);
+        //alert("CheckList 5" );
+        //alert("AJAX call" + RootUrl)
+        $.ajax({
+            //url:  "/api/Order/AddJobRequest",
+            url: "@Url.Action("AddJobRequest", "Order")",
+            data: Files,
+            async: false,
+            type: 'POST',
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                // Show image container
+                $("#loader").show();
+            },
+            success: function (data) {
+                if (data.status) {
+                    alert(data.message);
+                   // alert(" ReqestID" + data.JobRequestID);
+
+                    $("#fast_popup").modal('hide');
+                    @*var price =  @TempData["Price"];
+                    var description = $("#JobDesc").val()
+                    alert(price + " " + description)
+
+                    //iCountReceiptAPI(description, price, data.JobRequestID);
+                    window.location.href = "/Bookings/BookingsList";
+                }
+            },
+            error: function () {
+                // Hide image container
+                $("#loader").hide();
+                alert("Error");
+                alert("@Resource.some_error_occured");
+            },
+            complete: function (data) {
+                // Hide image container
+                $("#loader").hide();
+            }
+        });
+    }*@
+
+    function iCountInvoiceAPI(description, price) {
+                                            $.ajax({
+                                            url: "@Url.Action("iCountInvoiceAPI", "Order")",
+                                            data: { "description": description, "price":price },
+                                            dataType: "json",
+                                            async: false,
+                                            type: "Post",
+                                                error: function () {
+                                                    alert("Error on response");
+                                            },
+                                            success: function (data) {
+                                                if (data.status) {
+                                                    //alert(" Call Submit Form API  IsPaymentDone " + data.IsPaymentDone)
+                                                    if(data.IsPaymentDone)
+                                                    {
+                                                      submitFormInvoice(data.message, data.IsPaymentDone, data.unitprice);
+                                                    }
+                                                    else
+                                                    {
+                                                        alert("payment request failed please try again");
+                                                    }
+                                                }
+                                                else if (data == "Session Expired") {
+                                                    window.location.href = "/Account/Login";
+                                                }
+                                                    }
+                                           });
+    }
+
+    function iCountReceiptAPI(description, price,jobID) {
+                                            $.ajax({
+                                            url: "@Url.Action("iCountReceiptAPI", "Order")",
+                                            data: { "description": description, "price": price, "jobRequest": jobID },
+                                            dataType: "json",
+                                            async: false,
+                                            type: "Post",
+                                                error: function () {
+                                                    alert("Error on response");
+                                            },
+                                            success: function (data) {
+                                                if (data.status) {
+                                                    //alert("Navigation");
+                                                    window.location.href = "/Bookings/BookingsList";
+                                                }
+                                                else if (data == "Session Expired") {
+                                                    window.location.href = "/Account/Login";
+                                                }
+                                                    }
+                                           });
+    }
+
+
+
+    function remove(item) {
+        if (counter == 1) {
+            alert("@Resource.no_text_box_to_remove");
+            return false;
+        }
+        $(item).parent().remove();
+
+        var text = $(item).parent().find('input[type=text]').val();
+        var index = checkListData.indexOf(text);
+        if (index !== -1) {
+            checkListData.splice(index, 1);
+        }
+    }
+
+    function add(item) {
+        console.log(item);
+        if ($(item).parent().find('input[type=text]').val().length == 0) {
+            alert("@Resource.add_text_validation");
+        }
+        else {
+            var decreaseCounter = counter - 1;
+
+            $("#TextBoxDiv" + decreaseCounter).find('.removeButton').css('display', 'block');
+            $("#TextBoxDiv" + decreaseCounter).find('.addButton').css('display', 'none');
+            $("#TextBoxDiv" + decreaseCounter).find('input[type=text]').attr('disabled', 'true');
+
+            var newTextBoxDiv = $(document.createElement('div'))
+                .attr("id", 'TextBoxDiv' + counter);
+            newTextBoxDiv.addClass("d-flex");
+
+            newTextBoxDiv.after().html('<div class="custom_input"><input placeholder="@Resource.enter_work_for_checklist" class="form-control form_edit_input_icon number_count" type="text" name="textbox' + counter +
+                '" id="textbox' + counter + '" value=""></div><button style="border:0;" onclick="add(this)"  type="button" class="add_sub_category_list_add addButton"><i class="fa fa-plus" aria-hidden="true"></i></button><button type="button" onclick = "remove(this)" style = "border:0;display:none;" class= "add_sub_category_list_add removeButton"><i class="fa fa-times" aria-hidden="true"></i></button>');
+
+            newTextBoxDiv.appendTo("#TextBoxesGroup");
+
+            counter++;
+            checkListData.push($("#TextBoxDiv" + decreaseCounter).find('input[type=text]').val());
+        }
+    }
+
+    $("#upload_file").change(function () {
+        var input = this;
+        for (var i = 0; i < input.files.length; i++) {
+            var url = input.files[i].name;
+            var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+
+            var reader = new FileReader();
+            // file uploaded is of type image
+            if (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg") {
+                reader.onload = function (e) {
+                    fileData.push({ result: e.target.result, type: "image" });
+
+                    var e = $('<div class="upload_show_image mb-4"><img src="' + e.target.result + '" onclick="ViewImageModal(this)" title="click to add comment"><div class="d-flex overlay justify-content-between"><a><input type="file" class="' + e.target.result + '" onchange="EditImage(this)"><i class="fa fa-edit"></i></a><a id="' + e.target.result + '" onclick="DeleteImage(this);"><i class="fa fa-trash"></i></a></div></div>');
+                    $('#upload_image_div').append(e);
+                }
+                reader.readAsDataURL(input.files[i]);
+            }
+            else {
+                reader.onload = function (e) {
+                    fileData.push({ result: e.target.result, type: "video" });
+                    var e = $('<div class="upload_show_image mb-4"><video width="100%" height="100%" controls><source src = "' + e.target.result + '" type = "video/mp4"></video><div class="d-flex overlay justify-content-between"><a><input type="file" class="' + e.target.result + '" onchange="EditImage(this)"><i class="fa fa-edit"></i></a><a id="' + e.target.result + '" onclick="DeleteImage(this);"><i class="fa fa-trash"></i></a></div></div>');
+                    $('#upload_image_div').append(e);
+                }
+                reader.readAsDataURL(input.files[i]);
+            }
+            }
+    });
+
+    function EditImage(img) {
+        var input = img;
+        var url = $(img).val();
+        var getClass = $(img).attr('class');
+
+        fileData = $.grep(fileData, function (value) {
+            return value.result != getClass;
+        });
+
+        var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+
+        if (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg") {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                fileData.push({ result: e.target.result, type: "image" });
+                var getParent = $(img).parent().parent().parent();
+
+                var e = $('<div class="upload_show_image mb-4"><img src="' + e.target.result + '"><div class="d-flex overlay justify-content-between"><a><input type="file" class="' + e.target.result + '" onchange="EditImage(this)"><i class="fa fa-edit"></i></a><a id="' + e.target.result + '" onclick="DeleteImage(this);"><i class="fa fa-trash"></i></a></div></div>');
+                getParent.replaceWith(e);
+
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+        else {
+            // file uploaded is of video type
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                fileData.push({ result: e.target.result, type: "video" });
+
+                var getParent = $(img).parent().parent().parent();
+                var e = $('<div class="upload_show_image mb-4"><video width="100%" height="100%" controls><source src = "' + e.target.result + '" type = "video/mp4"></video><div class="d-flex overlay justify-content-between"><a><input type="file" class="' + e.target.result + '" onchange="EditImage(this)"><i class="fa fa-edit"></i></a><a id="' + e.target.result + '" onclick="DeleteImage(this);"><i class="fa fa-trash"></i></a></div></div>');
+                getParent.replaceWith(e);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+
+    function DeleteImage(img) {
+        var value = confirm("@Resource.delete_msg");
+        if (value) {
+            var getId = $(img).attr('id');
+            fileData = $.grep(fileData, function (value) {
+                return value.result != getId;
+            });
+            var getParent = $(img).parent().parent();
+            getParent.remove();
+        }
+    }
+
+    function ViewImageModal(img) {
+        $(img).click(function () {
+            $("#view_img_modal").modal('show');
+            var imgSrc = $(this).attr('src');
+            $('#imgModal').attr('src', imgSrc);
+        });
+    }
+    $('#JobEndDateTime').change(function () {
+        var date = $("#JobStartDate").val()
+        if (date != null && date!="")
+        {
+            var datetime = date + " " + $('#JobEndDateTime').val();
+            $('#JobEndDateTime').val(datetime);
+        }
+        else {
+            var val = "";
+            $('#JobEndDateTime').val(val);
+            alert("Select job start date");
+        }
+    });
+
+
+   $('#JobStartDate').change(function () {
+            alert('Its work');
+            var cdate = new Date($("#JobStartDate").val());
+            var subCategory = $("#SubCategoryData_Id").val();
+            var subsubCategory = $("#SubSubCategoryData_Id").val();
+            if (subsubCategory == undefined) {
+                subsubCategory = 0;
+            }
+            $.ajax({
+                url: "@Url.Action("AvailableTime","Order")",
+                data: {
+                    "dayofweek": cdate.getDay(),
+                    "subCategoryId": subCategory,
+                    "subSubCategoryId": subsubCategory,
+                    "JobDate": $("#JobStartDate").val(),
+                      },
+                type: 'POST',
+                success: function (data) {
+                    //alert(data);
+                    if (data != null) {
+                        if (data.length > 0) {
+                            $('#TimeSlot').empty();
+                            $.each(data, function (key, value) {
+                                var FromTime = value.FromTime;
+                                var UserId = value.UserId;
+                                $('#TimeSlot').append(`<input type="radio" name="AvailableTimeSlot" value="${UserId}" class="btn btn-success" /> <span>${FromTime}</span> <br />`);
+                            });
+                            $("#JobRequestTiming").modal('show');
+                        }
+                        else {
+                            alert('Resourse is not availabele at the date you have selected');
+                            document.getElementById("divMeetingContent").style.display = "flex";
+                        }
+                    }
+                    else
+                    {
+                        alert('Resourse is not availabele at the date you have selected');
+                         document.getElementById("divMeetingContent").style.display = "flex";
+                    }
+                },
+                error: function () {
+                       alert('something went wrong');
+                }
+        });
+    });
+
+    $("#JobDescSwitch").change(function () {
+        if (this.checked) {
+            $("#job_desc").css('display', 'block');
+        }
+        else {
+            $("#job_desc").css('display', 'none');
+        }
+    });
+
+    $("#ImageVideo").change(function () {
+        if (this.checked) {
+            $("#image_video").css('display', 'block');
+        }
+        else {
+            $("#image_video").css('display', 'none');
+        }
+    });
+
+    $("#InventorySwitch").change(function () {
+        if (this.checked) {
+                $("#InventorySection").css('display', 'block');
+        }
+        else {
+            $("#InventorySection").css('display', 'none');
+        }
+    });
+
+    $("#ChecklistSwitch").change(function () {
+        if (this.checked) {
+            $("#ChecklistSection").css('display', 'block');
+        }
+        else {
+            $("#ChecklistSection").css('display', 'none');
+        }
+    });
+
+    $("#AnotherServiceSwitch").change(function () {
+        //if (this.checked) {
+        //    $("#AnotherServiceSection").css('display', 'block');
+        //    }
+        //else {
+        //    $("#AnotherServiceSection").css('display', 'none');
+        //    }
+    });
+
+      $("#EndDateTime").change(function () {
+        if (this.checked) {
+            $("#end_date_time").css('display', 'block');
+            $("#JobEndDateTime").removeClass("border");
+        }
+        else {
+            $("#end_date_time").css('display', 'none');
+        }
+    });
+
+    //$("#RepeatServiceSwitch").change(function () {
+    //    if (this.checked) {
+    //        $("#RepeatServiceSectionList").css('display', 'flex');
+    //        $("#RepeatServiceSection").css('display', 'flex');
+    //        if(IsAnotherService)
+    //        {alert('show popup'+IsAnotherService)
+    //            $("#RepeatServiceConfirmation").modal('show');
+    //        }
+    //    }
+    //    else {
+    //        $("#RepeatServiceSectionList").css('display', 'none');
+    //        $("#RepeatServiceSection").css('display', 'none');
+    //        $("#RepeatServiceConfirmation").modal('hide');
+    //    }
+    //});
+
+    //function RepeatCondition(value) {
+    //    if (value == "Sunday") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //        //alert(cdate);
+    //        var now = new Date(cdate);
+    //        var nextSunday = getNextWeekDay(new Date(cdate), 0); // 0 = Sunday, 1 = Monday, ..
+    //        var secondNextSunday = getNextWeekDay(new Date(now.getTime() + (7 * 24 * 60 * 60 * 1000)), 0);
+    //        var thirdNextSunday = getNextWeekDay(new Date(now.getTime() + (14 * 24 * 60 * 60 * 1000)), 0);
+    //        var fourthNextSunday = getNextWeekDay(new Date(now.getTime() + (21 * 24 * 60 * 60 * 1000)), 0);
+    //       // alert(nextSunday + '- ' + secondNextSunday + '- ' + thirdNextSunday + '- ' + fourthNextSunday);
+    //        repeatlistData.push(nextSunday);
+    //        repeatlistData.push(secondNextSunday);
+    //        repeatlistData.push(thirdNextSunday);
+    //        repeatlistData.push(fourthNextSunday);
+    //       // alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "Monday") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //      // alert(cdate);
+    //        var now = new Date(cdate);
+    //        var nextMonday = getNextWeekDay(new Date(cdate), 1); // 0 = Sunday, 1 = Monday, ..
+    //        var secondNextMonday = getNextWeekDay(new Date(now.getTime() + (7 * 24 * 60 * 60 * 1000)), 1);
+    //        var thirdNextMonday = getNextWeekDay(new Date(now.getTime() + (14 * 24 * 60 * 60 * 1000)), 1);
+    //        var fourthNextMonday = getNextWeekDay(new Date(now.getTime() + (21 * 24 * 60 * 60 * 1000)), 1);
+    //       // alert(nextMonday + '- ' + secondNextMonday + '- ' + thirdNextMonday + '- ' + fourthNextMonday);
+    //        repeatlistData.push(nextMonday);
+    //        repeatlistData.push(secondNextMonday);
+    //        repeatlistData.push(thirdNextMonday);
+    //        repeatlistData.push(fourthNextMonday);
+    //        //alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "Tuesday") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //       // alert(cdate);
+    //        var now = new Date(cdate);
+    //        var nextTuesday = getNextWeekDay(new Date(cdate), 2); // 0 = Sunday, 1 = Monday, ..
+    //        var secondNextTuesday = getNextWeekDay(new Date(now.getTime() + (7 * 24 * 60 * 60 * 1000)), 2);
+    //        var thirdNextTuesday = getNextWeekDay(new Date(now.getTime() + (14 * 24 * 60 * 60 * 1000)), 2);
+    //        var fourthNextTuesday = getNextWeekDay(new Date(now.getTime() + (21 * 24 * 60 * 60 * 1000)), 2);
+    //      //  alert(nextTuesday + '- ' + secondNextTuesday + '- ' + thirdNextTuesday + '- ' + fourthNextTuesday);
+    //        repeatlistData.push(nextTuesday);
+    //        repeatlistData.push(secondNextTuesday);
+    //        repeatlistData.push(thirdNextTuesday);
+    //        repeatlistData.push(fourthNextTuesday);
+    //        //alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "Wednesday") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //      //  alert(cdate);
+    //        var now = new Date(cdate);
+    //        var nextWednesday = getNextWeekDay(new Date(cdate), 3); // 0 = Sunday, 1 = Monday, ..
+    //        var secondNextWednesday = getNextWeekDay(new Date(now.getTime() + (7 * 24 * 60 * 60 * 1000)), 3);
+    //        var thirdNextWednesday = getNextWeekDay(new Date(now.getTime() + (14 * 24 * 60 * 60 * 1000)), 3);
+    //        var fourthNextWednesday = getNextWeekDay(new Date(now.getTime() + (21 * 24 * 60 * 60 * 1000)), 3);
+    //      //  alert(nextTuesday + '- ' + secondNextTuesday + '- ' + thirdNextTuesday + '- ' + fourthNextTuesday);
+    //        repeatlistData.push(nextWednesday);
+    //        repeatlistData.push(secondNextWednesday);
+    //        repeatlistData.push(thirdNextWednesday);
+    //        repeatlistData.push(fourthNextWednesday);
+    //       // alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "Thursday") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //       // alert(cdate);
+    //        var now = new Date(cdate);
+    //        var nextThursday = getNextWeekDay(new Date(cdate), 4); // 0 = Sunday, 1 = Monday, ..
+    //        var secondNextThursday = getNextWeekDay(new Date(now.getTime() + (7 * 24 * 60 * 60 * 1000)), 4);
+    //        var thirdNextThursday = getNextWeekDay(new Date(now.getTime() + (14 * 24 * 60 * 60 * 1000)), 4);
+    //        var fourthNextThursday = getNextWeekDay(new Date(now.getTime() + (21 * 24 * 60 * 60 * 1000)), 4);
+    //      //  alert(nextThursday + '- ' + secondNextThursday + '- ' + thirdNextThursday + '- ' + fourthNextThursday);
+    //        repeatlistData.push(nextThursday);
+    //        repeatlistData.push(secondNextThursday);
+    //        repeatlistData.push(thirdNextThursday);
+    //        repeatlistData.push(fourthNextThursday);
+    //        //alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "Friday") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //       // alert(cdate);
+    //        var now = new Date(cdate);
+    //        var nextFriday = getNextWeekDay(new Date(cdate), 5); // 0 = Sunday, 1 = Monday, ..
+    //        var secondNextFriday = getNextWeekDay(new Date(now.getTime() + (7 * 24 * 60 * 60 * 1000)), 5);
+    //        var thirdNextFriday = getNextWeekDay(new Date(now.getTime() + (14 * 24 * 60 * 60 * 1000)), 5);
+    //        var fourthNextFriday = getNextWeekDay(new Date(now.getTime() + (21 * 24 * 60 * 60 * 1000)), 5);
+    //      //  alert(nextFriday + '- ' + secondNextFriday + '- ' + thirdNextFriday + '- ' + fourthNextFriday);
+    //        repeatlistData.push(nextFriday);
+    //        repeatlistData.push(secondNextFriday);
+    //        repeatlistData.push(thirdNextFriday);
+    //        repeatlistData.push(fourthNextFriday);
+    //        //alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "Saturday") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //       // alert(cdate);
+    //        var now = new Date(cdate);
+    //        var nextSaturday = getNextWeekDay(new Date(cdate), 6); // 0 = Sunday, 1 = Monday, ..
+    //        var secondNextSaturday = getNextWeekDay(new Date(now.getTime() + (7 * 24 * 60 * 60 * 1000)), 6);
+    //        var thirdNextSaturday = getNextWeekDay(new Date(now.getTime() + (14 * 24 * 60 * 60 * 1000)), 6);
+    //        var fourthNextSaturday = getNextWeekDay(new Date(now.getTime() + (21 * 24 * 60 * 60 * 1000)), 6);
+    //       // alert(nextSaturday + '- ' + secondNextSaturday + '- ' + thirdNextSaturday + '- ' + fourthNextSaturday);
+    //        repeatlistData.push(nextSaturday);
+    //        repeatlistData.push(secondNextSaturday);
+    //        repeatlistData.push(thirdNextSaturday);
+    //        repeatlistData.push(fourthNextSaturday);
+    //        //alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "January") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //       // alert(cdate);
+    //        var now = new Date(cdate);
+    //        getNextMonth(now,0)
+    //        var nextfirstyear = new Date(now.setFullYear(now.getFullYear())).toLocaleDateString();
+    //        var nextsecondtyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextthirdyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextfourthyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //      //  alert(nextfirstyear + '- ' + nextsecondtyear + '- ' + nextthirdyear + '- ' + nextfourthyear);
+    //        repeatlistData.push(nextfirstyear);
+    //        repeatlistData.push(nextsecondtyear);
+    //        repeatlistData.push(nextthirdyear);
+    //        repeatlistData.push(nextfourthyear);
+    //       // alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "Febrary") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //        //alert(cdate);
+    //        var now = new Date(cdate);
+    //       // alert(now.getMonth());
+    //        getNextMonth(now,1)
+    //        var nextfirstyear = new Date(now.setFullYear(now.getFullYear())).toLocaleDateString();
+    //        var nextsecondtyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextthirdyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextfourthyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //       // alert(nextfirstyear + '- ' + nextsecondtyear + '- ' + nextthirdyear + '- ' + nextfourthyear);
+    //        repeatlistData.push(nextfirstyear);
+    //        repeatlistData.push(nextsecondtyear);
+    //        repeatlistData.push(nextthirdyear);
+    //        repeatlistData.push(nextfourthyear);
+    //       // alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "March") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //       // alert(cdate);
+    //        var now = new Date(cdate);
+    //        getNextMonth(now,2)
+    //        var nextfirstyear = new Date(now.setFullYear(now.getFullYear())).toLocaleDateString();
+    //        var nextsecondtyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextthirdyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextfourthyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //       // alert(nextfirstyear + '- ' + nextsecondtyear + '- ' + nextthirdyear + '- ' + nextfourthyear);
+    //        repeatlistData.push(nextfirstyear);
+    //        repeatlistData.push(nextsecondtyear);
+    //        repeatlistData.push(nextthirdyear);
+    //        repeatlistData.push(nextfourthyear);
+    //        //alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "April") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //      //  alert(cdate);
+    //        var now = new Date(cdate);
+    //        getNextMonth(now,3)
+    //        var nextfirstyear = new Date(now.setFullYear(now.getFullYear())).toLocaleDateString();
+    //        var nextsecondtyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextthirdyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextfourthyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //       // alert(nextfirstyear + '- ' + nextsecondtyear + '- ' + nextthirdyear + '- ' + nextfourthyear);
+    //        repeatlistData.push(nextfirstyear);
+    //        repeatlistData.push(nextsecondtyear);
+    //        repeatlistData.push(nextthirdyear);
+    //        repeatlistData.push(nextfourthyear);
+    //       //alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "May") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //        //alert(cdate);
+    //        var now = new Date(cdate);
+    //        getNextMonth(now,4)
+    //        var nextfirstyear = new Date(now.setFullYear(now.getFullYear())).toLocaleDateString();
+    //        var nextsecondtyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextthirdyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextfourthyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        //alert(nextfirstyear + '- ' + nextsecondtyear + '- ' + nextthirdyear + '- ' + nextfourthyear);
+    //        repeatlistData.push(nextfirstyear);
+    //        repeatlistData.push(nextsecondtyear);
+    //        repeatlistData.push(nextthirdyear);
+    //        repeatlistData.push(nextfourthyear);
+    //       // alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "June") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //       // alert(cdate);
+    //        var now = new Date(cdate);
+    //        getNextMonth(now,5)
+    //        var nextfirstyear = new Date(now.setFullYear(now.getFullYear())).toLocaleDateString();
+    //        var nextsecondtyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextthirdyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextfourthyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //       // alert(nextfirstyear + '- ' + nextsecondtyear + '- ' + nextthirdyear + '- ' + nextfourthyear);
+    //         repeatlistData.push(nextfirstyear);
+    //        repeatlistData.push(nextsecondtyear);
+    //        repeatlistData.push(nextthirdyear);
+    //        repeatlistData.push(nextfourthyear);
+    //       // alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "July") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //        //alert(cdate);
+    //        var now = new Date(cdate);
+    //        getNextMonth(now,6)
+    //        var nextfirstyear = new Date(now.setFullYear(now.getFullYear())).toLocaleDateString();
+    //        var nextsecondtyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextthirdyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextfourthyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //      //  alert(nextfirstyear + '- ' + nextsecondtyear + '- ' + nextthirdyear + '- ' + nextfourthyear);
+    //        repeatlistData.push(nextfirstyear);
+    //        repeatlistData.push(nextsecondtyear);
+    //        repeatlistData.push(nextthirdyear);
+    //        repeatlistData.push(nextfourthyear);
+    //       // alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "August") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //       // alert(cdate);
+    //        var now = new Date(cdate);
+    //        getNextMonth(now,7)
+    //        var nextfirstyear = new Date(now.setFullYear(now.getFullYear())).toLocaleDateString();
+    //        var nextsecondtyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextthirdyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextfourthyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //       // alert(nextfirstyear + '- ' + nextsecondtyear + '- ' + nextthirdyear + '- ' + nextfourthyear);
+    //        repeatlistData.push(nextfirstyear);
+    //        repeatlistData.push(nextsecondtyear);
+    //        repeatlistData.push(nextthirdyear);
+    //        repeatlistData.push(nextfourthyear);
+    //       // alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "September") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //       // alert(cdate);
+    //        var now = new Date(cdate);
+    //        getNextMonth(now,8)
+    //        var nextfirstyear = new Date(now.setFullYear(now.getFullYear())).toLocaleDateString();
+    //        var nextsecondtyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextthirdyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextfourthyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //       // alert(nextfirstyear + '- ' + nextsecondtyear + '- ' + nextthirdyear + '- ' + nextfourthyear);
+    //        repeatlistData.push(nextfirstyear);
+    //        repeatlistData.push(nextsecondtyear);
+    //        repeatlistData.push(nextthirdyear);
+    //        repeatlistData.push(nextfourthyear);
+    //       // alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "October") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //       // alert(cdate);
+    //        var now = new Date(cdate);
+    //        getNextMonth(now,9)
+    //        var nextfirstyear = new Date(now.setFullYear(now.getFullYear())).toLocaleDateString();
+    //        var nextsecondtyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextthirdyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextfourthyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //       // alert(nextfirstyear + '- ' + nextsecondtyear + '- ' + nextthirdyear + '- ' + nextfourthyear);
+    //        repeatlistData.push(nextfirstyear);
+    //        repeatlistData.push(nextsecondtyear);
+    //        repeatlistData.push(nextthirdyear);
+    //        repeatlistData.push(nextfourthyear);
+    //       // alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "November") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //        //alert(cdate);
+    //        var now = new Date(cdate);
+    //        getNextMonth(now,10)
+    //        var nextfirstyear = new Date(now.setFullYear(now.getFullYear())).toLocaleDateString();
+    //        var nextsecondtyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextthirdyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextfourthyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //      //  alert(nextfirstyear + '- ' + nextsecondtyear + '- ' + nextthirdyear + '- ' + nextfourthyear);
+    //        repeatlistData.push(nextfirstyear);
+    //        repeatlistData.push(nextsecondtyear);
+    //        repeatlistData.push(nextthirdyear);
+    //        repeatlistData.push(nextfourthyear);
+    //       // alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else if (value == "December") {
+    //        var cdate = $("#JobStartDateTime").val()
+    //      //  alert(cdate);
+    //        var now = new Date(cdate);
+    //        getNextMonth(now,11)
+    //        var nextfirstyear = new Date(now.setFullYear(now.getFullYear())).toLocaleDateString();
+    //        var nextsecondtyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextthirdyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //        var nextfourthyear = new Date(now.setFullYear(now.getFullYear() + 1)).toLocaleDateString();
+    //       // alert(nextfirstyear + '- ' + nextsecondtyear + '- ' + nextthirdyear + '- ' + nextfourthyear);
+    //        repeatlistData.push(nextfirstyear);
+    //        repeatlistData.push(nextsecondtyear);
+    //        repeatlistData.push(nextthirdyear);
+    //        repeatlistData.push(nextfourthyear);
+    //        //alert(JSON.stringify(repeatlistData));
+    //    }
+    //    else {
+    //        var cdate = $("#JobStartDateTime").val()
+    //       // alert(cdate);
+    //        var now = new Date(cdate);
+    //        var nextfirstMonth = new Date(now.setMonth(now.getMonth() + 1, parseInt(value))).toLocaleDateString();
+    //        var nextsecondMonth = new Date(now.setMonth(now.getMonth() + 1, parseInt(value))).toLocaleDateString();
+    //        var nextthirdMonth = new Date(now.setMonth(now.getMonth() + 1, parseInt(value))).toLocaleDateString();
+    //        var nextfourthMonth = new Date(now.setMonth(now.getMonth() + 1, parseInt(value))).toLocaleDateString();
+    //      //  alert(nextfirstMonth + '- ' + nextsecondMonth + '- ' + nextthirdMonth + '- ' + nextfourthMonth);
+    //        repeatlistData.push(nextfirstMonth);
+    //        repeatlistData.push(nextsecondMonth);
+    //        repeatlistData.push(nextthirdMonth);
+    //        repeatlistData.push(nextfourthMonth);
+    //        //alert(JSON.stringify(repeatlistData));
+    //    }
+    //}
+
+   function qtyPlus(el)
+   {
+      var Plus =  $(el).prev('input[type=text]').val();
+      Plus = parseInt(Plus) + 1;
+      $(el).prev('input[type=text]').val(Plus);
+   }
+  function qtyMinus(el)
+  {
+      var Minus =  $(el).next('input[type=text]').val();
+       Minus = parseInt(Minus) - 1;
+        if(parseInt(Minus) < 1)
+        {
+            Minus =0;
+        }
+     $(el).next('input[type=text]').val(Minus);
+    }
+</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/Scripts/chosen.jquery.js"></script>
+<script>
+    $(function () {
+        $('#Property_List_Id').chosen();
+        //$('#Property_List_Id_chosen a').find('span').text('Select Property');
+    });
+
+</script>
+

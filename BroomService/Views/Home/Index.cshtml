@@ -1,0 +1,580 @@
+﻿@using BroomService.Resources;
+
+@model BroomService.ViewModels.HomeViewModel
+
+@{
+    Layout = "~/Views/Shared/_WebLayout.cshtml";
+}
+
+<style>
+    button.multiselect.dropdown-toggle.btn.btn-default {
+        background-color: transparent;
+        position: unset;
+    }
+
+    ul.multiselect-container.dropdown-menu.show {
+        overflow-y: scroll;
+        max-height: 200px;
+    }
+
+    .video_close_box button.btn.btn-default {
+        background: #fff;
+        border-radius: 30px;
+        position: absolute;
+        right: 2px;
+        z-index: 5;
+        color: #214378;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        padding: 0;
+        font-weight: 900;
+        top: 2px;
+    }
+
+    .elementor-video {
+        width: 100%;
+        height: auto;
+    }
+
+    .video_close_box {
+        background: transparent;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 5px solid #fff;
+    }
+
+    .box_body {
+        padding-bottom: 0px !important;
+    }
+
+    .owl-carousel .owl-nav.disabled {
+        display: block !important;
+    }
+</style>
+
+<!-- Download App Section -->
+@*<div class="container">
+        <div class="app_download_button">
+            <a href="#"><span><i class="fab fa-apple"></i><span class="d_none">@Resource.get_on</span> @Resource.apple</span></a>
+            <a href="#"><span><i class="fa fa-android"></i><span class="d_none">@Resource.get_on</span> @Resource.android</span></a>
+        </div>
+    </div>*@
+
+@if (Request.Cookies["Login"] != null)
+{
+    if (Request.Cookies["Login"].Values["UserId"] != null)
+    {
+        <!-- Property List Section -->
+        if (Model.Properties != null)
+        {
+            if (Model.Properties.Count > 0)
+            {
+                <input type="hidden" id="UserId" value="@Request.Cookies["Login"].Values["UserId"]" />
+                <section id="property_list" class="property_list_page">
+                    <div class="container">
+                        <h2>@Resource.property_listing</h2>
+                        <p class="heading_box">@*Lorem Ipsum is simply dummy text of the printing.*@</p>
+                        <div class="property_slider">
+                            <div class="owl-carousel owl-theme" id="property_list_slider">
+                                @for (int i = 0; i < Model.Properties.Count; i++)
+                                {
+                                    <div class="item">
+                                        <div class="property_list_slider_box">
+
+                                            @if (@Model.Properties[i].PropertyModel.Id == 0)
+                                            {
+                                                <div class="property_image_box" style="margin-bottom:135px !important;">
+                                                    @if (Model.Properties[i].PropertyImages != null)
+                                                    {
+                                                        if (Model.Properties[i].PropertyImages.Count > 0)
+                                                        {
+                                                            List<BroomService.ViewModels.PropertyImageVM> getImageData = new List<BroomService.ViewModels.PropertyImageVM>();
+                                                            {
+                                                                getImageData = Model.Properties[i].PropertyImages.Where(a => a.IsImage == true).ToList();
+                                                            }
+                                                            if (getImageData.Count > 0)
+                                                            {
+                                                                <img src="~/Images/Property/@getImageData[0].ImageUrl" alt="Image of property" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <img src="~/Content/images/property_image.png" alt="Image of property" />
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="~/Content/images/property_image.png" alt="Image of property" />
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Content/images/logo_login.png" alt="Image of property" />
+                                                    }
+                                                </div>
+                                                <div class="property_content">
+
+                                                    <h3></h3>
+                                                    <p></p>
+
+                                                    <div class="action-button slider-action my-4">
+                                                    </div>
+                                                    <div class="a_down">
+                                                        <a href="#" style="visibility:hidden;">
+                                                            <img src="~/Content/images/down_arrow.png" alt="down arrow" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="property_image_box">
+                                                    @if (Model.Properties[i].PropertyImages != null)
+                                                    {
+                                                        if (Model.Properties[i].PropertyImages.Count > 0)
+                                                        {
+                                                            List<BroomService.ViewModels.PropertyImageVM> getImageData = new List<BroomService.ViewModels.PropertyImageVM>();
+                                                            {
+                                                                getImageData = Model.Properties[i].PropertyImages.Where(a => a.IsImage == true).ToList();
+                                                            }
+                                                            if (getImageData.Count > 0)
+                                                            {
+                                                                <img src="~/Images/Property/@getImageData[0].ImageUrl" alt="Image of property" />
+                                                            }
+                                                            else
+                                                            {
+                                                                <img src="~/Content/images/property_image.png" alt="Image of property" />
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="~/Content/images/property_image.png" alt="Image of property" />
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Content/images/property_image.png" alt="Image of property" />
+                                                    }
+                                                </div>
+                                                <div class="property_content">
+
+                                                    <h3>@Model.Properties[i].PropertyModel.Name</h3>
+                                                    <p>@Resource.type_of_property: @Model.Properties[i].PropertyModel.Type</p>
+                                                    @if (Model.Properties[i].PropertyModel.ShortTermApartment.HasValue)
+                                                    {
+                                                        if (Model.Properties[i].PropertyModel.ShortTermApartment.Value)
+                                                        {
+                                                            <p class="link">@Resource.short_term_apartment</p>
+                                                        }
+                                                    }
+                                                    <div class="action-button slider-action my-4"
+                                                         id="@Model.Properties[i].PropertyModel.Id">
+                                                        <a href="/Order/GetFastOrdersByPropertyId?PropertyId=@Model.Properties[i].PropertyModel.Id">@Resource.fast_order</a>
+                                                        <a href="/Order/CategoryList?propertyId=@Model.Properties[i].PropertyModel.Id">@Resource.order_service</a>
+                                                        <a href="#" class="@Model.Properties[i].PropertyModel.AccessToProperty"
+                                                           id="@Model.Properties[i].PropertyModel.BuildingCode"
+                                                           onclick="loadAccessCodeModal(this);">@Resource.change_access</a>
+                                                    </div>
+                                                    <div class="a_down">
+                                                        <a href="/Property/PropertyDetails?id=@Model.Properties[i].PropertyModel.Id">
+                                                            <img src="~/Content/images/down_arrow.png" alt="down arrow" />
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            }
+
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                            <div class="view_all_property_box">
+                                <a href="/Property/PropertyList" class="pulse"><span>@Resource.view_all_properties</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            }
+        }
+    }
+}
+
+@if (Request.Cookies["Login"] != null)
+{
+    if (Request.Cookies["Login"].Values["UserType"] != "7")
+    {
+        <section class="property_add_home">
+            <div class="container">
+                <h2>@Resource.add_property</h2>
+                <h3 class="heading_box">@Resource.choose_option_for_property</h3>
+                @if (TempData["ErrorMsg"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @TempData["ErrorMsg"]
+                    </div>
+                }
+                @if (TempData["SuccessMsg"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @TempData["SuccessMsg"]
+                    </div>
+                }
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <a style="cursor:pointer;" onclick="AddMultipleProperties();">
+                            <div class="add_property_section">
+                                <div class="add_pro_image">
+                                    <i class="far fa-file-image"></i>
+                                </div>
+                                <h2>@Resource.import_from_file</h2>
+                                <p style="color:#000;">
+                                    @Resource.add_property_multiple_option
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="/Property/AddProperty?id=0">
+                            <div class="add_property_section">
+                                <div class="add_pro_image">
+                                    <i class="fas fa-tasks"></i>
+                                </div>
+                                <h2>@Resource.add_manually</h2>
+                                <p style="color:#000;">
+                                    @Resource.add_property_choose_single_option
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="/Account/PropertyManagers">
+                            <div class="add_property_section">
+                                <div class="add_pro_image">
+                                    <i class="far fa fa-home"></i>
+                                </div>
+                                <h2> @Resource.pms</h2>
+                                <p style="color:#000;">
+                                    @Resource.add_property_pms_option
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    }
+}
+
+
+<!-- Video Section -->
+<section id="video_box" class="video_section">
+    <div class="container">
+        <h2>@Resource.broom_service</h2>
+        <h3 class="heading_box">@Resource.lets_see_how_it_works</h3>
+        <p>@*Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the*@</p>
+        <div class="row">
+            <div class="col-lg-6">
+                <p>@Resource.how_it_works</p>
+            </div>
+            <div class="col-lg-6 mt-4 mt-lg-0">
+                <div class="video_box">
+                    <video class="elementor-video" src="https://bell-boy.com/wp-content/uploads/2022/04/Untitled-1.mp4" controls></video>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Specialisation area -->
+<section id="Specialisation_box" class="speial_area">
+    <div class="container-fluid">
+        <div class="row left_right_box">
+            <div class="col-lg-5 align-self-center mb-lg-0 mb-3">
+                <h2>@Resource.our_services</h2>
+            </div>
+            <div class="col-lg-7 pr-sm-0">
+                <div class="owl-carousel owl-theme" id="special_list_slider">
+                    @if (Model.Categories != null)
+                    {
+                        if (Model.Categories.Count > 0)
+                        {
+                            for (int i = 0; i < Model.Categories.Count; i++)
+                            {
+                                <div class="item">
+                                    <div class="special_slider_box">
+                                        <div class="special_bg">
+                                            <div class=" image_heading d-flex align-items-end">
+                                                @Model.Categories[i].Name
+                                            </div>
+                                        </div>
+                                        <div class="white_box">
+                                            <div class="service_name_box d-flex align-items-center">
+                                                <div class="details_box">
+                                                    <h4>@Model.Categories[i].Name </h4>
+                                                    <p>@Model.Categories[i].Description</p>
+                                                    <a onclick="RedirectSubServices('@Model.Categories[i].Name',@Model.Categories[i].Id,@TempData["PropertyId"]);" href="#" class="doc_view_more"><img src="~/Content/images/arrow_more.png" alt="Image of arrow" /></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @if (string.IsNullOrEmpty(Model.Categories[i].Picture))
+                                        {
+                                            <img src="~/Content/images/speical_slider_image_1.png" alt="service image" />
+                                        }
+                                        else
+                                        {
+                                            <img style="height:350px;" src="/Images/Category/@Model.Categories[i].Picture" alt="service image" />
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add Multiple_p -->
+<div class="modal fade modal_sub_user" id="add_multiple_property_modal">
+    <div class="modal-dialog modal_max modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="box_body" style="padding:30px;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3 class="manage-heading">@Resource.properties</h3>
+                    <p class="login_sub_user">
+                        @Resource.upload_excel_files_several_files
+                    </p>
+                    @using (Html.BeginForm("UploadExcel", "Property", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="col-12 add_property_box_popup form-group">
+                            <div>
+                                @Resource.recommend_to_use_template<br>
+                                <ul>
+                                    <li>
+                                        <a href="/Property/DownloadExcel" class="text-info">
+                                            @Resource.download_template
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="btn btn-default btn-block btn-file p-sm">
+                                    <input type="file" id="fileUpload" name="FileUpload"
+                                           class="col-md-12" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 text-right submit_box_all" style="margin-bottom:0px;">
+                            <button type="submit" id="btn_submit" class="btn arrow_btn_box"><img src="~/Content/images/submit_next_btn.png" alt="next arrow"></button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Access Code -->
+<div class="modal fade modal_sub_user" id="access-code-modal">
+    <div class="modal-dialog modal_max modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="box_body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3 class="manage-heading">@Resource.manage_access_code</h3>
+                    <form>
+                        <div class="col-12 form-group">
+                            <label>@Resource.access_to_property</label>
+                            <div class="custom_input">
+                                <input type="text" class="form-control form_edit_input"
+                                       name="access_property" id="access_property"
+                                       placeholder="@Resource.access_property_options">
+
+                            </div>
+                            <div class="col-12 form-group">
+                                <label>@Resource.building_code</label>
+                                <div class="custom_input">
+                                    <input type="text" class="form-control form_edit_input"
+                                           name="building_code" id="building_code"
+                                           placeholder="@Resource.enter_building_code">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group submit_box_all text-center building-btn">
+                            <button type="button" id="access_property_submit_btn" class="btn arrow_btn_box">
+                                <img src="~/Content/images/submit_next_btn.png" alt="next arrow">
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ask for order service Modal -->
+<div class="modal fade modal_sub_user" id="order_service_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal_max modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="box_body">
+                    <button type="button" id="close_order_service" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            @if (TempData["Properties"] != null)
+                            {
+                                var properties = (IEnumerable<SelectListItem>)TempData["Properties"];
+
+                                <label class="property_label">@Resource.select_property</label>
+                                @Html.ListBoxFor(m => m.Properties, new SelectList(properties, "Value", "Text")
+             , new { @style = "width:100%;", @class = "listbox", @id = "Properties" })
+                            }
+                        </div>
+                    </div>
+
+                    <p class="login_sub_user">@Resource.ask_about_adding_service?</p>
+                    <div class="form-group submit_box_all text-center building-btn">
+                        <button type="button" id="order_service_btn" class="btn arrow_btn_box">
+                            <img src="~/Content/images/submit_next_btn.png" alt="next arrow">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Home Video 1 Modal -->
+<div class="modal fade" id="homeVideo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content video_close_box">
+            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="pauseVid1()">X</button>
+            <div class="embed-responsive embed-responsive-16by9">
+                <video class="embed-responsive-item embed-responsive embed-responsive-16by9" id="Video1" controls="controls" poster="~/Content/images/image_2021_05_20T07_07_11_261Z.png">
+                    <source src="~/Content/Videos/Broom%20Video%201%20(1).mp4" type="video/mp4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" type="video/mp4">
+                    <object type="application/x-shockwave-flash" data="https://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="353" height="190">
+                        <param name="movie" value="https://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
+                        <param name="allowFullScreen" value="true">		<param name="wmode" value="transparent">
+                        <param name="flashVars" value="config={'playlist':['http%3A%2F%2Fwww.gossettmktg.com%2Fvideo%2Fdangot.png',{'url':'http%3A%2F%2Fwww.gossettmktg.com%2Fvideo%2Fdangot.mp4','autoPlay':false}]}">
+                        <img alt="Big Buck Bunny" src="~/Content/images/image_2021_05_20T07_07_11_261Z.png" width="353" height="190" title="No video playback capabilities, please download the video below">
+                    </object>
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Home Video 2 Modal -->
+<div class="modal fade" id="homeVideo_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content video_close_box">
+            <button type="button" class="btn btn-default" data-dismiss="modal" onclick="pauseVid2()">X</button>
+            <div class="embed-responsive embed-responsive-16by9">
+                <video class="embed-responsive-item embed-responsive embed-responsive-16by9" id="Video2" controls="controls" poster="~/Content/images/image_2021_05_20T07_07_11_261Z.png">
+                    <source src="~/Content/Videos/Broom%20Video%202%20(1)%20(1).mp4" type="video/mp4" type="video/mp4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" type="video/mp4">
+                    <object type="application/x-shockwave-flash" data="https://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" width="353" height="190">
+                        <param name="movie" value="https://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
+                        <param name="allowFullScreen" value="true">		<param name="wmode" value="transparent">
+                        <param name="flashVars" value="config={'playlist':['http%3A%2F%2Fwww.gossettmktg.com%2Fvideo%2Fdangot.png',{'url':'http%3A%2F%2Fwww.gossettmktg.com%2Fvideo%2Fdangot.mp4','autoPlay':false}]}">
+                        <img alt="Big Buck Bunny" src="~/Content/images/image_2021_05_20T07_07_11_261Z.png" width="353" height="190" title="No video playback capabilities, please download the video below">
+                    </object>
+                </video>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+<script src="http://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js" type="text/javascript"></script>
+
+
+<script>
+
+    $('.listbox').multiselect({
+        includeSelectAllOption: true
+    });
+
+    $("#order_service_btn").click(function () {
+        var getProperties = $("#Properties").val();
+
+        if (getProperties.length > 0) {
+            var blkstr = [];
+            $.each(getProperties, function (idx2, val2) {
+                var str = val2;
+                blkstr.push(str);
+            });
+            var propertyId = blkstr.join(",");
+
+            window.location.href = "/Order/CategoryList?propertyId=" + propertyId;
+        }
+        else {
+            alert("@Resource.select_property");
+        }
+    });
+
+    function RedirectSubServices(name, id, propertyId) {
+        if (!propertyId) propertyId = 0;
+        window.location.href ="@Url.Action("SubCategoryList", "Order")" + "?id=" + id + "&Name=" +
+        encodeURIComponent(name) + "&propertyId=" + propertyId;
+    }
+
+    function AddMultipleProperties() {
+        $("#add_multiple_property_modal").modal('show');
+    }
+
+    var propertyId;
+    function loadAccessCodeModal(item) {
+        var getId = $(item).attr('id');
+        var getClass = $(item).attr('class');
+        $("#building_code").val(getId);
+        $("#access_property").val(getClass);
+        $('#access-code-modal').modal('show');
+        propertyId = $(item).parent().attr('id');
+    }
+
+    $("#access_property_submit_btn").click(function () {
+        $.ajax({
+            url: "@Url.Action("EditAccessCodeDetails", "Property")",
+            data: {
+                propertyID: propertyId,
+                 buildingCode: $("#building_code").val(),
+                 accessToProperty: $("#access_property").val(),
+             },
+            dataType: "json",
+            type: "POST",
+            error: function () {
+                // alert(" An error occurred.");
+            },
+             success: function (data) {
+                 //alert(data);
+                 window.location.reload();
+            }
+        });
+    });
+
+    function pauseVid1()
+    {
+        var vid = document.getElementById("Video1");
+        vid.pause();
+    }
+    function pauseVid2() {
+        var vid = document.getElementById("Video2");
+        vid.pause();
+    }
+
+
+</script>
+
+

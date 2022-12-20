@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c545445cfa3a4f58a7fe15c7b9224596" Name="Diagram1">
+        <EntityTypeShape EntityType="BellboyModel.AboutU" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.Card" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.Category" Width="1.5" PointX="0.75" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.ChannelManager" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.CheckRequest" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.City" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.ContactU" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.Country" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.DocumentJob" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.GreetingMessage" Width="1.5" PointX="7.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.IncomeSource" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.Inventory" Width="1.5" PointX="8.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.JobInventory" Width="1.5" PointX="11" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.JobRequest" Width="1.5" PointX="3" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.JobRequestCheckList" Width="1.5" PointX="5.25" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.JobRequestPropertyService" Width="1.5" PointX="8.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.JobRequestQuoteDetail" Width="1.5" PointX="7.5" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.JobRequestQuoteType" Width="1.5" PointX="5.25" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.JobRequestRefImage" Width="1.5" PointX="5.25" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.JobRequestSubSubCategory" Width="1.5" PointX="11" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.Location" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.MeetingSchedulRequest" Width="1.5" PointX="9.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.MonthInvoice" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.MonthInvoiceService" Width="1.5" PointX="5.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.Notification" Width="1.5" PointX="3" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.OccupiedProvider" Width="1.5" PointX="8" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.Offer" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.PrivacyPolicy" Width="1.5" PointX="11.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.Property" Width="1.5" PointX="3" PointY="37.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.PropertyJobRequest" Width="1.5" PointX="5.25" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.PropertyReport" Width="1.5" PointX="5.25" PointY="42.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.PropertyVisit" Width="1.5" PointX="11.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.Question" Width="1.5" PointX="11.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.RejectJobRequest" Width="1.5" PointX="8.25" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.Reservation" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.ServiceAutoPrice" Width="1.5" PointX="5.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.ServicePriceChangeRequest" Width="1.5" PointX="13.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.ServiceQuote" Width="1.5" PointX="8.25" PointY="40.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.Setting" Width="1.5" PointX="7.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.SubCategory" Width="1.5" PointX="0.75" PointY="45.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.SubSubCategory" Width="1.5" PointX="0.75" PointY="51.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.SubUserRequest" Width="1.5" PointX="11" PointY="35.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblAddInventoryRequest" Width="1.5" PointX="13.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblAddServiceRequest" Width="1.5" PointX="10.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblAskForService" Width="1.5" PointX="12.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblCategoryShift" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblEditJobRequest" Width="1.5" PointX="14.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblGrantAccess" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblGrantProperty" Width="1.5" PointX="5.25" PointY="39.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblMessage" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblMessageType" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblMission" Width="1.5" PointX="15.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblPropertyImage" Width="1.5" PointX="15.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblProviderAvailableTime" Width="1.5" PointX="3" PointY="54.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblProviderScheduleByDate" Width="1.5" PointX="15.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblSavedChecklist" Width="1.5" PointX="5.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblSavedChecklistDetail" Width="1.5" PointX="16.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.tblVisitor" Width="1.5" PointX="16.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.TermsCondition" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.Testimonial" Width="1.5" PointX="17.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.User" Width="1.5" PointX="0.75" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.UserChannelManager" Width="1.5" PointX="17.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.UserChannelManagerSetting" Width="1.5" PointX="13.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.UserChat" Width="1.5" PointX="3" PointY="59.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.UserJobReview" Width="1.5" PointX="11" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.UserReview" Width="1.5" PointX="3" PointY="67.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.UserSubCategory" Width="1.5" PointX="3" PointY="33.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BellboyModel.WorkerQuestion" Width="1.5" PointX="18.75" PointY="11.75" IsExpanded="true" />
+        <AssociationConnector Association="BellboyModel.FK_Card_UserID" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobReques__Categ__6DCC4D03" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobReques__Categ__6EC0713C" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__SubCatego__CatId__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__SubUserRe__Servi__04AFB25B" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__SubUserRe__Servi__05A3D694" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__tblCatego__Categ__0880433F" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__tblCatego__Categ__09746778" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserSubCa__Cat" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK_ServiceQuotes_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__City__CountryId__5F7E2DAC" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__City__CountryId__607251E5" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobInvent__Inven__6166761E" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobInvent__Inven__625A9A57" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobInvent__JobRe__634EBE90" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobInvent__JobRe__6442E2C9" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobReques__JobRe__65370702" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobReques__JobRe__662B2B3B" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobReques__JobRe__690797E6" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobReques__JobRe__69FBBC1F" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__PropertyJ__JobRe__7A3223E8" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__PropertyJ__JobRe__7B264821" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__RejectJob__JobRe__625A9A57" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK_JobRequest_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.fk_JobRequestRefImagesJobRequestId" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobReques__JobRe__6FB49575" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobReques__JobRe__70A8B9AE" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__OccupiedP__JobPr__756D6ECB" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__OccupiedP__JobPr__76619304" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserJobRe__JobRe__18B6AB08" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserJobRe__JobRe__19AACF41" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobReques__Quote__671F4F74" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobReques__Quote__681373AD" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobReques__UserI__6AEFE058" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__JobReques__UserI__6BE40491" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__Notificat__FromU__719CDDE7" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__Notificat__FromU__72910220" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__Notificat__ToUse__73852659" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__Notificat__ToUse__74794A92" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__OccupiedP__Provi__7755B73D" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__OccupiedP__Provi__7849DB76" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__PropertyJ__Prope__7C1A6C5A" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__PropertyJ__Prope__7D0E9093" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__PropertyReport__Prop" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__tblGrantP__Prope__0D44F85C" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__tblGrantP__Prope__0E391C95" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK_ServiceQuotes_Property" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.fk_user_property" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__RejectJob__UserI__7EF6D905" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__RejectJob__UserI__7FEAFD3E" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK_ServiceQuotes_SubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK_ServiceQuotes_User" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__SubSubCat__SubCa__29221CFB" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserSubCa__SubCa__5E8A0973" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserSubCa__SubSu__5D95E53A" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__SubUserRe__Paren__02C769E9" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__SubUserRe__Paren__03BB8E22" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__SubUserRe__SubUs__0697FACD" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__SubUserRe__SubUs__078C1F06" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK_tblCategoryShifts_tblCategoryShifts" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__tblGrantP__Grant__0B5CAFEA" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__tblGrantP__Grant__0C50D423" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__tblMessag__MsgTy__0F2D40CE" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__tblMessag__MsgTy__10216507" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__tblProvid__provi__1209AD79" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__tblProvid__provi__4C6B5938" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserChat__FromUs__12FDD1B2" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserChat__FromUs__13F1F5EB" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserChat__ToUser__14E61A24" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserChat__ToUser__15DA3E5D" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserJobRe__Custo__16CE6296" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserJobRe__Custo__17C286CF" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserJobRe__ToUse__1A9EF37A" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserJobRe__ToUse__1B9317B3" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserRevie__Custo__1C873BEC" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserRevie__Custo__1D7B6025" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserRevie__ToUse__1E6F845E" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserRevie__ToUse__1F63A897" ManuallyRouted="false" />
+        <AssociationConnector Association="BellboyModel.FK__UserSubCa__UserI__22401542" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BellboyModel.LaundryRequest" Width="1.5" PointX="16.375" PointY="18.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

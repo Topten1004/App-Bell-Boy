@@ -1,0 +1,33 @@
+﻿
+@using BroomService.Resources
+<section id="about_page_main" class="about_page_box">
+    <div class="container">
+        <h3>Welcome to Bell Boy....</h3>
+        @if (TempData["ErrorMsg"] != null)
+        {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMsg"]
+            </div>
+        }
+        else
+        {
+        <div class="row">
+            <div class="col-md-8 align-self-center">
+                <div class="about_points">
+                    <h5>@Resource.dear @ViewBag.Username</h5>
+                    <p>
+                        @Resource.email_verified_sucess
+                    </p>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</section>
+
+
+<script>
+    function HomeButtonClick() {
+        window.location.href = "/Account/Login";
+    }
+</script>

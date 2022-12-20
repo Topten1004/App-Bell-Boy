@@ -1,0 +1,122 @@
+﻿@using BroomService.Resources;
+@model List<BroomService.Models.Inventory>
+
+@if (Model != null)
+{
+    <div class="col-12">
+            <div class="form-group">
+                <label class="property_label">@Resource.select_property</label>
+                <div class="custom_input">
+                    @Html.DropDownList("Properties",null,
+                Resource.select_property,
+                new { @class = "property" })
+                    <br />
+                </div>
+            </div>
+        </div>
+
+if (Model.Count > 0)
+{
+    for (int i = 0; i < Model.Count; i++)
+    {
+            <div class="add_inventory_box d-flex mb-4">
+
+                <div class="imventory_image">
+                    @if (Model[i].Image != null)
+                    {
+                        <img src="https://app.broomservice.co.il/Images/Category/@Model[i].Image">
+
+                    }
+                    else
+                    {
+                        <img src="~/Content/images/image_placeholder.jpg">
+                    }
+                </div>
+                <div id="@Model[i].Name" class="imventory_details d-flex justify-content-between align-items-center">
+                    <div class="servies_details align-self-center">
+                        <h4>@Model[i].Name</h4>
+                        @if (Model[i].Price != null)
+                        {
+                            <p class="service_price number_count">
+                                <img src="~/Content/images/currency_symbol.png">@Model[i].Price
+                            </p>
+                        }
+                    </div>
+
+                    <div class="invenry_quantity" id="@Model[i].InventoryId">
+                        <div class="add_values" id="@Model[i].Price">
+                            <button type="button" class="minus" id="minus_quantity">
+                            <i class="fas fa-minus" aria-hidden="true"></i></button>
+                            <input type="text" name="inventory_quantity" readonly
+                                   id="inventory_quantity"  value="0">
+                            <button type="button" class="plus" id="plus_quantity">
+                                <i class="fas fa-plus" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+}
+
+
+    <div class="invntory_value_main mt-5 d-flex justify-content-between">
+        <p>@Resource.total_added_inventory_cost</p>
+        <p class="total"></p>
+    </div>
+
+
+<script>
+    var totalVal = 0;
+    var inventoryId = new Array();
+    $(".add_inventory_box #plus_quantity").click(function () {
+        var getText = $(this).parent().find('input[type="text"]').val();
+        getText = parseInt(getText) + 1;
+        $(this).parent().find('input[type="text"]').val(getText);
+        var getPrice = $(this).parent().attr('id');
+        totalVal = parseInt(totalVal) + parseInt(getPrice);
+        $(".total").text(totalVal);
+
+        var getId = $(this).parent().parent().attr('id');
+        var inventoryName = $(this).parent().parent().parent().attr('id');
+        if (inventoryId.length > 0) {
+            for (var i = 0; i < inventoryId.length; i++) {
+                if (inventoryId[i].Id != getId) {
+                    inventoryId.push({ Id: getId, Qty: getText, Name: inventoryName });
+                }
+                else {
+                    inventoryId = $.grep(inventoryId, function (value) {
+                        return value.Id != getId;
+                    });
+                    inventoryId.push({ Id: getId, Qty: getText, Name: inventoryName });
+                }
+            }
+        }
+        else {
+            inventoryId.push({ Id: getId, Qty: getText, Name: inventoryName });
+        }
+    });
+
+    $(".add_inventory_box #minus_quantity").click(function () {
+        var getText = $(this).parent().find('input[type="text"]').val();
+        if (getText >= 1) {
+            getText = parseInt(getText) - 1;
+        }
+        $(this).parent().find('input[type="text"]').val(getText);
+        var getPrice = $(this).parent().attr('id');
+        totalVal = parseInt(totalVal) - parseInt(getPrice);
+        $(".total").text(totalVal);
+        
+        var getId = $(this).parent().parent().attr('id');
+        var inventoryName = $(this).parent().parent().parent().attr('id');
+
+            inventoryId = $.grep(inventoryId, function (value) {
+                return value.Id != getId;
+            });
+        inventoryId.push({ Id: getId, Qty: getText, Name: inventoryName });
+    });
+</script>
+
+    
+

@@ -1,0 +1,37 @@
+﻿@using BroomService.Resources
+@model BroomService.Models.AboutU
+
+<section id="about_page_main" class="about_page_box">
+    <div class="container">
+        <h2>@Resource.about_broom_service</h2>
+        <p class="heading">@Resource.explore_service_provider <span>@Resource.israel</span></p>
+        <div class="row">
+            <div class="col-md-4 align-self-center">
+                <div class="professoinials_clientts mb-4">
+                    <div class="d-flex d-md-block d-lg-flex">
+                        <img src="~/Content/images/professonial_service.png" alt="">
+                        <div class="about_service_details">
+                            <h2 class="number_count">50+</h2>
+                            <p>@Resource.professional_services</p>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="d-flex d-md-block d-lg-flex">
+                        <img src="~/Content/images/happy_clients.png" alt="">
+                        <div class="about_service_details">
+                            <h2 class="number_count">100+</h2>
+                            <p>@Resource.happy_clients</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 align-self-center">
+                <div class="about_points">                   
+                    <ul>
+                        <li>@Html.Raw(Model.Text)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,401 @@
+﻿@model BroomService.ViewModels.JobRequestViewModel
+@using BroomService.Resources
+
+<section id="bookings">
+    <div class="container">
+        <div class="property-details-main">
+            <h3>@Resource.bookings_details</h3>
+        </div>
+        <div class="row">
+            <div class="col-12 mt-5 d-flex justify-content-end">
+                @if (Request.Cookies["Login"] != null)
+                {
+                    if (Request.Cookies["Login"].Values["UserType"] != "7")
+                    {
+                        if (Model.RequestSupervisior != true)
+                        {
+                            <button type="submit" class="btn mr-3 btn-success" id="btn_meeting">
+                                <i class="fas fa-check-circle mr-2"></i> Request Supervisor to Visit Property
+                            </button>
+                        }
+                        <button type="submit" class="btn mr-3 btn-danger" id="btn_cancel" onclick="CancelJob(@Model.Id)">
+                            <i class="fas fa-times mr-2"></i> Cancel Job
+                        </button>
+                        <a href="@Url.Action("EditJobRequest","Order",new {JobReqId = Model.Id})" class="btn mr-3 btn-danger"><i class="fas fa-edit mr-2"></i> Edit Job</a>
+                    }
+                    else
+                    {
+                        //Checkin checkout code here
+                        <button type="submit" class="btn mr-3 btn-success" id="btn_checkIn">
+                            <i class="fas fa-check-circle mr-2"></i> CheckIn
+                        </button>
+                        <button type="submit" class="btn mr-3 btn-primary" id="btn_checkOut">
+                            <i class="fas fa-check-circle mr-2"></i> CheckOut
+                        </button>
+                    }
+                }
+            </div>
+            <div class="col-12">
+                <div class="d-flex">
+                    <div class="booking_detail_box_main col-md-6">
+                        @if (@Model.JobData != null)
+                        {
+                            if (Model.JobData.Count > 0)
+                            {
+                                for (int i = 0; i < Model.JobData.Count; i++)
+                                {
+                                    <div class="row booking_bordr">
+                                        <div class="col-md-12">
+                                            <div class="d-flex align-items-center">
+                                                <div class="booked_services_box">
+                                                    <h4 class="mb-2">@Model.JobData[i].PropertyName</h4>
+                                                    <div class="booking-address">
+                                                        <img src="~/Content/images/address.png" class="mr-2" alt="Address">
+                                                        @Model.JobData[i].PropertyAddress
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                    <div class="col-md-6 mt-5 ml-3">
+                        <h4 class="booke_service_date_time_heading">@Resource.start_date_time</h4>
+                        <div class="booking-date-time d-xl-flex">
+                            <div class="date my-2">
+                                <img src="~/Content/images/date.png" class="mr-2" alt="Date">
+                                @Model.JobData[0].JobDateTime.Value.ToString("ddd, MMMM dd, yyyy")
+                            </div>
+                            <div class="time ml-3 my-2">
+                                <img src="~/Content/images/time.png" class="mr-2" alt="Time">
+                                @Model.JobData[0].JobDateTime.Value.ToString("hh:mm tt")
+                            </div>
+                        </div>
+                        <h6 class="booke_service_date_time_heading">@Resource.job_description</h6>
+                        <div class="booking_main_descriptoin mt-2">
+                            <p>@Model.JobDesc</p>
+                        </div>
+                        @if (Request.Cookies["Login"] != null)
+                        {
+                            if (Request.Cookies["Login"].Values["UserType"] != "7")
+                            {
+                                <h6 class="booke_service_date_time_heading" style="margin-bottom: 10px">@Resource.worker_detail</h6>
+                                <div class="booking_main_descriptoin mt-2">
+                                    @if (Model.JobData[0].WorkerImage != null)
+                                    {
+                                        <img src="/Images/User/@Model.JobData[0].WorkerImage" style="width: 70px;height: 60px;border-radius: 18px;"><b>&nbsp;@Model.JobData[0].WorkerName</b>
+                                    }
+                                    else
+                                    {
+                                        <img src="/Content/images/image_placeholder.jpg" style="width: 70px;height: 60px;border-radius: 18px;"><b>&nbsp;@Model.JobData[0].WorkerName</b>
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="booking_content">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h4 class="booke_service_date_time_heading mb-2">@Resource.booked_services</h4>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="list_review_services">
+                                        <div class="d-block d-sm-flex d-md-block d-lg-flex">
+                                            <div class="service_image_main">
+                                                <div class="service_image_box">
+                                                    <img class="image_unselect" src="~/Content/images/services/professonial_service_un_select.png" alt="service">
+                                                    <img class="image_select" src="~/Content/images/services/professonial_service_select.png" alt="service">
+                                                </div>
+                                            </div>
+                                            <div class="servies_details align-self-center">
+                                                <h3>@Model.JobData[0].SubServiceName</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*CheckList*@
+                    @if (Model.CheckListDetails != null)
+                    {
+
+                        if (Model.CheckListDetails.Count > 0)
+                        {
+                            <h6 class="d-flex align-items-center booke_service_date_time_heading">@Resource.checklists <span data-toggle="modal" data-target="#edit_checklist" class="ml-4 invent-edit-btn"><i class="fa fa-edit"></i></span></h6>
+                            for (int i = 0; i < Model.CheckListDetails.Count; i++)
+                            {
+                                <div class="booking_main_descriptoin">
+                                    <ul style="display:inline-flex">
+                                        @if (Model.CheckListDetails[i].IsDone != true)
+                                        {
+                                            <li><img src="~/Images/JobRequest/ic_uncheked.png" class="mr-2" alt="Address" style="width:15px;height:15px"></li>
+                                        }
+                                        else
+                                        {
+                                            <li><img src="~/Images/JobRequest/ic_checked.png" class="mr-2" alt="Address" style="width:15px;height:15px"></li>
+                                        }
+                                        <li>@Model.CheckListDetails[i].TaskDetail</li>
+                                    </ul>
+                                </div>
+                            }
+                        }
+                    }
+
+                    @if (Model.ReferenceImages != null)
+                    {
+                        if (Model.ReferenceImages.Count > 0)
+                        {
+                            <h6 class="booke_service_date_time_heading">@Resource.images_videos</h6>
+                            <div class="row">
+                                @for (int i = 0; i < Model.ReferenceImages.Count; i++)
+                                {
+                                    <div class="col-md-4">
+                                        <div class="booked_images_video" data-toggle="modal" data-target="#booking_images">
+                                            <img src="~/Images/JobRequest/@Model.ReferenceImages[i].ImageUrl"
+                                                 class="img-fluid" alt="Image of property">
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Add/update CheckList Modal -->
+<div class="modal fade modal_sub_user" id="edit_checklist" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="checklist_property_main">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3 class="d-flex;">Edit CheckList  <span id="btnadd" title="Add new CheckList" class="invent-edit-btn ml-3"><i class="fa fa-plus"></i></span></h3>
+
+                    <div class="add_another_service_main">
+                        <div class="col-12">
+                            <div class="form-group">
+                                @if (Model.CheckListDetails != null)
+                                {
+
+                                    if (Model.CheckListDetails.Count > 0)
+                                    {
+                                        <ul id="ul_Checklist" class="add-invent">
+                                            @for (int i = 0; i < Model.CheckListDetails.Count; i++)
+                                            {
+                                                if (Model.CheckListDetails[i].IsDone != true)
+                                                {
+                                                    <li>
+                                                        <input type="checkbox" name="chkChecklist" value="@Model.CheckListDetails[i].Id" />
+                                                        <input type="text" name="TaskDetail" class="invent-input" value="@Model.CheckListDetails[i].TaskDetail" required />
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        <input type="checkbox" name="chkChecklist" value="@Model.CheckListDetails[i].Id" checked="checked" />
+                                                        <span name="TaskDetail">@Model.CheckListDetails[i].TaskDetail</span>
+                                                    </li>
+                                                }
+                                            }
+                                        </ul>
+                                    }
+                                }
+                            </div>
+                            <div class="form-group col-12 text-center">
+                                <input type="submit" id="btnSubmit" value="submit" class="invent-btn " />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="~/Content/multiselect.css" rel="stylesheet" type="text/css" />
+<script src="~/Content/js/multiselect.js" type="text/javascript"></script>
+<script>
+    $(document).ready(function(){
+
+        $("#btnadd").click(function(){
+            $("#ul_Checklist").append('<li><input type="checkbox" name="checkboxList" value="0" /> <input type="text" class="invent-input" name="TaskDetail" value="" /></li>');
+        });
+    });
+
+        $('#btnSubmit').click(function(){
+
+        var IsChecked=0;
+        var chkText=null;
+        var chkVal=0;
+        var CheckboxList = new Array();
+        var status = false;
+        $('#ul_Checklist input[name=TaskDetail]').each(function () {
+            if ($(this).val() == "") {
+                alert("CheckList value can't be null");
+                status = true;
+            }
+        });
+        if (status) {
+            //alert('status false');
+        }
+        else
+        {
+            $('#ul_Checklist input[type=checkbox]').each(function(i){
+
+                if($(this).prop("checked") == true)
+                {
+                    chkVal = $(this).val();
+                    IsChecked = 1;
+                    chkText = $(this).next('span[name=TaskDetail]').text()==""? $(this).next('input[name=TaskDetail]').val(): $(this).next('span[name=TaskDetail]').text();
+                }
+                else{
+                    chkVal = $(this).val();
+                    IsChecked = 0;
+                    chkText = $(this).next('span[name=TaskDetail]').text()==""? $(this).next('input[name=TaskDetail]').val(): $(this).next('span[name=TaskDetail]').text();
+                }
+
+                CheckboxList.push({
+                    Id: chkVal,
+                    IsDone: IsChecked,
+                    TaskDetail: chkText
+                });
+
+            });
+            // alert(JSON.stringify(CheckboxList));
+
+            $.ajax({
+                url:  "@Url.Action("EditCheckList", "Bookings")",
+                data: {
+                    data:JSON.stringify(CheckboxList),
+                    JobReqId: @Model.Id
+                } ,
+                type: 'POST',
+                success: function (data) {
+                    if (data) {
+                        window.location.reload();
+                    }
+                },
+                error: function () {
+                    alert("@Resource.some_error_occured");
+                },
+            });
+
+        }
+
+    });
+
+
+      $("#btn_meeting").click(function () {
+      var status = confirm("Do you want to send request to supervisor for visit property!");
+        if(status)
+        {
+            MeetingSchedule();
+        }
+    });
+
+
+    $("#btn_checkOut").click(function () {
+        $.ajax({
+            url: "@Url.Action("UpdateCheckout", "Bookings")",
+            data: { Id: @Model.Id },
+            type: "POST",
+            dataType: "json",
+            success: function (res) {
+                console.log(res);
+                if (res == true) {
+                    alert("Checkout Successfully!");
+                }
+                else {
+
+                    alert("Checkout UnSuccessfully!");
+                }
+            }
+        });
+    });
+
+    $("#btn_checkIn").click(function () {
+        $.ajax({
+            url: "@Url.Action("GetCheckInList", "Bookings")",
+            data: { Id: @Model.Id },
+            type: "GET",
+            dataType: "json",
+            success: function (res) {
+                var propertyLongitude = res.Longitude;
+                var propertyLatitude = res.Latitude;
+
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        sessionStorage.setItem("lat", position.coords.latitude);
+                        sessionStorage.setItem("long", position.coords.longitude);
+                    });
+                }
+                var suplat = sessionStorage.getItem("lat");
+                var suplong = sessionStorage.getItem("long");
+                //var suplat = 30.7;
+                //var suplong = 76.8;
+                var val = distance(propertyLatitude, propertyLongitude, suplat, suplong, 'K');
+                var dis = parseInt(val);
+                if (dis < 1) {
+                    alert("CheckIn Successfully!");
+                }
+                else {
+                    alert("CheckIn Failed! Location Doesn't Matched...");
+                }
+            }
+        });
+    });
+
+    function distance(lat1, lon1, lat2, lon2, unit) {
+
+        var radlat1 = Math.PI * lat1 / 180
+        var radlat2 = Math.PI * lat2 / 180
+        var theta = lon1 - lon2
+        var radtheta = Math.PI * theta / 180
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        if (dist > 1) {
+            dist = 1;
+        }
+        dist = Math.acos(dist)
+        dist = dist * 180 / Math.PI
+        dist = dist * 60 * 1.1515
+        if (unit == "K") { dist = dist * 1.609344 }
+        if (unit == "N") { dist = dist * 0.8684 }
+        return dist;
+    }
+
+    function CancelJob(jobRequestId) {
+        var status = confirm("Are you sure want to cancel JobRequest!");
+        if (status) {
+            // get the href
+            window.location.href = `/Bookings/MakeCancelRefund?jobRequestId=${jobRequestId}`;
+        }
+    }
+
+
+    function MeetingSchedule() {
+        $.ajax({
+            url: "@Url.Action("MeetingSchedule", "Bookings")",
+            data: {
+                Id: @Model.Id
+             },
+            type: "POST",
+            error: function () {
+                 alert(" An error occurred.");
+            },
+             success: function (data) {
+                 if(data)
+                    {
+                        alert("Request Send Successfully");
+                    }
+             }
+        });
+    }
+</script>

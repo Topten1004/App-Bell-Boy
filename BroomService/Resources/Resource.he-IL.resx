@@ -1,0 +1,2169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="about" xml:space="preserve">
+    <value>אודות</value>
+  </data>
+  <data name="about_us" xml:space="preserve">
+    <value>אודות</value>
+  </data>
+  <data name="accept" xml:space="preserve">
+    <value>אשר</value>
+  </data>
+  <data name="accepted_broom_service_request" xml:space="preserve">
+    <value>אישרת את הצעת המחיר של ברום סרוויס</value>
+  </data>
+  <data name="accepted_your_quote_price" xml:space="preserve">
+    <value>אשר את הצעת המחיר שנשלחה</value>
+  </data>
+  <data name="access_property_details" xml:space="preserve">
+    <value>גישה לנכס (פרט)</value>
+  </data>
+  <data name="access_property_options" xml:space="preserve">
+    <value>לדוגמא, שומר/"קי בוקס"/מפתח/ אחר</value>
+  </data>
+  <data name="account_deactivate_message" xml:space="preserve">
+    <value>החשבון שלך הוקפא אנא צור קשר עם התמיכה</value>
+  </data>
+  <data name="action" xml:space="preserve">
+    <value>פעולה</value>
+  </data>
+  <data name="active" xml:space="preserve">
+    <value>פעיל</value>
+  </data>
+  <data name="address" xml:space="preserve">
+    <value>כתובת</value>
+  </data>
+  <data name="add_job_request" xml:space="preserve">
+    <value>הזמן שירות</value>
+  </data>
+  <data name="add_property" xml:space="preserve">
+    <value>הוסף נכס</value>
+  </data>
+  <data name="add_property_heading" xml:space="preserve">
+    <value>תוכל להוסיף כמה נכסים שתרצה</value>
+  </data>
+  <data name="add_service" xml:space="preserve">
+    <value>הוספת שירות</value>
+  </data>
+  <data name="add_service_provider" xml:space="preserve">
+    <value>הוספת נותן שירות</value>
+  </data>
+  <data name="add_sub_service" xml:space="preserve">
+    <value>הוספת תת שירות</value>
+  </data>
+  <data name="add_sub_sub_service" xml:space="preserve">
+    <value>הוספת תת תת שירות</value>
+  </data>
+  <data name="add_testimonial" xml:space="preserve">
+    <value>להוסיף המלצה</value>
+  </data>
+  <data name="add_text_validation" xml:space="preserve">
+    <value>אנא הוסף טקסט לצ'קליסט</value>
+  </data>
+  <data name="add_worker" xml:space="preserve">
+    <value>הוספת עובד</value>
+  </data>
+  <data name="ago" xml:space="preserve">
+    <value>לפני</value>
+  </data>
+  <data name="agree_with" xml:space="preserve">
+    <value>אני מסכים</value>
+  </data>
+  <data name="already_have_an_account" xml:space="preserve">
+    <value>כבר יש לך חשבון?</value>
+  </data>
+  <data name="already_paid" xml:space="preserve">
+    <value>שולם</value>
+  </data>
+  <data name="already_reject_job" xml:space="preserve">
+    <value>דחית את הצעת העבודה</value>
+  </data>
+  <data name="aparment_number" xml:space="preserve">
+    <value>מספר דירה</value>
+  </data>
+  <data name="apartment" xml:space="preserve">
+    <value>דירה</value>
+  </data>
+  <data name="apartment_number" xml:space="preserve">
+    <value>מספר דירה</value>
+  </data>
+  <data name="assigned_worker" xml:space="preserve">
+    <value>עובד ששובץ</value>
+  </data>
+  <data name="assign_job" xml:space="preserve">
+    <value>שבץ עובד</value>
+  </data>
+  <data name="assign_worker" xml:space="preserve">
+    <value>שבץ עובד</value>
+  </data>
+  <data name="at" xml:space="preserve">
+    <value>ב</value>
+  </data>
+  <data name="back" xml:space="preserve">
+    <value>חזור</value>
+  </data>
+  <data name="back_to_home" xml:space="preserve">
+    <value>חזרה לדף הבית</value>
+  </data>
+  <data name="back_to_profile" xml:space="preserve">
+    <value>חזרה לפרופיל</value>
+  </data>
+  <data name="balcony" xml:space="preserve">
+    <value>מרפסת</value>
+  </data>
+  <data name="bed_size" xml:space="preserve">
+    <value>מיטת קינג</value>
+  </data>
+  <data name="bookings_list" xml:space="preserve">
+    <value>גודל מיטה</value>
+  </data>
+  <data name="broom_email_address" xml:space="preserve">
+    <value>office@broomservice.co.il</value>
+  </data>
+  <data name="broom_service" xml:space="preserve">
+    <value>ברום סרוויס</value>
+  </data>
+  <data name="broom_service_added" xml:space="preserve">
+    <value>ברום סרוויס הוסיף אותך בתור</value>
+  </data>
+  <data name="broom_service_has_rejected" xml:space="preserve">
+    <value>ברום סרוויס דחה את ה</value>
+  </data>
+  <data name="bs_crew" xml:space="preserve">
+    <value>Crew Bs</value>
+  </data>
+  <data name="building_code" xml:space="preserve">
+    <value>קוד בניין</value>
+  </data>
+  <data name="by_cash" xml:space="preserve">
+    <value>במזומן</value>
+  </data>
+  <data name="by_cheque" xml:space="preserve">
+    <value>בהמחאה</value>
+  </data>
+  <data name="by_credit_card" xml:space="preserve">
+    <value>בכרטיס אשראי</value>
+  </data>
+  <data name="by_money_transfer" xml:space="preserve">
+    <value>העברה בנקאית</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>בטל</value>
+  </data>
+  <data name="cancelled" xml:space="preserve">
+    <value>בוטל</value>
+  </data>
+  <data name="card_number" xml:space="preserve">
+    <value>מספר כרטיס</value>
+  </data>
+  <data name="change_language" xml:space="preserve">
+    <value>בחר שפה</value>
+  </data>
+  <data name="change_password" xml:space="preserve">
+    <value>שנה סיסמא</value>
+  </data>
+  <data name="chat" xml:space="preserve">
+    <value>צ'אט</value>
+  </data>
+  <data name="chat_list" xml:space="preserve">
+    <value>רשימת צ'אט</value>
+  </data>
+  <data name="chat_listing" xml:space="preserve">
+    <value>רישום צ'אט</value>
+  </data>
+  <data name="check_list" xml:space="preserve">
+    <value>צ'ק ליסט</value>
+  </data>
+  <data name="choose_atleaset_one_subcategory" xml:space="preserve">
+    <value>בחר שירות</value>
+  </data>
+  <data name="choose_payment_method" xml:space="preserve">
+    <value>בחר את שיטת התשלום</value>
+  </data>
+  <data name="choose_service" xml:space="preserve">
+    <value>בחר שירות</value>
+  </data>
+  <data name="choose_sub_service" xml:space="preserve">
+    <value>בחר שירות</value>
+  </data>
+  <data name="choose_sub_sub_service" xml:space="preserve">
+    <value>בחר שירות</value>
+  </data>
+  <data name="choose_worker" xml:space="preserve">
+    <value>בחר עובד</value>
+  </data>
+  <data name="city" xml:space="preserve">
+    <value>עיר</value>
+  </data>
+  <data name="click_on_link" xml:space="preserve">
+    <value>אנא לחץ על הקישור למטה כדי לאמת את האימייל שלך</value>
+  </data>
+  <data name="client_price" xml:space="preserve">
+    <value>מחיר הלקוח</value>
+  </data>
+  <data name="client_rating" xml:space="preserve">
+    <value>דירוג לקוח</value>
+  </data>
+  <data name="comment" xml:space="preserve">
+    <value>תגובה</value>
+  </data>
+  <data name="completed" xml:space="preserve">
+    <value>בוצע</value>
+  </data>
+  <data name="completed_date_time" xml:space="preserve">
+    <value>הושלם תאריך ושעה</value>
+  </data>
+  <data name="complete_job" xml:space="preserve">
+    <value>סיים עבודה</value>
+  </data>
+  <data name="confirmation_email_sent" xml:space="preserve">
+    <value>בדוק את האימייל שלך, שלחנו אישור לדואר האלקטרוני הרשום שלך.</value>
+  </data>
+  <data name="confirm_password" xml:space="preserve">
+    <value>אשר סיסמה</value>
+  </data>
+  <data name="contact_us" xml:space="preserve">
+    <value>צור קשר</value>
+  </data>
+  <data name="country" xml:space="preserve">
+    <value>מדינה</value>
+  </data>
+  <data name="created_date" xml:space="preserve">
+    <value>נוצר בתאריך</value>
+  </data>
+  <data name="create_account" xml:space="preserve">
+    <value>צור חשבון</value>
+  </data>
+  <data name="create_account_as_customer" xml:space="preserve">
+    <value>צור חשבון</value>
+  </data>
+  <data name="customers" xml:space="preserve">
+    <value>לקוחות</value>
+  </data>
+  <data name="customer_details" xml:space="preserve">
+    <value>פרטי לקוח</value>
+  </data>
+  <data name="customer_details_info" xml:space="preserve">
+    <value>מידע פרטי לקוח</value>
+  </data>
+  <data name="customer_name" xml:space="preserve">
+    <value>שם לקוח</value>
+  </data>
+  <data name="customer_not_exists" xml:space="preserve">
+    <value>הלקוח אינו קיים.</value>
+  </data>
+  <data name="cvv" xml:space="preserve">
+    <value>CVV</value>
+  </data>
+  <data name="dashboard" xml:space="preserve">
+    <value>לוח בקרה</value>
+  </data>
+  <data name="day" xml:space="preserve">
+    <value>יום</value>
+  </data>
+  <data name="days" xml:space="preserve">
+    <value>ימים</value>
+  </data>
+  <data name="deactive" xml:space="preserve">
+    <value>נטרל</value>
+  </data>
+  <data name="dear" xml:space="preserve">
+    <value>יקר</value>
+  </data>
+  <data name="delete" xml:space="preserve">
+    <value>מחק</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>תיאור</value>
+  </data>
+  <data name="details" xml:space="preserve">
+    <value>פרטים</value>
+  </data>
+  <data name="dishwasher" xml:space="preserve">
+    <value>מדיח כלים</value>
+  </data>
+  <data name="display_order" xml:space="preserve">
+    <value>סדר תצוגה</value>
+  </data>
+  <data name="done" xml:space="preserve">
+    <value>בוצע</value>
+  </data>
+  <data name="dont_have_account" xml:space="preserve">
+    <value>אין לך חשבון?</value>
+  </data>
+  <data name="doorman" xml:space="preserve">
+    <value>שומר</value>
+  </data>
+  <data name="duplex" xml:space="preserve">
+    <value>דופלקס</value>
+  </data>
+  <data name="duvet_size" xml:space="preserve">
+    <value>גודל כריות נוי</value>
+  </data>
+  <data name="edit" xml:space="preserve">
+    <value>עריכה</value>
+  </data>
+  <data name="edit_profile" xml:space="preserve">
+    <value>ערוך פרופיל</value>
+  </data>
+  <data name="edit_property" xml:space="preserve">
+    <value>ערוך נכס</value>
+  </data>
+  <data name="edit_service" xml:space="preserve">
+    <value>ערוך שירות</value>
+  </data>
+  <data name="edit_service_provider" xml:space="preserve">
+    <value>ערוך נותן שירות</value>
+  </data>
+  <data name="edit_sub_service" xml:space="preserve">
+    <value>ערוך תת שירות</value>
+  </data>
+  <data name="edit_sub_sub_service" xml:space="preserve">
+    <value>ערוך תת תת שירות</value>
+  </data>
+  <data name="edit_worker" xml:space="preserve">
+    <value>ערוך עובד</value>
+  </data>
+  <data name="elevator" xml:space="preserve">
+    <value>מעלית</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>דוא"ל</value>
+  </data>
+  <data name="email_address" xml:space="preserve">
+    <value>כתובת דוא"ל</value>
+  </data>
+  <data name="email_already_exists" xml:space="preserve">
+    <value>האימייל כבר קיים.</value>
+  </data>
+  <data name="email_post" xml:space="preserve">
+    <value>דוא"ל:</value>
+  </data>
+  <data name="email_verified_sucess" xml:space="preserve">
+    <value>הדוא"ל שלך אומת בהצלחה.</value>
+  </data>
+  <data name="end_date" xml:space="preserve">
+    <value>תאריך סיום</value>
+  </data>
+  <data name="end_date_time" xml:space="preserve">
+    <value>תאריך וזמן סיום</value>
+  </data>
+  <data name="end_time" xml:space="preserve">
+    <value>שעת סיום</value>
+  </data>
+  <data name="end_timer" xml:space="preserve">
+    <value>סיים עבודה</value>
+  </data>
+  <data name="end_time_job_validation" xml:space="preserve">
+    <value>תאריך הסיום חייב להיות אחרי תאריך ההתחלה</value>
+  </data>
+  <data name="english" xml:space="preserve">
+    <value>אנגלית</value>
+  </data>
+  <data name="enteremail" xml:space="preserve">
+    <value>הזן דוא"ל</value>
+  </data>
+  <data name="enter_address" xml:space="preserve">
+    <value>הכנס כתובת</value>
+  </data>
+  <data name="enter_card_number" xml:space="preserve">
+    <value>הזן מספר כרטיס</value>
+  </data>
+  <data name="enter_confirm_password" xml:space="preserve">
+    <value>הזן ססמא לאישור</value>
+  </data>
+  <data name="enter_cvv" xml:space="preserve">
+    <value>הזן CVV</value>
+  </data>
+  <data name="enter_description" xml:space="preserve">
+    <value>כתוב פירוט</value>
+  </data>
+  <data name="enter_display_order" xml:space="preserve">
+    <value>סדר תצוגה</value>
+  </data>
+  <data name="enter_email" xml:space="preserve">
+    <value>הזן דוא"ל</value>
+  </data>
+  <data name="enter_expiry_date" xml:space="preserve">
+    <value>הזן תאריך תפוגה</value>
+  </data>
+  <data name="enter_first_name" xml:space="preserve">
+    <value>הזן שם פרטי</value>
+  </data>
+  <data name="enter_last_name" xml:space="preserve">
+    <value>הזן שם משפחה</value>
+  </data>
+  <data name="enter_message" xml:space="preserve">
+    <value>כתוב הודעה</value>
+  </data>
+  <data name="enter_name" xml:space="preserve">
+    <value>הכנס שם</value>
+  </data>
+  <data name="enter_new_password" xml:space="preserve">
+    <value>הכנס סיסמה חדשה</value>
+  </data>
+  <data name="enter_old_password" xml:space="preserve">
+    <value>הזן את הסיסמה הישנה</value>
+  </data>
+  <data name="enter_password" xml:space="preserve">
+    <value>הזן את הסיסמה</value>
+  </data>
+  <data name="enter_phone_number" xml:space="preserve">
+    <value>הכנס מספר טלפון</value>
+  </data>
+  <data name="enter_title" xml:space="preserve">
+    <value>הזן כותרת</value>
+  </data>
+  <data name="enter_work_for_checklist" xml:space="preserve">
+    <value>הוסף צ'קליסט</value>
+  </data>
+  <data name="error_occured" xml:space="preserve">
+    <value>אירע שגיאה !!</value>
+  </data>
+  <data name="error_requesting_password" xml:space="preserve">
+    <value>ארעה שגיאה בבקשת הסיסמא, כתובת הדוא"ל שלך לא קיים!</value>
+  </data>
+  <data name="expiration_date" xml:space="preserve">
+    <value>תאריך תפוגה</value>
+  </data>
+  <data name="file_extension_invalid" xml:space="preserve">
+    <value>סיומת קובץ לא חוקי - העלה רק jpg / png / jpeg / JPG / PNG / קובץ JPEG</value>
+  </data>
+  <data name="fill_required_records" xml:space="preserve">
+    <value>נא למלא את שדות החובה</value>
+  </data>
+  <data name="fill_requirements" xml:space="preserve">
+    <value>נדרש למלא</value>
+  </data>
+  <data name="first_name" xml:space="preserve">
+    <value>שם פרטי</value>
+  </data>
+  <data name="floor" xml:space="preserve">
+    <value>קומה</value>
+  </data>
+  <data name="floor_number" xml:space="preserve">
+    <value>מספר הקומה</value>
+  </data>
+  <data name="footer_text" xml:space="preserve">
+    <value>ברום סרוויס ל.מ בע"מ 2015. כל הזכויות שמורות.</value>
+  </data>
+  <data name="forgot_password_heading" xml:space="preserve">
+    <value>הזן את הדוא"ל שלך ואנו נשלח לך קישור לאיפוס הסיסמה.</value>
+  </data>
+  <data name="forgot_your_password" xml:space="preserve">
+    <value>שכחת ססמה</value>
+  </data>
+  <data name="for_workers" xml:space="preserve">
+    <value>לעובדים</value>
+  </data>
+  <data name="french" xml:space="preserve">
+    <value>צרפתית</value>
+  </data>
+  <data name="garden" xml:space="preserve">
+    <value>גן</value>
+  </data>
+  <data name="get_back_with_quote" xml:space="preserve">
+    <value>נחזור אליכם עם הצעת מחיר בקרוב.</value>
+  </data>
+  <data name="has_accepted_job_request" xml:space="preserve">
+    <value>קיבל את קריאתך</value>
+  </data>
+  <data name="has_assigned_job_to_you" xml:space="preserve">
+    <value>שיבץ אותך לעבודה</value>
+  </data>
+  <data name="has_completed_job_for" xml:space="preserve">
+    <value>השלים את העבודה עבור</value>
+  </data>
+  <data name="has_ended_timer_for" xml:space="preserve">
+    <value>סיים את הטיימר ל</value>
+  </data>
+  <data name="has_price" xml:space="preserve">
+    <value>יש מחיר</value>
+  </data>
+  <data name="has_sent_job_request" xml:space="preserve">
+    <value>שלח בקשה לשירות</value>
+  </data>
+  <data name="has_sent_quote_for" xml:space="preserve">
+    <value>שלח לך הצעת מחיר עבור</value>
+  </data>
+  <data name="has_started_timer_for" xml:space="preserve">
+    <value>החל טיימר עבור</value>
+  </data>
+  <data name="has_sub_sub_categories" xml:space="preserve">
+    <value>יש תת תת שירות</value>
+  </data>
+  <data name="header_title_text_one" xml:space="preserve">
+    <value>לראשונה בישראל, לחיות בבית ולהרגיש בבית מלון. שירות חדרים 5 כוכבים לבית שלך.</value>
+  </data>
+  <data name="header_title_text_two" xml:space="preserve">
+    <value>צור קשר לקבלת הצעה אטרקטיבית</value>
+  </data>
+  <data name="hebrew" xml:space="preserve">
+    <value>עברית</value>
+  </data>
+  <data name="hello" xml:space="preserve">
+    <value>שלום</value>
+  </data>
+  <data name="here" xml:space="preserve">
+    <value>כאן</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>דף הבית</value>
+  </data>
+  <data name="hour" xml:space="preserve">
+    <value>שעה</value>
+  </data>
+  <data name="hours" xml:space="preserve">
+    <value>שעות</value>
+  </data>
+  <data name="icon" xml:space="preserve">
+    <value>אייקון</value>
+  </data>
+  <data name="image" xml:space="preserve">
+    <value>תמונה</value>
+  </data>
+  <data name="info_update_success" xml:space="preserve">
+    <value>בוצע עדכון בהצלחה</value>
+  </data>
+  <data name="invalid_user" xml:space="preserve">
+    <value>משתמש שגוי.</value>
+  </data>
+  <data name="in_progress" xml:space="preserve">
+    <value>בתהליך</value>
+  </data>
+  <data name="in_there_portal" xml:space="preserve">
+    <value>בפורטל שלהם</value>
+  </data>
+  <data name="job_completed_date_time" xml:space="preserve">
+    <value>תאריך ושעה סיום העבודה</value>
+  </data>
+  <data name="job_complete_success" xml:space="preserve">
+    <value>העבודה הושלמה בהצלחה !!</value>
+  </data>
+  <data name="job_date_time" xml:space="preserve">
+    <value>תאריך ושעה תחילת עבודה</value>
+  </data>
+  <data name="job_details" xml:space="preserve">
+    <value>תיאור העבודה</value>
+  </data>
+  <data name="job_end_success" xml:space="preserve">
+    <value>העבודה הסתיימה בהצלחה !!</value>
+  </data>
+  <data name="job_not_exists" xml:space="preserve">
+    <value>השירות לא קיים</value>
+  </data>
+  <data name="job_rating" xml:space="preserve">
+    <value>דירוג השירות</value>
+  </data>
+  <data name="job_request" xml:space="preserve">
+    <value>הזמן שירות</value>
+  </data>
+  <data name="job_request_accept_success" xml:space="preserve">
+    <value>הזמנת השירות התקבלה בהצלחה</value>
+  </data>
+  <data name="job_request_add_success" xml:space="preserve">
+    <value>הזמנת השירות נוספה בהצלחה</value>
+  </data>
+  <data name="job_request_reject_success" xml:space="preserve">
+    <value>דחית את השירות</value>
+  </data>
+  <data name="job_started_success" xml:space="preserve">
+    <value>העבודה החלה בהצלחה</value>
+  </data>
+  <data name="job_successfully_assigned" xml:space="preserve">
+    <value>העבודה שובצה בהצלחה ל</value>
+  </data>
+  <data name="large" xml:space="preserve">
+    <value>גדול</value>
+  </data>
+  <data name="last_name" xml:space="preserve">
+    <value>שם משפחה</value>
+  </data>
+  <data name="location" xml:space="preserve">
+    <value>מיקום</value>
+  </data>
+  <data name="login_credentials" xml:space="preserve">
+    <value>פרטי ההתחברות של המשתמש שלך:</value>
+  </data>
+  <data name="login_to_admin_account" xml:space="preserve">
+    <value>כניסה לחשבון מנהל</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>התנתק</value>
+  </data>
+  <data name="log_in" xml:space="preserve">
+    <value>התחבר</value>
+  </data>
+  <data name="medium" xml:space="preserve">
+    <value>בינוני</value>
+  </data>
+  <data name="message" xml:space="preserve">
+    <value>הודעה</value>
+  </data>
+  <data name="minute" xml:space="preserve">
+    <value>דקה</value>
+  </data>
+  <data name="minutes" xml:space="preserve">
+    <value>דקות</value>
+  </data>
+  <data name="month" xml:space="preserve">
+    <value>חודש</value>
+  </data>
+  <data name="months" xml:space="preserve">
+    <value>חודשים</value>
+  </data>
+  <data name="my_bookings" xml:space="preserve">
+    <value>ההזמנות שלי</value>
+  </data>
+  <data name="my_properties" xml:space="preserve">
+    <value>הנכסים שלי</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>שם</value>
+  </data>
+  <data name="name_property" xml:space="preserve">
+    <value>שם נכס</value>
+  </data>
+  <data name="new_password" xml:space="preserve">
+    <value>סיסמה חדשה</value>
+  </data>
+  <data name="new_password_sent_success" xml:space="preserve">
+    <value>אנא בדוק את האימייל שלך, בקשתך לקבל סיסמא חדשה נשלחה בהצלחה!</value>
+  </data>
+  <data name="next" xml:space="preserve">
+    <value>הבא</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>לא</value>
+  </data>
+  <data name="notifications" xml:space="preserve">
+    <value>התראות</value>
+  </data>
+  <data name="no_customers" xml:space="preserve">
+    <value>מס לקוחות רשומים</value>
+  </data>
+  <data name="no_data_canceled_bookings" xml:space="preserve">
+    <value>אין לך הזמנות שבוטלו. הזמנות שיבוטלו בעתיד יופיעו כאן</value>
+  </data>
+  <data name="no_data_completed_bookings" xml:space="preserve">
+    <value>אין לך הזמנות שהושלמו. הזמנות שיושלמו בעתיד יופיעו כאן</value>
+  </data>
+  <data name="no_data_found" xml:space="preserve">
+    <value>לא נמצאו נתונים.</value>
+  </data>
+  <data name="no_data_heading" xml:space="preserve">
+    <value>מצטערים!!!</value>
+  </data>
+  <data name="no_data_notifications" xml:space="preserve">
+    <value>אין לך התראות. התראות שתקבל בעתיד יופיעו כאן</value>
+  </data>
+  <data name="no_data_pending_bookings" xml:space="preserve">
+    <value>אין לך הזמנות בהמתנה. הזמנות ממתינות בעתיד יופיעו כאן</value>
+  </data>
+  <data name="no_data_progress_booking" xml:space="preserve">
+    <value>אין לך הזמנות בתהליך. הזמנות שיהיו בתהליך בעתיד יופיעו כאן</value>
+  </data>
+  <data name="no_data_property" xml:space="preserve">
+    <value>אין לך נכסים. נכסים שתוסיף יופיעו כאן. הוסף נכס בלחצן "הוסף נכס"</value>
+  </data>
+  <data name="no_of_bed_rooms" xml:space="preserve">
+    <value>מס חדרי שינה</value>
+  </data>
+  <data name="no_of_toilets" xml:space="preserve">
+    <value>מס שירותים</value>
+  </data>
+  <data name="no_providers" xml:space="preserve">
+    <value>מס נותני שירותים</value>
+  </data>
+  <data name="no_text_box_to_remove" xml:space="preserve">
+    <value>אין עוד טקסט להסיר</value>
+  </data>
+  <data name="no_workers" xml:space="preserve">
+    <value>מס עובדים</value>
+  </data>
+  <data name="number_of_bathrooms" xml:space="preserve">
+    <value>מספר חדרי אמבטיה</value>
+  </data>
+  <data name="number_of_double_beds" xml:space="preserve">
+    <value>מספר מיטות זוגיות</value>
+  </data>
+  <data name="number_of_double_sopha_beds" xml:space="preserve">
+    <value>מספר ספות זוגיות</value>
+  </data>
+  <data name="number_of_duvets" xml:space="preserve">
+    <value>מספר כריות נוי</value>
+  </data>
+  <data name="number_of_pillows" xml:space="preserve">
+    <value>מספר כריות</value>
+  </data>
+  <data name="number_of_queen_beds" xml:space="preserve">
+    <value>מספר מיטות "Queen"</value>
+  </data>
+  <data name="number_of_single_beds" xml:space="preserve">
+    <value>מספר מיטות יחיד</value>
+  </data>
+  <data name="number_of_single_sopha_beds" xml:space="preserve">
+    <value>מספר ספות יחיד</value>
+  </data>
+  <data name="old_password" xml:space="preserve">
+    <value>סיסמה ישנה</value>
+  </data>
+  <data name="orders" xml:space="preserve">
+    <value>הזמנות</value>
+  </data>
+  <data name="order_detail" xml:space="preserve">
+    <value>פרטי הזמנה</value>
+  </data>
+  <data name="our_services" xml:space="preserve">
+    <value>השירותים שלנו</value>
+  </data>
+  <data name="parking" xml:space="preserve">
+    <value>חנייה</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>סיסמה</value>
+  </data>
+  <data name="password_changed_success" xml:space="preserve">
+    <value>הססמא שונתה בהצלחה</value>
+  </data>
+  <data name="password_confirm_mismatch" xml:space="preserve">
+    <value>הססמאות לא תואמות</value>
+  </data>
+  <data name="password_details" xml:space="preserve">
+    <value>פירוט סיסמה: - של ברום סרוויס</value>
+  </data>
+  <data name="password_post" xml:space="preserve">
+    <value>סיסמה:</value>
+  </data>
+  <data name="pay" xml:space="preserve">
+    <value>שלם</value>
+  </data>
+  <data name="payment_method" xml:space="preserve">
+    <value>אמצעי תשלום</value>
+  </data>
+  <data name="payment_success" xml:space="preserve">
+    <value>התשלום הושלם בהצלחה.</value>
+  </data>
+  <data name="pay_now" xml:space="preserve">
+    <value>שלם עכשיו</value>
+  </data>
+  <data name="pending" xml:space="preserve">
+    <value>ממתין ל</value>
+  </data>
+  <data name="penthouse" xml:space="preserve">
+    <value>פנטהאוז</value>
+  </data>
+  <data name="personal_details" xml:space="preserve">
+    <value>פרטים אישיים</value>
+  </data>
+  <data name="phone_number" xml:space="preserve">
+    <value>מספר טלפון</value>
+  </data>
+  <data name="please_choose_category" xml:space="preserve">
+    <value>בחר שירות</value>
+  </data>
+  <data name="please_complete_checklist" xml:space="preserve">
+    <value>השלם את רשימת המשימות</value>
+  </data>
+  <data name="please_enter_display_order" xml:space="preserve">
+    <value>הזן סדר תצורה</value>
+  </data>
+  <data name="please_enter_price_prcnt" xml:space="preserve">
+    <value>נא להזין% רווח</value>
+  </data>
+  <data name="please_enter_text" xml:space="preserve">
+    <value>נא להזין טקסט</value>
+  </data>
+  <data name="please_enter_valid_email" xml:space="preserve">
+    <value>הזן דוא"ל תקין</value>
+  </data>
+  <data name="please_enter_valid_old_password" xml:space="preserve">
+    <value>נא הזן את הססמא הישנה</value>
+  </data>
+  <data name="please_enter_valid_password" xml:space="preserve">
+    <value>הסיסמא שגויה</value>
+  </data>
+  <data name="please_select_end_date" xml:space="preserve">
+    <value>אנא בחר תאריך סיום</value>
+  </data>
+  <data name="please_select_start_date" xml:space="preserve">
+    <value>בחר תאריך התחלה</value>
+  </data>
+  <data name="pool" xml:space="preserve">
+    <value>מחיר</value>
+  </data>
+  <data name="price" xml:space="preserve">
+    <value>מחיר</value>
+  </data>
+  <data name="price_of_service" xml:space="preserve">
+    <value>מחיר השירות</value>
+  </data>
+  <data name="price_percnt" xml:space="preserve">
+    <value>מחיר %</value>
+  </data>
+  <data name="privacy_policy" xml:space="preserve">
+    <value>מדיניות פרטיות</value>
+  </data>
+  <data name="profile_update_success" xml:space="preserve">
+    <value>הפרופיל שלך עודכן בהצלחה</value>
+  </data>
+  <data name="properties" xml:space="preserve">
+    <value>נכסים</value>
+  </data>
+  <data name="properties_list" xml:space="preserve">
+    <value>רשימת נכסים</value>
+  </data>
+  <data name="property" xml:space="preserve">
+    <value>נכס</value>
+  </data>
+  <data name="property_access" xml:space="preserve">
+    <value>גישה לנכס</value>
+  </data>
+  <data name="property_add_success" xml:space="preserve">
+    <value>הנכס שלך נשמר בהצלחה</value>
+  </data>
+  <data name="property_details" xml:space="preserve">
+    <value>פרטי נכס</value>
+  </data>
+  <data name="property_not_exists" xml:space="preserve">
+    <value>הנכס אינו קיים.</value>
+  </data>
+  <data name="property_update_success" xml:space="preserve">
+    <value>הנכס עודכן בהצלחה</value>
+  </data>
+  <data name="quote" xml:space="preserve">
+    <value>הצעת מחיר</value>
+  </data>
+  <data name="quote_accepted_success" xml:space="preserve">
+    <value>הצעת מחיר אושרה</value>
+  </data>
+  <data name="quote_already_accepted" xml:space="preserve">
+    <value>הצעת המחיר כבר אושרה</value>
+  </data>
+  <data name="quote_already_rejected" xml:space="preserve">
+    <value>הצעת המחר כבר נדחתה</value>
+  </data>
+  <data name="quote_already_sent" xml:space="preserve">
+    <value>הצעת המחיר כבר נשלחה</value>
+  </data>
+  <data name="quote_canceled" xml:space="preserve">
+    <value>הצעת המחיר בוטלה</value>
+  </data>
+  <data name="quote_rejected_success" xml:space="preserve">
+    <value>הצעת המחיר נדחתה</value>
+  </data>
+  <data name="quote_sent" xml:space="preserve">
+    <value>נשלחה הצעת מחיר</value>
+  </data>
+  <data name="quote_sent_success" xml:space="preserve">
+    <value>הצעת המחיר נשלחה בהצלחה</value>
+  </data>
+  <data name="rating" xml:space="preserve">
+    <value>דירוג</value>
+  </data>
+  <data name="read_more" xml:space="preserve">
+    <value>קרא עוד</value>
+  </data>
+  <data name="recent_chat" xml:space="preserve">
+    <value>הצ'אט האחרון</value>
+  </data>
+  <data name="reference_images" xml:space="preserve">
+    <value>תמונות</value>
+  </data>
+  <data name="reject" xml:space="preserve">
+    <value>דחה</value>
+  </data>
+  <data name="rejected_broom_service_request" xml:space="preserve">
+    <value>דחית את הצעת המחיר שנשלחה</value>
+  </data>
+  <data name="rejected_your_quote_price" xml:space="preserve">
+    <value>דחה את הצעת המחיר שלך</value>
+  </data>
+  <data name="remember_me" xml:space="preserve">
+    <value>זכור אותי</value>
+  </data>
+  <data name="required_validation" xml:space="preserve">
+    <value>נא למלא שדה חובה</value>
+  </data>
+  <data name="review_success" xml:space="preserve">
+    <value>הדירוג שלך נשלח בהצלחה</value>
+  </data>
+  <data name="review_success_submit" xml:space="preserve">
+    <value>הדירוג שלך נשלח בהצלחה</value>
+  </data>
+  <data name="russian" xml:space="preserve">
+    <value>רוסית</value>
+  </data>
+  <data name="save_changes" xml:space="preserve">
+    <value>שמור שינויים</value>
+  </data>
+  <data name="second" xml:space="preserve">
+    <value>שניה</value>
+  </data>
+  <data name="seconds" xml:space="preserve">
+    <value>שניות</value>
+  </data>
+  <data name="select" xml:space="preserve">
+    <value>בחר</value>
+  </data>
+  <data name="select_duvet_size" xml:space="preserve">
+    <value>בחר גודל כריות נוי</value>
+  </data>
+  <data name="select_no_of_double_sopha_beds" xml:space="preserve">
+    <value>בחר את כמות הספות הזוגיות</value>
+  </data>
+  <data name="select_no_of_single_sopha_beds" xml:space="preserve">
+    <value>בחר את כמות הספות יחד</value>
+  </data>
+  <data name="select_number_of_double_beds" xml:space="preserve">
+    <value>בחר את כמות המיטות הזוגיות</value>
+  </data>
+  <data name="select_number_of_queen_beds" xml:space="preserve">
+    <value>בחר את כמות המיטות "Queen"</value>
+  </data>
+  <data name="select_number_of_single_beds" xml:space="preserve">
+    <value>בחר את כמות המיטות יחיד</value>
+  </data>
+  <data name="select_property" xml:space="preserve">
+    <value>בחר נכס</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>שלח</value>
+  </data>
+  <data name="send_quote" xml:space="preserve">
+    <value>שלח הצעת מחיר</value>
+  </data>
+  <data name="service" xml:space="preserve">
+    <value>שירות</value>
+  </data>
+  <data name="service_add_success" xml:space="preserve">
+    <value>שירות נוסף בהצלחה.</value>
+  </data>
+  <data name="service_list" xml:space="preserve">
+    <value>רשימת השירותים</value>
+  </data>
+  <data name="service_name_already_exists" xml:space="preserve">
+    <value>שם השירות כבר קיים.</value>
+  </data>
+  <data name="service_not_exists" xml:space="preserve">
+    <value>השירות אינו קיים.</value>
+  </data>
+  <data name="service_providers" xml:space="preserve">
+    <value>נותני שירותים</value>
+  </data>
+  <data name="service_provider_detail" xml:space="preserve">
+    <value>פרטי נותן שירות</value>
+  </data>
+  <data name="service_provider_job_rating" xml:space="preserve">
+    <value>דירוג עבודה נותן שירות</value>
+  </data>
+  <data name="service_provider_job_rating_validation" xml:space="preserve">
+    <value>דרג את העבודה של נותן השירות</value>
+  </data>
+  <data name="service_provider_list" xml:space="preserve">
+    <value>רשימת נותני שירותים</value>
+  </data>
+  <data name="service_provider_name" xml:space="preserve">
+    <value>שם נותן שירות</value>
+  </data>
+  <data name="service_provider_rating" xml:space="preserve">
+    <value>דירוג נותן שירות</value>
+  </data>
+  <data name="service_provider_rating_validation" xml:space="preserve">
+    <value>דרג את נותן השירות</value>
+  </data>
+  <data name="service_update_success" xml:space="preserve">
+    <value>השירות עודכן בהצלחה</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>הגדרות</value>
+  </data>
+  <data name="short_term_airbnb_apartment" xml:space="preserve">
+    <value>דירה לטווח קצר Airbnb</value>
+  </data>
+  <data name="size" xml:space="preserve">
+    <value>גודל במ"ר</value>
+  </data>
+  <data name="small" xml:space="preserve">
+    <value>קטן</value>
+  </data>
+  <data name="some_error_occured" xml:space="preserve">
+    <value>שגיאה, אנא נסה  שנית.</value>
+  </data>
+  <data name="start_date" xml:space="preserve">
+    <value>תאריך התחלה</value>
+  </data>
+  <data name="start_date_time" xml:space="preserve">
+    <value>זמן ותאריך התחלה</value>
+  </data>
+  <data name="start_job" xml:space="preserve">
+    <value>התחל עבודה</value>
+  </data>
+  <data name="start_time" xml:space="preserve">
+    <value>שעת התחלה</value>
+  </data>
+  <data name="start_timer" xml:space="preserve">
+    <value>התחל טיימר</value>
+  </data>
+  <data name="status" xml:space="preserve">
+    <value>מצב</value>
+  </data>
+  <data name="status_update_sucess" xml:space="preserve">
+    <value>ומעמדו עודכנו בהצלחה</value>
+  </data>
+  <data name="subcategory_not_exists" xml:space="preserve">
+    <value>תת שירות לא קיים</value>
+  </data>
+  <data name="submit" xml:space="preserve">
+    <value>שלח</value>
+  </data>
+  <data name="sub_category_not_exists" xml:space="preserve">
+    <value>שירות לא קיים</value>
+  </data>
+  <data name="sub_service" xml:space="preserve">
+    <value>שירות</value>
+  </data>
+  <data name="sub_service_add_success" xml:space="preserve">
+    <value>תת שירות נוסף בהצלחה</value>
+  </data>
+  <data name="sub_service_list" xml:space="preserve">
+    <value>רשימת תתי שירותים</value>
+  </data>
+  <data name="sub_service_name_already_exists" xml:space="preserve">
+    <value>תת שירות כבר קיים</value>
+  </data>
+  <data name="sub_service_update_success" xml:space="preserve">
+    <value>תת שירות נוסף בהצלחה</value>
+  </data>
+  <data name="sub_sub_service_add_success" xml:space="preserve">
+    <value>תת תת שירות נוסף בהצלחה</value>
+  </data>
+  <data name="sub_sub_service_list" xml:space="preserve">
+    <value>תת תת שירות</value>
+  </data>
+  <data name="sub_sub_service_name_already_exists" xml:space="preserve">
+    <value>תת תת שירות כבר קיים</value>
+  </data>
+  <data name="sub_sub_service_not_exists" xml:space="preserve">
+    <value>תת תת שירות לא קיים</value>
+  </data>
+  <data name="sub_sub_service_update_success" xml:space="preserve">
+    <value>תת תת שירות עודכן בהצלחה</value>
+  </data>
+  <data name="success" xml:space="preserve">
+    <value>בהצלחה</value>
+  </data>
+  <data name="s_job_request" xml:space="preserve">
+    <value>על בקשתו לשירות</value>
+  </data>
+  <data name="s_quote_request" xml:space="preserve">
+    <value>על בקשתו להצעת מחיר</value>
+  </data>
+  <data name="terms_conditins_job_request" xml:space="preserve">
+    <value>בבקשה קבל את התקנון ותנאי השימוש</value>
+  </data>
+  <data name="terms_conditions" xml:space="preserve">
+    <value>תנאי שימוש</value>
+  </data>
+  <data name="terms_conditions_validation" xml:space="preserve">
+    <value>עליך להסכים לתנאי השימוש</value>
+  </data>
+  <data name="testimonials" xml:space="preserve">
+    <value>המלצות</value>
+  </data>
+  <data name="testimonials_list" xml:space="preserve">
+    <value>רשימת המלצות</value>
+  </data>
+  <data name="testimonial_add_success" xml:space="preserve">
+    <value>המצלה נוספה בהצלחה</value>
+  </data>
+  <data name="testimonial_delete_success" xml:space="preserve">
+    <value>המצלצה נמחקה בהצלחה</value>
+  </data>
+  <data name="testimonial_not_exist" xml:space="preserve">
+    <value>ההמלצה לא קיימת</value>
+  </data>
+  <data name="testimonial_update_success" xml:space="preserve">
+    <value>ההמלצה עודכנה בהצלחה</value>
+  </data>
+  <data name="text_here" xml:space="preserve">
+    <value>טקסט כאן</value>
+  </data>
+  <data name="thank_you" xml:space="preserve">
+    <value>תודה.</value>
+  </data>
+  <data name="timer_already_ended" xml:space="preserve">
+    <value>טיימר כבר הסתיים.</value>
+  </data>
+  <data name="timer_already_started" xml:space="preserve">
+    <value>הטיימר כבר התחיל.</value>
+  </data>
+  <data name="timer_ended_success" xml:space="preserve">
+    <value>טיימר הוא הסתיים בהצלחה.</value>
+  </data>
+  <data name="timer_started_success" xml:space="preserve">
+    <value>טיימר הוא התחיל בהצלחה.</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>כותרת</value>
+  </data>
+  <data name="title_text" xml:space="preserve">
+    <value>ברום סרוויס</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>ל</value>
+  </data>
+  <data name="transaction_does_not_exists" xml:space="preserve">
+    <value>עסקה אינה קיימת.</value>
+  </data>
+  <data name="try_again" xml:space="preserve">
+    <value>נסה שוב</value>
+  </data>
+  <data name="type" xml:space="preserve">
+    <value>סוג</value>
+  </data>
+  <data name="type_of_property" xml:space="preserve">
+    <value>סוג הנכס:</value>
+  </data>
+  <data name="type_of_service" xml:space="preserve">
+    <value>סוג שירות</value>
+  </data>
+  <data name="update_payment_method" xml:space="preserve">
+    <value>עדכון אמצעי תשלום</value>
+  </data>
+  <data name="update_profile" xml:space="preserve">
+    <value>עדכן פרופיל</value>
+  </data>
+  <data name="users" xml:space="preserve">
+    <value>משתמש</value>
+  </data>
+  <data name="user_credentials" xml:space="preserve">
+    <value>אישורי משתמש: - ברום סרוויס</value>
+  </data>
+  <data name="user_detail_add_success" xml:space="preserve">
+    <value>פרטי משתמש נוספו בהצלחה.</value>
+  </data>
+  <data name="user_detail_update_success" xml:space="preserve">
+    <value>פרטי המשתמש עודכנו בהצלחה.</value>
+  </data>
+  <data name="user_logged_in_successfully" xml:space="preserve">
+    <value>המשתמש מחובר בהצלחה.</value>
+  </data>
+  <data name="user_name" xml:space="preserve">
+    <value>שם משתמש</value>
+  </data>
+  <data name="user_not_exist" xml:space="preserve">
+    <value>משתמש לא קיים</value>
+  </data>
+  <data name="verify_email" xml:space="preserve">
+    <value>וודא כתובת אימייל</value>
+  </data>
+  <data name="verify_email_before_signing" xml:space="preserve">
+    <value>נא בדוק את כתובת הדוא"ל שלך לפני שתיכנס.</value>
+  </data>
+  <data name="verify_email_broom_service" xml:space="preserve">
+    <value>ודא דוא"ל: - ברום סרוויס</value>
+  </data>
+  <data name="view_details" xml:space="preserve">
+    <value>הצג פרטים</value>
+  </data>
+  <data name="view_profile" xml:space="preserve">
+    <value>צפה בפרופיל</value>
+  </data>
+  <data name="villa" xml:space="preserve">
+    <value>וילה</value>
+  </data>
+  <data name="welcome" xml:space="preserve">
+    <value>ברוך הבא</value>
+  </data>
+  <data name="welcome_to" xml:space="preserve">
+    <value>ברוך הבא ל</value>
+  </data>
+  <data name="workers" xml:space="preserve">
+    <value>עובדים</value>
+  </data>
+  <data name="workers_list" xml:space="preserve">
+    <value>רשימת העובדים</value>
+  </data>
+  <data name="worker_assigned_message" xml:space="preserve">
+    <value>שובצת ע"י ברום סרוויס לעבודה</value>
+  </data>
+  <data name="worker_details" xml:space="preserve">
+    <value>פרטי העובד</value>
+  </data>
+  <data name="write_apt_number" xml:space="preserve">
+    <value>כתוב את מס הדירה</value>
+  </data>
+  <data name="write_building_code" xml:space="preserve">
+    <value>כתוב את קוד הבניין</value>
+  </data>
+  <data name="write_here" xml:space="preserve">
+    <value>כתוב כאן</value>
+  </data>
+  <data name="write_number_of_bathrooms" xml:space="preserve">
+    <value>מס חדרי אמבטיה</value>
+  </data>
+  <data name="write_number_of_bedrooms" xml:space="preserve">
+    <value>מס חדרי שינה</value>
+  </data>
+  <data name="write_number_of_duvets" xml:space="preserve">
+    <value>מס כריות נוי</value>
+  </data>
+  <data name="write_number_of_pillows" xml:space="preserve">
+    <value>מס כריות</value>
+  </data>
+  <data name="write_number_of_toilets" xml:space="preserve">
+    <value>מס שירותים</value>
+  </data>
+  <data name="write_size" xml:space="preserve">
+    <value>גודל במ"ר</value>
+  </data>
+  <data name="write_the_address" xml:space="preserve">
+    <value>הזן כתובת</value>
+  </data>
+  <data name="write_the_floor_number" xml:space="preserve">
+    <value>מס הקומה</value>
+  </data>
+  <data name="year" xml:space="preserve">
+    <value>שנה</value>
+  </data>
+  <data name="years" xml:space="preserve">
+    <value>שנים</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>כן</value>
+  </data>
+  <data name="your_login_credentials" xml:space="preserve">
+    <value>פרטי הכניסה שלך:</value>
+  </data>
+  <data name="you_have_accepted" xml:space="preserve">
+    <value>אישרת</value>
+  </data>
+  <data name="you_have_new_msg" xml:space="preserve">
+    <value>יש לך הודעה חדשה מ</value>
+  </data>
+  <data name="you_have_rejected" xml:space="preserve">
+    <value>דחית</value>
+  </data>
+  <data name="you_have_to_pay" xml:space="preserve">
+    <value>אתה צריך לשלם</value>
+  </data>
+  <data name="zip_code" xml:space="preserve">
+    <value>מיקוד</value>
+  </data>
+  <data name="forgot_password" xml:space="preserve">
+    <value>שכחת ססמא</value>
+  </data>
+  <data name="check_card_details" xml:space="preserve">
+    <value>אנא בדוק את פרטי הכרטיס שלך</value>
+  </data>
+  <data name="edit_codes" xml:space="preserve">
+    <value>ערוך פרטי קוד</value>
+  </data>
+  <data name="billing_address" xml:space="preserve">
+    <value>כתובת לחיוב</value>
+  </data>
+  <data name="company_name" xml:space="preserve">
+    <value>שם החברה</value>
+  </data>
+  <data name="coffee_machine" xml:space="preserve">
+    <value>מכונת קפה</value>
+  </data>
+  <data name="location_of_key" xml:space="preserve">
+    <value>מיקום המפתח</value>
+  </data>
+  <data name="number_of_bedrooms" xml:space="preserve">
+    <value>מספר חדרי שינה</value>
+  </data>
+  <data name="size_in_sqm" xml:space="preserve">
+    <value>גודל במ"ר</value>
+  </data>
+  <data name="wi_fi_login" xml:space="preserve">
+    <value>כניסה ל- Wi-Fi</value>
+  </data>
+  <data name="add_inventory" xml:space="preserve">
+    <value>הוסף מלאי</value>
+  </data>
+  <data name="edit_inventory" xml:space="preserve">
+    <value>ערוך מלאי</value>
+  </data>
+  <data name="edit_testimonial" xml:space="preserve">
+    <value>ערוך המלצה</value>
+  </data>
+  <data name="inventory_added_success" xml:space="preserve">
+    <value>מלאי נוסף בהצלחה</value>
+  </data>
+  <data name="inventory_update_success" xml:space="preserve">
+    <value>המלאי עודכן בהצלחה</value>
+  </data>
+  <data name="inventory_not_exist" xml:space="preserve">
+    <value>מלאי אינו קיים</value>
+  </data>
+  <data name="inventory_delete_success" xml:space="preserve">
+    <value>המלאי נמחק בהצלחה</value>
+  </data>
+  <data name="inventory" xml:space="preserve">
+    <value>מְלַאי</value>
+  </data>
+  <data name="stock" xml:space="preserve">
+    <value>המניה</value>
+  </data>
+  <data name="enter_price" xml:space="preserve">
+    <value>הזן מחיר</value>
+  </data>
+  <data name="enter_stock" xml:space="preserve">
+    <value>הזן מלאי</value>
+  </data>
+  <data name="delete_confirm_message" xml:space="preserve">
+    <value>אתה בטוח שאתה רוצה למחוק?</value>
+  </data>
+  <data name="available_time" xml:space="preserve">
+    <value>זמן פנוי</value>
+  </data>
+  <data name="add_available_time" xml:space="preserve">
+    <value>הוסף זמן פנוי</value>
+  </data>
+  <data name="available_time_details" xml:space="preserve">
+    <value>פרטי זמן זמינים</value>
+  </data>
+  <data name="from_time" xml:space="preserve">
+    <value>מזמן</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>להציל</value>
+  </data>
+  <data name="schedule_added_successfully" xml:space="preserve">
+    <value>לוח הזמנים נוסף בהצלחה.</value>
+  </data>
+  <data name="schedule_already_added" xml:space="preserve">
+    <value>לוח הזמנים כבר נוסף.</value>
+  </data>
+  <data name="select_day_of_week" xml:space="preserve">
+    <value>בחר יום בשבוע</value>
+  </data>
+  <data name="select_from_time" xml:space="preserve">
+    <value>בחר מהזמן</value>
+  </data>
+  <data name="select_to_time" xml:space="preserve">
+    <value>בחר לשעה</value>
+  </data>
+  <data name="to_time" xml:space="preserve">
+    <value>לזמן</value>
+  </data>
+  <data name="enter_shift_number" xml:space="preserve">
+    <value>הזן מספר משמרת</value>
+  </data>
+  <data name="no_of_shifts" xml:space="preserve">
+    <value>אין משמרות</value>
+  </data>
+  <data name="enter_time_for_service" xml:space="preserve">
+    <value>הזן זמן לשירות</value>
+  </data>
+  <data name="time_for_service" xml:space="preserve">
+    <value>זמן שירות</value>
+  </data>
+  <data name="choose_icon" xml:space="preserve">
+    <value>בחר אייקון</value>
+  </data>
+  <data name="choose_image" xml:space="preserve">
+    <value>בחר תמונה</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>לחפש</value>
+  </data>
+  <data name="messages_list" xml:space="preserve">
+    <value>רשימת הודעות</value>
+  </data>
+  <data name="data_added_success" xml:space="preserve">
+    <value>הנתונים נוספו בהצלחה</value>
+  </data>
+  <data name="add_data" xml:space="preserve">
+    <value>הוסף נתונים</value>
+  </data>
+  <data name="edit_data" xml:space="preserve">
+    <value>ערוך נתונים</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>תַאֲרִיך</value>
+  </data>
+  <data name="select_service" xml:space="preserve">
+    <value>בחר שירות</value>
+  </data>
+  <data name="no_orders" xml:space="preserve">
+    <value>מספר הזמנות</value>
+  </data>
+  <data name="no_services" xml:space="preserve">
+    <value>מספר השירותים</value>
+  </data>
+  <data name="no_supervisors" xml:space="preserve">
+    <value>מספר מפקחים</value>
+  </data>
+  <data name="send_offer" xml:space="preserve">
+    <value>שלח הצעה</value>
+  </data>
+  <data name="sub_sub_service" xml:space="preserve">
+    <value>שירות משנה משנה</value>
+  </data>
+  <data name="booked_timings" xml:space="preserve">
+    <value>תזמונים מוזמנים</value>
+  </data>
+  <data name="worker_name" xml:space="preserve">
+    <value>שם העובד</value>
+  </data>
+  <data name="by_day" xml:space="preserve">
+    <value>ביום</value>
+  </data>
+  <data name="by_week" xml:space="preserve">
+    <value>לפי שבוע</value>
+  </data>
+  <data name="none" xml:space="preserve">
+    <value>אף אחד</value>
+  </data>
+  <data name="services_offered_by_supervisors" xml:space="preserve">
+    <value>שירותים המוצעים על ידי מפקחים</value>
+  </data>
+  <data name="accepted" xml:space="preserve">
+    <value>מְקוּבָּל</value>
+  </data>
+  <data name="no_action" xml:space="preserve">
+    <value>שום פעולה</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>נִדחֶה</value>
+  </data>
+  <data name="supervisor_name" xml:space="preserve">
+    <value>שם המפקח</value>
+  </data>
+  <data name="client_status" xml:space="preserve">
+    <value>סטטוס לקוח</value>
+  </data>
+  <data name="fast_order" xml:space="preserve">
+    <value>הזמנה מהירה</value>
+  </data>
+  <data name="fast_order_name" xml:space="preserve">
+    <value>שם הזמנה מהירה</value>
+  </data>
+  <data name="services" xml:space="preserve">
+    <value>שירותים</value>
+  </data>
+  <data name="worker_assigned_jobs" xml:space="preserve">
+    <value>משרות שהוקצו לעובדים</value>
+  </data>
+  <data name="provider_assigned_jobs" xml:space="preserve">
+    <value>משרות שהוקצו לספק</value>
+  </data>
+  <data name="stand_by" xml:space="preserve">
+    <value>המתנה</value>
+  </data>
+  <data name="change_job_time" xml:space="preserve">
+    <value>שנה את זמן העבודה</value>
+  </data>
+  <data name="time_updated_successfully" xml:space="preserve">
+    <value>הזמן עודכן בהצלחה</value>
+  </data>
+  <data name="wait_for_confirmation" xml:space="preserve">
+    <value>בקשתך לשינוי זמן נוצרה. אנא המתן לאישור מנהל המערכת.</value>
+  </data>
+  <data name="have_some_problem" xml:space="preserve">
+    <value>אם יש לך בעיה כלשהי בנוגע לתפקיד, תוכל לדווח למנהל</value>
+  </data>
+  <data name="user_reviews" xml:space="preserve">
+    <value>ביקורות משתמשים</value>
+  </data>
+  <data name="review_from" xml:space="preserve">
+    <value>סקירה מאת</value>
+  </data>
+  <data name="review_to" xml:space="preserve">
+    <value>סקירה אל</value>
+  </data>
+  <data name="action_text" xml:space="preserve">
+    <value>פעולה</value>
+  </data>
+  <data name="cancel_request_job" xml:space="preserve">
+    <value>בטל את בקשת המשרה</value>
+  </data>
+  <data name="job_request_id" xml:space="preserve">
+    <value>מזהה בקשת עבודה</value>
+  </data>
+  <data name="property_name" xml:space="preserve">
+    <value>שם הנכס</value>
+  </data>
+  <data name="status_text" xml:space="preserve">
+    <value>סטָטוּס</value>
+  </data>
+  <data name="text" xml:space="preserve">
+    <value>טֶקסט</value>
+  </data>
+  <data name="user_id" xml:space="preserve">
+    <value>תעודת זהות של משתמש</value>
+  </data>
+  <data name="Cashflow" xml:space="preserve">
+    <value>תזרים מזומנים</value>
+  </data>
+  <data name="Meeting_Requests" xml:space="preserve">
+    <value>בקשות לפגישה</value>
+  </data>
+  <data name="Month_Invoice" xml:space="preserve">
+    <value>חשבון חודשי</value>
+  </data>
+  <data name="pending_income" xml:space="preserve">
+    <value>הכנסה ממתינה</value>
+  </data>
+  <data name="Price_Change_Requests" xml:space="preserve">
+    <value>בקשות לשינוי מחירים</value>
+  </data>
+  <data name="Questions" xml:space="preserve">
+    <value>שאלות</value>
+  </data>
+  <data name="send_sms" xml:space="preserve">
+    <value>שלח הודעת טקסט</value>
+  </data>
+  <data name="Supervisor_request" xml:space="preserve">
+    <value>בקשת המפקח</value>
+  </data>
+  <data name="total_income" xml:space="preserve">
+    <value>הכנסה כוללת</value>
+  </data>
+  <data name="total_outcome" xml:space="preserve">
+    <value>סה"כ תוצאות</value>
+  </data>
+  <data name="Change_Room_Price" xml:space="preserve">
+    <value>שינוי מחיר החדר</value>
+  </data>
+  <data name="Edit_Price" xml:space="preserve">
+    <value>ערוך מחיר</value>
+  </data>
+  <data name="Room_Price" xml:space="preserve">
+    <value>מחיר החדר</value>
+  </data>
+  <data name="greeting_messages" xml:space="preserve">
+    <value>הודעות ברכה</value>
+  </data>
+  <data name="user_status" xml:space="preserve">
+    <value>סטטוס משתמש</value>
+  </data>
+  <data name="about_broom_service" xml:space="preserve">
+    <value>אודות שירותי מטאטא</value>
+  </data>
+  <data name="about_us_heading" xml:space="preserve">
+    <value>מתן שירות מעולה ושביעות רצון לקוחות</value>
+  </data>
+  <data name="access_to_change_properties" xml:space="preserve">
+    <value>גישה למאפייני aad / שינוי</value>
+  </data>
+  <data name="access_to_edit_change_card" xml:space="preserve">
+    <value>גישה להוסיף / לשנות כרטיס</value>
+  </data>
+  <data name="access_to_order_change_services" xml:space="preserve">
+    <value>גישה לשירותי הזמנה / שינוי</value>
+  </data>
+  <data name="access_to_property" xml:space="preserve">
+    <value>גישה לנכס</value>
+  </data>
+  <data name="access_to_see_bill_price" xml:space="preserve">
+    <value>גישה לצפייה במידע / מחיר חיוב</value>
+  </data>
+  <data name="account_created_successfully" xml:space="preserve">
+    <value>חשבונך נוצר בהצלחה.</value>
+  </data>
+  <data name="add_another_service" xml:space="preserve">
+    <value>הוסף שירות נוסף</value>
+  </data>
+  <data name="add_billing_address" xml:space="preserve">
+    <value>הוסף כתובת לחיוב</value>
+  </data>
+  <data name="add_check_list" xml:space="preserve">
+    <value>הוסף רשימת ביקורת</value>
+  </data>
+  <data name="add_email" xml:space="preserve">
+    <value>הוסף אימייל</value>
+  </data>
+  <data name="add_manual" xml:space="preserve">
+    <value>הוסף מדריך</value>
+  </data>
+  <data name="add_manually" xml:space="preserve">
+    <value>להוסיף באופן ידני</value>
+  </data>
+  <data name="add_property_choose_single_option" xml:space="preserve">
+    <value>באפשרותך להוסיף נכס אחד בכל פעם בבחירת אפשרות זו</value>
+  </data>
+  <data name="add_property_multiple_option" xml:space="preserve">
+    <value>ייבא את כולם בבת אחת באמצעות גיליון אלקטרוני פשוט</value>
+  </data>
+  <data name="add_property_pms_option" xml:space="preserve">
+    <value>אתה יכול להשתמש באחת מהאינטגרציות שלנו עם כמה ממערכות ניהול הנכסים הטובות ביותר</value>
+  </data>
+  <data name="add_sub_user" xml:space="preserve">
+    <value>הוסף משתמש משנה</value>
+  </data>
+  <data name="amercianexpress" xml:space="preserve">
+    <value>AMERCIANEXPRESS</value>
+  </data>
+  <data name="android" xml:space="preserve">
+    <value>דְמוּי אָדָם</value>
+  </data>
+  <data name="apple" xml:space="preserve">
+    <value>תפוח עץ</value>
+  </data>
+  <data name="ask_about_adding_another_service" xml:space="preserve">
+    <value>האם ברצונך להזמין שירות אחר באותו זמן?</value>
+  </data>
+  <data name="ask_about_adding_checklist" xml:space="preserve">
+    <value>האם תרצה להוסיף רשימת ביקורת?</value>
+  </data>
+  <data name="ask_about_adding_service" xml:space="preserve">
+    <value>האם ברצונך להוסיף שירות בסיס רגיל עבור נכס זה</value>
+  </data>
+  <data name="ask_about_add_job_desc" xml:space="preserve">
+    <value>האם תרצה להוסיף תיאור משרה?</value>
+  </data>
+  <data name="ask_about_end_date_time" xml:space="preserve">
+    <value>האם תרצה להוסיף תאריך / שעה סיום?</value>
+  </data>
+  <data name="ask_about_image_video" xml:space="preserve">
+    <value>האם תרצה להוסיף תמונה / וידאו?</value>
+  </data>
+  <data name="ask_about_inventory_service" xml:space="preserve">
+    <value>האם ברצונך להזמין מלאי באותו זמן?</value>
+  </data>
+  <data name="ask_about_job_for_fast_order" xml:space="preserve">
+    <value>האם ברצונך לשמור את פרטי המשרה בהזמנה מהירה לקראת הבא? (כולל מלאי אם AirBNB).</value>
+  </data>
+  <data name="bathrooms" xml:space="preserve">
+    <value>חדרי אמבטיה</value>
+  </data>
+  <data name="bedrooms" xml:space="preserve">
+    <value>חדרי שינה</value>
+  </data>
+  <data name="before_a_job" xml:space="preserve">
+    <value>לפני עבודה</value>
+  </data>
+  <data name="best_regards" xml:space="preserve">
+    <value>כל טוב,</value>
+  </data>
+  <data name="booked_services" xml:space="preserve">
+    <value>שירותים מוזמנים</value>
+  </data>
+  <data name="bookings_details" xml:space="preserve">
+    <value>פרטי הזמנות</value>
+  </data>
+  <data name="call_us_now" xml:space="preserve">
+    <value>קרא לנו עכשיו</value>
+  </data>
+  <data name="cancel_job" xml:space="preserve">
+    <value>בטל את העבודה</value>
+  </data>
+  <data name="card_add_success" xml:space="preserve">
+    <value>כרטיס נוסף בהצלחה.</value>
+  </data>
+  <data name="change" xml:space="preserve">
+    <value>שינוי</value>
+  </data>
+  <data name="change_access" xml:space="preserve">
+    <value>שנה גישה</value>
+  </data>
+  <data name="checklists" xml:space="preserve">
+    <value>רשימות</value>
+  </data>
+  <data name="choose_from_list" xml:space="preserve">
+    <value>בחר מתוך רשימה</value>
+  </data>
+  <data name="choose_option_for_property" xml:space="preserve">
+    <value>בחר אחת מהאפשרויות שלמטה כדי להמשיך.</value>
+  </data>
+  <data name="choose_package" xml:space="preserve">
+    <value>בחר חבילה</value>
+  </data>
+  <data name="choose_services" xml:space="preserve">
+    <value>בחר שירותים</value>
+  </data>
+  <data name="coffe_machine" xml:space="preserve">
+    <value>מכונת קפה</value>
+  </data>
+  <data name="contact_us_for_offers" xml:space="preserve">
+    <value>צרו קשר לקבלת הצעה אטרקטיבית</value>
+  </data>
+  <data name="Credit_card" xml:space="preserve">
+    <value>כרטיס אשראי</value>
+  </data>
+  <data name="debit_credit_card" xml:space="preserve">
+    <value>כרטיס חיוב / אשראי</value>
+  </data>
+  <data name="delete_email_if_not_belong" xml:space="preserve">
+    <value>קיבלת דוא"ל זה מכיוון שקיבלת גישה לנכסים עבור חשבונך. אם דוא"ל זה אינו שייך לך, תוכל למחוק דוא"ל זה בבטחה.</value>
+  </data>
+  <data name="delete_msg" xml:space="preserve">
+    <value>אתה בטוח שאתה רוצה למחוק?</value>
+  </data>
+  <data name="dont_have_account_yet" xml:space="preserve">
+    <value>עדיין אין לך חשבון?</value>
+  </data>
+  <data name="double_beds" xml:space="preserve">
+    <value>מיטות זוגיות</value>
+  </data>
+  <data name="double_sofa_beds" xml:space="preserve">
+    <value>ספות מיטה זוגיות</value>
+  </data>
+  <data name="download_template" xml:space="preserve">
+    <value>הורד קובץ תבנית לנכס</value>
+  </data>
+  <data name="drop_message_for_contact" xml:space="preserve">
+    <value>שלח לנו הודעה וניצור איתך קשר בהקדם</value>
+  </data>
+  <data name="enter_apartment_number" xml:space="preserve">
+    <value>הזן מספר דירה</value>
+  </data>
+  <data name="enter_billing_address" xml:space="preserve">
+    <value>הזן כתובת חיוב</value>
+  </data>
+  <data name="enter_building_code" xml:space="preserve">
+    <value>הזן קוד בנייה</value>
+  </data>
+  <data name="enter_comment" xml:space="preserve">
+    <value>הזן תגובה</value>
+  </data>
+  <data name="enter_company_name" xml:space="preserve">
+    <value>הזן את שם החברה</value>
+  </data>
+  <data name="enter_emails_for_grant_access" xml:space="preserve">
+    <value>הזן דואר אלקטרוני ושלח גישה לנכס</value>
+  </data>
+  <data name="enter_fast_order_name" xml:space="preserve">
+    <value>הזן שם הזמנה מהירה *</value>
+  </data>
+  <data name="enter_floor" xml:space="preserve">
+    <value>היכנסו לקומה</value>
+  </data>
+  <data name="enter_full_address" xml:space="preserve">
+    <value>הזן כתובת מלאה</value>
+  </data>
+  <data name="enter_full_name" xml:space="preserve">
+    <value>הזן שם מלא</value>
+  </data>
+  <data name="enter_job_desc" xml:space="preserve">
+    <value>הזן תיאור משרה</value>
+  </data>
+  <data name="enter_location_of_key" xml:space="preserve">
+    <value>הזן מיקום מפתח</value>
+  </data>
+  <data name="enter_name_of_property" xml:space="preserve">
+    <value>הזן את שם הנכס</value>
+  </data>
+  <data name="enter_property_name_address" xml:space="preserve">
+    <value>הזן שם נכס וכתובת</value>
+  </data>
+  <data name="explore_service_provider" xml:space="preserve">
+    <value>ספק שירותי מומחה בכל רחבי הארץ</value>
+  </data>
+  <data name="full_address" xml:space="preserve">
+    <value>כתובת מלאה</value>
+  </data>
+  <data name="full_address_property" xml:space="preserve">
+    <value>כתובת נכס מלאה</value>
+  </data>
+  <data name="full_name" xml:space="preserve">
+    <value>שם מלא</value>
+  </data>
+  <data name="get_on" xml:space="preserve">
+    <value>המשך הלאה</value>
+  </data>
+  <data name="give_access_add_change_properties" xml:space="preserve">
+    <value>האם תרצה לתת גישה להוסיף / לשנות מאפיינים?</value>
+  </data>
+  <data name="give_access_order_change_services" xml:space="preserve">
+    <value>האם תרצה לתת גישה לשירותי הזמנה / שינוי?</value>
+  </data>
+  <data name="give_access_to_add_change_credit_card" xml:space="preserve">
+    <value>האם תרצה לתת גישה להוסיף / לשנות כרטיס אשראי?</value>
+  </data>
+  <data name="give_access_to_see_billing_info" xml:space="preserve">
+    <value>האם תרצה לתת גישה לראות מידע על חיובים ומחירים?</value>
+  </data>
+  <data name="granted_access_users" xml:space="preserve">
+    <value>משתמשי גישה מוענקים</value>
+  </data>
+  <data name="granted_access_user_list" xml:space="preserve">
+    <value>רשימת משתמשים המענקת גישה</value>
+  </data>
+  <data name="grant_access" xml:space="preserve">
+    <value>לאפשר גישה</value>
+  </data>
+  <data name="grant_access_heading" xml:space="preserve">
+    <value>סיפק לך גישה למאפייני החשבון הרשומים במערכת שלנו.</value>
+  </data>
+  <data name="grant_access_successfully" xml:space="preserve">
+    <value>הענק נכס גישה בהצלחה.</value>
+  </data>
+  <data name="grant_access_title" xml:space="preserve">
+    <value>ניתנה גישה לאפליקציה לשירות מטאטא</value>
+  </data>
+  <data name="happy_clients" xml:space="preserve">
+    <value>לקוחות מאושרים</value>
+  </data>
+  <data name="heading_one" xml:space="preserve">
+    <value>פעם ראשונה בישראל</value>
+  </data>
+  <data name="heading_two" xml:space="preserve">
+    <value>גר בבית והרגיש במלון שירות חדרים 5 כוכבים לבית שלך</value>
+  </data>
+  <data name="images_videos" xml:space="preserve">
+    <value>תמונות / סרטונים</value>
+  </data>
+  <data name="import_from_file" xml:space="preserve">
+    <value>ייבא מקובץ</value>
+  </data>
+  <data name="israel" xml:space="preserve">
+    <value>ישראל</value>
+  </data>
+  <data name="i_agree_with_all" xml:space="preserve">
+    <value>אני מסכים עם כולם</value>
+  </data>
+  <data name="job_description" xml:space="preserve">
+    <value>תיאור משרה</value>
+  </data>
+  <data name="job_request_detail" xml:space="preserve">
+    <value>פרטי בקשת משרה</value>
+  </data>
+  <data name="king_beds" xml:space="preserve">
+    <value>מיטות קינג</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>שפה</value>
+  </data>
+  <data name="lets_see_how_it_works" xml:space="preserve">
+    <value>בואו נראה איך זה עובד.</value>
+  </data>
+  <data name="lets_start_by_creating_account" xml:space="preserve">
+    <value>נתחיל ביצירת חשבון</value>
+  </data>
+  <data name="login" xml:space="preserve">
+    <value>התחברות</value>
+  </data>
+  <data name="login_now" xml:space="preserve">
+    <value>התחבר עכשיו</value>
+  </data>
+  <data name="login_Registration" xml:space="preserve">
+    <value>התחברות / הרשמה</value>
+  </data>
+  <data name="manage_access_code" xml:space="preserve">
+    <value>נהל קוד גישה</value>
+  </data>
+  <data name="manage_building_code" xml:space="preserve">
+    <value>נהל את קוד הבנייה</value>
+  </data>
+  <data name="message_sent_success" xml:space="preserve">
+    <value>הודעה נשלחה בהצלחה.</value>
+  </data>
+  <data name="more" xml:space="preserve">
+    <value>יותר</value>
+  </data>
+  <data name="my_fast_order" xml:space="preserve">
+    <value>הזמנות מהירות</value>
+  </data>
+  <data name="my_review" xml:space="preserve">
+    <value>הסקירה שלי</value>
+  </data>
+  <data name="name_of_property" xml:space="preserve">
+    <value>שם הנכס</value>
+  </data>
+  <data name="name_placeholder_contact" xml:space="preserve">
+    <value>סיסמה חדשה</value>
+  </data>
+  <data name="Offers" xml:space="preserve">
+    <value>הצעות</value>
+  </data>
+  <data name="offer_accepted_success" xml:space="preserve">
+    <value>ההצעה התקבלה בהצלחה</value>
+  </data>
+  <data name="offer_rejected_success" xml:space="preserve">
+    <value>ההצעה נדחתה בהצלחה</value>
+  </data>
+  <data name="once_in_month" xml:space="preserve">
+    <value>פעם בחודש</value>
+  </data>
+  <data name="only_excel_file_format" xml:space="preserve">
+    <value>מותר רק פורמט קובץ Excel</value>
+  </data>
+  <data name="order_service" xml:space="preserve">
+    <value>שירות הזמנות</value>
+  </data>
+  <data name="other_features" xml:space="preserve">
+    <value>תכונות אחרות</value>
+  </data>
+  <data name="our_specialization_area" xml:space="preserve">
+    <value>אזורי ההתמחות שלנו</value>
+  </data>
+  <data name="Payment_detail" xml:space="preserve">
+    <value>פרטי תשלום</value>
+  </data>
+  <data name="payment_info" xml:space="preserve">
+    <value>פרטי התשלום</value>
+  </data>
+  <data name="please_choose_excel_file" xml:space="preserve">
+    <value>אנא בחר קובץ Excel</value>
+  </data>
+  <data name="please_enter_fast_order_name" xml:space="preserve">
+    <value>אנא הזן את שם ההזמנה המהירה</value>
+  </data>
+  <data name="please_select_service" xml:space="preserve">
+    <value>אנא בחר שירות</value>
+  </data>
+  <data name="please_select_sub_service" xml:space="preserve">
+    <value>אנא בחר שירות משנה</value>
+  </data>
+  <data name="pms" xml:space="preserve">
+    <value>מערכת ניהול נכסים</value>
+  </data>
+  <data name="professional_services" xml:space="preserve">
+    <value>שירותים פרופסוניים</value>
+  </data>
+  <data name="profile" xml:space="preserve">
+    <value>פּרוֹפִיל</value>
+  </data>
+  <data name="property_heading" xml:space="preserve">
+    <value>אתה יכול לרשום כמה נכסים שאתה רוצה לכל סוג.</value>
+  </data>
+  <data name="property_listing" xml:space="preserve">
+    <value>רישום נכסים</value>
+  </data>
+  <data name="provided_with_grant_access" xml:space="preserve">
+    <value>ניתנה לך הגישה הבאה</value>
+  </data>
+  <data name="provide_professional_services" xml:space="preserve">
+    <value>מתן שירותים מקצועיים בכל Aronund The</value>
+  </data>
+  <data name="queen_double_beds" xml:space="preserve">
+    <value>מיטות קווין / זוגיות (160x200</value>
+  </data>
+  <data name="recommend_to_use_template" xml:space="preserve">
+    <value>אנו ממליצים להשתמש בתבנית שלנו כדי לייבא את הנכסים. זה קל ופשוט.</value>
+  </data>
+  <data name="register_now" xml:space="preserve">
+    <value>הירשם עכשיו</value>
+  </data>
+  <data name="repeat_service_in_future" xml:space="preserve">
+    <value>האם תרצה לחזור על אותו שירות בעתיד?</value>
+  </data>
+  <data name="review" xml:space="preserve">
+    <value>הסקירה שלי</value>
+  </data>
+  <data name="save_change_fast_order_name" xml:space="preserve">
+    <value>אתה יכול לשמור ולשנות שם הזמנה מהירה</value>
+  </data>
+  <data name="search_here" xml:space="preserve">
+    <value>חפש כאן ...</value>
+  </data>
+  <data name="search_properties" xml:space="preserve">
+    <value>מאפייני חיפוש ...</value>
+  </data>
+  <data name="select_type_of_property" xml:space="preserve">
+    <value>בחר סוג נכס</value>
+  </data>
+  <data name="send_message" xml:space="preserve">
+    <value>לשלוח הודעה</value>
+  </data>
+  <data name="service_name" xml:space="preserve">
+    <value>שם השירות</value>
+  </data>
+  <data name="short_term_apartment" xml:space="preserve">
+    <value>דירת Airbnb לטווח קצר</value>
+  </data>
+  <data name="short_term_propety_access_code" xml:space="preserve">
+    <value>האם ברצונך לשנות קוד או גישה בדרך כלל?</value>
+  </data>
+  <data name="single_beds" xml:space="preserve">
+    <value>מיטות יחיד</value>
+  </data>
+  <data name="single_sofa_beds" xml:space="preserve">
+    <value>ספות מיטה ליחיד</value>
+  </data>
+  <data name="sms_verification" xml:space="preserve">
+    <value>אימות SMS נשלח! </value>
+  </data>
+  <data name="sofa_beds" xml:space="preserve">
+    <value>ספות מיטה</value>
+  </data>
+  <data name="subject" xml:space="preserve">
+    <value>נושא</value>
+  </data>
+  <data name="sub_service_name" xml:space="preserve">
+    <value>שם שירות משנה</value>
+  </data>
+  <data name="sub_user_login_details" xml:space="preserve">
+    <value>פרטי כניסה של משתמשי משנה כמפורט להלן</value>
+  </data>
+  <data name="testimonial_heading" xml:space="preserve">
+    <value>אנשים אוהבים לדבר על שירותי מטאטא</value>
+  </data>
+  <data name="toilets" xml:space="preserve">
+    <value>שֵׁרוּתִים</value>
+  </data>
+  <data name="total_added_inventory_cost" xml:space="preserve">
+    <value>עלות מלאי כוללת נוספת</value>
+  </data>
+  <data name="to_proceed_your_account" xml:space="preserve">
+    <value>כדי להמשיך בחשבונך</value>
+  </data>
+  <data name="upload_excel_files_several_files" xml:space="preserve">
+    <value>העלה קבצי Excel עם מספר מאפיינים בבת אחת</value>
+  </data>
+  <data name="upload_file" xml:space="preserve">
+    <value>העלה קובץ</value>
+  </data>
+  <data name="upload_image_video" xml:space="preserve">
+    <value>העלה תמונה / וידאו של נכס</value>
+  </data>
+  <data name="view_all_properties" xml:space="preserve">
+    <value>צפה בכל הנכסים</value>
+  </data>
+  <data name="view_edit_profile_heading" xml:space="preserve">
+    <value>בדוק את פרטי הפרופיל שלך וערוך</value>
+  </data>
+  <data name="wi_fi_login_key" xml:space="preserve">
+    <value>מפתח כניסה ל- Wifi</value>
+  </data>
+  <data name="Click_to_select_card" xml:space="preserve">
+    <value>אנא לחץ על כרטיס האשראי שברצונך להיבחר</value>
+  </data>
+  <data name="Quotes" xml:space="preserve">
+    <value>ציטוטים</value>
+  </data>
+  <data name="Mission" xml:space="preserve">
+    <value>משימה</value>
+  </data>
+  <data name="edit_job_request" xml:space="preserve">
+    <value>ערוך את בקשת המשרה</value>
+  </data>
+  <data name="getExisting" xml:space="preserve">
+    <value>GetExisting</value>
+  </data>
+  <data name="service_requests" xml:space="preserve">
+    <value>בקשות שירות</value>
+  </data>
+  <data name="worker_detail" xml:space="preserve">
+    <value>פרטי עובד</value>
+  </data>
+  <data name="after_a_job" xml:space="preserve">
+    <value>אחרי עבודה</value>
+  </data>
+  <data name="sub_sub_service_name" xml:space="preserve">
+    <value>שם משנה של שירות משנה</value>
+  </data>
+</root>

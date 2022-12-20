@@ -1,0 +1,35 @@
+﻿@using BroomService.Resources;
+@model List<BroomService.ViewModels.JobRequestViewModel>
+@{
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+}
+
+
+<section id="bookings">
+    <div class="container" style="min-height:350px">
+        <div class="property-details-main">
+            <h3>Fast Order</h3>
+        </div>
+        <div class="row mt-5">
+            @if (Model.Count > 0)
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="col-8 col-md-8 col-lg-8 mb-5">
+                        <div class="property_list_slider_box">
+                            <div class="booking_content mt-4 mt-md-0">
+                                <h5 class="mb-2">@Model[i].FastOrderName</h5>
+                                <h6 class="mb-2">@Model[i].JobDesc</h6>
+                            </div>
+                            <div class="a_down">
+                                <a href="/Account/FastOrderdDetail?id=@Model[i].Id">
+                                    <img src="~/Content/images/down_arrow.png" alt="down arrow" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>

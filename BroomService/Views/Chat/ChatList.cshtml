@@ -1,0 +1,414 @@
+﻿@model BroomService.ViewModels.ChatViewModel.ChatListVM
+@using BroomService.Resources;
+@if (Model.chatUser != null)
+{
+    var chatImage = Model.chatUser[0].PicturePath;
+}
+@{ var data = ViewBag.lastMess;}
+<!-- Choose Service box -->
+@*<style>
+    .loader_chat {
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid blue;
+      border-right: 16px solid green;
+      border-bottom: 16px solid red;
+      width: 70px;
+      height: 70px;
+      position: absolute;
+        top: 0;
+        left: calc(50% - 35px);
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+
+    @@-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+            }
+    @@keyframes spin {
+                0% { transform: rotate(0deg); }
+            100% {
+                transform: rotate(360deg);
+            }
+    }
+        </style>*@
+
+<section id="chat_box" class="chat_main">
+    <div class="container">
+        <h2>@Resource.chat</h2>
+        @*<p>Lorem Ipsum is simply dummy text of the printing</p>*@
+        <div class="row">
+            <div class="col-md-5 col-lg-4">
+                <div class="chat_left_side">
+                    <div class="recent_chat_search d-flex">
+                        <input type="text" placeholder="@Resource.search_here" id="myInput" onkeyup="myFunction()" name="" class="form-control search_input">
+                        <button class="btn search_btn"><img src="~/Content/images/chat_search.png"></button>
+                    </div>
+                    @if (Request.Cookies["Login"] != null)
+                    {
+                        <input id="sessionInput" type="hidden" value='@Request.Cookies["Login"].Values["UserId"]' />
+                    }
+                    <ul id="myUL">
+                        @if (Model != null)
+                        {
+                            if (Model.chatUser != null)
+                            {
+                                if (Model.chatUser.Count > 0)
+                                {
+                                    for (int i = 0; i < Model.chatUser.Count; i++)
+                                    {
+                                        <li id="@Model.chatUser[i].UserId" data-id="@i" class="mySelectedUser" data-img="@Model.chatUser[i].PicturePath">
+                                            <div id="imgUser" class="chat_user_main">
+                                                @if (string.IsNullOrEmpty(Model.chatUser[i].PicturePath) || Model.chatUser[i].PicturePath.ToLower() == "null")
+                                                {
+                                                    <img src="/Content/images/logo_login.png">
+                                                }
+                                                else
+                                                {
+                                                    <img src="/Images/User/@Model.chatUser[i].PicturePath">
+                                                }
+                                                <div class="chat_user_details">
+                                                    <h3>@Model.chatUser[i].Name</h3>
+                                                    @if (data.Count > 0 && data != null)
+                                                    {
+                                                        <h6 id="rightMessage">@(data[i].UserMessage != null ? data[i].UserMessage : "")</h6>
+                                                        <h6 id="rightTime">@(data[i].UserMessageTime != null ? data[i].UserMessageTime : "")</h6>
+                                                    }
+                                                    <input id="userId" name="userId" type="hidden" value="@Model.chatUser[i].UserId" />
+                                                    <input id="PhoneNo" name="PhoneNo" type="hidden" value="@Model.chatUser[i].PhoneNumber" />
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+            @if (Model != null)
+            {
+                if (Model.chatUser != null)
+                {
+                    if (Model.chatUser.Count > 0)
+                    {
+                        <div class="col-md-7 col-lg-8">
+                            <div class="conversation" id="dvChat">
+                            </div>
+                            @*<div class="loader_chat" id="loader_chat"></div>*@
+                            <div class="message_send_box d-block d-sm-flex">
+                                <div class="type_send_box d-flex">
+                                    <input type="text" id="text" name="user_chat" class="form-control search_input">
+                                    <button class="btn search_btn" id="btnSend"><img src="~/Content/images/message_send.png" alt="clinic"></button>
+                                </div>
+                                <a href="https://api.whatsapp.com/send?phone= @Model.chatUser[0].PhoneNumber" id="btnWhatsapp" target="_blank" class="btn small_btn align-self-center"><img src="~/Content/images/whatsapp.png" alt="whatsapp" /></a>
+                                <a href="tel:@Model.chatUser[0].PhoneNumber" id="btncall" class="btn small_btn align-self-center"><img src="~/Content/images/call_normal.png" alt="whatsapp" /></a>
+                                @*<button type="button" class="btn small_btn align-self-center"><img src="~/Content/images/whatsapp.png" alt="whatsapp" /></button>*@
+                                @*<button type="button" class="btn small_btn align-self-center"><img src="~/Content/images/call_normal.png" alt="whatsapp" /></button>*@
+                            </div>
+                        </div>
+                    }
+                }
+            }
+
+        </div>
+    </div>
+</section>
+
+<script src="https://www.gstatic.com/firebasejs/5.5.2/firebase.js"></script>
+
+<script>
+    var currentUserId = $("#userId").val();
+    var liSelectedId;
+    var picName;
+    var countMessage;
+    var showMessage = 30;
+    var prevscrollTop = 0;
+    var prevscrollHeight = 0;
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAk37twU5CzSbzUGbu6k46DuQsbBJju7k0",
+        authDomain: "broomserviceapp-1cf32.firebaseio.com/",
+        databaseURL: "https://broomserviceapp-1cf32.firebaseio.com/",
+        projectId: "broomserviceapp-1cf32",
+        messagingSenderId: "679114337944"
+    };
+    firebase.initializeApp(config);
+
+    function myFunction() {
+        // Declare variables
+        var input, filter, ul, li, a, i, txtValue;
+        input = document.getElementById('myInput');
+        filter = input.value.toUpperCase();
+        ul = document.getElementById("myUL");
+        li = ul.getElementsByTagName('li');
+
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < li.length; i++) {
+            a = li[i].getElementsByTagName("div")[0];
+            txtValue = a.textContent || a.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                li[i].style.display = "";
+            } else {
+                li[i].style.display = "none";
+            }
+        }
+    }
+
+    jQuery('#text').on('input', function () {
+        if ($(this).val().length != 0)
+            $('#btnSend').attr('disabled', false);
+        else
+            $('#btnSend').attr('disabled', true);
+    });
+
+    $(document).ready(function () {
+        $('#btnSend').prop('disabled', true);
+
+
+        setInterval(function () {
+
+            var objDiv = document.getElementById("dvChat");
+           // alert(objDiv.scrollTop + " " + objDiv.scrollHeight + " ")
+            prevscrollHeight = objDiv.scrollHeight;
+           // prevscrollHeight = objDiv.scrollHeight;
+          //  prevscrollTop = objDiv.scrollTop;
+            if (objDiv != null) {
+                //objDiv.scrollTop = objDiv.scrollHeight;
+                if (objDiv.scrollTop < 400) {
+                     // alert("reload chat")
+                   //document.getElementById("loader_chat").style.display = "block";
+                     // alert("reload chat")
+                    showMessage += 30;
+                    bindChat();
+                    objDiv.scrollTop = objDiv.scrollHeight - prevscrollHeight;
+                }
+            }
+        }, 1000); // Wait 1000ms before running again
+
+        bindChat();
+        var objDiv = document.getElementById("dvChat");
+        if (objDiv != null) {
+            objDiv.scrollTop = objDiv.scrollHeight;
+        }
+        $('#myUL li:first-child').addClass('active');
+    });
+
+
+    $('#text').keypress(function (e) {
+        if (e.which == 13) {
+            if ($(this).val().length > 0) {
+                AddChatMessage();
+            }
+        }
+    });
+
+    function AddChatMessage() {
+        countMessage = 1;
+       // console.log("LISelect ID:" + liSelectedId);
+       // alert(liSelectedId + "CurrentID");
+        var text = $("#text").val();
+        var timestamp = firebase.database.ServerValue.TIMESTAMP;
+            $("#text").val('');
+        var date = new Date();
+        date = date.toLocaleString('en-GB');
+         var objDiv = document.getElementById("dvChat");
+         objDiv.scrollTop = objDiv.scrollHeight;
+        $('#btnSend').prop('disabled', true);
+
+
+        firebase.database().ref('Chat/' + $("#sessionInput").val() + '/' + currentUserId + '/').push().set({
+            'IsSender': true,
+            'TimeStamp': timestamp,
+            'RecieverUserId': currentUserId,
+            'SenderUserId': $("#sessionInput").val(),
+            'UserMessage': text,
+            'UserMessageTime': date,
+        });
+
+        firebase.database().ref('Chat/' + currentUserId + '/' + $("#sessionInput").val() + '/').push().set({
+            'IsSender': false,
+            'TimeStamp': timestamp,
+            'RecieverUserId': $("#sessionInput").val(),
+            'SenderUserId': currentUserId,
+            'UserMessage': text,
+            'UserMessageTime': date,
+        });
+
+        var indx = liSelectedId;
+        var newSelectedTag = document.querySelectorAll('#myUL li'),
+            tab = [];
+        var selectHTML = newSelectedTag[indx];
+       // console.log(selectHTML.outerHTML)
+        var idValue = selectHTML.innerText
+      //  console.log(idValue)
+        $('#myUL' + "#" + indx).remove();
+        $("#myUL").prepend(selectHTML);
+        countMessage = 0;
+        liSelectedId = 0;
+        //Right Message bind
+        $("#myUL li").each(function (index) {
+            $( this ).attr('data-id',index)
+   // console.log( index + ": " + $( this ).attr('data-id',index) );
+    });
+
+
+
+                    $.ajax({
+                        url: "@Url.Action("SendMessage", "Chat")",
+                        data: { "userId": currentUserId },
+            dataType: "json",
+            type: "Post",
+            error: function () {
+            },
+                        success: function (data) {
+                            if (data.status) {
+
+                            }
+                            else if (data == "Session Expired") {
+                                window.location.href = "/Account/Login";
+                            }
+                }
+                    });
+
+
+
+    }
+
+     $("#btnSend").click(function () {
+         AddChatMessage();
+    });
+
+    firebase.database().ref('/Chat').on('child_added', function (childSnapshot) {
+    });
+
+
+    function bindChat() {
+        var adminId = $("#sessionInput").val();
+        //console.log("AdminId: " + adminId)
+
+    //    $("#myUL li").each(function (index) {
+    //        alert  $(this).attr('id');
+        //});
+       // $("#loader_chat").show();
+
+        firebase.database().ref('/Chat').child(adminId).child(currentUserId).limitToLast(showMessage)
+            .on("value", function (snapshot) {
+                var html = '';
+                $('#dvChat').empty();
+                $('#btnSend').prop('disabled', true);
+                snapshot.forEach(function (childSnapshot) {
+                    var data = childSnapshot.val();
+                    if (data.IsSender) {
+                            $("#myUL li").each(function (index) {
+                                var listid = $(this).attr('id');
+                                if (listid == data.RecieverUserId) {
+                                    liSelectedId = $(this).attr('data-id');
+                                    picName = $(this).attr('data-img');
+                                }
+                            }) ;
+
+                            html += '<div class="user_2 "><div class="user_chat d-flex flex-row-reverse justify-content-start"><div class="chat-msg"><p>' + data.UserMessage + '</p><span class="chat_time number_count">' + data.UserMessageTime + '</span> </div> </div></div>';
+                        var selectedId;
+
+                        if (countMessage == 1) {
+                            selectedId = liSelectedId;
+                            //alert(liSelectedId);
+                        }
+                        else {
+                            selectedId = 0;
+                        }
+
+                       // console.log("CountMessage: " + countMessage + "LiSelectedId" + selectedId);
+                            if (selectedId == undefined) {
+                                selectedId = $('#myUL li:first-child').val();
+                                $('li.mySelectedUser').find('#rightMessage')[selectedId].textContent = data.UserMessage;
+                                $('li.mySelectedUser').find('#rightTime')[selectedId].textContent = data.UserMessageTime;
+                            }
+                            else {
+
+                                $('li.mySelectedUser').find('#rightMessage')[selectedId].textContent = data.UserMessage;
+                                $('li.mySelectedUser').find('#rightTime')[selectedId].textContent = data.UserMessageTime;
+                            }
+                        }
+                    else {
+                       // console.log("received Message" + data.RecieverUserId + Date.now());
+
+                        $("#myUL li").each(function (index) {
+                           // console.log($(this).attr('id') + " " + index);
+                            var listid = $(this).attr('id');
+                            if (listid == data.RecieverUserId) {
+                                 picName = $(this).attr('data-img');
+                                liSelectedId = $(this).attr('data-id');
+                                 var selectedId = liSelectedId;
+                                $('#myUL li.active').removeClass('active');
+                                $(this).addClass('active');
+                                //var activeId = $("#myUL li.active").attr('data-id');
+
+                                $('li.mySelectedUser').find('#rightMessage')[selectedId].textContent = data.UserMessage;
+                                $('li.mySelectedUser').find('#rightTime')[selectedId].textContent = data.UserMessageTime;
+
+                            }
+                        });
+
+                            if (picName == null) {
+                                picName = $("#myUL li").first(this).attr('data-img');
+                            }
+                            else {
+
+                            }
+                          var img = $('<img />', {
+                              id: 'Myid',
+                              src: "/Images/User/" + picName,
+                            alt: 'MyAlt'
+                          });
+
+                            html += '<div class="user_1 "><div class="user_chat d-flex"><div class="chat-msg"><p>' + data.UserMessage + '</p><span class="chat_time number_count">' + data.UserMessageTime +
+                            '</span></div></div></div>';
+
+                            //Refresh Last Message on left Side
+
+                            var selectedId = liSelectedId;
+                         //Sending message by loggedin User
+                            if (selectedId == undefined) {
+                                selectedId = $('#myUL li:first-child').val();
+                                $('li.mySelectedUser').find('#rightMessage')[selectedId].textContent = data.UserMessage;
+                                $('li.mySelectedUser').find('#rightTime')[selectedId].textContent = data.UserMessageTime;
+                            }
+                            else {
+                                $('li.mySelectedUser').find('#rightMessage')[selectedId].textContent = data.UserMessage;
+                                $('li.mySelectedUser').find('#rightTime')[selectedId].textContent = data.UserMessageTime;
+                            }
+                    }
+
+                    $("#dvChat").html(html);
+                    var objDiv = document.getElementById("dvChat");
+                    if (objDiv != null) {
+                        objDiv.scrollTop = objDiv.scrollHeight;
+                    }
+                });
+            });
+    }
+
+
+
+    $('#myUL li').click(function () {
+        var getId = $(this).attr('id');
+        countMessage = 1;
+        showMessage = 30;
+        liSelectedId = $(this).attr('data-id');
+        //alert(liSelectedId);
+       // console.log("Id: " + getId + "Data-id: " + liSelectedId)
+        $('#myUL li.active').removeClass('active');
+        $(this).addClass('active');
+        currentUserId = getId;
+        picName = $(this).attr('data-img');
+        var whatsappUrl = 'https://api.whatsapp.com/send?phone=' + $(this).children().find('#PhoneNo').val();
+        var callUrl = "tel:" + $(this).children().find('#PhoneNo').val();
+        $('#btnWhatsapp').attr("href", whatsappUrl);
+        $('#btncall').attr("href", callUrl);
+        bindChat();
+    });
+</script>

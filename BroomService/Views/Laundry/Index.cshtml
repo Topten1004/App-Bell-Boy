@@ -1,0 +1,736 @@
+﻿
+<link href="~/Content/style.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-chosen.css" rel="stylesheet" />
+<link href="~/Content/js/fullcalendar/lib/main.css" rel="stylesheet" />
+
+<style>
+    .laundry_service_box {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .laundry-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .add_values {
+        max-width: 150px;
+    }
+
+        .add_values .minus {
+            cursor: pointer;
+        }
+
+        .add_values .plus {
+            cursor: pointer;
+        }
+
+        .add_values input[type="text"] {
+            width: 80px;
+            outline: none;
+        }
+
+    .row {
+        align-items: center;
+    }
+
+    .btn-order {
+        background-color: #214378;
+        color: #fff;
+    }
+
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        background: transparent;
+        bottom: 0;
+        color: transparent;
+        cursor: pointer;
+        height: auto;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: auto;
+    }
+
+    .gj-picker-bootstrap table tr td.today {
+        background: #efefef;
+    }
+
+        .gj-picker-bootstrap table tr td.today div {
+            color: black !important;
+        }
+
+    .bg-availability-full {
+        background-color: green !important;
+    }
+
+    .bg-availability-partial {
+        background-color: yellow !important;
+    }
+
+    .bg-availability-no {
+        background-color: red !important;
+    }
+
+    .custom-datepicker {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        border: 1px solid gray;
+        border-radius: 10px;
+        height: 40px;
+        align-items: center;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .custom-datepicker__icon {
+        cursor: pointer;
+    }
+
+    #TimeSlot {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        max-height: 300px;
+    }
+</style>
+
+<!-- Laundry Service box -->
+<section id="all_services_boxes" class="all_services_boxes">
+    <div class="container">
+        <!-- Availability Modal -->
+        <div class="modal fade modal_sub_user" id="AvailabilityCalendar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="availability-calendar">
+                            <h3 id="date-header"></h3>
+                            <div id="calendar"></div>
+                            <div class="text-right mt-3">
+                                <input type="button" id="No" value="Cancel" class="btn btn-danger" data-dismiss="modal" aria-label="Close" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JobRequest Alternative timing Modal -->
+        <div class="modal fade modal_sub_user" id="LaundryRequestTiming" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="checklist_property_main">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <img src="~/Content/images/close_btn.png" alt="close" />
+                            </button>
+                            <h3 id="timing-header"></h3>
+                            <div class="col-12 text-left " id="TimeSlot">
+                            </div>
+                            <div class="col-12 text-right ">
+                                <input type="button" id="AvailableTiemSlot_Ok" onclick="" value="OK" class="btn btn-success" disabled />
+                                <input type="button" id="No" value="Cancel" class="btn btn-danger" data-dismiss="modal" aria-label="Close" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row laundry_service_box">
+            <div class="col-lg-8 mb-4">
+                <h2 class="text-left">
+                    Laundry Pick Up
+                </h2>
+                <form id="laundry-form">
+                    <div class="mt-5 mb-5">
+                        <div class="col-md-6 mb-3">
+                            <label for="property_select">Select Property</label>
+                            <select name="Property" id="property_select" class="form-control" required></select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Pickup Date</label>
+                            <div class="custom-datepicker">
+                                <div id="pickup-datepicker__date"></div>
+                                <div class="custom-datepicker__icon" onclick="showCalendar('pickup')">
+                                    <i class="fa fa-calendar" style="font-size: 24px"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Return Date</label>
+                            <div class="custom-datepicker">
+                                <div id="return-datepicker__date"></div>
+                                <div class="custom-datepicker__icon" onclick="showCalendar('return')">
+                                    <i class="fa fa-calendar" style="font-size: 24px"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-md-12 mb-3">
+                            <div class="row">
+                                <label class="property_label col-md-3">
+                                    Laundry items
+                                </label>
+                                <div class="col-md-9">
+                                    <div class="add_values">
+                                        <button type="button" id="laundry_items_minus" class="minus"><i class="fas fa-minus"></i></button>
+                                        <input type="text" id="laundry_items" name="laundry_items" value="0" />
+                                        <button type="button" class="plus" id="laundry_items_plus"><i class="fas fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <div class="row">
+                                <label class="property_label col-md-3">
+                                    Folding Ironing items
+                                </label>
+                                <div class="col-md-9">
+                                    <div class="add_values">
+                                        <button type="button" id="folding_items_minus" class="minus"><i class="fas fa-minus"></i></button>
+                                        <input type="text" id="folding_items" name="folding_items" value="0" />
+                                        <button type="button" class="plus" id="folding_items_plus"><i class="fas fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <div class="row">
+                                <label class="property_label col-md-3">
+                                    Dry cleaning items
+                                </label>
+                                <div class="col-md-9">
+                                    <div class="add_values">
+                                        <button type="button" id="dry_items_minus" class="minus"><i class="fas fa-minus"></i></button>
+                                        <input type="text" id="dry_items" name="dry_items" value="0" />
+                                        <button type="button" class="plus" id="dry_items_plus"><i class="fas fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="AssignedWorker" value="" />
+                    <button type="submit" class="btn btn-primary btn-order">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/Content/js/fullcalendar/lib/main.js"></script>
+<script src="~/Content/js/moment.min.js"></script>
+
+<script>
+    var propertyId = "";
+    var today = new Date();
+    var minDate = new Date();
+    minDate.setDate(today.getDate() + 1);
+    // ************************ AVAILABILITY **************************
+    var availabilityList = [];
+    var bookedList = [];
+    var nonAvailableGuys = [];
+    var startInterval = "08:00";
+    var endInterval = "23:59";
+    var calendar;
+    var dateType = "pickup";
+    var pickupDate;
+    var returnDate;
+    var pickupDateISO;
+    var returnDateISO;
+    var deliveryDistances = [];
+    var selectedPickupGuyId;
+    var selectedReturnGuyId;
+    var selectedLaundryId;
+
+    function showCalendar(type) {
+        if (propertyId !== "") {
+            dateType = type;
+            var dateHeader = type == "pickup" ? "Select Pickup Date" : "Select Return Date";
+            $("#date-header").text(dateHeader);
+            $("#AvailabilityCalendar").modal('show');
+        } else {
+            alert("Please select property")
+        }
+    }
+
+    function setAvailability(result = []) {
+
+        // first group availability by date
+        var availabilityGroup = {};
+
+        result.forEach(availability => {
+            if (availabilityGroup.hasOwnProperty(availability.AvailableDate)) {
+                availabilityGroup[availability.AvailableDate].push(availability);
+            } else {
+                availabilityGroup[availability.AvailableDate] = [availability]
+            }
+        });
+
+        // loop through availabilityGroup keys
+        Object.keys(availabilityGroup).forEach(key => {
+            var availability = checkAvailability(availabilityGroup[key]);
+            availabilityList.push({ key, date: new Date(key), availability, availabilities: availabilityGroup[key] })
+        });
+    }
+
+    function checkAvailability(availabilities = []) {
+        if (!availabilities) return "no";
+
+        if (availabilities.length === 0) return "no";
+
+        // check if the availabilities from starting interval to ending interval
+        for (let i = 0; i < availabilities.length; i++) {
+            if (availabilities[i].FromTime === startInterval && availabilities[i].ToTime === endInterval) {
+                return "full";
+            }
+        }
+
+        return "partial";
+
+    }
+
+    function renderTimings(date, timeToDo = 0) {
+
+        $('#TimeSlot').empty();
+
+        var dayAvailability = availabilityList.find(x => x.key === date);
+
+        if (!dayAvailability) return;
+        // close modal
+        $('#AvailabilityCalendar').modal('hide');
+        // render the iso date and display in the format MM/DD/YYYY
+        var dateToDisplay = date.split('-').reverse().join('/');
+        // add default hh:mm to 00:00
+        if (dateType == "pickup") {
+            $("#timing-header").text("Select Pickup Time");
+            pickupDate = dateToDisplay;
+            pickupDateISO = date;
+            $('#pickup-datepicker__date').text(dateToDisplay + " 00:00");
+        } else {
+            $("#timing-header").text("Select Return Time");
+            returnDate = dateToDisplay
+            returnDateISO = date;
+            $('#return-datepicker__date').text(dateToDisplay + " 00:00");
+        }
+        var availabilities = dayAvailability.availabilities;
+        var increaseMinutes = 30;
+        // break the time 30 minutes each
+
+        // add with minute part and then check if it's 60 then increase hour
+        // from_time = 10:30
+        // end_time = 15:00
+        // 10:30 + 00:30 = 11:00
+        // 11:00 < 15:00 then show 10:30
+        for (let i = 0; i < availabilities.length; i++) {
+            var from = availabilities[i].FromTime.split(":");
+            var from_hour = parseInt(from[0]);
+            var from_minute = parseInt(from[1]);
+
+            var end = availabilities[i].ToTime.split(":");
+            var end_hour = parseInt(end[0]);
+
+            if (from_hour <= end_hour) {
+                AddScheduleTime(availabilities[i].FromTime)
+            }
+
+            while (from_hour <= end_hour) {
+                // check the time slot is rendered previously
+                from_minute += increaseMinutes;
+                from_hour = from_minute - 60 >= 0 ? from_hour + 1 : from_hour;
+                from_minute = from_minute >= 60 ? from_minute - 60 : from_minute;
+
+                var renderFromHours = from_hour < 10 ? "0" + from_hour : from_hour;
+                var renderFromMinutes = from_minute < 10 ? "0" + from_minute : from_minute;
+                var renderValue = renderFromHours + ":" + renderFromMinutes;
+                var found = false;
+                $('.time-slot').each(function () {
+                    var renderedValue = $(this).val();
+                    if (renderValue === renderedValue) {
+                        found = true;
+                    }
+                });
+                if (!found && from_hour <= end_hour) {
+                    AddScheduleTime(renderValue);
+                }
+            }
+        }
+        $("#LaundryRequestTiming").modal('show');
+    }
+
+    function AddScheduleTime(from_time) {
+        var timeSlot = '<div><input type="radio" name="AvailableTimeSlot" value="' + from_time + '" class="btn btn-success time-slot" onchange="EnableButton(this)" /> <span>' + from_time + '</span> </div>';
+        $('#TimeSlot').append(timeSlot);
+    }
+
+    function EnableButton(radio) {
+        if (radio.checked) {
+            $('#AvailableTiemSlot_Ok').prop('disabled', false);
+        }
+    }
+
+    function renderAvailability() {
+        var calendarEl = document.getElementById('calendar');
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            selectable: true,
+            longPressDelay: 0,
+            headerToolbar: {
+                left: 'dayGridMonth',
+                center: 'title',
+                right: 'prev,next'
+            },
+            select: function (arg) {
+                renderTimings(arg.startStr, 2);
+            },
+            validRange: {
+                start: new Date()
+            },
+            dayCellClassNames: function (arg) {
+                for (let i = 0; i < availabilityList.length; i++) {
+                    if (arg.date.getDate() === availabilityList[i].date.getDate() && arg.date.getMonth() === availabilityList[i].date.getMonth()) {
+                        if (availabilityList[i].availability === "full") {
+                            return ['bg-availability-full']
+                        }
+                        if (availabilityList[i].availability === "partial") {
+                            return ['bg-availability-partial']
+                        }
+                        if (availabilityList[i].availability === "no") {
+                            return ['bg-availability-no']
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function SelectDeliveryGuyByBooking(dateISO) {
+        nonAvailableGuys = [];
+        //********** algorithm for selecting pickup or return guy *********
+        // bookedList
+        // check if selected pickup date equals booked pickup date
+        // check if selectedDate time is less than booked pickup date time
+        // selectedDate time add booked minute
+        // check if still less then we can select that guy
+        // if selected pickup date time is greater than booked pickup date time
+        // selectedDate time subtract booked time
+        // now check if selectedDate time is still greater and within the range of 30 minutes
+        // we can select that pickup guy
+
+        for (var i = 0; i < bookedList.length; i++) {
+
+            var selectedDate = new Date(dateISO);
+            if (selectedDate.getDate() === bookedList[i].PickupDate.getDate()) {
+                // calculate time difference in minutes
+                // if 15 minutes or less than
+                if (selectedDate.getTime() < bookedList[i].PickupDate.getTime()) {
+                    // selected pickup date add minutes bookedList[i].Time
+                    var newSelectedDate = moment(selectedDate).add(bookedList[i].Time, "minutes").toDate();
+                    // now check if still selectedPickupDate less than PickupDate
+                    // then check the minutes now.
+                    // if it's within the range of 30 minutes then we can select that guy
+                    const minutes = parseInt((bookedList[i].PickupDate.getTime() - newSelectedDate.getTime()) / (1000 * 60) % 60);
+                    if (minutes >= 0 && minutes <= 30) {
+                        return bookedList[i].PickupGuyId;
+                    }
+                } else if (selectedDate.getTime() > bookedList[i].PickupDate.getTime()) {
+                    var newSelectedDate = moment(selectedDate).subtract(bookedList[i].Time, "minutes").toDate();
+                    // now check if still selectedPickupDate greater than PickupDate
+                    // then check the minutes now.
+                    // if it's within the range of 30 minutes then we can select that guy
+                    const minutes = parseInt((newSelectedDate.getTime() - bookedList[i].PickupDate.getTime()) / (1000 * 60) % 60);
+                    if (minutes >= 0 && minutes <= 30) {
+                        return bookedList[i].PickupGuyId;
+                    }
+                } else {
+                    var found = nonAvailableGuys.find(x => x == bookedList[i].PickupGuyId);
+                    if (!found) {
+                        nonAvailableGuys.push(bookedList[i].PickupGuyId)
+                    }
+                }
+            }
+
+            if (selectedDate.getDate() === bookedList[i].ReturnDate.getDate()) {
+                // calculate time difference in minutes
+                // if 15 minutes or less than
+                if (selectedDate.getTime() < bookedList[i].ReturnDate.getTime()) {
+                    // selected pickup date add minutes bookedList[i].Time
+                    var newSelectedDate = moment(selectedDate).add(bookedList[i].Time, "minutes").toDate();
+                    // now check if still selectedPickupDate less than PickupDate
+                    // then check the minutes now.
+                    // if it's within the range of 30 minutes then we can select that guy
+                    const minutes = parseInt((bookedList[i].ReturnDate.getTime() - newSelectedDate.getTime()) / (1000 * 60) % 60);
+                    if (minutes >= 0 && minutes <= 30) {
+                        return bookedList[i].ReturnGuyId;
+                    }
+                } else if (selectedDate.getTime() > bookedList[i].ReturnDate.getTime()) {
+                    var newSelectedDate = moment(selectedDate).subtract(bookedList[i].Time, "minutes").toDate();
+                    // now check if still selectedPickupDate greater than PickupDate
+                    // then check the minutes now.
+                    // if it's within the range of 30 minutes then we can select that guy
+                    const minutes = parseInt((newSelectedDate.getTime() - bookedList[i].ReturnDate.getTime()) / (1000 * 60) % 60);
+                    if (minutes >= 0 && minutes <= 30) {
+                        return bookedList[i].ReturnGuyId;
+                    }
+                } else {
+                    var found = nonAvailableGuys.find(x => x == bookedList[i].ReturnGuyId);
+                    if (!found) {
+                        nonAvailableGuys.push(bookedList[i].ReturnGuyId)
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    function SelectedDeliveryGuy(selectedDate) {
+        var selectedDeliveryGuy = SelectDeliveryGuyByBooking(selectedDate);
+        if (selectedDeliveryGuy !== 0) return selectedDeliveryGuy;
+        // ****** 2nd option *****
+        // check available delivery guy distance time
+        // sort by less time and select that delivery guy
+        // if not selected then check deliveryDistances
+        // nonAvailableGuys
+        var minDistance = 100 // km
+        for (var i = 0; i < deliveryDistances.length; i++) {
+            // check the minimum distance
+            var booked = nonAvailableGuys.find(x => x == deliveryDistances[i].DeliveryGuyId);
+            if (!booked) {
+                if (minDistance > deliveryDistances[i].Distance) {
+                    minDistance = deliveryDistances[i].Distance;
+                    selectedDeliveryGuy = deliveryDistances[i].DeliveryGuyId;
+                }
+            }
+        }
+
+        return selectedDeliveryGuy;
+    }
+
+    $(document).ready(function () {
+        var urlParams = new URLSearchParams(window.location.search);
+        propertyId = urlParams.get("propertyId");
+        if (propertyId && propertyId != "") {
+            GetLaundry(propertyId);
+            GetBookedSchedules(propertyId);
+            GetDeliveryDistances(propertyId);
+        }
+        LoadProperties();
+        $('#AvailabilityCalendar').on('shown.bs.modal', function () {
+            calendar.render();
+        });
+        // check the custom datepicker label
+        $('#pickup-datepicker__date').text('MM/DD/YYYY hh:mm');
+        $('#return-datepicker__date').text('MM/DD/YYYY hh:mm');
+        $('#AvailableTiemSlot_Ok').click(function () {
+            var renderedValue = $("#TimeSlot input[name='AvailableTimeSlot']:checked").val();
+            if (dateType == "pickup") {
+                $('#pickup-datepicker__date').text(pickupDate + " " + renderedValue);
+                pickupDateISO = pickupDateISO + " " + renderedValue;
+                selectedPickupGuyId = SelectedDeliveryGuy(pickupDateISO);
+
+                if (selectedPickupGuyId === 0) {
+                    alert("No pickup guy available. please select different time.")
+                }
+            } else {
+                $('#return-datepicker__date').text(returnDate + " " + renderedValue);
+                returnDateISO = returnDateISO + " " + renderedValue;
+                selectedReturnGuyId = SelectedDeliveryGuy(returnDateISO);
+
+                if (selectedReturnGuyId === 0) {
+                    alert("No return guy available. please select different time.")
+                }
+            }
+            $("#LaundryRequestTiming").modal('hide');
+        });
+
+        $.ajax({
+            url: "/Laundry/GetAvailabilites",
+            type: 'GET',
+            success: function (data) {
+                setAvailability(data || []);
+                renderAvailability();
+            }
+        });
+    });
+    $("#laundry_items_plus").click(function () {
+        var laundry_items = parseInt($("#laundry_items").val()) + 1;
+        $("#laundry_items").val(laundry_items);
+    });
+    $("#folding_items_plus").click(function () {
+        var folding_items = parseInt($("#folding_items").val()) + 1;
+        $("#folding_items").val(folding_items);
+    });
+    $("#dry_items_plus").click(function () {
+        var dry_items = parseInt($("#dry_items").val()) + 1;
+        $("#dry_items").val(dry_items);
+    });
+
+    $("#laundry_items_minus").click(function () {
+        var laundry_items = parseInt($("#laundry_items").val()) - 1;
+        if (laundry_items >= 0) {
+            $("#laundry_items").val(laundry_items);
+        }
+    });
+    $("#folding_items_minus").click(function () {
+        var folding_items = parseInt($("#folding_items").val()) - 1;
+        if (folding_items >= 0) {
+            $("#folding_items").val(folding_items);
+        }
+    });
+    $("#dry_items_minus").click(function () {
+        var dry_items = parseInt($("#dry_items").val()) - 1;
+        if (dry_items >= 0) {
+            $("#dry_items").val(dry_items);
+        }
+    });
+    function GetLaundry(propertyId) {
+        $.ajax({
+            url: `/Laundry/GetLaundry?propertyId=${propertyId}`,
+            type: 'GET',
+            success: function (data) {
+                if (!data.status) {
+                    alert("No laundry found nearby your location. please contact support for help.");
+                } else {
+                    selectedLaundryId = data.laundryId;
+                }
+            },
+            error: function () {
+                alert('something went wrong');
+            }
+        });
+    }
+
+    function GetBookedSchedules(propertyId) {
+        $.ajax({
+            url: `/Laundry/DeliveryBookedSchedules?propertyId=${propertyId}`,
+            type: 'GET',
+            success: function (data) {
+                var bookedSchedules = data || [];
+
+                for (let i = 0; i < bookedSchedules.length; i++) {
+                    bookedSchedules[i].PickupDate = new Date(parseInt(bookedSchedules[i].PickupDate.substr(6)));
+                    bookedSchedules[i].ReturnDate = new Date(parseInt(bookedSchedules[i].ReturnDate.substr(6)));
+                }
+                bookedList = bookedSchedules;
+            },
+            error: function () {
+                alert('something went wrong');
+            }
+        });
+    }
+
+    function GetDeliveryDistances(propertyId) {
+        $.ajax({
+            url: `/Laundry/GetDeliveryDistances?propertyId=${propertyId}`,
+            type: 'GET',
+            success: function (data) {
+                deliveryDistances = data || [];
+            },
+            error: function () {
+                alert('something went wrong');
+            }
+        });
+    }
+
+    $('#property_select').change(function () {
+        var value = $(this).val();
+        if (value != "") {
+            propertyId = value;
+            GetLaundry(value);
+            GetBookedSchedules(value);
+            GetDeliveryDistances(value);
+        }
+    });
+    function LoadProperties() {
+        $.ajax({
+            url: "/Order/GetPropertyList",
+            data: {},
+            type: 'POST',
+            dataType: "json",
+            success: function (data) {
+                if (data.length > 0) {
+                    $('#property_select').empty();
+                    $('#property_select').append(`<option value="">Select Property</option>`);
+                    $.each(data, function (key, value) {
+                        var optionText = value.Text;
+                        var optionValue = value.Value;
+                        $('#property_select').append(`<option value="${optionValue}">${optionText}</option>`);
+
+                    });
+                    if (propertyId && propertyId !== "") {
+                        $(`#property_select option[value=${propertyId}]`).prop('selected', true);
+                    }
+                }
+            },
+            error: function () {
+                alert('something went wrong');
+            }
+        });
+    }
+
+    $("#laundry-form").submit(function (e) {
+        e.preventDefault();
+        var LaundryItems = $("#laundry_items").val();
+        var IroningItems = $("#folding_items").val();
+        var DryingItems = $("#dry_items").val();
+        var LaundryId = selectedLaundryId;
+        var PickupGuyId = selectedPickupGuyId;
+        var ReturnGuyId = selectedReturnGuyId;
+        var PickupDate = pickupDateISO;
+        var ReturnDate = returnDateISO;
+        if (laundry_items === "0" && folding_items === "0" && dry_items === "0") {
+            alert("Please select number of items");
+            return false;
+        }
+
+        if (!pickupDate) {
+            alert("Please select pickup date");
+            return false;
+        }
+        if (!returnDate) {
+            alert("Please select return date");
+            return false;
+        }
+        var data = {
+            LaundryItems,
+            IroningItems,
+            DryingItems,
+            PropertyId: propertyId,
+            PickupDate,
+            ReturnDate,
+            LaundryId,
+            PickupGuyId,
+            ReturnGuyId
+        }
+        $.ajax({
+            url:  "@Url.Action("LaundryRequest", "Laundry")",
+            data: data,
+            type: 'POST',
+            beforeSend: function () {
+                // Show image container
+                $("#loader").show();
+            },
+            success: function (data) {
+
+                if (data) {
+                    window.location.href = "/Laundry/LaundryList"
+                }
+                else
+                {
+                    alert("Laundry request failed.");;
+                }
+            },
+            error: function (data) {
+                $('#loader').hide();
+                alert("Laundry request failed");
+            },
+            complete: function (data) {
+                $('#loader').hide();
+            }
+        });
+    });
+</script>

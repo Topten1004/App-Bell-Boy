@@ -1,0 +1,595 @@
+﻿@using BroomService.Resources
+@using BroomService.Helpers
+
+@{
+    var getDateTime = DateTime.Now.DayOfWeek;
+    var userId = (Request.Cookies["Login"] != null ? Request.Cookies["Login"].Values["UserType"] != null ? Request.Cookies["Login"].Values["UserType"] : "0" : "0");
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Font awsome kit -->
+    <script src="https://kit.fontawesome.com/40b745dcd8.js" crossorigin="anonymous"></script>
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/owl.theme.default.min.css" rel="stylesheet" />
+    <!-- owl javascript -->
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/owl.carousel.js"></script>
+
+    <!-- Custom Css -->
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <style>
+        #tooltip {
+            position: relative;
+        }
+
+        .bs-tooltip-bottom .arrow::before {
+            border-bottom-color: #214378 !important;
+        }
+
+        .tooltip-inner {
+            background: #214378;
+            color: #fff;
+        }
+
+        .tooltip.top .tooltip-arrow {
+            border-top-color: #214378;
+        }
+
+        .tooltip.right .tooltip-arrow {
+            border-right-color: #214378;
+        }
+
+        .tooltip.bottom .tooltip-arrow {
+            border-bottom-color: #214378;
+        }
+
+        .tooltip.left .tooltip-arrow {
+            border-left-color: #214378;
+        }
+
+        #tooltip span {
+            position: relative;
+        }
+
+        .custom_nav .nav-item:hover #tooltip span {
+            color: #fff;
+        }
+
+        /*css form language popup*/
+        .inputGroup {
+            background-color: #fff;
+            display: inline-block;
+            margin: 10px 0;
+            position: relative;
+            width: 49%;
+        }
+
+            .inputGroup input {
+                width: 32px;
+                height: 32px;
+                order: 1;
+                z-index: 2;
+                position: absolute;
+                right: 30px;
+                top: 50%;
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+                cursor: pointer;
+                visibility: hidden;
+            }
+
+            .inputGroup label {
+                padding: 8px 20px 8px 60px;
+                width: 100%;
+                display: block;
+                text-align: left;
+                font-size: 20px;
+                font-weight: 400;
+                cursor: pointer;
+                position: relative;
+                z-index: 2;
+                transition: color 200ms ease-in;
+                overflow: hidden;
+                margin-bottom: 0;
+                border: 2px solid #ccc;
+                border-radius: 8px;
+                transition: border 300ms;
+            }
+
+                .inputGroup label:before {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    content: '';
+                    background-color: #214378;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    -webkit-transform: translate(-50%, -50%) scale3d(1, 1, 1);
+                    transform: translate(-50%, -50%) scale3d(1, 1, 1);
+                    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+                    opacity: 0;
+                    z-index: -1;
+                }
+
+                .inputGroup label:after {
+                    width: 32px;
+                    height: 32px;
+                    content: '';
+                    border: 2px solid #D1D7DC;
+                    background-color: #fff;
+                    background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23ccc' fill-rule='nonzero'/%3E%3C/svg%3E ");
+                    background-repeat: no-repeat;
+                    background-position: 2px 3px;
+                    border-radius: 50%;
+                    z-index: 2;
+                    position: absolute;
+                    left: 15px;
+                    top: 50%;
+                    -webkit-transform: translateY(-50%);
+                    transform: translateY(-50%);
+                    cursor: pointer;
+                    transition: all 200ms ease-in;
+                }
+
+        .checklist_property_main button.choose_language_done, .checklist_property_main button.choose_language_done:hover {
+            background-color: rgb(33, 67, 120) !important;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.23);
+            border-radius: 100px;
+            height: 47px;
+            line-height: 47px;
+            font-size: 17px;
+            font-weight: 500;
+            text-transform: uppercase;
+            padding: 0 50px;
+            color: #fff;
+            border: 0;
+            position: unset;
+            /* text-align: center; */
+            width: auto;
+        }
+
+        .inputGroup input:checked ~ label {
+            color: #fff;
+            border: 2px solid #214378;
+            border-radius: 8px;
+        }
+
+            .inputGroup input:checked ~ label:before {
+                -webkit-transform: translate(-50%, -50%) scale3d(56, 56, 1);
+                transform: translate(-50%, -50%) scale3d(56, 56, 1);
+                opacity: 1;
+            }
+
+            .inputGroup input:checked ~ label:after {
+                background-color: #fff;
+                border-color: #fff;
+            }
+    </style>
+    <title>@Resource.broom_service</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="row header_row">
+                <nav class="navbar navbar-expand-lg custom_nav">
+                    <div class="logo">
+                        <a class="navbar-brand" href="/Home/Index">
+                            <img src="~/Content/images/logo.png" alt="Image of logo" class="img-fluid logo_white" />
+                            <img src="~/Content/images/logo_login.png" alt="Image of logo" class="img-fluid logo_color" />
+                        </a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav ml-auto" style="padding-top:2.3125rem;">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/Home/Index">@Resource.home</a>
+                            </li>
+
+                            @if (userId != "7")
+                            {
+                            <li class="nav-item">
+                                <a class="nav-link" id="ServiceLink" href="#">@Resource.services</a>
+                            </li>
+                            }
+                            @if (Request.Cookies["Login"] == null)
+                            {
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://bell-boy.com/about-us" target="_blank">@Resource.about_us</a>
+                            </li>
+                            }
+                            @if (Request.Cookies["Login"] != null)
+                            {
+                            if (Request.Cookies["Login"].Values["UserType"] == "4")
+                            {
+                            if (Request.Cookies["Login"].Values["UserId"] != null)
+                            {
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Order/FastOrderList"><span>@Resource.fast_order</span></a>
+                            </li>
+                            }
+                            }
+                            }
+                            @if (Request.Cookies["Login"] != null)
+                            {
+                            if (Request.Cookies["Login"].Values["UserId"] != null)
+                            {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-user"></i> Account
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="#"><i class="fa fa-ils"></i> Balance <span id="account-balance"></span></a>
+                                    <a class="dropdown-item" href="/Account/Profile"><i class="fa fa-user"></i> Profile</a>
+                                    <a class="dropdown-item" href="/Chat/ChatList"><i class="fa fa-comments"></i> Chat</a>
+                                    <a class="dropdown-item" href="/Bookings/BookingsList"><i class="fa fa-calendar-check-o"></i> Bookings</a>
+                                    <a class="dropdown-item" href="/Laundry/LaundryList"><i class="fa fa-calendar-check-o"></i> Laundry Orders</a>
+                                    <a class="dropdown-item" href="/Property/PropertyList"><i class="fa fa-home"></i> Properties</a>
+                                    <a class="dropdown-item" href="/Account/Logout"><i class="fa fa-sign-out"></i> Logout</a>
+                                </div>
+                            </li>
+                            }
+                            }
+
+                            @if (userId == "0" && Request.Cookies["Login"] == null)
+                            {
+                            <li class="nav-item">
+                                <a style="width:200px!important;" class="nav-link login_box" href="/Account/Login"><span>@Resource.login_Registration</span></a>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                </nav>
+                @if (Request.Cookies["Login"] != null)
+                {
+
+                if (Request.Cookies["Login"].Values["UserId"] != null)
+                {
+                if (Request.Cookies["Login"].Values["UserType"] == "4")
+                {
+                <div>
+                    <ul>
+                        <li class="header-icon dib" id="jobRequestCount">
+                            <div class="notification_bell">
+                                <a href="@Url.Action(" NotificationList", "Notification" )">
+                                    <span class="user_notoficaton newAlertIcon">
+                                        <i class="fa fa-bell"></i>
+                                    </span>
+                                    <span class="number_count_notification">
+                                    </span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                }
+                }
+                }
+            </div>
+            <div class="row">
+                <div class="text-center container banner_content">
+                    <div class="banner_box">
+                        <h1>@Resource.heading_one</h1>
+                        <p>@Resource.heading_two</p>
+                        <a href="/Settings/ContactUs">@Resource.contact_us_for_offers</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    <footer>
+        <div class="container">
+            <div class="row footer_box">
+                <div class="col-lg-9 mb-3 text-lg-left text-center pl-lg-0">
+                    <ul class="nav_footer">
+                        <li class="active">
+                            <a href="/Home/Index">@Resource.home</a>
+                        </li>
+                        <li>
+                            <a href="https://bell-boy.com/about-us" target="_blank">@Resource.about_us</a>
+                        </li>
+                        <li>
+                            <a href="https://bell-boy.com/terms-and-conditions" target="_blank">@Resource.terms_conditions</a>
+                        </li>
+                        <li>
+                            <a href="https://bell-boy.com/terms-and-conditions" target="_blank">@Resource.privacy_policy</a>
+                        </li>
+                        @*
+                        <li>
+                            <a href="/Settings/TestimonialList">@Resource.testimonials</a>
+                        </li>*@
+                        <li>
+                            <a href="/Settings/ContactUs">@Resource.contact_us</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 pr-lg-0 text-lg-right text-center">
+                    <ul class="footer_social">
+                        <li>
+                            <a href="https://www.facebook.com/bellboyroomservice"><i class="fa fa-facebook-f"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/bellboysmart"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        @*
+                        <li>
+                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </li>*@
+                    </ul>
+                </div>
+                <div class="col-12">
+                    <div class="copyright">
+                        <p>&copy; 2022 <a href="#">@Resource.broom_service</a>. @Resource.footer_text</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Choose Language Popup -->
+    <div id="Choose_language_modal" class="modal fade modal_sub_user">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="checklist_property_main">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <img src="~/Content/images/close_btn.png" alt="close" />
+                        </button>
+                        <form class="my-4">
+                            <div class="col-12">
+                                <div class="row no-gutters new_chnage_box">
+                                    @{
+                                    @*for (int i = 0; i < LanguageMang.AvailableLanguages.Count; i++)
+                                    {
+                                    <div class="col-md-6">
+                                        <div class="inputGroup">
+                                            <input id="@LanguageMang.AvailableLanguages[i].LanguageCultureName" name="radio" type="radio" />
+                                            <label for="@LanguageMang.AvailableLanguages[i].LanguageCultureName">@LanguageMang.AvailableLanguages[i].LanguageFullName</label>
+                                        </div>
+                                    </div>
+                                    }*@
+
+
+                                    <div class="col-md-6">
+                                        <div class="inputGroup">
+                                            <input id="@LanguageMang.AvailableLanguages[0].LanguageCultureName" name="radio" type="radio" />
+                                            <label for="@LanguageMang.AvailableLanguages[0].LanguageCultureName">@LanguageMang.AvailableLanguages[0].LanguageFullName</label>
+                                        </div>
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-12 text-center mt-5">
+                                <button type="button" class="btn btn-primary choose_language_done">Done</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Popup dont have a property -->
+    <div class="modal fade modal_sub_user" id="modalNotify" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="checklist_property_main">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <img src="~/Content/images/close_btn.png" alt="close" />
+                        </button>
+                        <h3>You Don't have any Property, Please add Property.</h3>
+                        <div class="col-12 text-center ">
+                            <input type="button" data-dismiss="modal" aria-label="Close" value="Ok" class="btn btn-success" />
+                            @*<input type="button" id="Cancel" value="Cancel" data-dismiss="modal" aria-label="Close" class="btn btn-danger" />*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+
+            var cookieValue = "@Request.Cookies["culture"].Value.ToLower()";
+            $("input[name=radio]").each(function () {
+                if (this.id.toLowerCase() == cookieValue.toLowerCase()) {
+                    $(this).prop('checked', true);
+                }
+            });
+
+            $(".choose_language_done").click(function () {
+                var selectedValue = $('input[name=radio]:checked').attr('id');
+                window.location.href = "/Home/ChangeLanguage?lang=" + selectedValue;
+            });
+
+             $('#ServiceLink').click(function () {
+
+                 var userId = @(Request.Cookies["Login"] != null ? Request.Cookies["Login"].Values["UserId"]!=null? Request.Cookies["Login"].Values["UserId"] :"0" :"0");
+
+
+               if(userId =='0')
+               {
+                   window.location.href = '/Order/CategoryList?propertyId = 0';
+               }
+               else
+               {
+                   $.ajax({
+                    url: "@Url.Action("GetPropertyCount", "Order")",
+                    data: { "UserId": userId},
+                    type: 'POST',
+                    success: function (data) {
+                        if (data == '0')
+                        {
+                            $("#modalNotify").modal('show');
+                        }
+                        else
+                        {
+                            window.location.href = '/Order/CategoryList?propertyId = 0';
+                        }
+                    },
+                    error: function () {
+                        alert('something went wrong');
+                    }
+                  });
+               }
+             });
+
+            $.ajax({
+                url: '/Account/Balance',
+                typr: "GET",
+                success: function (data) {
+                    $('#account-balance').text(data);
+                }
+            });
+
+            $('#property_list_slider').owlCarousel({
+                loop: true,
+                center: true,
+                margin: 20,
+                nav: true,
+                dots: false,
+                autoplay: false,
+                autoplayTimeout: 1500,
+                autoplayHoverPause: true,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                    },
+                    730: {
+                        items: 2,
+                        margin: 20,
+                        center: false,
+                    },
+                    1100: {
+                        items: 3,
+                        margin: 20
+                    }
+                }
+
+            });
+
+            $(function () {
+                $('#tooltip').tooltip('show');
+            });
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#special_list_slider').owlCarousel({
+                loop: true,
+                margin: 20,
+                nav: false,
+                autoplay: true,
+                autoplayTimeout: 2500,
+                autoplayHoverPause: true,
+                dots: true,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1.3,
+                        dots: false
+                    },
+                    520: {
+                        items: 2.3,
+                        margin: 20,
+                        dots: false
+                    },
+                    768: {
+                        items: 2.6,
+                        margin: 20
+                    },
+                    992: {
+                        items: 2.3,
+                        margin: 20
+                    },
+                    1100: {
+                        items: 2.5,
+                        margin: 20
+                    }
+                }
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#testimonials_list_slider').owlCarousel({
+                loop: true,
+                margin: 0,
+                nav: true,
+                autoplay: true,
+                autoplayTimeout: 2000,
+                autoplayHoverPause: true,
+                dots: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                    }
+                }
+            })
+        })
+    </script>
+    <script>
+        $(window).scroll(function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 10) {
+                $(".header_row").addClass("header_color");
+            } else {
+                $(".header_row").removeClass("header_color");
+            }
+        });
+
+
+
+        setInterval(function () {
+            ChangeNotificationAlertIcon();
+        }, 30000);
+
+
+        function ChangeNotificationAlertIcon() {
+            $.ajax({
+                url: '/Notification/ChangeNotificationAlertIcon',
+                typr: "GET",
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                success: function (data) {
+                    console.log("new", data);
+                    if (data != 0) {
+                        $('.number_count_notification').empty();
+                        $('.number_count_notification').html('<div class="badge_count number_count">' + data + '</div>');
+                    }
+                    else {
+                    }
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
+

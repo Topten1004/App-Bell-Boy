@@ -1,0 +1,83 @@
+﻿@using BroomService.Resources;
+@model List<BroomService.ViewModels.UserReviewModel>
+@{
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+    var avrRating = ViewData["AverageRating"];
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Star Rating</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/jquery.Rating.js"></script>
+    <script>
+        $(function () {
+            $('.stars').stars();
+        });
+    </script>
+</head>
+
+<section id="bookings">
+    <div class="container" style="min-height:350px">
+        <div class="property-details-main">
+            <h3>@Resource.review</h3>
+        </div>
+        <div>
+            <h6>Over All Ratings</h6>
+            @if (avrRating != "")
+            {
+                <span class="stars" data-rating=@avrRating data-num-stars="5" style="align-items: start;color: gold;display: flex;font-size: 30px;justify-content: start"></span>
+            }
+            else
+            {
+                <span class="stars" data-rating=0 data-num-stars="5" style="align-items: start;color: gold;display: flex;font-size: 30px;justify-content: start"></span>
+
+            }
+        </div>     
+        <div class="row mt-5">
+            @if (Model.Count > 0)
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="col-12 col-md-8 col-lg-8 mb-5">
+                        <div class="property_list_slider_box">
+                            <div class="booking_content mt-4 mt-md-0">
+                                <h5 class="mb-2">@Model[i].CreatedDate</h5>
+                                <span class="stars" data-rating=@Model[i].UserRating data-num-stars="5" style="align-items: start;color: gold;display: flex;font-size: 20px;justify-content: start"></span>
+                                <h6 class="mb-2">@Model[i].UserReview</h6>
+                                <div style="display:flex; flex-direction: row; justify-content:flex-end">
+                                    @if (Model[i].WorkerName != null && Model[i].WorkerImage != null)
+                                    {
+                                        <img src="https://appmantechnologies.com:6083/Images/User/@Model[i].WorkerImage" alt="Image Source" height="40" width="40"> <h6 class="mb-2" style="margin-top:10px">@Model[i].WorkerName</h6> 
+                                    }
+                                    else
+                                    {
+                                        if (Model[i].WorkerName != null && Model[i].WorkerImage == null)
+                                        {
+                                            <img src="~/Content/images/services/ic_footer_profile_select.png" alt="Image Source" height="40" width="40"> <h6 class="mb-2" style="margin-top:10px">@Model[i].WorkerName</h6>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+$.fn.stars = function() {
+    return $(this).each(function() {
+        var rating = $(this).data("rating");
+        var fullStar = new Array(Math.floor(rating + 1)).join('<i class="fas fa-star"></i>');
+        var halfStar = ((rating%1) !== 0) ? '<i class="fas fa-star-half-alt"></i>': '';
+        var noStar = new Array(Math.floor($(this).data("numStars") + 1 - rating)).join('<i class="far fa-star"></i>');
+        $(this).html(fullStar + halfStar + noStar);
+    });
+}
+</script>

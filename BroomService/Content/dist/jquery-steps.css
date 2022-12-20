@@ -1,0 +1,162 @@
+.step-app > .step-steps {
+    margin-top: 30px;
+    padding: 0;
+    display: flex;
+    overflow: hidden;
+    text-align: center;
+}
+
+    .step-app > .step-steps > li {
+        list-style: none;
+        width: 45px;
+        margin: 0 25px;
+        position: relative;
+    }
+
+        .step-app > .step-steps > li::after {
+            position: absolute;
+            content: '';
+            width: 27px;
+            height: 5px;
+            background: #e5e5e5;
+            top: 22px;
+            right: -25px;
+            z-index: -1;
+        }
+
+        .step-app > .step-steps > li::before {
+            position: absolute;
+            content: '';
+            width: 27px;
+            height: 5px;
+            background: #e5e5e5;
+            top: 22px;
+            left: -25px;
+            z-index: -1;
+        }
+
+        .step-app > .step-steps > li.active::after {
+            position: absolute;
+            content: '';
+            width: 27px;
+            height: 5px;
+            background: #214378;
+            top: 22px;
+            right: -25px;
+            z-index: -1;
+        }
+
+        .step-app > .step-steps > li.active::before {
+            position: absolute;
+            content: '';
+            width: 27px;
+            height: 5px;
+            background: #214378;
+            top: 22px;
+            left: -25px;
+            z-index: -1;
+        }
+
+        .step-app > .step-steps > li.active.error::after {
+            position: absolute;
+            content: '';
+            width: 27px;
+            height: 5px;
+            background: #e7505a;
+            top: 22px;
+            right: -25px;
+            z-index: -1;
+        }
+
+        .step-app > .step-steps > li.active.error::before {
+            position: absolute;
+            content: '';
+            width: 27px;
+            height: 5px;
+            background: #e7505a;
+            top: 22px;
+            left: -25px;
+            z-index: -1;
+        }
+
+        .step-app > .step-steps > li:last-child a {
+            border: none;
+        }
+
+        .step-app > .step-steps > li > a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            background-color: #e5e5e5;
+            text-decoration: none;
+            border-right: 1px solid #e5e5e5;
+            border-radius: 50px;
+        }
+
+            .step-app > .step-steps > li > a > .number {
+                background: #fff;
+                padding: 0 8px;
+                display: inline-block;
+                text-align: center;
+                margin-right: 15px;
+                border-radius: 3px;
+                color: #333;
+            }
+
+            .step-app > .step-steps > li > a:hover {
+                background-color: #ddd;
+            }
+
+        .step-app > .step-steps > li.active a {
+            background-color: #214378;
+            color: #fff;
+            border-right: 1px solid #214378;
+        }
+
+        .step-app > .step-steps > li.error a {
+            background-color: #e7505a;
+            color: #fff;
+            border: 1px solid #e7505a;
+        }
+
+        .step-app > .step-steps > li.done a {
+            background-color: #3cb371;
+            color: #fff;
+        }
+
+.step-app > .step-content > .step-tab-panel {
+    display: none;
+}
+
+    .step-app > .step-content > .step-tab-panel.active {
+        display: block;
+    }
+
+.step-app > .step-footer {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+    .step-app > .step-footer > .step-btn {
+        padding: 4px 16px;
+        color: #333;
+        text-decoration: none;
+        background: #e5e5e5;
+        border-radius: 3px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+/*# sourceMappingURL=jquery-steps.css.map */
+
+
+@media screen and (max-width:575px) {
+    .step-app > .step-steps > li {
+        min-width: 45px;
+        margin: 0 8px;
+    }
+
+        .step-app > .step-steps > li.active::before {
+            display: none;
+        }
+}

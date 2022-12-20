@@ -1,0 +1,40 @@
+﻿@using BroomService.Resources
+@model List<BroomService.Models.Testimonial>
+
+<!-- Testimonial List box -->
+<section id="testimonils_page_main" class="testimonils_page">
+    <div class="container">
+        <h2>@Resource.testimonials</h2>
+        <p>@Resource.testimonial_heading</p>
+        <div class="row">
+            @if (Model.Count > 0)
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="col-md-6 text-center px-sm-4 custom_m_100">
+                        <div class="testimonials_page_css">
+                            <img src="~/Content/images/quote.png" alt="Image of quote">
+                            <p class="client_reviews">
+                                @Model[i].Description
+                            </p>
+                            <div class="name_image_box">
+                                <p class="client_name_box">@Model[i].Name</p>
+                                <p class="client_proffesstion">@Model[i].Title</p>
+                                <div class="client_image_main">
+                                    @if (string.IsNullOrEmpty(Model[i].Image))
+        {
+            <img src="~/Content/images/image_placeholder.jpg" />
+        }
+        else
+        {
+            <img src="/Images/Testimonial/@Model[i].Image" alt="client" />
+        }                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</section>

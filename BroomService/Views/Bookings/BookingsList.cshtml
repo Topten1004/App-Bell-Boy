@@ -1,0 +1,214 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<BroomService.ViewModels.JobRequestDetailViewModel>
+@using BroomService.Resources
+@using BroomService.ViewModels
+@using BroomService.Helpers
+
+<style>
+    .booking-tabs .nav-link {
+        height: 40px;
+        padding: 0 20px;
+    }
+
+    .booking-tabs .nav-link {
+        background: #fff;
+        box-shadow: 0px 7px 16.56px 1.44px rgb(0 0 0 / 8%);
+        border-radius: 30px;
+    }
+
+        .booking-tabs .nav-link.active {
+            background: #214378;
+            color: #fff !important;
+        }
+
+    .pagination-container {
+        margin-top: 10px;
+    }
+
+    .simple-pagination {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+        .simple-pagination ul {
+            margin: 0 0 20px;
+            padding: 0;
+            list-style: none;
+            text-align: center;
+        }
+
+        .simple-pagination li {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+            .simple-pagination li a,
+            .simple-pagination li span {
+                color: #666;
+                padding: 5px 10px;
+                text-decoration: none;
+                border: 1px solid #EEE;
+                background-color: #FFF;
+                box-shadow: 0px 0px 10px 0px #EEE;
+            }
+
+        .simple-pagination .active {
+            color: #FFF;
+            background-color: #214378;
+            border-color: #FF7182;
+        }
+
+        .simple-pagination li.active a {
+            background-color: #214378;
+        }
+
+        .simple-pagination .prev.current,
+        .simple-pagination .next.current {
+            background: #e04e60;
+        }
+</style>
+
+@helper BookingView(JobRequestDetailViewModel item)
+{
+    <div class="col-12 col-md-6 col-lg-4 mb-5">
+        <div class="property_list_slider_box">
+            <div class="property_image_box">
+                <img src="~/Content/images/property_image.png" alt="Image of property" />
+            </div>
+            <div class="booking_content">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3>@item.PropertyName</h3>
+                    <span class="propetry-status-online"></span>
+                </div>
+                <div class="booking-date-time d-xl-flex justify-content-between">
+                    <div class="date my-4"><img src="~/Content/images/date.png" class="mr-2" alt="Date"> @item.StartDateTime.Value.ToString("ddd, MMMM dd, yyyy") </div>
+                    <div class="time my-4"><img src="~/Content/images/time.png" class="mr-2" alt="Time">  @item.StartDateTime.Value.ToString("hh:mm tt")</div>
+                </div>
+                <div class="booking-address">
+                    <img src="~/Content/images/services/Service_select.png" class="mr-3" alt="Service Name">
+                    @item.ServiceName
+                </div>
+                <div class="booking-address">
+                    <img src="~/Content/images/address.png" class="mr-2" alt="Address">
+                    @item.PropertyAddress
+                </div>
+                <div class="a_down">
+                    <a href="/Bookings/BookingDetails?booking_id=@item.JobRequestId">
+                        <img src="~/Content/images/down_arrow.png" alt="down arrow" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        if (@ViewBag.jobStatus == @Enums.RequestStatus.Pending.GetHashCode())
+        {
+            $("#ulTab li:nth-child(1) a").trigger('click');
+        }
+        else if (@ViewBag.jobStatus == @Enums.RequestStatus.InProgress.GetHashCode())
+        {
+            $("#ulTab li:nth-child(2) a").trigger('click');
+        }
+        else if (@ViewBag.jobStatus == @Enums.RequestStatus.Completed.GetHashCode())
+        {
+            $("#ulTab li:nth-child(3) a").trigger('click');
+        }
+        else if (@ViewBag.jobStatus == @Enums.RequestStatus.Canceled.GetHashCode())
+        {
+            $("#ulTab li:nth-child(4) a").trigger('click');
+        }
+        else { $("#ulTab li:nth-child(1) a").trigger('click'); }
+    });
+</script>
+<!-- Property Sections -->
+<section id="bookings">
+    <div class="container">
+        <div class="property-details-main">
+            <h3>@Resource.my_bookings</h3>
+            <p>List of all bookings</p>
+        </div>
+        <div class="row justify-content-between align-items-center my-5">
+            <div class="col-12 col-lg-8 booking-tabs">
+                <!-- Nav pills -->
+                <ul class="nav nav-pills" id="ulTab">
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="pill" href="/Bookings/BookingsList?page=1&jobStatus=1">@Resource.pending</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="pill" href="/Bookings/BookingsList?page=1&jobStatus=2">@Resource.in_progress</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " data-toggle="pill" href="/Bookings/BookingsList?page=1&jobStatus=3">@Resource.completed</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " data-toggle="pill" href="/Bookings/BookingsList?page=1&jobStatus=4">@Resource.cancelled</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12 col-lg-4 mt-3 mt-mb-0">
+                <form>
+                    <div class="form-group">
+                        <div class="custom_input d-flex">
+                            <input type="text" class="form-control form_edit_input" id="myInput" name="Search"
+                                   onkeyup="searchPropertyFunction()" placeholder="@Resource.search_here">
+                            <button class="search-btn" type="submit"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">
+                        <div class="row">
+                            @foreach (var item in Model)
+                            {
+                                @BookingView(item)
+                            }
+                            <div class="simple-pagination">
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+                                of @Model.PageCount   @Html.PagedListPager(Model, page => Url.Action("BookingsList", new { page, jobStatus = @ViewBag.jobStatus }))
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Tab panes -->
+        </div>
+    </div>
+</section>
+<script>
+    function searchPropertyFunction() {
+        // Declare variables
+        var input, filter, mainDiv, a, i, txtValue;
+        input = document.getElementById('myInput');
+        filter = input.value.toUpperCase();
+        mainDiv = document.getElementsByClassName("property_list_slider_box");
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < mainDiv.length; i++) {
+            var findDiv = mainDiv[i].getElementsByClassName("booking_content");
+            a = $(findDiv).find('h3');
+            txtValue = a.text();
+
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                mainDiv[i].style.display = "";
+            } else {
+                mainDiv[i].style.display = "none";
+            }
+        }
+    }
+
+    $(document).ready(function () {
+        $(".nav-link").click(function () {
+            window.location.href = $(this).attr('href');
+        });
+    });
+</script>
+

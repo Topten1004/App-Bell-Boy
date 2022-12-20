@@ -1,0 +1,88 @@
+﻿@model List<BroomService.ViewModels.AddServiceRequestViewModel>
+@{
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Font awsome kit -->
+    <script src="https://kit.fontawesome.com/40b745dcd8.js" crossorigin="anonymous"></script>
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <title>Offers:: Broom Services</title>
+</head>
+<!-- Choose Service box -->
+<section id="all_services_boxes" class="all_services_boxes">
+    <div class="container" style="min-height:350px">
+        <h2> Maintenance report</h2>
+        <p>Supervisor workers and subusers can report a problem sending report for fix and install</p>
+        <div class="row choose_service_box">
+            @if (Model != null && Model.Count > 0)
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="col-lg-6 mb-4">
+                        <a href="#">
+                            <div class="d-block d-sm-flex">
+                                <div class="servies_details align-self-center offers">
+                                    <h3>@Model[i].ServiceName</h3>
+                                    <p class="service_content"> @Model[i].Message</p>
+                                    <div class="d-flex mt-3">
+                                        <input type="hidden" value="@Model[i].Id" />
+                                        <input type="button" class="Accept btn btn-sm btn-success mr-3" value="Accept" />
+                                        <input type="button" class="Reject btn btn-sm btn-danger mr-3" value="Reject" />
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+@*<script src="~/Content/js/jquery.min.js"></script>*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+    $(".Accept").click(function () {
+
+       var ServiceReqId = $(this).prev('input[type=hidden]').val();
+       AcceptRejectServiceReq(1, ServiceReqId);
+    });
+
+    $(".Reject").click(function () {
+
+        var ServiceReqId = $(this).prev().prev('input[type=hidden]').val();
+        AcceptRejectServiceReq(2, ServiceReqId);
+    });
+
+    function AcceptRejectServiceReq(IsReject, id) {
+                $.ajax({
+                    url: "@Url.Action("IsAccept_RejectServiceRequest", "Order")",
+                    data: {
+                        status: IsReject,
+                        ServiceReqId: id
+                     },
+                    type: "POST",
+                    error: function () {
+                         alert("An error occurred.");
+                    },
+                    success: function (data) {
+                        if (data=='True')
+                        {
+                            alert('Successfully Updated');
+                            window.location.reload();
+                        }
+                     }
+            });
+    }
+</script>
+

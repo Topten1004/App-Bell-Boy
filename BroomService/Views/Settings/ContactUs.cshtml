@@ -1,0 +1,139 @@
+﻿@using BroomService.Resources
+@model BroomService.Models.ContactU
+
+<section id="send_message_main_box" class="send_message_main">
+    <div class="container">
+        <h2>@Resource.send_message</h2>
+        <p>@Resource.drop_message_for_contact</p>
+        <div class="add_payment_form">
+            @if (TempData["ErrorMsg"] != null)
+            {
+            <div class="alert alert-danger" role="alert">
+                @TempData["ErrorMsg"]
+            </div>
+            }
+            @if (TempData["SuccessMsg"] != null)
+            {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMsg"]
+            </div>
+            }
+            @using (Html.BeginForm("ContactUs", "Settings", FormMethod.Post, new { @class = "row" }))
+            {
+                <div class="col-md-7">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="property_label">@Resource.name</label>
+                                <div class="custom_input">
+                                    @Html.TextBoxFor(m => m.Name,
+                                      new
+                                      {
+                                          @class = "form-control form_edit_input",
+                                          placeholder = Resource.name_placeholder_contact,
+                                          @required = "required"
+                                      })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="property_label">@Resource.email</label>
+                                <div class="custom_input">
+                                    @Html.TextBoxFor(m => m.Email,
+                                      new
+                                      {
+                                          @class = "form-control form_edit_input",
+                                          placeholder = Resource.email_placeholder_contact,
+                                          @required = "required",
+                                          @type="email"
+                                      })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="property_label">@Resource.phone_number</label>
+                                <div class="custom_input">
+                                    @Html.TextBoxFor(m => m.PhoneNumber,
+                                      new
+                                      {
+                                          @class = "form-control form_edit_input",
+                                          placeholder = Resource.enter_phone_number,
+                                          @required = "required",
+                                          onKeyPress="if(this.value.length==10) return false;",
+                                          @type="number"
+                                      })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="property_label">@Resource.subject</label>
+                                <div class="d-flex custom_input">
+                                    @Html.DropDownListFor(model => model.ServiceId, new SelectList(ViewBag.Categories, "Value", "Text"), Resource.select_type_of_property,
+                                   new { @class = "property", required = "required" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="property_label">@Resource.message</label>
+                                @Html.TextAreaFor(m => m.Message,
+                                      new
+                                      {
+                                          @class = "form-control job_taxtarea",
+                                          placeholder = Resource.message,
+                                          @required = "required"
+                                      })
+                            </div>
+                        </div>
+                        <div class="col-12 text-right submit_box_all">
+                            <button type="submit" class="btn arrow_btn_box">
+                                <img src="~/Content/images/submit_next_btn.png" alt="next arrow">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="row send_right_box">
+                        <div class="col-12 mb-4">
+                            <a href="#">
+                                <div class="d-block d-sm-flex">
+                                    <div class="call_messge_main">
+                                        <div class="call_messge_box">
+                                            <img class="image_unselect" src="~/Content/images/send_call.png" alt="service">
+                                        </div>
+                                    </div>
+                                    <div class="call_mesage_details align-self-center">
+                                        <p class="service_content">@Resource.call_us_now</p>
+                                        @*<h3 class="number_count">(+972)03-525-03-07</h3>*@
+                                    <h3 class="number_count">+972(0) 55-564-9446</h3>
+                                        
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-12 mb-4">
+                            <a href="#">
+                                <div class="d-block d-sm-flex">
+                                    <div class="call_messge_main">
+                                        <div class="call_messge_box">
+                                            <img class="image_unselect" src="~/Content/images/send_mail.png" alt="service">
+                                        </div>
+                                    </div>
+                                    <div class="call_mesage_details align-self-center">
+                                        <p class="service_content">@Resource.email</p>
+                                        @*<h3 class="number_count">office@broomservice.co.il</h3>*@
+                                        <h3 class="number_count">support@bell-boy.com</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

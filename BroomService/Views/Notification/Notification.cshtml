@@ -1,0 +1,102 @@
+﻿@model BroomService.ViewModels.NotificationViewModel
+@using BroomService.Resources
+@using BroomService.Helpers
+
+<section id="notification" class="notification">
+    <div class="container">
+        <h2>Notification</h2>
+        <p></p>
+        <div class="notification_main_box">
+            <div class="row justify-content-between">
+                <div class="col-md-8">
+                    <div class="notify_box my-4">
+
+                        <div class="notifi_content d-block d-sm-flex">
+                            <div class="notify_details" style="float:left">
+                                <h4> Service Name</h4>
+                            </div>
+                            <div class="notify_details" style="float:right">
+                                <h5>@Model.ServiceName</h5>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="notifi_content d-block d-sm-flex">
+                            <div class="notify_details" style="float:left">
+                                <h4>From User Name</h4>
+                            </div>
+                            <div class="notify_details" style="float:right">
+                                <h5>@Model.FromUserName</h5>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="notifi_content d-block d-sm-flex">
+                            <div class="notify_details" style="float:left">
+                                <h4>To User Name</h4>
+                            </div>
+                            <div class="notify_details" style="float:right">
+                                <h5>@Model.ToUserName</h5>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="notifi_content d-block d-sm-flex">
+                            <div class="notify_details" style="float:left">
+                                <h4>Text</h4>
+                            </div>
+                            <div class="notify_details" style="float:right">
+                                <h5>@Model.Text</h5>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="notifi_content d-block d-sm-flex">
+                            <div class="notify_details" style="float:left">
+                                <h4>Notification Status</h4>
+                            </div>
+                            <div class="notify_details" style="float:right">
+                                <h5>@{((Enums.NotificationStatus)@Model.NotificationStatus).ToString();}</h5>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="notifi_content d-block d-sm-flex">
+                            <div class="notify_details" style="float:left">
+                                <h4>Quote Price</h4>
+                            </div>
+                            <div class="notify_details" style="float:right">
+                                <h5>@Model.QuotePrice</h5>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="notifi_content d-block d-sm-flex">
+                            <div class="notify_details" style="float:left">
+                                <h4>Property Name</h4>
+                            </div>
+                            <div class="notify_details" style="float:right">
+                                <h5>@Model.PropertyName</h5>
+                            </div>
+                        </div>
+
+                        <br />
+                        <div class="notifi_content d-block d-sm-flex">
+                            <div class="notify_details" style="float:left">
+                                <h4>Property Address</h4>
+                            </div>
+                            <div class="notify_details" style="float:right">
+                                <h5>@Model.PropertyAddress</h5>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 pl-lg-5">
+                    <div class="notification_image">
+                        <div class="w-100">
+                            <img src="https://app.cliniq.asia/dev/frontend/images/notification_icon.png" alt="settings" class="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

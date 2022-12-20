@@ -1,0 +1,1673 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{EB4A6D6A-A6E1-4D09-B8E9-36C5F2B4AA38}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BroomService</RootNamespace>
+    <AssemblyName>BroomService</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="evohtmltopdf, Version=8.0.0.0, Culture=neutral, PublicKeyToken=e1fcbb86597de299, processorArchitecture=MSIL">
+      <HintPath>..\packages\evopdf.8.0.0\lib\net40\evohtmltopdf.dll</HintPath>
+    </Reference>
+    <Reference Include="Firebase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FirebaseDatabase.net.4.0.4\lib\netstandard2.0\Firebase.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlRenderer, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.Core.1.5.0.6\lib\net45\HtmlRenderer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlRenderer.WinForms, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.WinForms.1.5.0.6\lib\net45\HtmlRenderer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqToExcel, Version=1.11.0.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\LinqToExcel.dll</HintPath>
+    </Reference>
+    <Reference Include="LiteDB, Version=4.1.4.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiteDB.4.1.4\lib\net40\LiteDB.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.2\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>E:\Orem Technology\BroomService\Customer\BroomServiceLatest\BroomService\bin\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Interfaces, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=18.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.HtmlToPdfConverter.QtWebKit.Wpf.18.4.0.39\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.HtmlConverter.Base, Version=18.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.HtmlToPdfConverter.QtWebKit.Wpf.18.4.0.39\lib\net46\Syncfusion.HtmlConverter.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Base, Version=18.4460.0.39, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.HtmlToPdfConverter.QtWebKit.Wpf.18.4.0.39\lib\net46\Syncfusion.Pdf.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Reactive, Version=4.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.4.0.0\lib\net46\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.7\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Twilio, Version=5.46.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Twilio.5.46.0\lib\net451\Twilio.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiControllers\AccountController.cs" />
+    <Compile Include="ApiControllers\BookingsController.cs" />
+    <Compile Include="ApiControllers\CardController.cs" />
+    <Compile Include="ApiControllers\CategoryController.cs" />
+    <Compile Include="ApiControllers\ChannelManagerController.cs" />
+    <Compile Include="ApiControllers\ChatController.cs" />
+    <Compile Include="ApiControllers\NotificationController.cs" />
+    <Compile Include="ApiControllers\OrderController.cs" />
+    <Compile Include="ApiControllers\PropertyController.cs" />
+    <Compile Include="ApiControllers\SettingsController.cs" />
+    <Compile Include="ApiControllers\WorkerController.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Web\AccountController.cs" />
+    <Compile Include="Controllers\Web\BookingsController.cs" />
+    <Compile Include="Controllers\Web\ChannelManagerController.cs" />
+    <Compile Include="Controllers\Web\ChatController.cs" />
+    <Compile Include="Controllers\Web\HomeController.cs" />
+    <Compile Include="Controllers\Web\LaundryController.cs" />
+    <Compile Include="Controllers\Web\MyController.cs" />
+    <Compile Include="Controllers\Web\NotificationController.cs" />
+    <Compile Include="Controllers\Web\OrderController.cs" />
+    <Compile Include="Controllers\Web\PropertyController.cs" />
+    <Compile Include="Controllers\Web\SettingsController.cs" />
+    <Compile Include="CustomFilter\VerifyPropertyAttribute.cs" />
+    <Compile Include="CustomFilter\VerifyUserAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Common.cs" />
+    <Compile Include="Helpers\CultureHelper.cs" />
+    <Compile Include="Helpers\Enums.cs" />
+    <Compile Include="Helpers\LanguageMang.cs" />
+    <Compile Include="Models\AboutU.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Card.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChannelManager.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CheckRequest.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\City.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ContactU.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Country.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DocumentJob.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GreetingMessage.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IncomeSource.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Inventory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobInventory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobRequest.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobRequestCheckList.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobRequestPropertyService.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobRequestQuoteDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobRequestQuoteType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobRequestRefImage.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JobRequestSubSubCategory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LaundryRequest.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Location.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MeetingSchedulRequest.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MonthInvoice.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MonthInvoiceService.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Notification.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OccupiedProvider.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Offer.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PrivacyPolicy.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Property.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropertyJobRequest.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropertyReport.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PropertyVisit.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Question.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RejectJobRequest.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Reservation.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ServiceAutoPrice.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ServicePriceChangeRequest.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ServiceQuote.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Setting.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SubCategory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SubSubCategory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SubUserRequest.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblAddInventoryRequest.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblAddServiceRequest.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblAskForService.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblCategoryShift.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblEditJobRequest.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblGrantAccess.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblGrantProperty.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblMessage.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblMessageType.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblMission.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblPropertyImage.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblProviderAvailableTime.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblProviderScheduleByDate.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSavedChecklist.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSavedChecklistDetail.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblVisitor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TermsCondition.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Testimonial.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserChannelManager.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserChannelManagerSetting.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserChat.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserJobReview.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserReview.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserSubCategory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WorkerQuestion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Resource.fr-FR.Designer.cs" />
+    <Compile Include="Resources\Resource.he-IL.Designer.cs" />
+    <Compile Include="Resources\Resource.ru-RU.Designer.cs" />
+    <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\BookingService.cs" />
+    <Compile Include="Services\CardService.cs" />
+    <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\ChannelManager\ChannelManagerService.cs" />
+    <Compile Include="Services\ChannelManager\IChannelManager.cs" />
+    <Compile Include="Services\ChannelManager\SmoobuChannelManager.cs" />
+    <Compile Include="Services\ChatService.cs" />
+    <Compile Include="Services\HomeService.cs" />
+    <Compile Include="Services\LaundryService.cs" />
+    <Compile Include="Services\NotificationService.cs" />
+    <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\PropertyService.cs" />
+    <Compile Include="Services\SettingsService.cs" />
+    <Compile Include="Services\TokenService.cs" />
+    <Compile Include="Services\WorkerService.cs" />
+    <Compile Include="ViewModels\AvailableTime.cs" />
+    <Compile Include="ViewModels\AvailableTimeViewModel.cs" />
+    <Compile Include="ViewModels\AvailablityViewModel.cs" />
+    <Compile Include="ViewModels\CardViewModel.cs" />
+    <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManager\ApartmentViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManager\ChannelManagerAccomodationViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManager\ChannelManagerViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManager\PropertyManagerViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManager\PropertySettingsViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManager\ReservationViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManager\Smoobu\SmoobuPropertyLocationViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManager\Smoobu\SmoobuPropertyPriceViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManager\Smoobu\SmoobuPropertyViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManager\Smoobu\SmoobuReservationDataViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManager\Smoobu\SmoobuReservationViewModel.cs" />
+    <Compile Include="ViewModels\ChannelManager\Smoobu\SmoobuRoomsViewModel.cs" />
+    <Compile Include="ViewModels\ChatViewModel.cs" />
+    <Compile Include="ViewModels\DeliveryBookedViewModel.cs" />
+    <Compile Include="ViewModels\DeliveryDistanceViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\JobRequestSuccessViewModel.cs" />
+    <Compile Include="ViewModels\JobRequestViewModel.cs" />
+    <Compile Include="ViewModels\LaundryPriceViewModel.cs" />
+    <Compile Include="ViewModels\LaundryRequestViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\NotificationViewModel.cs" />
+    <Compile Include="ViewModels\OfferViewModel.cs" />
+    <Compile Include="ViewModels\PropertyViewModel.cs" />
+    <Compile Include="ViewModels\QuoteViewModel.cs" />
+    <Compile Include="ViewModels\SaveQuesResponse.cs" />
+    <Compile Include="ViewModels\ServicePriceViewModel.cs" />
+    <Compile Include="ViewModels\ServiceProviderQuoteViewModel.cs" />
+    <Compile Include="ViewModels\SubSubCategoryViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\VerificationViewModel.cs" />
+    <Compile Include="ViewModels\wsBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-chosen.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\chosen-sprite%402x.png" />
+    <Content Include="Content\chosen-sprite.png" />
+    <Content Include="Content\CountryIcon\england.jpg" />
+    <Content Include="Content\CountryIcon\french.png" />
+    <Content Include="Content\CountryIcon\israel.png" />
+    <Content Include="Content\CountryIcon\russian.png" />
+    <Content Include="Content\css\site.css" />
+    <Content Include="Content\custom.css" />
+    <Content Include="Content\datetime.css" />
+    <Content Include="Content\datetimepicker.css" />
+    <Content Include="Content\demos.css" />
+    <Content Include="Content\dist\jquery-steps.css" />
+    <Content Include="Content\dist\jquery-steps.js" />
+    <Content Include="Content\dist\jquery-steps.min.js" />
+    <Content Include="Content\example1.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\images\address.png" />
+    <Content Include="Content\images\add_pro_ic.png" />
+    <Content Include="Content\images\americanexpress.png" />
+    <Content Include="Content\images\arrow_left.png" />
+    <Content Include="Content\images\arrow_more.png" />
+    <Content Include="Content\images\arrow_right.png" />
+    <Content Include="Content\images\back_to_home_arrow.png" />
+    <Content Include="Content\images\broom_section_busy.png" />
+    <Content Include="Content\images\call_normal.png" />
+    <Content Include="Content\images\channel-managers\smoobu-logo.png" />
+    <Content Include="Content\images\chat_search.png" />
+    <Content Include="Content\images\close_btn.png" />
+    <Content Include="Content\images\currency_symbol.png" />
+    <Content Include="Content\images\custom.png" />
+    <Content Include="Content\images\dafault_img.png" />
+    <Content Include="Content\images\date.png" />
+    <Content Include="Content\images\deadline.png" />
+    <Content Include="Content\images\discover.png" />
+    <Content Include="Content\images\down_arrow.png" />
+    <Content Include="Content\images\Empty.png" />
+    <Content Include="Content\images\happy_clients.png" />
+    <Content Include="Content\images\image_2021_05_20T07_07_11_261Z.png" />
+    <Content Include="Content\images\image_placeholder.jpg" />
+    <Content Include="Content\images\jcb.png" />
+    <Content Include="Content\images\laundry.png" />
+    <Content Include="Content\images\lock.png" />
+    <Content Include="Content\images\login_bg.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\logo_login.png" />
+    <Content Include="Content\images\logo_old.png" />
+    <Content Include="Content\images\look.png" />
+    <Content Include="Content\images\mastercard.png" />
+    <Content Include="Content\images\master_card.png" />
+    <Content Include="Content\images\message_send.png" />
+    <Content Include="Content\images\notification_bell.png" />
+    <Content Include="Content\images\offer.png" />
+    <Content Include="Content\images\pay.png" />
+    <Content Include="Content\images\play_btn.png" />
+    <Content Include="Content\images\professonial_service.png" />
+    <Content Include="Content\images\property.jpg" />
+    <Content Include="Content\images\property_image.png" />
+    <Content Include="Content\images\pro_location.png" />
+    <Content Include="Content\images\quote.png" />
+    <Content Include="Content\images\refil.png" />
+    <Content Include="Content\images\salesquotes.png" />
+    <Content Include="Content\images\search-btn.png" />
+    <Content Include="Content\images\send_call.png" />
+    <Content Include="Content\images\send_mail.png" />
+    <Content Include="Content\images\ServiceRequest.jpeg" />
+    <Content Include="Content\images\services\1 - Copy.jpg" />
+    <Content Include="Content\images\services\1-new_2019_25_12__07_07_42 - Copy.jpg" />
+    <Content Include="Content\images\services\1-new_2019_25_12__07_07_42.jpg" />
+    <Content Include="Content\images\services\1.jpg" />
+    <Content Include="Content\images\services\11-food-porn-wedding-cakes-with-flowers - Copy.jpg" />
+    <Content Include="Content\images\services\11-food-porn-wedding-cakes-with-flowers.jpg" />
+    <Content Include="Content\images\services\1_2019_20_12__06_37_03 - Copy.jpg" />
+    <Content Include="Content\images\services\1_2019_20_12__06_37_03.jpg" />
+    <Content Include="Content\images\services\1_2019_20_12__08_13_18 - Copy.jpg" />
+    <Content Include="Content\images\services\1_2019_20_12__08_13_18.jpg" />
+    <Content Include="Content\images\services\1_2019_20_12__12_17_02 - Copy.jpg" />
+    <Content Include="Content\images\services\1_2019_20_12__12_17_02.jpg" />
+    <Content Include="Content\images\services\1_2019_20_12__12_32_34 - Copy.jpg" />
+    <Content Include="Content\images\services\1_2019_20_12__12_32_34.jpg" />
+    <Content Include="Content\images\services\1_2019_20_12__13_11_24 - Copy.jpg" />
+    <Content Include="Content\images\services\1_2019_20_12__13_11_24.jpg" />
+    <Content Include="Content\images\services\1_2019_23_12__04_33_20.jpg" />
+    <Content Include="Content\images\services\1_2019_23_12__06_51_09 - Copy.jpg" />
+    <Content Include="Content\images\services\1_2019_23_12__06_51_09.jpg" />
+    <Content Include="Content\images\services\1_2019_23_12__08_01_47 - Copy.jpg" />
+    <Content Include="Content\images\services\1_2019_23_12__08_01_47.jpg" />
+    <Content Include="Content\images\services\1_2019_23_12__10_13_51 - Copy.jpg" />
+    <Content Include="Content\images\services\1_2019_23_12__10_13_51.jpg" />
+    <Content Include="Content\images\services\1_2019_24_12__12_49_36 - Copy.jpg" />
+    <Content Include="Content\images\services\1_2019_24_12__12_49_36.jpg" />
+    <Content Include="Content\images\services\1_new_2019_25_12__07_31_57 - Copy.jpg" />
+    <Content Include="Content\images\services\1_new_2019_25_12__07_31_57.jpg" />
+    <Content Include="Content\images\services\2 - Copy.jpg" />
+    <Content Include="Content\images\services\2-new_2019_25_12__07_14_09 - Copy.jpg" />
+    <Content Include="Content\images\services\2-new_2019_25_12__07_14_09.jpg" />
+    <Content Include="Content\images\services\2.jpg" />
+    <Content Include="Content\images\services\25 - Copy.png" />
+    <Content Include="Content\images\services\25.png" />
+    <Content Include="Content\images\services\2_2019_20_12__06_24_56 - Copy.jpg" />
+    <Content Include="Content\images\services\2_2019_20_12__06_24_56.jpg" />
+    <Content Include="Content\images\services\2_2019_20_12__10_57_28 - Copy.jpg" />
+    <Content Include="Content\images\services\2_2019_20_12__10_57_28.jpg" />
+    <Content Include="Content\images\services\2_2019_20_12__12_17_26 - Copy.jpg" />
+    <Content Include="Content\images\services\2_2019_20_12__12_17_26.jpg" />
+    <Content Include="Content\images\services\2_2019_20_12__12_32_52 - Copy.jpg" />
+    <Content Include="Content\images\services\2_2019_20_12__12_32_52.jpg" />
+    <Content Include="Content\images\services\2_2019_20_12__13_11_52 - Copy.jpg" />
+    <Content Include="Content\images\services\2_2019_20_12__13_11_52.jpg" />
+    <Content Include="Content\images\services\2_2019_23_12__04_34_08.jpg" />
+    <Content Include="Content\images\services\2_2019_23_12__06_51_30 - Copy.jpg" />
+    <Content Include="Content\images\services\2_2019_23_12__06_51_30.jpg" />
+    <Content Include="Content\images\services\2_2019_23_12__08_02_07 - Copy.jpg" />
+    <Content Include="Content\images\services\2_2019_23_12__08_02_07.jpg" />
+    <Content Include="Content\images\services\2_2019_23_12__10_14_53 - Copy.jpg" />
+    <Content Include="Content\images\services\2_2019_23_12__10_14_53.jpg" />
+    <Content Include="Content\images\services\2_new_2019_25_12__07_43_12 - Copy.jpg" />
+    <Content Include="Content\images\services\2_new_2019_25_12__07_43_12.jpg" />
+    <Content Include="Content\images\services\2_star_select.png" />
+    <Content Include="Content\images\services\2_star_un_select.png" />
+    <Content Include="Content\images\services\3 - Copy.jpg" />
+    <Content Include="Content\images\services\3.jpg" />
+    <Content Include="Content\images\services\3_2019_20_12__06_08_15 - Copy.jpg" />
+    <Content Include="Content\images\services\3_2019_20_12__06_08_15.jpg" />
+    <Content Include="Content\images\services\3_2019_20_12__11_02_31 - Copy.jpg" />
+    <Content Include="Content\images\services\3_2019_20_12__11_02_31.jpg" />
+    <Content Include="Content\images\services\3_2019_20_12__12_17_56 - Copy.jpg" />
+    <Content Include="Content\images\services\3_2019_20_12__12_17_56.jpg" />
+    <Content Include="Content\images\services\3_2019_20_12__12_18_21 - Copy.jpg" />
+    <Content Include="Content\images\services\3_2019_20_12__12_18_21.jpg" />
+    <Content Include="Content\images\services\3_2019_20_12__13_12_16 - Copy.jpg" />
+    <Content Include="Content\images\services\3_2019_20_12__13_12_16.jpg" />
+    <Content Include="Content\images\services\3_2019_23_12__04_33_55.jpg" />
+    <Content Include="Content\images\services\3_2019_23_12__06_52_04 - Copy.jpg" />
+    <Content Include="Content\images\services\3_2019_23_12__06_52_04.jpg" />
+    <Content Include="Content\images\services\3_2019_23_12__08_02_50 - Copy.jpg" />
+    <Content Include="Content\images\services\3_2019_23_12__08_02_50.jpg" />
+    <Content Include="Content\images\services\3_2019_23_12__10_15_12 - Copy.jpg" />
+    <Content Include="Content\images\services\3_2019_23_12__10_15_12.jpg" />
+    <Content Include="Content\images\services\3_star_select.png" />
+    <Content Include="Content\images\services\3_star_un_select.png" />
+    <Content Include="Content\images\services\4 - Copy.jpg" />
+    <Content Include="Content\images\services\4.jpg" />
+    <Content Include="Content\images\services\4_2019_20_12__06_35_06 - Copy.jpg" />
+    <Content Include="Content\images\services\4_2019_20_12__06_35_06.jpg" />
+    <Content Include="Content\images\services\4_2019_20_12__12_18_38 - Copy.jpg" />
+    <Content Include="Content\images\services\4_2019_20_12__12_18_38.jpg" />
+    <Content Include="Content\images\services\4_2019_20_12__13_13_01 - Copy.jpg" />
+    <Content Include="Content\images\services\4_2019_20_12__13_13_01.jpg" />
+    <Content Include="Content\images\services\4_2019_23_12__04_33_42.jpg" />
+    <Content Include="Content\images\services\4_2019_23_12__06_52_26 - Copy.jpg" />
+    <Content Include="Content\images\services\4_2019_23_12__06_52_26.jpg" />
+    <Content Include="Content\images\services\4_2019_24_12__12_35_42 - Copy.jpg" />
+    <Content Include="Content\images\services\4_2019_24_12__12_35_42.jpg" />
+    <Content Include="Content\images\services\4_2019_27_12__08_12_26 - Copy.jpg" />
+    <Content Include="Content\images\services\4_2019_27_12__08_12_26.jpg" />
+    <Content Include="Content\images\services\4_2019_27_12__09_07_57 - Copy.jpg" />
+    <Content Include="Content\images\services\4_2019_27_12__09_07_57.jpg" />
+    <Content Include="Content\images\services\4_star_select.png" />
+    <Content Include="Content\images\services\4_star_un_select.png" />
+    <Content Include="Content\images\services\5 - Copy.jpg" />
+    <Content Include="Content\images\services\5.1_2019_25_12__06_43_54 - Copy.jpg" />
+    <Content Include="Content\images\services\5.1_2019_25_12__06_43_54.jpg" />
+    <Content Include="Content\images\services\5.jpg" />
+    <Content Include="Content\images\services\5_2019_20_12__12_18_58 - Copy.jpg" />
+    <Content Include="Content\images\services\5_2019_20_12__12_18_58.jpg" />
+    <Content Include="Content\images\services\5_2019_20_12__13_13_17 - Copy.jpg" />
+    <Content Include="Content\images\services\5_2019_20_12__13_13_17.jpg" />
+    <Content Include="Content\images\services\5_2019_24_12__12_36_00 - Copy.jpg" />
+    <Content Include="Content\images\services\5_2019_24_12__12_36_00.jpg" />
+    <Content Include="Content\images\services\5_star_select.png" />
+    <Content Include="Content\images\services\5_star_un_select.png" />
+    <Content Include="Content\images\services\6 - Copy.jpg" />
+    <Content Include="Content\images\services\6.jpg" />
+    <Content Include="Content\images\services\63A4D0C3-0AD6-432F-AEAF-DB1F92971DB1 2 - Copy.jpg" />
+    <Content Include="Content\images\services\63A4D0C3-0AD6-432F-AEAF-DB1F92971DB1 2.jpg" />
+    <Content Include="Content\images\services\7.png" />
+    <Content Include="Content\images\services\7_2019_23_12__07_34_30.jpg" />
+    <Content Include="Content\images\services\8_2019_23_12__11_56_18.jpg" />
+    <Content Include="Content\images\services\about_image - Copy.png" />
+    <Content Include="Content\images\services\about_image.png" />
+    <Content Include="Content\images\services\air-conditioner - Copy.png" />
+    <Content Include="Content\images\services\air-conditioner.png" />
+    <Content Include="Content\images\services\airbnb.jpg" />
+    <Content Include="Content\images\services\airbnb_select.png" />
+    <Content Include="Content\images\services\airbnb_un_select.png" />
+    <Content Include="Content\images\services\armchair - Copy.png" />
+    <Content Include="Content\images\services\armchair.png" />
+    <Content Include="Content\images\services\arround_me.png" />
+    <Content Include="Content\images\services\arround_me_icon.png" />
+    <Content Include="Content\images\services\as - Copy.png" />
+    <Content Include="Content\images\services\as.png" />
+    <Content Include="Content\images\services\babysitter_bg - Copy.jpg" />
+    <Content Include="Content\images\services\babysitter_bg.jpg" />
+    <Content Include="Content\images\services\babysitter_ic - Copy.png" />
+    <Content Include="Content\images\services\babysitter_ic.png" />
+    <Content Include="Content\images\services\banner_bg - Copy.png" />
+    <Content Include="Content\images\services\banner_bg.png" />
+    <Content Include="Content\images\services\banner_bg[1] - Copy.png" />
+    <Content Include="Content\images\services\banner_bg[1].png" />
+    <Content Include="Content\images\services\banner_bg[2] - Copy.png" />
+    <Content Include="Content\images\services\banner_bg[2].png" />
+    <Content Include="Content\images\services\BBpostare1 - Copy.jpg" />
+    <Content Include="Content\images\services\BBpostare1.jpg" />
+    <Content Include="Content\images\services\bfdfd.png" />
+    <Content Include="Content\images\services\blur - Copy.png" />
+    <Content Include="Content\images\services\blur.png" />
+    <Content Include="Content\images\services\bs - Copy.png" />
+    <Content Include="Content\images\services\bs.png" />
+    <Content Include="Content\images\services\buy_bg - Copy.jpg" />
+    <Content Include="Content\images\services\buy_bg.jpg" />
+    <Content Include="Content\images\services\buy_ic - Copy.png" />
+    <Content Include="Content\images\services\buy_ic.png" />
+    <Content Include="Content\images\services\camping - Copy.png" />
+    <Content Include="Content\images\services\camping.png" />
+    <Content Include="Content\images\services\carpet - Copy.png" />
+    <Content Include="Content\images\services\carpet.png" />
+    <Content Include="Content\images\services\check-in-service-icon.png" />
+    <Content Include="Content\images\services\chef - Copy.png" />
+    <Content Include="Content\images\services\chef.png" />
+    <Content Include="Content\images\services\chef_bg - Copy.jpg" />
+    <Content Include="Content\images\services\chef_bg.jpg" />
+    <Content Include="Content\images\services\chef_ic - Copy.png" />
+    <Content Include="Content\images\services\chef_ic.png" />
+    <Content Include="Content\images\services\clean-linen-basket - Copy.png" />
+    <Content Include="Content\images\services\clean-linen-basket.png" />
+    <Content Include="Content\images\services\cleaning-service-icon.png" />
+    <Content Include="Content\images\services\cleaning_bg.jpg" />
+    <Content Include="Content\images\services\cleaning_maintenance.jpg" />
+    <Content Include="Content\images\services\cleaning_maintenance_icon.png" />
+    <Content Include="Content\images\services\cleaning_maintenance_icon[1].png" />
+    <Content Include="Content\images\services\cloest_orginization_select.png" />
+    <Content Include="Content\images\services\cloest_orginization_un_select.png" />
+    <Content Include="Content\images\services\dd.png" />
+    <Content Include="Content\images\services\deep-cleaning-service-icon.png" />
+    <Content Include="Content\images\services\delux_select.png" />
+    <Content Include="Content\images\services\delux_un_select.png" />
+    <Content Include="Content\images\services\electrician.png" />
+    <Content Include="Content\images\services\electritian-service-icon.png" />
+    <Content Include="Content\images\services\email_ic_2020_26_5__16_31_53.png" />
+    <Content Include="Content\images\services\fix-install-service-icon.png" />
+    <Content Include="Content\images\services\fix_install_bg.jpg" />
+    <Content Include="Content\images\services\fix_instal_select.png" />
+    <Content Include="Content\images\services\fix_instal_un_select.png" />
+    <Content Include="Content\images\services\gps-location%28supervisior%29.jpg" />
+    <Content Include="Content\images\services\gps-location%28worker%29_2021_19_5__09_26_38.jpg" />
+    <Content Include="Content\images\services\handyman-service-icon.png" />
+    <Content Include="Content\images\services\house_service_select.png" />
+    <Content Include="Content\images\services\house_service_un_select.png" />
+    <Content Include="Content\images\services\hr.png" />
+    <Content Include="Content\images\services\ic_airbnb.png" />
+    <Content Include="Content\images\services\ic_cleaning.png" />
+    <Content Include="Content\images\services\ic_fix_install.png" />
+    <Content Include="Content\images\services\ic_footer_profile_select.png" />
+    <Content Include="Content\images\services\ic_inside_maintenance.png" />
+    <Content Include="Content\images\services\ic_laundry.png" />
+    <Content Include="Content\images\services\ic_lifestyle.png" />
+    <Content Include="Content\images\services\ic_move_in.png" />
+    <Content Include="Content\images\services\ic_outside_maintanence.png" />
+    <Content Include="Content\images\services\image %281%29.png" />
+    <Content Include="Content\images\services\image %281%29_2020_16_5__11_13_21.png" />
+    <Content Include="Content\images\services\image %281%29_2020_16_5__11_20_21.png" />
+    <Content Include="Content\images\services\image.png" />
+    <Content Include="Content\images\services\image_2020_16_5__10_54_02.png" />
+    <Content Include="Content\images\services\image_2020_16_5__11_00_53.png" />
+    <Content Include="Content\images\services\img__0002_shutterstock_327603341[1].jpg" />
+    <Content Include="Content\images\services\inside_maintenance.jpg" />
+    <Content Include="Content\images\services\inside_servies_select.png" />
+    <Content Include="Content\images\services\inside_servies_un_select.png" />
+    <Content Include="Content\images\services\installicon.jpg" />
+    <Content Include="Content\images\services\inventory-service-icon.png" />
+    <Content Include="Content\images\services\land_2019_27_12__04_13_21.jpg" />
+    <Content Include="Content\images\services\laundry-service-icon.png" />
+    <Content Include="Content\images\services\laundry.jpg" />
+    <Content Include="Content\images\services\lifestyle.jpg" />
+    <Content Include="Content\images\services\lifestyle_icon.png" />
+    <Content Include="Content\images\services\lift_maintenance.jpg" />
+    <Content Include="Content\images\services\lift_maintenance_icon.png" />
+    <Content Include="Content\images\services\logo.png" />
+    <Content Include="Content\images\services\maintenance.png" />
+    <Content Include="Content\images\services\movers.jpg" />
+    <Content Include="Content\images\services\movers_icon.png" />
+    <Content Include="Content\images\services\move_in_bg.jpg" />
+    <Content Include="Content\images\services\move_in_out_select.png" />
+    <Content Include="Content\images\services\move_in_out_un_select.png" />
+    <Content Include="Content\images\services\one_time_select.png" />
+    <Content Include="Content\images\services\one_time_un_select.png" />
+    <Content Include="Content\images\services\outside.png" />
+    <Content Include="Content\images\services\outside_maintenance.jpg" />
+    <Content Include="Content\images\services\pest.png" />
+    <Content Include="Content\images\services\plumber-service-icon.png" />
+    <Content Include="Content\images\services\priscilla-du-preez-4Mw_M9a103Q-unsplash.jpg" />
+    <Content Include="Content\images\services\professonial_service_select.png" />
+    <Content Include="Content\images\services\professonial_service_un_select.png" />
+    <Content Include="Content\images\services\rent_buy.jpg" />
+    <Content Include="Content\images\services\rent_buy_icon.jpg" />
+    <Content Include="Content\images\services\room-service.png" />
+    <Content Include="Content\images\services\Service_select.png" />
+    <Content Include="Content\images\services\spa-service-icon.png" />
+    <Content Include="Content\images\services\tag-%283%29.png" />
+    <Content Include="Content\images\services\user_img.png" />
+    <Content Include="Content\images\services\windows-cleaning-service-icon.png" />
+    <Content Include="Content\images\services\yield.png" />
+    <Content Include="Content\images\services\ZIP 2- POP PINK.jpg" />
+    <Content Include="Content\images\services\ZIP 2- POP PINK_2020_16_5__10_40_07.jpg" />
+    <Content Include="Content\images\services\ZIP 2- POP PINK_2020_16_5__10_48_51.jpg" />
+    <Content Include="Content\images\services\ZIP 2- POP PINK_2020_16_5__10_50_22.jpg" />
+    <Content Include="Content\images\services\ZIP 2- POP PINK_2020_16_5__11_05_14.jpg" />
+    <Content Include="Content\images\services\ZIP 2- POP PINK_2020_16_5__11_10_21.jpg" />
+    <Content Include="Content\images\speical_slider_image_1.png" />
+    <Content Include="Content\images\speical_slider_image_2.png" />
+    <Content Include="Content\images\speical_slider_image_3.png" />
+    <Content Include="Content\images\submit_next_btn.png" />
+    <Content Include="Content\images\submit_prev_btn.png" />
+    <Content Include="Content\images\Testimonial\1700728-Linus-Torvalds-Quote-Talk-is-cheap-Show-me-the-code.jpg" />
+    <Content Include="Content\images\Testimonial\220px-Dalya_Itzik_1[1].png" />
+    <Content Include="Content\images\Testimonial\aa.jpg" />
+    <Content Include="Content\images\Testimonial\banner_bg.png" />
+    <Content Include="Content\images\Testimonial\cropped-LOGO_F-01[1].png" />
+    <Content Include="Content\images\Testimonial\h_logo[1].png" />
+    <Content Include="Content\images\Testimonial\ic_tick_green.png" />
+    <Content Include="Content\images\Testimonial\logo_login.png" />
+    <Content Include="Content\images\testimonial_arrow_left.png" />
+    <Content Include="Content\images\testimonial_arrow_right.png" />
+    <Content Include="Content\images\tick_btn.png" />
+    <Content Include="Content\images\time.png" />
+    <Content Include="Content\images\top_bg.png" />
+    <Content Include="Content\images\unlock.png" />
+    <Content Include="Content\images\User\1700728-Linus-Torvalds-Quote-Talk-is-cheap-Show-me-the-code.jpg" />
+    <Content Include="Content\images\User\81b0c3cfaa792f625c8dbecbf0bccb17d7f1d62b_2021_08_11__11_12_11.png" />
+    <Content Include="Content\images\User\aa.jpg" />
+    <Content Include="Content\images\User\about_image.png" />
+    <Content Include="Content\images\User\about_image_2021_04_10__17_15_55.png" />
+    <Content Include="Content\images\User\addAddressToList.png" />
+    <Content Include="Content\images\User\add_photo_2020_26_5__17_18_15.png" />
+    <Content Include="Content\images\User\arround_me.png" />
+    <Content Include="Content\images\User\background_2020_18_6__09_42_45.jpg" />
+    <Content Include="Content\images\User\banner_bg.png" />
+    <Content Include="Content\images\User\barcode.png" />
+    <Content Include="Content\images\User\bg_2019_01_11__12_57_13.jpg" />
+    <Content Include="Content\images\User\bg_2019_01_11__16_13_38.jpg" />
+    <Content Include="Content\images\User\bg_2019_01_11__16_17_02.jpg" />
+    <Content Include="Content\images\User\bg_2019_01_11__17_52_39.jpg" />
+    <Content Include="Content\images\User\bg_2019_01_11__17_54_41.jpg" />
+    <Content Include="Content\images\User\bg_2019_14_11__15_43_54.jpg" />
+    <Content Include="Content\images\User\bg_2019_30_10__13_19_32.jpg" />
+    <Content Include="Content\images\User\bg_2019_30_10__13_31_54.jpg" />
+    <Content Include="Content\images\User\bg_2019_30_10__16_06_06.jpg" />
+    <Content Include="Content\images\User\bg_2019_30_10__16_06_30.jpg" />
+    <Content Include="Content\images\User\bg_2019_30_10__16_06_30_2021_20_7__18_27_02.jpg" />
+    <Content Include="Content\images\User\Boyimage4_2021_18_10__10_20_16.jpg" />
+    <Content Include="Content\images\User\BS_2021_13_10__22_51_02.jpg" />
+    <Content Include="Content\images\User\BS_2021_14_10__22_20_02.jpg" />
+    <Content Include="Content\images\User\changLng_2020_26_5__16_56_35.png" />
+    <Content Include="Content\images\User\checkbox_2020_26_5__17_27_33.png" />
+    <Content Include="Content\images\User\checkbox_2020_26_5__17_27_33_2021_20_7__18_25_54.png" />
+    <Content Include="Content\images\User\Chrysanthemum_2020_17_7__09_50_32.jpg" />
+    <Content Include="Content\images\User\cleaning_maintenance.jpg" />
+    <Content Include="Content\images\User\default_2021_25_6__13_10_15.jpg" />
+    <Content Include="Content\images\User\Desert_2020_17_7__09_53_31.jpg" />
+    <Content Include="Content\images\User\fiulhuja_2022_02_3__00_46_50.jpg" />
+    <Content Include="Content\images\User\fiulhuja_2022_12_3__00_39_31.jpg" />
+    <Content Include="Content\images\User\fiulhuja_2022_16_3__01_47_00.jpg" />
+    <Content Include="Content\images\User\fiulhuja_2022_23_3__00_00_56.jpg" />
+    <Content Include="Content\images\User\fiulhuja_2022_23_3__00_02_46.jpg" />
+    <Content Include="Content\images\User\fiulhuja_2022_29_3__09_13_44.jpg" />
+    <Content Include="Content\images\User\fqn5nia0_2022_04_3__16_05_59.jpg" />
+    <Content Include="Content\images\User\fqn5nia0_2022_16_3__01_49_47.jpg" />
+    <Content Include="Content\images\User\fqn5nia0_2022_29_3__09_14_41.jpg" />
+    <Content Include="Content\images\User\good-pic_2021_19_3__11_44_19.png" />
+    <Content Include="Content\images\User\gps-location%28worker%29_2021_21_5__16_48_13.jpg" />
+    <Content Include="Content\images\User\gxxcv2yc_2022_16_3__01_47_50.jpg" />
+    <Content Include="Content\images\User\gxxcv2yc_2022_23_3__00_11_05.jpg" />
+    <Content Include="Content\images\User\hotal_ic_2020_26_5__16_41_54.png" />
+    <Content Include="Content\images\User\ic_business_meeting_2020_26_5__16_56_16.png" />
+    <Content Include="Content\images\User\ic_business_meeting_2020_26_5__16_56_16_2021_18_11__13_28_01.png" />
+    <Content Include="Content\images\User\ic_business_meeting_2020_26_5__16_56_16_2021_20_7__18_25_13.png" />
+    <Content Include="Content\images\User\ic_footer_profile_select_2021_17_11__18_47_46.png" />
+    <Content Include="Content\images\User\ic_footer_profile_select_2021_20_7__18_21_10.png" />
+    <Content Include="Content\images\User\images34254_2021_24_2__15_34_21.jpeg" />
+    <Content Include="Content\images\User\images34254_2021_24_2__15_35_55.jpeg" />
+    <Content Include="Content\images\User\images_2021_20_7__18_22_37.jpg" />
+    <Content Include="Content\images\User\IMG-20210609-WA0011_2021_11_6__11_24_36.jpg" />
+    <Content Include="Content\images\User\istockphoto-1277592603-170667a_2021_16_11__19_14_18.jpg" />
+    <Content Include="Content\images\User\JawaniPic_2022_28_1__01_50_55.jpg" />
+    <Content Include="Content\images\User\JobCheckListf008a8ad-56b1-4c93-a4f3-04e9fe1a73602021_02_23_15_39_00_2021_16_6__10_40_14.jpg" />
+    <Content Include="Content\images\User\login_main_image.jpg" />
+    <Content Include="Content\images\User\logo_2019_19_11__17_42_02.png" />
+    <Content Include="Content\images\User\logo_2019_19_11__17_42_16.png" />
+    <Content Include="Content\images\User\logo_2019_19_11__17_49_40.png" />
+    <Content Include="Content\images\User\logo_2019_19_11__17_56_52.png" />
+    <Content Include="Content\images\User\logo_2019_19_11__17_56_54.png" />
+    <Content Include="Content\images\User\logo_2019_19_11__17_57_50.png" />
+    <Content Include="Content\images\User\logo_final1_2021_14_10__00_18_13.jpg" />
+    <Content Include="Content\images\User\logo_final1_2021_14_10__00_23_39.jpg" />
+    <Content Include="Content\images\User\logo_login.png" />
+    <Content Include="Content\images\User\logo_top_2020_08_7__11_24_53.png" />
+    <Content Include="Content\images\User\modal_close_2020_08_7__10_38_44.png" />
+    <Content Include="Content\images\User\movers_bg.jpg" />
+    <Content Include="Content\images\User\movers_ic.png" />
+    <Content Include="Content\images\User\myw3schoolsimage %281%29_2021_17_7__16_24_52.jpg" />
+    <Content Include="Content\images\User\NewPhoto_2022_03_2__00_18_54.jpg" />
+    <Content Include="Content\images\User\NewPhoto_2022_03_2__01_49_49.jpg" />
+    <Content Include="Content\images\User\NewPhoto_2022_16_2__02_00_32.jpg" />
+    <Content Include="Content\images\User\NewPhoto_2022_25_1__01_12_35.jpg" />
+    <Content Include="Content\images\User\packunpack_bg.jpg" />
+    <Content Include="Content\images\User\PPH_2022_04_2__00_28_44.jpg" />
+    <Content Include="Content\images\User\PPH_2022_25_1__01_04_28.jpg" />
+    <Content Include="Content\images\User\PPH_2022_28_1__01_46_32.jpg" />
+    <Content Include="Content\images\User\profilepic_2019_01_11__16_20_35.png" />
+    <Content Include="Content\images\User\profilepic_2019_01_11__17_48_26.png" />
+    <Content Include="Content\images\User\profilepic_2019_01_11__17_50_07.png" />
+    <Content Include="Content\images\User\profilepic_2019_01_11__17_58_47.png" />
+    <Content Include="Content\images\User\profilepic_2019_01_11__18_31_01.png" />
+    <Content Include="Content\images\User\profilepic_2019_06_11__17_52_10.png" />
+    <Content Include="Content\images\User\profilepic_2019_06_11__17_55_02.png" />
+    <Content Include="Content\images\User\profilepic_2019_06_11__18_01_09.png" />
+    <Content Include="Content\images\User\profilepic_2019_11_11__16_06_00.png" />
+    <Content Include="Content\images\User\profilepic_2019_11_11__16_30_07.png" />
+    <Content Include="Content\images\User\profilepic_2019_11_11__16_55_32.png" />
+    <Content Include="Content\images\User\profilepic_2019_15_11__14_40_10.png" />
+    <Content Include="Content\images\User\profilepic_2019_18_11__18_27_41.png" />
+    <Content Include="Content\images\User\profilepic_2019_25_11__15_30_05.png" />
+    <Content Include="Content\images\User\profilepic_2019_27_12__09_56_27.png" />
+    <Content Include="Content\images\User\profilepic_2019_28_11__15_34_51.png" />
+    <Content Include="Content\images\User\Property1becd9d0-2334-4c09-a726-00475288f9872021_04_13_10_20_50_2021_20_7__18_16_57.jpg" />
+    <Content Include="Content\images\User\Property6384ef63-905a-41ed-8bc1-6c3cd4fa903a2021_06_24_17_34_59_2021_20_7__18_19_45.jpg" />
+    <Content Include="Content\images\User\Screenshot 2019-12-03 at 2.48.08 PM.png" />
+    <Content Include="Content\images\User\super_visior_2021_17_7__16_26_15.png" />
+    <Content Include="Content\images\User\super_visior_2021_17_7__16_26_46.png" />
+    <Content Include="Content\images\User\super_visior_2021_17_7__16_28_39.png" />
+    <Content Include="Content\images\User\UserDefault.jpg" />
+    <Content Include="Content\images\User\welcome_2020_14_10__14_43_09.png" />
+    <Content Include="Content\images\User\welcome_2020_14_10__14_43_09_2021_02_9__12_49_22.png" />
+    <Content Include="Content\images\User\welcome_2020_14_10__14_43_09_2021_20_7__18_23_55.png" />
+    <Content Include="Content\images\User\WhatsApp Image 2019-12-11 at 11.55.14.jpeg" />
+    <Content Include="Content\images\User\WhatsApp Image 2021-11-24 at 16.03.24 %281%29_2021_23_12__14_46_30.jpeg" />
+    <Content Include="Content\images\User\WhatsApp Image 2021-11-24 at 16.03.26 %281%29_2021_23_12__14_50_34.jpeg" />
+    <Content Include="Content\images\User\WhatsApp Image 2021-11-24 at 16.03.26 %281%29_2021_23_12__14_50_46.jpeg" />
+    <Content Include="Content\images\User\worker_2021_25_5__13_34_07.png" />
+    <Content Include="Content\images\user_1.png" />
+    <Content Include="Content\images\vacuum-cleaner.png" />
+    <Content Include="Content\images\visa_card.png" />
+    <Content Include="Content\images\visa_logo.png" />
+    <Content Include="Content\images\whatsapp.png" />
+    <Content Include="Content\images\wipe.png" />
+    <Content Include="Content\js\datetime.min.js" />
+    <Content Include="Content\js\datetimepicker.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales-all.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales-all.min.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\af.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ar-dz.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ar-kw.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ar-ly.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ar-ma.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ar-sa.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ar-tn.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ar.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\az.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\bg.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\bn.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\bs.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ca.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\cs.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\cy.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\da.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\de-at.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\de.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\el.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\en-au.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\en-gb.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\en-nz.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\eo.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\es-us.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\es.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\et.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\eu.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\fa.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\fi.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\fr-ca.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\fr-ch.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\fr.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\gl.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\he.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\hi.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\hr.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\hu.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\hy-am.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\id.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\is.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\it.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ja.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ka.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\kk.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\km.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ko.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ku.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\lb.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\lt.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\lv.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\mk.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ms.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\nb.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ne.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\nl.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\nn.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\pl.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\pt-br.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\pt.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ro.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ru.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\si-lk.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\sk.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\sl.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\sm.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\sq.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\sr-cyrl.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\sr.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\sv.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ta-in.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\th.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\tr.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\ug.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\uk.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\uz.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\vi.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\zh-cn.js" />
+    <Content Include="Content\js\fullcalendar\lib\locales\zh-tw.js" />
+    <Content Include="Content\js\fullcalendar\lib\main.css" />
+    <Content Include="Content\js\fullcalendar\lib\main.js" />
+    <Content Include="Content\js\fullcalendar\lib\main.min.css" />
+    <Content Include="Content\js\fullcalendar\lib\main.min.js" />
+    <Content Include="Content\js\html2canvas.js" />
+    <Content Include="Content\js\html2canvas.min.js" />
+    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\js\jquery.plugin.html2canvas.js" />
+    <Content Include="Content\js\jquery.textover.js" />
+    <Content Include="Content\js\jquery.textover.min.js" />
+    <Content Include="Content\js\moment.min.js" />
+    <Content Include="Content\js\owl.carousel.js" />
+    <Content Include="Content\multiselect.css" />
+    <Content Include="Content\js\multiselect.js" />
+    <Content Include="Content\owl.carousel.min.css" />
+    <Content Include="Content\owl.theme.default.min.css" />
+    <Content Include="Content\page.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\Videos\Broom Video 1 %281%29.mp4" />
+    <Content Include="Content\Videos\Broom Video 2 %281%29 %281%29.mp4" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Images\14axg325.jpg" />
+    <Content Include="Images\1woxgkcr.jpg" />
+    <Content Include="Images\3hg1vr0m.jpg" />
+    <Content Include="Images\40xjykvc.jpg" />
+    <Content Include="Images\4zg4nnre.jpg" />
+    <Content Include="Images\51a5wotf.jpg" />
+    <Content Include="Images\5g1rrxij.jpg" />
+    <Content Include="Images\arik2fgh.jpg" />
+    <Content Include="Images\auipaogj.jpg" />
+    <Content Include="Images\bu3vohwo.jpg" />
+    <Content Include="Images\Category\1_2019_23_12__04_33_20.jpg" />
+    <Content Include="Images\Category\2_2019_23_12__04_34_08.jpg" />
+    <Content Include="Images\Category\3_2019_23_12__04_33_55.jpg" />
+    <Content Include="Images\Category\4_2019_23_12__04_33_42.jpg" />
+    <Content Include="Images\Category\7.png" />
+    <Content Include="Images\Category\7_2019_23_12__07_34_30.jpg" />
+    <Content Include="Images\Category\8_2019_23_12__11_56_18.jpg" />
+    <Content Include="Images\Category\airbnb.jpg" />
+    <Content Include="Images\Category\app_icon.jpg" />
+    <Content Include="Images\Category\arround_me.png" />
+    <Content Include="Images\Category\arround_me_icon.png" />
+    <Content Include="Images\Category\cart_1.png" />
+    <Content Include="Images\Category\Cleaning_and_Inventory.jpg" />
+    <Content Include="Images\Category\cleaning_bg.jpg" />
+    <Content Include="Images\Category\cleaning_maintenance.jpg" />
+    <Content Include="Images\Category\cleaning_maintenance_icon.png" />
+    <Content Include="Images\Category\cleaning_maintenance_icon[1].png" />
+    <Content Include="Images\Category\email_ic_2020_26_5__16_31_53.png" />
+    <Content Include="Images\Category\FixAndInstall.png" />
+    <Content Include="Images\Category\fix_install_bg.jpg" />
+    <Content Include="Images\Category\gps-location%28supervisior%29.jpg" />
+    <Content Include="Images\Category\gps-location%28worker%29_2021_19_5__09_26_38.jpg" />
+    <Content Include="Images\Category\guest_user.png" />
+    <Content Include="Images\Category\hr.png" />
+    <Content Include="Images\Category\ic_about_2.png" />
+    <Content Include="Images\Category\ic_airbnb.png" />
+    <Content Include="Images\Category\ic_cleaning.png" />
+    <Content Include="Images\Category\ic_close.png" />
+    <Content Include="Images\Category\ic_close_black.png" />
+    <Content Include="Images\Category\ic_fix_install.png" />
+    <Content Include="Images\Category\ic_inside_maintenance.png" />
+    <Content Include="Images\Category\ic_laundry.png" />
+    <Content Include="Images\Category\ic_lifestyle.png" />
+    <Content Include="Images\Category\ic_move_in.png" />
+    <Content Include="Images\Category\ic_outside_maintanence.png" />
+    <Content Include="Images\Category\image %281%29.png" />
+    <Content Include="Images\Category\image %281%29_2020_16_5__11_13_21.png" />
+    <Content Include="Images\Category\image %281%29_2020_16_5__11_20_21.png" />
+    <Content Include="Images\Category\image.png" />
+    <Content Include="Images\Category\image_2020_16_5__10_54_02.png" />
+    <Content Include="Images\Category\image_2020_16_5__11_00_53.png" />
+    <Content Include="Images\Category\img__0002_shutterstock_327603341[1].jpg" />
+    <Content Include="Images\Category\inside_maintenance.jpg" />
+    <Content Include="Images\Category\installicon.jpg" />
+    <Content Include="Images\Category\land_2019_27_12__04_13_21.jpg" />
+    <Content Include="Images\Category\laundry.jpg" />
+    <Content Include="Images\Category\lifestyle.jpg" />
+    <Content Include="Images\Category\lifestyle_icon.png" />
+    <Content Include="Images\Category\lift_maintenance.jpg" />
+    <Content Include="Images\Category\lift_maintenance_icon.png" />
+    <Content Include="Images\Category\logo.png" />
+    <Content Include="Images\Category\maintenance.png" />
+    <Content Include="Images\Category\movers.jpg" />
+    <Content Include="Images\Category\movers_icon.png" />
+    <Content Include="Images\Category\move_in_bg.jpg" />
+    <Content Include="Images\Category\nointernet.png" />
+    <Content Include="Images\Category\option2.png" />
+    <Content Include="Images\Category\outside.png" />
+    <Content Include="Images\Category\outside_maintenance.jpg" />
+    <Content Include="Images\Category\priscilla-du-preez-4Mw_M9a103Q-unsplash.jpg" />
+    <Content Include="Images\Category\rent_buy.jpg" />
+    <Content Include="Images\Category\rent_buy_icon.jpg" />
+    <Content Include="Images\Category\room-service.png" />
+    <Content Include="Images\Category\spa.jpg" />
+    <Content Include="Images\Category\tag-%283%29.png" />
+    <Content Include="Images\Category\user_img.png" />
+    <Content Include="Images\Category\worker350.png" />
+    <Content Include="Images\Category\yield.png" />
+    <Content Include="Images\Category\ZIP 2- POP PINK.jpg" />
+    <Content Include="Images\Category\ZIP 2- POP PINK_2020_16_5__10_40_07.jpg" />
+    <Content Include="Images\Category\ZIP 2- POP PINK_2020_16_5__10_48_51.jpg" />
+    <Content Include="Images\Category\ZIP 2- POP PINK_2020_16_5__10_50_22.jpg" />
+    <Content Include="Images\Category\ZIP 2- POP PINK_2020_16_5__11_05_14.jpg" />
+    <Content Include="Images\Category\ZIP 2- POP PINK_2020_16_5__11_10_21.jpg" />
+    <Content Include="Images\cg2fuxci.jpg" />
+    <Content Include="Images\e5sravnr.jpg" />
+    <Content Include="Images\ej4vjupm.jpg" />
+    <Content Include="Images\fcbc4wjc.jpg" />
+    <Content Include="Images\fiulhuja.jpg" />
+    <Content Include="Images\fqn5nia0.jpg" />
+    <Content Include="Images\gxxcv2yc.jpg" />
+    <Content Include="Images\gzu31fv3.jpg" />
+    <Content Include="Images\h2fx1lnr.jpg" />
+    <Content Include="Images\joqa52pv.jpg" />
+    <Content Include="Images\k14iw5lp.jpg" />
+    <Content Include="Images\k2zfn4p1.jpg" />
+    <Content Include="Images\kquoyg0i.jpg" />
+    <Content Include="Images\mmrsac04.jpg" />
+    <Content Include="Images\n5y05ybx.jpg" />
+    <Content Include="Images\q2zlxpin.jpg" />
+    <Content Include="Images\scvisokx.jpg" />
+    <Content Include="Images\SubCategory\1-new_2019_25_12__07_07_42.jpg" />
+    <Content Include="Images\SubCategory\1.jpg" />
+    <Content Include="Images\SubCategory\11-food-porn-wedding-cakes-with-flowers.jpg" />
+    <Content Include="Images\SubCategory\1_2019_20_12__06_37_03.jpg" />
+    <Content Include="Images\SubCategory\1_2019_20_12__08_13_18.jpg" />
+    <Content Include="Images\SubCategory\1_2019_20_12__12_17_02.jpg" />
+    <Content Include="Images\SubCategory\1_2019_20_12__12_32_34.jpg" />
+    <Content Include="Images\SubCategory\1_2019_20_12__13_11_24.jpg" />
+    <Content Include="Images\SubCategory\1_2019_23_12__06_51_09.jpg" />
+    <Content Include="Images\SubCategory\1_2019_23_12__08_01_47.jpg" />
+    <Content Include="Images\SubCategory\1_2019_23_12__10_13_51.jpg" />
+    <Content Include="Images\SubCategory\1_2019_24_12__12_49_36.jpg" />
+    <Content Include="Images\SubCategory\1_new_2019_25_12__07_31_57.jpg" />
+    <Content Include="Images\SubCategory\2-new_2019_25_12__07_14_09.jpg" />
+    <Content Include="Images\SubCategory\2.jpg" />
+    <Content Include="Images\SubCategory\25.png" />
+    <Content Include="Images\SubCategory\2_2019_20_12__06_24_56.jpg" />
+    <Content Include="Images\SubCategory\2_2019_20_12__10_57_28.jpg" />
+    <Content Include="Images\SubCategory\2_2019_20_12__12_17_26.jpg" />
+    <Content Include="Images\SubCategory\2_2019_20_12__12_32_52.jpg" />
+    <Content Include="Images\SubCategory\2_2019_20_12__13_11_52.jpg" />
+    <Content Include="Images\SubCategory\2_2019_23_12__06_51_30.jpg" />
+    <Content Include="Images\SubCategory\2_2019_23_12__08_02_07.jpg" />
+    <Content Include="Images\SubCategory\2_2019_23_12__10_14_53.jpg" />
+    <Content Include="Images\SubCategory\2_new_2019_25_12__07_43_12.jpg" />
+    <Content Include="Images\SubCategory\3.jpg" />
+    <Content Include="Images\SubCategory\3_2019_20_12__06_08_15.jpg" />
+    <Content Include="Images\SubCategory\3_2019_20_12__11_02_31.jpg" />
+    <Content Include="Images\SubCategory\3_2019_20_12__12_17_56.jpg" />
+    <Content Include="Images\SubCategory\3_2019_20_12__12_18_21.jpg" />
+    <Content Include="Images\SubCategory\3_2019_20_12__13_12_16.jpg" />
+    <Content Include="Images\SubCategory\3_2019_23_12__06_52_04.jpg" />
+    <Content Include="Images\SubCategory\3_2019_23_12__08_02_50.jpg" />
+    <Content Include="Images\SubCategory\3_2019_23_12__10_15_12.jpg" />
+    <Content Include="Images\SubCategory\4.jpg" />
+    <Content Include="Images\SubCategory\4_2019_20_12__06_35_06.jpg" />
+    <Content Include="Images\SubCategory\4_2019_20_12__12_18_38.jpg" />
+    <Content Include="Images\SubCategory\4_2019_20_12__13_13_01.jpg" />
+    <Content Include="Images\SubCategory\4_2019_23_12__06_52_26.jpg" />
+    <Content Include="Images\SubCategory\4_2019_24_12__12_35_42.jpg" />
+    <Content Include="Images\SubCategory\4_2019_27_12__08_12_26.jpg" />
+    <Content Include="Images\SubCategory\4_2019_27_12__09_07_57.jpg" />
+    <Content Include="Images\SubCategory\5.1_2019_25_12__06_43_54.jpg" />
+    <Content Include="Images\SubCategory\5.jpg" />
+    <Content Include="Images\SubCategory\5_2019_20_12__12_18_58.jpg" />
+    <Content Include="Images\SubCategory\5_2019_20_12__13_13_17.jpg" />
+    <Content Include="Images\SubCategory\5_2019_24_12__12_36_00.jpg" />
+    <Content Include="Images\SubCategory\6.jpg" />
+    <Content Include="Images\SubCategory\63A4D0C3-0AD6-432F-AEAF-DB1F92971DB1 2.jpg" />
+    <Content Include="Images\SubCategory\about_image.png" />
+    <Content Include="Images\SubCategory\air-conditioner.png" />
+    <Content Include="Images\SubCategory\armchair.png" />
+    <Content Include="Images\SubCategory\as.png" />
+    <Content Include="Images\SubCategory\babysitter_bg.jpg" />
+    <Content Include="Images\SubCategory\babysitter_ic.png" />
+    <Content Include="Images\SubCategory\banner_bg.png" />
+    <Content Include="Images\SubCategory\banner_bg[1].png" />
+    <Content Include="Images\SubCategory\banner_bg[2].png" />
+    <Content Include="Images\SubCategory\BBpostare1.jpg" />
+    <Content Include="Images\SubCategory\bfdfd.png" />
+    <Content Include="Images\SubCategory\blur.png" />
+    <Content Include="Images\SubCategory\bs.png" />
+    <Content Include="Images\SubCategory\buy_bg.jpg" />
+    <Content Include="Images\SubCategory\buy_ic.png" />
+    <Content Include="Images\SubCategory\camping.png" />
+    <Content Include="Images\SubCategory\carpet.png" />
+    <Content Include="Images\SubCategory\chef.png" />
+    <Content Include="Images\SubCategory\chef_bg.jpg" />
+    <Content Include="Images\SubCategory\chef_ic.png" />
+    <Content Include="Images\SubCategory\clean-linen-basket.png" />
+    <Content Include="Images\SubCategory\cleaning_maintenance.jpg" />
+    <Content Include="Images\SubCategory\dd.png" />
+    <Content Include="Images\SubCategory\ed.png" />
+    <Content Include="Images\SubCategory\electrician.png" />
+    <Content Include="Images\SubCategory\emergency-exit.png" />
+    <Content Include="Images\SubCategory\extermination.png" />
+    <Content Include="Images\SubCategory\fast-delivery.png" />
+    <Content Include="Images\SubCategory\garage.png" />
+    <Content Include="Images\SubCategory\guest-room.png" />
+    <Content Include="Images\SubCategory\handyman.png" />
+    <Content Include="Images\SubCategory\handy_man.png" />
+    <Content Include="Images\SubCategory\hjhg.png" />
+    <Content Include="Images\SubCategory\house.png" />
+    <Content Include="Images\SubCategory\icon-%281%29.png" />
+    <Content Include="Images\SubCategory\ic_app.png" />
+    <Content Include="Images\SubCategory\ic_app_2020_18_6__11_00_21.png" />
+    <Content Include="Images\SubCategory\ic_fix_install.png" />
+    <Content Include="Images\SubCategory\img__0004_shutterstock_682223584[1].jpg" />
+    <Content Include="Images\SubCategory\Interior_design.jpg" />
+    <Content Include="Images\SubCategory\Interior_design_icon.jpg" />
+    <Content Include="Images\SubCategory\lock.png" />
+    <Content Include="Images\SubCategory\login_main_image.jpg" />
+    <Content Include="Images\SubCategory\manicure.png" />
+    <Content Include="Images\SubCategory\massage.png" />
+    <Content Include="Images\SubCategory\matt.png" />
+    <Content Include="Images\SubCategory\movers_bg.jpg" />
+    <Content Include="Images\SubCategory\movers_ic.png" />
+    <Content Include="Images\SubCategory\moving-home-transport-for-boxes.png" />
+    <Content Include="Images\SubCategory\one.png" />
+    <Content Include="Images\SubCategory\one_time_new.png" />
+    <Content Include="Images\SubCategory\open-box.png" />
+    <Content Include="Images\SubCategory\packunpack_bg.jpg" />
+    <Content Include="Images\SubCategory\packunpack_ic.jpg" />
+    <Content Include="Images\SubCategory\paint.png" />
+    <Content Include="Images\SubCategory\pest.png" />
+    <Content Include="Images\SubCategory\play_store.png" />
+    <Content Include="Images\SubCategory\plumber.png" />
+    <Content Include="Images\SubCategory\priscilla-du-preez-4Mw_M9a103Q-unsplash.jpg" />
+    <Content Include="Images\SubCategory\rent_bg.jpg" />
+    <Content Include="Images\SubCategory\rent_ic.png" />
+    <Content Include="Images\SubCategory\sad.png" />
+    <Content Include="Images\SubCategory\sasdf.png" />
+    <Content Include="Images\SubCategory\Screenshot 2019-10-29 at 11.51.55.png" />
+    <Content Include="Images\SubCategory\Screenshot 2019-11-04 at 08.02.14.png" />
+    <Content Include="Images\SubCategory\servant-outline.png" />
+    <Content Include="Images\SubCategory\service_image - Copy.png" />
+    <Content Include="Images\SubCategory\service_image_2.png" />
+    <Content Include="Images\SubCategory\specialoffer_bg.jpg" />
+    <Content Include="Images\SubCategory\specialoffer_ic.png" />
+    <Content Include="Images\SubCategory\ss.png" />
+    <Content Include="Images\SubCategory\swimming-silhouette.png" />
+    <Content Include="Images\SubCategory\tatami.png" />
+    <Content Include="Images\SubCategory\thumbnail_image.jpg" />
+    <Content Include="Images\SubCategory\tt.png" />
+    <Content Include="Images\SubCategory\vacuum-cleaner-2.png" />
+    <Content Include="Images\SubCategory\vacuum-cleaner-2_2019_27_12__08_10_26.png" />
+    <Content Include="Images\SubCategory\vacuum.png" />
+    <Content Include="Images\SubCategory\wardrobe.png" />
+    <Content Include="Images\SubCategory\wareshouse-512.png" />
+    <Content Include="Images\SubCategory\washing-machine-%282%29.png" />
+    <Content Include="Images\SubCategory\washing-machine.png" />
+    <Content Include="Images\SubCategory\window-%283%29.png" />
+    <Content Include="Images\SubCategory\window-.png" />
+    <Content Include="Images\SubCategory\wiping-vacuum-tool-%281%29.png" />
+    <Content Include="Images\SubCategory\ZIP 2- POP PINK.jpg" />
+    <Content Include="Images\svpukjcl.jpg" />
+    <Content Include="Images\t0eggtcb.jpg" />
+    <Content Include="Images\Testimonial\1700728-Linus-Torvalds-Quote-Talk-is-cheap-Show-me-the-code.jpg" />
+    <Content Include="Images\Testimonial\220px-Dalya_Itzik_1[1].png" />
+    <Content Include="Images\Testimonial\aa.jpg" />
+    <Content Include="Images\Testimonial\banner_bg.png" />
+    <Content Include="Images\Testimonial\cropped-LOGO_F-01[1].png" />
+    <Content Include="Images\Testimonial\h_logo[1].png" />
+    <Content Include="Images\Testimonial\ic_tick_green.png" />
+    <Content Include="Images\Testimonial\logo_login.png" />
+    <Content Include="Images\tf3le5ol.jpg" />
+    <Content Include="Images\udk3acqh.jpg" />
+    <Content Include="Images\User\1700728-Linus-Torvalds-Quote-Talk-is-cheap-Show-me-the-code.jpg" />
+    <Content Include="Images\User\2018-09-14_11-58-16-AM.png" />
+    <Content Include="Images\User\968c280c-1626-4e7b-9d6a-131b1b461d9b.jpg" />
+    <Content Include="Images\User\aa.jpg" />
+    <Content Include="Images\User\about_image.png" />
+    <Content Include="Images\User\addAddressToList.png" />
+    <Content Include="Images\User\add_photo_2020_26_5__17_18_15.png" />
+    <Content Include="Images\User\arround_me.png" />
+    <Content Include="Images\User\australia_cliff_lord_howe_island_bay_beaches_1920x1080_80528.jpg" />
+    <Content Include="Images\User\background_2020_18_6__09_42_45.jpg" />
+    <Content Include="Images\User\banner_bg.png" />
+    <Content Include="Images\User\barcode.png" />
+    <Content Include="Images\User\bg_2019_01_11__12_57_13.jpg" />
+    <Content Include="Images\User\bg_2019_01_11__16_13_38.jpg" />
+    <Content Include="Images\User\bg_2019_01_11__16_17_02.jpg" />
+    <Content Include="Images\User\bg_2019_01_11__17_52_39.jpg" />
+    <Content Include="Images\User\bg_2019_01_11__17_54_41.jpg" />
+    <Content Include="Images\User\bg_2019_14_11__15_43_54.jpg" />
+    <Content Include="Images\User\bg_2019_30_10__13_19_32.jpg" />
+    <Content Include="Images\User\bg_2019_30_10__13_31_54.jpg" />
+    <Content Include="Images\User\bg_2019_30_10__16_06_06.jpg" />
+    <Content Include="Images\User\bg_2019_30_10__16_06_30.jpg" />
+    <Content Include="Images\User\BoyImage.jpg.jpg" />
+    <Content Include="Images\User\Capture1.png" />
+    <Content Include="Images\User\changLng_2020_26_5__16_56_35.png" />
+    <Content Include="Images\User\checkbox_2020_26_5__17_27_33.png" />
+    <Content Include="Images\User\Chrysanthemum_2020_17_7__09_50_32.jpg" />
+    <Content Include="Images\User\cleaning_maintenance.jpg" />
+    <Content Include="Images\User\Desert_2020_17_7__09_53_31.jpg" />
+    <Content Include="Images\User\download %281%29.png" />
+    <Content Include="Images\User\download.jpg" />
+    <Content Include="Images\User\download.png" />
+    <Content Include="Images\User\downloadpic.png" />
+    <Content Include="Images\User\f6e7c58f-d49c-448e-9728-ae3bbc8dc19e..jpg" />
+    <Content Include="Images\User\hotal_ic_2020_26_5__16_41_54.png" />
+    <Content Include="Images\User\ic_business_meeting_2020_26_5__16_56_16.png" />
+    <Content Include="Images\User\ic_footer_profile_select.png" />
+    <Content Include="Images\User\iisstart.png" />
+    <Content Include="Images\User\images.jpg" />
+    <Content Include="Images\User\images34254.jpeg" />
+    <Content Include="Images\User\JobCheckList09f9ee4a-c49e-4153-8641-e336c1e3906b2021_04_09_12_33_35.jpg" />
+    <Content Include="Images\User\login_main_image.jpg" />
+    <Content Include="Images\User\logo_2019_19_11__17_42_02.png" />
+    <Content Include="Images\User\logo_2019_19_11__17_42_16.png" />
+    <Content Include="Images\User\logo_2019_19_11__17_49_40.png" />
+    <Content Include="Images\User\logo_2019_19_11__17_56_52.png" />
+    <Content Include="Images\User\logo_2019_19_11__17_56_54.png" />
+    <Content Include="Images\User\logo_2019_19_11__17_57_50.png" />
+    <Content Include="Images\User\logo_top_2020_08_7__11_24_53.png" />
+    <Content Include="Images\User\modal_close_2020_08_7__10_38_44.png" />
+    <Content Include="Images\User\movers_bg.jpg" />
+    <Content Include="Images\User\movers_ic.png" />
+    <Content Include="Images\User\myw3schoolsimage.jpg" />
+    <Content Include="Images\User\packunpack_bg.jpg" />
+    <Content Include="Images\User\painting_img_2020_17_10__09_31_47.png" />
+    <Content Include="Images\User\pexels-photo-106399.jpeg" />
+    <Content Include="Images\User\profilepic_2019_01_11__16_20_35.png" />
+    <Content Include="Images\User\profilepic_2019_01_11__17_48_26.png" />
+    <Content Include="Images\User\profilepic_2019_01_11__17_50_07.png" />
+    <Content Include="Images\User\profilepic_2019_01_11__17_58_47.png" />
+    <Content Include="Images\User\profilepic_2019_01_11__18_31_01.png" />
+    <Content Include="Images\User\profilepic_2019_06_11__17_52_10.png" />
+    <Content Include="Images\User\profilepic_2019_06_11__17_55_02.png" />
+    <Content Include="Images\User\profilepic_2019_06_11__18_01_09.png" />
+    <Content Include="Images\User\profilepic_2019_11_11__16_06_00.png" />
+    <Content Include="Images\User\profilepic_2019_11_11__16_30_07.png" />
+    <Content Include="Images\User\profilepic_2019_11_11__16_55_32.png" />
+    <Content Include="Images\User\profilepic_2019_15_11__14_40_10.png" />
+    <Content Include="Images\User\profilepic_2019_18_11__18_27_41.png" />
+    <Content Include="Images\User\profilepic_2019_25_11__15_30_05.png" />
+    <Content Include="Images\User\profilepic_2019_27_12__09_56_27.png" />
+    <Content Include="Images\User\profilepic_2019_28_11__15_34_51.png" />
+    <Content Include="Images\User\profilepic_2020_01_10__08_46_40.png" />
+    <Content Include="Images\User\profilepic_2020_01_7__14_36_09.png" />
+    <Content Include="Images\User\profilepic_2020_05_6__11_37_16.png" />
+    <Content Include="Images\User\profilepic_2020_05_6__20_55_41.png" />
+    <Content Include="Images\User\profilepic_2020_19_8__06_20_14.png" />
+    <Content Include="Images\User\profilepic_2020_25_9__06_33_52.png" />
+    <Content Include="Images\User\profilepic_2020_30_6__21_39_21.png" />
+    <Content Include="Images\User\profilepic_2021_27_8__16_40_35.png" />
+    <Content Include="Images\User\profilepic_2021_27_8__18_30_09.png" />
+    <Content Include="Images\User\profilepic_2021_28_8__12_01_55.png" />
+    <Content Include="Images\User\Screenshot 2019-12-03 at 2.48.08 PM.png" />
+    <Content Include="Images\User\Sitter-Toddler-Cups-1080x1080.png" />
+    <Content Include="Images\User\systems.jpg" />
+    <Content Include="Images\User\UserDefault.jpg" />
+    <Content Include="Images\User\welcome_2020_14_10__14_43_09.png" />
+    <Content Include="Images\User\WhatsApp Image 2019-12-11 at 11.55.14.jpeg" />
+    <Content Include="Images\uymlv3zo.jpg" />
+    <Content Include="Images\xtnwgyud.jpg" />
+    <Content Include="Images\ysjzd2v3.jpg" />
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\dist\jquery-steps.css.map" />
+    <Content Include="Content\dist\jquery-steps.js.map" />
+    <Content Include="Content\PropertyTemplate.xlsx" />
+    <Content Include="libman.json" />
+    <Content Include="Content\bootstrap-chosen.scss" />
+    <Content Include="Content\bootstrap-chosen.less" />
+    <Content Include="Images\PropertyDocsPropertyTemplate %281%29.xlsx" />
+    <Content Include="Images\PropertyDocsPropertyTemplate.xlsx" />
+    <Content Include="Images\PropertyDocsPropertyTemplate_.xlsx" />
+    <Content Include="Content\fonts\Nexa Light.otf" />
+    <Content Include="Images\PropertyDocs\PropertyTemplate.xlsx" />
+    <Content Include="Controllers\Web\AccountController.cs.bak" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\bellboy - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\bellboy - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\chosen.jquery.js" />
+    <Content Include="Scripts\chosen.jquery.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.textover.js" />
+    <Content Include="Scripts\jquery.textover.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Property\PropertyList.cshtml" />
+    <Content Include="Views\Property\PropertyDetails.cshtml" />
+    <Content Include="Views\Order\CategoryList.cshtml" />
+    <Content Include="Views\Order\SubCategoryList.cshtml" />
+    <Content Include="Views\Order\SubSubCategoryList.cshtml" />
+    <Content Include="Views\Notification\NotificationList.cshtml" />
+    <Content Include="Views\Chat\ChatList.cshtml" />
+    <Content Include="Views\Bookings\BookingsList.cshtml" />
+    <Content Include="Views\Order\CardsList.cshtml" />
+    <Content Include="Views\Order\AddNewCard.cshtml" />
+    <Content Include="Views\Shared\_WebLayout.cshtml" />
+    <Content Include="Views\Shared\_WebMainLayout.cshtml" />
+    <Content Include="Views\Account\EmailVerification.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\TermsConditions.cshtml" />
+    <Content Include="Views\Property\AddProperty.cshtml" />
+    <Content Include="Views\Settings\TermsConditions.cshtml" />
+    <Content Include="Views\Settings\AboutUs.cshtml" />
+    <Content Include="Views\Settings\ContactUs.cshtml" />
+    <Content Include="Views\Settings\PrivacyPolicy.cshtml" />
+    <Content Include="Views\Settings\TestimonialList.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Property\EditProperty.cshtml" />
+    <Content Include="Views\Order\InventoryView.cshtml" />
+    <Content Include="Views\Shared\_ProfileLayout.cshtml" />
+    <Content Include="Views\Account\GrantAccess.cshtml" />
+    <Content Include="Views\Order\FastOrderList.cshtml" />
+    <Content Include="Views\Bookings\BookingDetails.cshtml" />
+    <Content Include="Views\Account\GrantAccessList.cshtml" />
+    <Content Include="Views\Account\CreateAccount.cshtml" />
+    <Content Include="Views\Account\MyReview.cshtml" />
+    <Content Include="Views\Account\FastOrder.cshtml" />
+    <Content Include="Views\Account\FastOrderdDetail.cshtml" />
+    <Content Include="Views\Account\MobileVerification.cshtml" />
+    <Content Include="Views\Account\offers.cshtml" />
+    <Content Include="Views\Bookings\PaymentDetail.cshtml" />
+    <Content Include="Views\Order\Quotes.cshtml" />
+    <Content Include="Views\Account\Mission.cshtml" />
+    <Content Include="Views\Order\EditJobRequest.cshtml" />
+    <Content Include="Views\Order\ServiceRequests.cshtml" />
+    <Content Include="Views\Order\AddJobRequest.cshtml" />
+    <Content Include="Views\Order\VisitorAddJobRequest.cshtml" />
+    <Content Include="Views\Notification\Notification.cshtml" />
+    <Content Include="Views\Order\Availability.cshtml" />
+    <Content Include="Views\Account\PropertyManagers.cshtml" />
+    <Content Include="Views\Account\PropertySettings.cshtml" />
+    <Content Include="Views\Property\Blocked.cshtml" />
+    <Content Include="Views\Order\Massage.cshtml" />
+    <Content Include="Views\Order\PaymentCancel.cshtml" />
+    <Content Include="Views\Order\PaymentSuccess.cshtml" />
+    <Content Include="Views\Laundry\Index.cshtml" />
+    <Content Include="Views\Laundry\LaundryList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="bin\" />
+    <Folder Include="Images\JobRequest\" />
+    <Folder Include="Images\Property\" />
+    <Folder Include="Views\My\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resource.fr-FR.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource.he-IL.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource.ru-RU.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:59476/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

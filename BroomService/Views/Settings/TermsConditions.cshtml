@@ -1,0 +1,17 @@
+﻿@model BroomService.Models.TermsCondition
+@using BroomService.Resources
+
+<section id="about_page_main" class="terms_box">
+    <div class="container">
+        <h2>@Resource.terms_conditions</h2>
+        <p></p>
+        <div class="row">
+            <div class="col-12">
+                <div class="terms_page">
+                    @Html.Raw(Model.TermsConditionText)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

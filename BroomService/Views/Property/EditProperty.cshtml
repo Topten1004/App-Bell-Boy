@@ -1,0 +1,1901 @@
+﻿@using BroomService.Resources;
+@model BroomService.ViewModels.PropertyViewModel
+@using BroomService.ViewModels;
+
+<style>
+    label.error {
+        color: #e7505a;
+        margin-left: 10px;
+        padding: 7px;
+        font-weight: 500;
+    }
+
+    .overlay {
+        position: absolute;
+        left: 23%;
+        transform: translate(-23%, -89%);
+        -ms-transform: translate(-50%, -50%);
+        background-color: #fafafa;
+        color: white;
+        padding: 3px 10px;
+        color: #bebebe;
+        background-color: #fafafa;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        font-size: 20px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+        .overlay input[type="file"] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 50px;
+        }
+</style>
+
+@{
+    List<string> _listImagesStrings = new List<string>();
+
+    List<SelectListItem> typeListItems = new List<SelectListItem>();
+    typeListItems.Add(new SelectListItem
+    {
+        Text = Resource.apartment,
+        Value = "Apartment"
+    });
+    typeListItems.Add(new SelectListItem
+    {
+        Text = Resource.duplex,
+        Value = "Duplex",
+    });
+    typeListItems.Add(new SelectListItem
+    {
+        Text = Resource.penthouse,
+        Value = "Penthouse"
+    });
+    typeListItems.Add(new SelectListItem
+    {
+        Text = Resource.villa,
+        Value = "Villa"
+    });
+}
+<link href="~/Content/dist/jquery-steps.css" rel="stylesheet" />
+
+<div id="demo">
+    <div class="step-app">
+        <ul class="step-steps justify-content-center">
+            <li><a href="#step1">1</a></li>
+            <li><a id="stp2" href="#step2">2</a></li>
+            <li><a href="#step3">3</a></li>
+        </ul>
+        <div class="step-content">
+
+            <div class="step-tab-panel" id="step1">
+                <section id="add_property_main" class="add_property_box">
+                    <div class="container">
+                        <h2>@ViewBag.TitleText</h2>
+                        <p>@Resource.property_heading</p>
+                        <div class="add_property_form">
+                            <form class="row" id="frmFirst">
+                                @Html.HiddenFor(a => a.PropertyModel.Id)
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="property_label">@Resource.name_of_property</label>
+                                        <div class="custom_input">
+                                            @Html.TextBoxFor(m => m.PropertyModel.Name,
+                                               new
+                                               {
+                                                   @class = "form-control form_edit_input",
+                                                   placeholder = Resource.enter_name_of_property,
+                                                   @required = "required"
+                                               })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="property_label">@Resource.type_of_property</label>
+                                        <div class="custom_input">
+                                            @Html.DropDownListFor(model => model.PropertyModel.Type, typeListItems, Resource.type_of_property, new { @class = "property", required = "required" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label class="property_label">@Resource.full_address_property</label>
+                                        <div class="custom_input">
+                                            @Html.TextBoxFor(m => m.PropertyModel.Address,
+                                               new
+                                               {
+                                                   @class = "form-control form_edit_input",
+                                                   placeholder = Resource.enter_full_address,
+                                                   @required = "required",
+                                               })
+                                            @Html.HiddenFor(m => m.PropertyModel.Latitude)
+                                            @Html.HiddenFor(m => m.PropertyModel.Longitude)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12" style="display:none;" id="AccessCode">
+                                    <label class="property_label">
+                                        @Resource.short_term_propety_access_code
+                                    </label>
+                                    <div class="d-flex custom_switch">
+                                        <label class="switch">
+                                            <input type="checkbox" id="AccesstoCode" />
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="property_label">@Resource.floor</label>
+                                        <div class="custom_input">
+                                            @Html.TextBoxFor(m => m.PropertyModel.FloorNumber, new { @class = "form-control form_edit_input", placeholder = Resource.enter_floor, @type = "number", @required = "required" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="property_label">@Resource.apartment_number</label>
+                                        <div class="custom_input">
+                                            @Html.TextBoxFor(m => m.PropertyModel.ApartmentNumber, new { @class = "form-control form_edit_input", placeholder = Resource.enter_apartment_number, @type = "number", @required = "required" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="property_label">@Resource.building_code</label>
+                                        <div class="custom_input">
+                                            @Html.TextBoxFor(m => m.PropertyModel.BuildingCode, new { @class = "form-control form_edit_input", placeholder = Resource.enter_building_code })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="property_label">@Resource.access_to_property</label>
+                                        <div class="custom_input">
+                                            @Html.TextBoxFor(m => m.PropertyModel.AccessToProperty, new { @class = "form-control form_edit_input", placeholder = Resource.access_property_options })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="property_label">@Resource.wi_fi_login</label>
+                                        <div class="custom_input">
+                                            @Html.TextBoxFor(m => m.PropertyModel.WifiLogin, new { @class = "form-control form_edit_input", placeholder = Resource.wi_fi_login_key })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="property_label">@Resource.location_of_key</label>
+                                        <div class="custom_input">
+                                            @Html.TextBoxFor(m => m.PropertyModel.LocationOfKey, new { @class = "form-control form_edit_input", placeholder = Resource.enter_location_of_key })
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="step-tab-panel" id="step2">
+                <section id="add_property_main" class="add_property_box">
+                    <div class="container">
+                        <h2>@ViewBag.TitleText</h2>
+                        <p>@Resource.property_heading</p>
+                        <div class="add_property_form">
+                            <form class="row">
+                                <div class="col-md-3">
+                                    <label class="property_label ">@Resource.doorman</label>
+                                    <div class="d-flex custom_switch">
+                                        <label class="switch">
+                                            <input type="checkbox" id="Doorman">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="property_label">@Resource.parking</label>
+                                    <div class="d-flex custom_switch">
+                                        <label class="switch">
+                                            <input type="checkbox" id="Parking">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="property_label">@Resource.balcony</label>
+                                    <div class="d-flex custom_switch">
+                                        <label class="switch">
+                                            <input type="checkbox" id="Balcony">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="property_label">@Resource.dishwasher</label>
+                                    <div class="d-flex custom_switch">
+                                        <label class="switch">
+                                            <input type="checkbox" id="DishWasher">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="property_label">@Resource.pool</label>
+                                    <div class="d-flex custom_switch">
+                                        <label class="switch">
+                                            <input type="checkbox" id="Pool">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="property_label">@Resource.garden</label>
+                                    <div class="d-flex custom_switch">
+                                        <label class="switch">
+                                            <input type="checkbox" id="Garden">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="property_label">@Resource.elevator</label>
+                                    <div class="d-flex custom_switch">
+                                        <label class="switch">
+                                            <input type="checkbox" id="Elevator">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="property_label">@Resource.coffe_machine</label>
+                                    <div class="d-flex custom_switch">
+                                        <label class="switch">
+                                            <input type="checkbox" id="CoffeMachine">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </form>
+                            <form id="upload_form">
+                                <div class="col-12">
+                                    <div class="upload_property_box">
+                                        <button type="button" class="btn btn_upload">@Resource.upload_image_video</button>
+                                        <input type="file" accept=".jpg,.jpeg.,.gif,.png,.mov,.mp4" multiple name="myfile" id="upload_file" />
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-5" id="upload_image_div">
+                                    @if (Model.PropertyImages != null)
+                                    {
+                                        if (Model.PropertyImages.Count > 0)
+                                        {
+                                            for (int i = 0; i < Model.PropertyImages.Count; i++)
+                                            {
+                                                if (Model.PropertyImages[i].IsImage.HasValue && Model.PropertyImages[i].IsImage.Value)
+                                                {
+                                                    _listImagesStrings.Add(Model.PropertyImages[i].ImageString);
+                                                    <div class="upload_show_image mb-4">
+                                                        <img src="~/Images/Property/@Model.PropertyImages[i].ImageUrl">
+                                                        <div class="d-flex overlay justify-content-between">
+                                                            <a>
+                                                                <input type="file" class="~/Images/Property/@Model.PropertyImages[i].ImageUrl" onchange="EditImage(this)">
+                                                                <i class="fa fa-edit"></i>
+                                                            </a>
+                                                            <a id="~/Images/Property/@Model.PropertyImages[i].ImageUrl" onclick="DeleteImage(this);">
+                                                                <i class="fa fa-trash"></i>
+                                                            </a>
+                                                            <input type="hidden" value="@Model.PropertyImages[i].Id" id="PropImageId" />
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else if (Model.PropertyImages[i].IsVideo.HasValue && Model.PropertyImages[i].IsVideo.Value)
+                                                {
+                                                    _listImagesStrings.Add(Model.PropertyImages[i].VideoString);
+                                                    <div class="upload_show_image mb-4">
+                                                        <video width="100%" height="100%" controls>
+                                                            <source src="~/Images/Property/@Model.PropertyImages[i].VideoUrl" type="video/mp4">
+                                                        </video>
+                                                        <div class="d-flex overlay justify-content-between">
+                                                            <a>
+                                                                <input type="file" class="~/Images/Property/@Model.PropertyImages[i].VideoUrl" onchange="EditImage(this)">
+                                                                <i class="fa fa-edit"></i>
+                                                            </a>
+                                                            <a id="~/Images/Property/@Model.PropertyImages[i].VideoUrl" onclick="DeleteImage(this);">
+                                                                <i class="fa fa-trash"></i>
+                                                            </a>
+                                                            <input type="hidden" value="@Model.PropertyImages[i].Id" id="PropImageId" />
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="step-tab-panel" id="step3">
+                <section id="add_property_main" class="add_property_box">
+                    <div class="container">
+                        <h2>@ViewBag.TitleText</h2>
+                        <p>@Resource.property_heading</p>
+                        <div class="add_property_form">
+                            <form class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group custom_radio">
+                                        <label class="property_label">@Resource.size_in_sqm</label>
+                                        <div class="d-block d-sm-flex d-md-block d-lg-flex">
+                                            <div class="radio_new">
+                                                <input type="radio" id="1-25" name="radio-group_2">
+                                                <label for="1-25" style="width: 165px; padding-left:36px!important" class="number_count">Studio-25 SQM</label>
+                                            </div>
+
+                                            <div class="radio_new">
+                                                <input type="radio" id="1-45" name="radio-group_2">
+                                                <label for="1-45" style="width: 165px; padding-left:36px!important" class="number_count">1BDRM-45 SQM</label>
+                                            </div>
+                                            <div class="radio_new">
+                                                <input type="radio" id="2-65" name="radio-group_2">
+                                                <label for="2-65" style="width: 165px; padding-left:36px!important" class="number_count">2BDRM-65 SQM</label>
+                                            </div>
+
+                                            <div class="radio_new">
+                                                <input type="radio" id="3-85" name="radio-group_2">
+                                                <label for="3-85" style="width: 165px; padding-left:36px!important" class="number_count">3BDRM-85 SQM</label>
+                                            </div>
+                                            <div class="radio_new">
+                                                <input type="radio" id="4-110" name="radio-group_2">
+                                                <label for="4-110" style="width: 165px; padding-left:36px!important" class="number_count">4BDRM-110 SQM</label>
+                                            </div>
+                                            <div class="radio_new">
+                                                <input type="radio" id="5-140" name="radio-group_2">
+                                                <label for="5-140" style="width: 165px; padding-left:36px!important" class="number_count">5BDRM-140 SQM</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group custom_radio">
+                                        <label class="property_label">@Resource.number_of_bathrooms</label>
+                                        <div class="d-block d-sm-flex d-md-block d-lg-flex">
+                                            <div class="radio_new">
+                                                <input type="radio" id="11" class="1" name="radio-group_4">
+                                                <label for="11" class="number_count">1</label>
+                                            </div>
+                                            <div class="radio_new">
+                                                <input type="radio" id="22" class="2" name="radio-group_4">
+                                                <label for="22" class="number_count">2</label>
+                                            </div>
+                                            <div class="radio_new">
+                                                <input type="radio" id="33" class="3" name="radio-group_4">
+                                                <label for="33" class="number_count">3</label>
+                                            </div>
+                                            <div class="radio_new">
+                                                <input type="radio" id="BathroomFour" name="radio-group_4">
+                                                <label for="BathroomFour" class="number_count">@Resource.more</label>
+                                            </div>
+                                            <div class="row" id="bath_room_values" style="display:none;">
+                                                <select id="bath_rooms_option_values" class="form-control form_edit_input">
+                                                    @for (int i = 4; i < 11; i++)
+                                                    {
+                                                        <option value="@i">@i</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group custom_radio">
+                                        <label class="property_label">@Resource.no_of_toilets</label>
+                                        <div class="d-block d-sm-flex d-md-block d-lg-flex">
+                                            <div class="radio_new">
+                                                <input type="radio" id="111" class="1" name="radio-group">
+                                                <label for="111" class="number_count">1</label>
+                                            </div>
+                                            <div class="radio_new">
+                                                <input type="radio" id="222" class="2" name="radio-group">
+                                                <label for="222" class="number_count">2</label>
+                                            </div>
+                                            <div class="radio_new">
+                                                <input type="radio" id="333" class="3" name="radio-group">
+                                                <label for="333" class="number_count">3</label>
+                                            </div>
+                                            <div class="radio_new">
+                                                <input type="radio" id="ToiletFour" name="radio-group">
+                                                <label for="ToiletFour" class="number_count">@Resource.more</label>
+                                            </div>
+                                            <div class="row" id="toilets_values" style="display:none;">
+                                                <select id="toilets_option_values" class="form-control form_edit_input">
+                                                    @for (int i = 4; i < 11; i++)
+                                                    {
+                                                        <option value="@i">@i</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="property_label">
+                                        @Resource.queen_double_beds
+                                    </label>
+                                    <div class="d-flex">
+                                        <label class="switch">
+                                            <input type="checkbox" id="QueenBed">
+                                            <span class="slider round"></span>
+                                        </label>
+                                        <div class="add_values" style="display:none;"
+                                             id="add_values_queen_beds">
+                                            <button type="button" id="queen_bed_minus" class="minus"><i class="fas fa-minus"></i></button>
+                                            <input type="text" id="queen_beds_number" name="queen_beds_number"
+                                                   placeholder="0" />
+                                            <button type="button" class="plus" id="queen_bed_plus"><i class="fas fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="property_label">@Resource.king_beds</label>
+                                    <div class="d-flex custom_switch">
+                                        <label class="switch">
+                                            <input type="checkbox" id="KingBeds">
+                                            <span class="slider round"></span>
+                                        </label>
+                                        <div class="add_values" style="display:none;"
+                                             id="add_values_King_beds">
+                                            <button type="button" id="King_bed_minus" class="minus"><i class="fas fa-minus"></i></button>
+                                            <input type="text" id="King_beds_number" name="King_beds_number"
+                                                   placeholder="0" />
+                                            <button type="button" class="plus" id="King_bed_plus"><i class="fas fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="property_label">@Resource.single_beds</label>
+                                    <div class="d-flex">
+                                        <label class="switch custom_switch">
+                                            <input type="checkbox" id="SingleBeds">
+                                            <span class="slider round"></span>
+                                        </label>
+                                        <div class="add_values" style="display:none;"
+                                             id="add_values_single_beds">
+                                            <button type="button" id="single_bed_minus" class="minus"><i class="fas fa-minus"></i></button>
+                                            <input type="text" id="single_beds_number"
+                                                   name="single_beds_number"
+                                                   placeholder="0" />
+                                            <button type="button" class="plus" id="single_bed_plus"><i class="fas fa-plus"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="property_label">@Resource.sofa_beds</label>
+                                    <div class="d-flex">
+                                        <label class="switch custom_switch">
+                                            <input type="checkbox" id="SofaBeds">
+                                            <span class="slider round"></span>
+                                        </label>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6"></div>
+
+                                <div class="col-md-6">
+                                    <div id="add_values_sofa" style="display:none;border-radius:10px;background:#e5e5e5;padding:20px;line-height:40px;">
+                                        <div class="d-flex justify-content-between align-self-items">
+                                            <div id="add_values_single_sofa">
+                                                <label class="property_label">@Resource.single_sofa_beds</label>
+                                                <div class="add_values">
+                                                    <button type="button" id="single_sofa_minus" class="minus"><i class="fas fa-minus"></i></button>
+                                                    <input type="text" id="single_sofa_number"
+                                                           name="single_sofa_number"
+                                                           placeholder="0" />
+                                                    <button type="button" class="plus" id="single_sofa_plus"><i class="fas fa-plus"></i></button>
+                                                </div>
+                                            </div>
+                                            <div id="add_values_double_sofa">
+                                                <label class="property_label">@Resource.double_sofa_beds</label>
+                                                <div class="add_values">
+                                                    <button type="button" id="double_sofa_minus" class="minus"><i class="fas fa-minus"></i></button>
+                                                    <input type="text" id="double_sofa_number"
+                                                           name="double_sofa_number"
+                                                           placeholder="0" />
+                                                    <button type="button" class="plus" id="double_sofa_plus"><i class="fas fa-plus"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-right submit_box_all">
+                                    <button type="button" class="btn arrow_btn_box" onclick="goBack()"><img src="~/Content/images/submit_prev_btn.png" alt="Prev arrow" /></button>
+                                    <button type="button" id="btn_submit" class="btn arrow_btn_box"><img src="~/Content/images/submit_next_btn.png" alt="next arrow"></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="step-footer" id="step-footer">
+            <div class="col-12 text-right submit_box_all add_property_form">
+                <button type="button" data-direction="prev"
+                        class="step-btn btn arrow_btn_box ">
+                    <img src="~/Content/images/submit_prev_btn.png" alt="Prev arrow" />
+                </button>
+                <button type="button" data-direction="next"
+                        class="step-btn btn arrow_btn_box">
+                    <img src="/Content/images/submit_next_btn.png" alt="next arrow">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- sub user Modal -->
+<div class="modal fade modal_sub_user" id="sub_user_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal_max modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="box_body">
+                    <button type="button" class="close" id="close_btn">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <div class="modal_succes">
+                        <img src="~/Content/images/tick_btn.png" alt="logo" />
+                    </div>
+                    <h3>@Resource.property_add_success</h3>
+                    <div id="SubUserDetail">
+                        <p class="login_sub_user">@Resource.sub_user_login_details</p>
+                        <div class="d-flex">
+                            <div class="user text-right">@Resource.user_name :</div>
+                            <div class="details"><label id="sub_user_name"></label></div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="user text-right">@Resource.password :</div>
+                            <div class="details"><label id="sub_user_password"></label></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script src="~/Content/dist/jquery-steps.min.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCFomQKPynvwJ7o_aMUvFtfVfru2Wu-xCw"></script>
+
+<script>
+    function goBack() {
+        $("#stp2").click();
+    }
+    var queenBeds = 0;
+    var varkingBeds = 0;
+    var singleSofa = 0;
+    var doublesSofa = 0;
+    var _singleBeds = 0;
+    var Size = 0; var Bathrooms = 0; var Toilets = 0; var Bedrooms = 0;
+    var fileData = new Array();
+
+    $(document).ready(function () {
+
+        $("#AccessCode").css('display', 'block');
+        var _accesstoCode = "@Model.PropertyModel.AccesstoCode.Value";
+        if (_accesstoCode.toLowerCase() == "true") {
+            $("#AccesstoCode").attr('checked', true);
+        }
+
+        var _doorman = "@Model.PropertyModel.Doorman.Value";
+        if (_doorman.toLowerCase() == "true") {
+            $("#Doorman").attr('checked', true);
+        }
+
+        var _parking = "@Model.PropertyModel.Parking.Value";
+        if (_parking.toLowerCase() == "true") {
+            $("#Parking").attr('checked', true);
+        }
+
+        var _balcony = "@Model.PropertyModel.Balcony.Value";
+        if (_balcony.toLowerCase() == "true") {
+            $("#Balcony").attr('checked', true);
+        }
+
+        var _dishWasher = "@Model.PropertyModel.Dishwasher.Value";
+        if (_dishWasher.toLowerCase() == "true") {
+            $("#DishWasher").attr('checked', true);
+        }
+
+        var _pool = "@Model.PropertyModel.Pool.Value";
+        if (_pool.toLowerCase() == "true") {
+            $("#Pool").attr('checked', true);
+        }
+
+        var _garden = "@Model.PropertyModel.Garden.Value";
+        if (_garden.toLowerCase() == "true") {
+            $("#Garden").attr('checked', true);
+        }
+
+        var _elevator = "@Model.PropertyModel.Elevator.Value";
+        if (_elevator.toLowerCase() == "true") {
+            $("#Elevator").attr('checked', true);
+        }
+
+        var _coffeMachine = "@Model.PropertyModel.CoffeeMachine.Value";
+        if (_coffeMachine.toLowerCase() == "true") {
+            $("#CoffeMachine").attr('checked', true);
+        }
+
+        var _sofaBed = "@Model.PropertyModel.IsSofaBed.Value";
+        if (_sofaBed.toLowerCase() == "true") {
+            $("#SofaBeds").attr('checked', true);
+            $("#add_values_sofa").css('display','block');
+        }
+
+        var _singleBedsVal = "@Model.PropertyModel.NoOfSingleBeds";
+        $("#single_beds_number").val(_singleBedsVal);
+        _singleBeds = _singleBedsVal;
+
+        var _singleSofaBedsVal = "@Model.PropertyModel.NoOfSingleSofaBeds";
+        $("#single_sofa_number").val(_singleSofaBedsVal);
+        singleSofa = _singleSofaBedsVal;
+
+        var _doubleSofaBedsVal = "@Model.PropertyModel.NoOfDoubleSofaBeds";
+        $("#double_sofa_number").val(_doubleSofaBedsVal);
+        doublesSofa = _doubleSofaBedsVal;
+
+        var _singleBed = "@Model.PropertyModel.IsSingleBed.Value";
+        if (_singleBed.toLowerCase() == "true") {
+            $("#SingleBeds").attr('checked', true);
+            $("#add_values_single_beds").css('display', 'block');
+        }
+
+        var size = "@Model.PropertyModel.Size";
+        if (size != "") {
+            $(`#${size}`).attr('checked', true);
+            Size = size;
+        }
+
+        var bedRooms = "@Model.PropertyModel.NoOfBedRooms";
+        if (bedRooms != 0) {
+            if (bedRooms>3) {
+                $("#bedroomFour").attr('checked', true);
+                $("#bed_rooms_values").css('display', 'block');
+                $("#bed_rooms_option_values option[value='" + bedRooms + "']").attr("selected", "selected");
+            }
+            else {
+                $("input[name='radio-group_3']").each(function () {
+                    var $this = $(this);
+                    var id = $this.attr('id');
+                    if (id == bedRooms) {
+                        $this.attr('checked', true);
+                    }
+                });
+            }
+            Bedrooms = bedRooms;
+        }
+
+        var bathRooms = "@Model.PropertyModel.NoOfBathrooms";
+        if (bathRooms != 0) {
+            if (bathRooms > 3) {
+                $("#BathroomFour").attr('checked', true);
+                $("#bath_room_values").css('display', 'block');
+                $("#bath_rooms_option_values option[value='" + bathRooms + "']").attr("selected", "selected");
+            }
+            else {
+                $("input[name='radio-group_4']").each(function () {
+                    var $this = $(this);
+                    var id = $this.attr('id');
+                    if (id.charAt(0) == bathRooms) {
+                        $this.attr('checked', true);
+                    }
+                });
+            }
+            Bathrooms = bathRooms;
+        }
+
+        var toilets = "@Model.PropertyModel.NoOfToilets";
+        if (toilets != 0) {
+            if (toilets > 3) {
+                $("#ToiletFour").attr('checked', true);
+                $("#toilets_values").css('display', 'block');
+                $("#toilets_option_values option[value='" + toilets + "']").attr("selected", "selected");
+            }
+            else {
+                $("input[name='radio-group']").each(function () {
+                    var $this = $(this);
+                    var id = $this.attr('id');
+                    if (id.charAt(0) == toilets) {
+                        $this.attr('checked', true);
+                    }
+                });
+            }
+            Toilets = toilets;
+        }
+
+        var _queenBeds = "@Model.PropertyModel.NoOfQueenBeds";
+
+        if (_queenBeds != 0)
+        {
+            $("#QueenBed").attr('checked', true);
+            $("#add_values_queen_beds").css('display','block');
+            $("#queen_beds_number").val(_queenBeds);
+            queenBeds = _queenBeds;
+        }
+
+        var _KingBeds = "@Model.PropertyModel.NoOfKingBeds";
+        if (_KingBeds != 0)
+        {
+            $("#KingBeds").attr('checked', true);
+            $("#add_values_King_beds").css('display','block');
+            $("#King_beds_number").val(_KingBeds);
+            varkingBeds = _KingBeds;
+        }
+    });
+//---------------------------------google Autocomplete Address Code--------------------------------
+    google.maps.event.addDomListener(window, 'load', function () {
+        var cityBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(32.0879122, 34.7272049), // Tel Aviv
+        );
+        var options = {
+            bounds: cityBounds,
+            fields: ["address_components", "geometry"],
+            componentRestrictions: { country: "il" },
+            types: ["address"]
+        };
+
+        var input = document.getElementById('PropertyModel_Address');
+        var places = new google.maps.places.Autocomplete(input, options);
+
+        function addressBuilder(address_components) {
+            var length = address_components.length;
+            var address = ""
+            for (var i = 0; i < length; i++) {
+                var componentTypes = address_components[i].types;
+                if (componentTypes.includes("route")) {
+                    address += address_components[i].long_name + ", "
+                }
+                if (componentTypes.includes("locality")) {
+                    address += address_components[i].long_name + ", "
+                }
+                if (componentTypes.includes("country")) {
+                    address += address_components[i].long_name
+                }
+
+            }
+
+            return address;
+        }
+
+        google.maps.event.addListener(places, 'place_changed', function () {
+            var place = places.getPlace();
+            var lat = place.geometry.location.lat();
+            var long = place.geometry.location.lng();
+            var address = addressBuilder(place.address_components);
+
+            if (address.toLowerCase().includes("tel aviv") ||
+                address.toLowerCase().includes("תל אביב, ישראל") ||
+                address.toLowerCase().includes("תל אביב")) {
+                $("#PropertyModel_Latitude").val(lat);
+                $("#PropertyModel_Longitude").val(long);
+            }
+            else {
+                alert('Bell Boy services currently available in Tel Aviv');
+                $('#PropertyModel_Address').val('');
+                $("#PropertyModel_Latitude").val(lat);
+                $("#PropertyModel_Longitude").val(long);
+            }
+        });
+    });
+
+    $("input[name='radio-group_2']").click(function () {
+        Size = this.id;
+    });
+
+    $("input[name='radio-group_3']").click(function () {
+        Bedrooms = this.id;
+        if (this.id =="bedroomFour") {
+            $("#bed_rooms_values").css('display', 'block');
+        }
+        else {
+            $("#bed_rooms_values").css('display', 'none');
+        }
+    });
+
+    $("input[name='radio-group_4']").click(function () {
+        Bathrooms = this.className;
+        if (this.id == "BathroomFour") {
+            $("#bath_room_values").css('display', 'block');
+        }
+        else {
+            $("#bath_room_values").css('display', 'none');
+        }
+    });
+
+    $("input[name='radio-group']").click(function () {
+        Toilets = this.className;
+        if (this.id == "ToiletFour") {
+            $("#toilets_values").css('display', 'block');
+        }
+        else {
+            $("#toilets_values").css('display', 'none');
+        }
+    });
+
+    $('#bed_rooms_option_values').change(function () {
+        Bedrooms = $("#bed_rooms_option_values option:selected").val();
+    });
+
+    $('#bath_rooms_option_values').change(function () {
+        Bathrooms = $("#bath_rooms_option_values option:selected").val();
+    });
+
+    $('#size_option_values').change(function () {
+        Size = $("#size_option_values option:selected").val();
+    });
+
+    $('#toilets_values').change(function () {
+        Toilets = $("#toilets_values option:selected").val();
+    });
+
+    $("#bedroomFour").change(function () {
+        if (this.checked) {
+            Bedrooms = 4;
+            $("#bed_rooms_values").css('display', 'block');
+        }
+        else {
+            $("#bed_rooms_values").css('display', 'none');
+        }
+    });
+
+    $("#BathroomFour").change(function () {
+        if (this.checked) {
+            Bathrooms = 4;
+            $("#bath_room_values").css('display', 'block');
+        }
+        else {
+            $("#bath_room_values").css('display', 'none');
+        }
+    });
+
+    $("#ToiletFour").change(function () {
+        if (this.checked) {
+            Toilets=4;
+            $("#toilets_values").css('display', 'block');
+        }
+        else {
+            $("#toilets_values").css('display', 'none');
+        }
+    });
+
+    $("#sizeFour").change(function () {
+        if (this.checked) {
+            Size = "100-120";
+            $("#size_values").css('display', 'block');
+        }
+        else {
+            $("#size_values").css('display', 'none');
+        }
+    });
+
+    $('#QueenBed').change(function () {
+        queenBeds = 0;
+        $("#queen_beds_number").val(queenBeds);
+        if (this.checked) {
+            $("#add_values_queen_beds").css('display', 'block');
+        }
+        else {
+            $("#add_values_queen_beds").css('display', 'none');
+        }
+    });
+
+    $('#KingBeds').change(function () {
+        varkingBeds = 0;
+        $("#king_beds_number").val(varkingBeds);
+        if (this.checked) {
+            $("#add_values_King_beds").css('display', 'block');
+        }
+        else {
+            $("#add_values_King_beds").css('display', 'none');
+        }
+    });
+
+    $('#SingleBeds').change(function () {
+        _singleBeds = 0;
+        $("#single_beds_number").val(_singleBeds);
+        if (this.checked) {
+            $("#add_values_single_beds").css('display', 'block');
+        }
+        else {
+            $("#add_values_single_beds").css('display', 'none');
+        }
+    });
+
+    $('#SofaBeds').change(function () {
+        singleSofa = 0;
+        doublesSofa = 0;
+        $("#single_sofa_number").val(singleSofa);
+        $("#double_sofa_number").val(doublesSofa);
+        if (this.checked) {
+            $("#add_values_sofa").css('display', 'block');
+        }
+        else {
+            $("#add_values_sofa").css('display', 'none');
+        }
+    });
+
+    $("#queen_bed_plus").click(function () {
+        queenBeds = parseInt(queenBeds) + 1;
+        $("#queen_beds_number").val(queenBeds);
+    });
+
+    $("#single_bed_plus").click(function () {
+        _singleBeds = parseInt(_singleBeds) + 1;
+        $("#single_beds_number").val(_singleBeds);
+    });
+
+    $("#single_sofa_plus").click(function () {
+        singleSofa = parseInt(singleSofa) + 1;
+        $("#single_sofa_number").val(singleSofa);
+    });
+
+    $("#double_sofa_plus").click(function () {
+        doublesSofa = parseInt(doublesSofa) + 1;
+        $("#double_sofa_number").val(doublesSofa);
+    });
+     $("#King_bed_plus").click(function () {
+        varkingBeds = parseInt(varkingBeds) + 1;
+        $("#King_beds_number").val(varkingBeds);
+    });
+
+    $("#King_bed_minus").click(function () {
+        if (varkingBeds > 0) {
+            varkingBeds = parseInt(varkingBeds) - 1;
+        }
+        $("#King_beds_number").val(varkingBeds);
+    });
+
+    $("#queen_bed_minus").click(function () {
+        if (queenBeds > 0) {
+            queenBeds = parseInt(queenBeds) - 1;
+        }
+        $("#queen_beds_number").val(queenBeds);
+    });
+
+    $("#single_bed_minus").click(function () {
+        if (parseInt(_singleBeds) > 0) {
+            _singleBeds = parseInt(_singleBeds) - 1;
+        }
+        $("#single_beds_number").val(_singleBeds);
+    });
+
+    $("#single_sofa_minus").click(function () {
+        if (parseInt(singleSofa) > 0) {
+            singleSofa = parseInt(singleSofa) - 1;
+        }
+        $("#single_sofa_number").val(singleSofa);
+    });
+
+    $("#double_sofa_minus").click(function () {
+        if (parseInt(doublesSofa) > 0) {
+            doublesSofa = parseInt(doublesSofa) - 1;
+        }
+        $("#double_sofa_number").val(doublesSofa);
+    });
+
+    var frmFirst = $('#frmFirst');
+    var frmFirstValidator = frmFirst.validate();
+
+    var frmSecond = $('#frmSecond');
+    var frmSecondValidator = frmSecond.validate();
+
+    $("#btn_submit").click(function (e) {
+        submitForm();
+    });
+
+
+    $("#upload_file").change(function () {
+        var input = this;
+        for (var i = 0; i < input.files.length; i++) {
+            var url = input.files[i].name;
+            var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+
+            var reader = new FileReader();
+            // file uploaded is of type image
+            if (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg") {
+                reader.onload = function (e) {
+                    fileData.push({ result: e.target.result, type: "image" });
+
+                    var e = $('<div class="upload_show_image mb-4"><img src="' + e.target.result + '"><div class="d-flex overlay justify-content-between"><a><input type="file" class="' + e.target.result + '" onchange="EditImage(this)"><i class="fa fa-edit"></i></a><a id="' + e.target.result + '" onclick="DeleteImage(this);"><i class="fa fa-trash"></i></a></div></div>');
+                    $('#upload_form #upload_image_div').append(e);
+                }
+                reader.readAsDataURL(input.files[i]);
+            }
+            else {
+                reader.onload = function (e) {
+                    fileData.push({ result: e.target.result, type: "video" });
+                    var e = $('<div class="upload_show_image mb-4"><video width="100%" height="100%" controls><source src = "' + e.target.result + '" type = "video/mp4"></video><div class="d-flex overlay justify-content-between"><a><input type="file" class="' + e.target.result + '" onchange="EditImage(this)"><i class="fa fa-edit"></i></a><a id="' + e.target.result + '" onclick="DeleteImage(this);"><i class="fa fa-trash"></i></a></div></div>');
+                    $('#upload_form #upload_image_div').append(e);
+                }
+                reader.readAsDataURL(input.files[i]);
+            }
+            }
+    });
+
+    function EditImage(img) {
+        var input = img;
+        var url = $(img).val();
+        var getClass = $(img).attr('class');
+
+        fileData = $.grep(fileData, function (value) {
+            return value.result != getClass;
+        });
+
+        var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+
+        if (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg") {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                fileData.push({ result: e.target.result, type: "image" });
+                var getParent = $(img).parent().parent().parent();
+
+                var e = $('<div class="upload_show_image mb-4"><img src="' + e.target.result + '"><div class="d-flex overlay justify-content-between"><a><input type="file" class="' + e.target.result + '" onchange="EditImage(this)"><i class="fa fa-edit"></i></a><a id="' + e.target.result + '" onclick="DeleteImage(this);"><i class="fa fa-trash"></i></a></div></div>');
+                getParent.replaceWith(e);
+
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+        else {
+            // file uploaded is of video type
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                fileData.push({ result: e.target.result, type: "video" });
+
+                var getParent = $(img).parent().parent().parent();
+                var e = $('<div class="upload_show_image mb-4"><video width="100%" height="100%" controls><source src = "' + e.target.result + '" type = "video/mp4"></video><div class="d-flex overlay justify-content-between"><a><input type="file" class="' + e.target.result + '" onchange="EditImage(this)"><i class="fa fa-edit"></i></a><a id="' + e.target.result + '" onclick="DeleteImage(this);"><i class="fa fa-trash"></i></a></div></div>');
+                getParent.replaceWith(e);
+            }
+            reader.readAsDataURL(input.files[0]);
+
+        }
+
+    };
+
+    function DeleteImage(img) {
+        var value = confirm("@Resource.delete_msg");
+        if (value) {
+            var getId = $(img).attr('id');
+            fileData = $.grep(fileData, function (value) {
+                return value.result != getId;
+            });
+            var getParent = $(img).parent().parent();
+            getParent.remove();
+
+            propId = $(img).next("#PropImageId").val();
+            if (propId != null)
+            {
+                $.ajax({
+                    url: "@Url.Action("DeletePropertyImg", "Property")",
+                    data: {
+                        "propId": propId,
+                    },
+                    type: 'POST',
+                    success: function (data) {
+                        //alert(data);
+                    },
+                    error: function () {
+                        //alert('something went wrong');
+                    }
+                });
+            }
+        }
+    }
+
+    function submitForm() {
+        var Files = new FormData();
+        Files.append('Attachments', JSON.stringify(fileData));
+       // alert("Attachments " + JSON.stringify(fileData));
+        var shortTerm = true;
+        var accessToCode = $("#AccesstoCode").is(":checked");
+        var doorman = $("#Doorman").is(":checked");
+        var dishwasher = $("#DishWasher").is(":checked");
+        var balcony = $("#Balcony").is(":checked");
+        var coffeMachine = $("#CoffeMachine").is(":checked");
+        var elevator = $("#Elevator").is(":checked");
+        var garden = $("#Garden").is(":checked");
+        var parking = $("#Parking").is(":checked");
+        var pool = $("#Pool").is(":checked");
+        var kingBeds = $("#KingBeds").is(":checked");
+        var singleBeds = $("#SingleBeds").is(":checked");
+        var sofaBeds = $("#SofaBeds").is(":checked");
+
+        Files.append('Name', $("#PropertyModel_Name").val());
+        Files.append('AccesstoCode', accessToCode);
+        Files.append('AccessToProperty', $("#PropertyModel_AccessToProperty").val());
+        Files.append('LocationOfKey', $("#PropertyModel_LocationOfKey").val());
+        Files.append('Address', $("#PropertyModel_Address").val());
+        Files.append('ApartmentNumber', $("#PropertyModel_ApartmentNumber").val());
+        Files.append('Balcony', balcony);
+        Files.append('BuildingCode', $("#PropertyModel_BuildingCode").val());
+        Files.append('CoffeeMachine', coffeMachine);
+        Files.append('Dishwasher', dishwasher);
+        Files.append('Doorman', doorman);
+        Files.append('Elevator', elevator);
+        Files.append('FloorNumber', $("#PropertyModel_FloorNumber").val());
+        Files.append('Id', $("#PropertyModel_Id").val());
+        Files.append('Garden', garden);
+        Files.append('IsKingBed', kingBeds);
+        Files.append('IsSingleBed', singleBeds);
+        Files.append('IsSofaBed', sofaBeds);
+        Files.append('NoOfBathrooms', Bathrooms);
+        Files.append('NoOfBedRooms', Bedrooms);
+        Files.append('NoOfToilets', Toilets);
+        Files.append('Size', Size);
+        Files.append('NoOfDoubleSofaBeds', doublesSofa);
+        Files.append('NoOfQueenBeds', queenBeds);
+        Files.append('NoOfKingBeds', varkingBeds);
+        Files.append('NoOfSingleBeds', _singleBeds);
+        Files.append('NoOfSingleSofaBeds', singleSofa);
+        Files.append('Parking', parking);
+        Files.append('Pool', pool);
+        Files.append('ShortTermApartment', shortTerm);
+        Files.append('WifiLogin', $("#PropertyModel_WifiLogin").val());
+        Files.append('Type', $("#PropertyModel_Type option:selected").val());
+        Files.append('Latitude', $("#PropertyModel_Latitude").val());
+        Files.append('Longitude', $("#PropertyModel_Longitude").val());
+        //// Display the key/value pairs
+        //for (var pair of Files.entries()) {
+        //    console.log(pair[0] + ', ' + pair[1]);
+        //}
+        var total = 0;
+        var totalBeds = parseInt(queenBeds) + parseInt(varkingBeds) + parseInt(_singleBeds) + parseInt(singleSofa) + parseInt(doublesSofa);
+
+
+        //alert('total beds'+totalBeds);
+       if(shortTerm)
+       {
+               if (Size.toString() == "20-40") {
+                        if (parseInt(Bedrooms) > parseInt("1")) {
+                            total = ((300 / 100) * 7) * (parseInt(Bedrooms) -1 )
+                            //alert(total);
+                        }
+                        else if(parseInt(Bedrooms) < parseInt("1"))
+                        {
+                            total = total - ((300 / 100) * 2.5) * (parseInt(Bedrooms))
+                        }
+
+                        if (parseInt(Bathrooms) > parseInt("1")) {
+                            total += ((300 / 100) * 7.5) * (parseInt(Bathrooms) -1 )
+                            //alert(total);
+                        }
+                        else if(parseInt(Bathrooms) < parseInt("1"))
+                        {
+                            total = total - ((300 / 100) * 2) * (parseInt(Bathrooms))
+                        }
+
+                        if (parseInt(Toilets) > parseInt("1")) {
+                            total += ((300 / 100) * 5) * (parseInt(Toilets) -1 )
+                            //alert(total);
+                        }
+                        else if (parseInt(Toilets) < parseInt("1"))
+                        {
+                            total = total - ((300 / 100) * 2) * (parseInt(Toilets))
+                        }
+
+                        if (parseInt(totalBeds) > parseInt("1")) {
+                            total += ((300 / 100) * 7) * (parseInt(totalBeds) -1 )
+                            //alert(total);
+                        }
+                        else if (parseInt(totalBeds) < parseInt("1"))
+                        {
+                            total = total - ((300 / 100) * 2) * (parseInt(totalBeds))
+
+                        }
+                        total=total+300;
+                        //alert('Total airbnb  Amount 20-40 is '+total);
+                }
+                else if(Size.toString() == "45-60")
+                {
+                    if (parseInt(Bedrooms) > parseInt("1")) {
+                        total = ((350 / 100) * 7) * (parseInt(Bedrooms) - 1)
+                        //alert('Bedrooms'+total);
+                    }
+                    else if (parseInt(Bedrooms) < parseInt("1"))
+                    {
+                        total = total - ((350 / 100) * 2.5) * (parseInt(Bedrooms))
+                    }
+
+                    if (parseInt(Bathrooms) > parseInt("1")) {
+                        total += ((350 / 100) * 7.5) * (parseInt(Bathrooms) - 1)
+                        //alert('Bathrooms' + total);
+                    }
+                    else if (parseInt(Bathrooms) < parseInt("1"))
+                    {
+                        total = total - ((350 / 100) * 2) * (parseInt(Bathrooms))
+                    }
+
+                    if (parseInt(Toilets) > parseInt("1")) {
+                        total += ((350 / 100) * 5) * (parseInt(Toilets) - 1)
+                        //alert('Toilets' + total);
+                    }
+                    else if (parseInt(Toilets) < parseInt("1"))
+                    {
+                        total = total - ((350 / 100) * 2) * (parseInt(Toilets))
+
+                    }
+
+                    if (parseInt(totalBeds) > parseInt("1")) {
+                        total += ((350 / 100) * 7) * (parseInt(totalBeds) -1 )
+                       // alert('totalBeds' + total);
+                    }
+                    else if (parseInt(totalBeds) < parseInt("1"))
+                    {
+                        total = total - ((350 / 100) * 2) * (parseInt(totalBeds))
+                    }
+                    total=total+350;
+                    //alert('Total airbnb Amount 45-60 is '+total);
+                }
+                else if(Size.toString() == "65-90")
+                {
+                    if (parseInt(Bedrooms) > parseInt("2")) {
+                        total = ((400 / 100) * 7) * (parseInt(Bedrooms) -2 )
+
+                    }
+                    else if(parseInt(Bedrooms) < parseInt("2"))
+                    {
+                        total = total - ((400 / 100) * 2.5) * (parseInt(Bedrooms))
+
+                    }
+
+                    if (parseInt(Bathrooms) > parseInt("1")) {
+                        total += ((400 / 100) * 7.5) * (parseInt(Bathrooms) -1 )
+
+                    }
+                    else if (parseInt(Bathrooms) < parseInt("1"))
+                    {
+                        total = total - ((400 / 100) * 2) * (parseInt(Bathrooms))
+                    }
+
+                    if (parseInt(Toilets) > parseInt("2")) {
+                        total += ((400 / 100) * 5) * (parseInt(Toilets) -2 )
+
+                    }
+                    else if (parseInt(Toilets) < parseInt("2"))
+                    {
+                        total = total - ((400 / 100) * 2) * (parseInt(Toilets))
+                    }
+
+                    if (parseInt(totalBeds) > parseInt("2")) {
+                        total += ((400 / 100) * 7) * (parseInt(totalBeds) -2 )
+                    }
+                    else if (parseInt(totalBeds) < parseInt("2"))
+                    {
+                        total = total - ((400 / 100) * 2) * (parseInt(totalBeds))
+                    }
+                    total=total+400;
+                    //alert('Total airbnb Amount 65-90 is '+total);
+                }
+                else if(Size.toString() == "100-120")
+                {
+                    if (parseInt(Bedrooms) > parseInt("3")) {
+                        total = ((450 / 100) * 7) * (parseInt(Bedrooms) -3 )
+
+                    }
+                    else if (parseInt(Bedrooms) < parseInt("3"))
+                    {
+                        total = total - ((450 / 100) * 2.5) * (parseInt(Bedrooms))
+
+                    }
+
+                    if (parseInt(Bathrooms) > parseInt("2")) {
+                        total += ((450 / 100) * 7.5) * (parseInt(Bathrooms) -2 )
+
+                    }
+                    else if (parseInt(Bathrooms) < parseInt("2"))
+                    {
+                        total = total - ((450 / 100) * 2) * (parseInt(Bathrooms))
+
+                    }
+
+                    if (parseInt(Toilets) > parseInt("2")) {
+                        total += ((450 / 100) * 5) * (parseInt(Toilets) -2 )
+
+                    }
+                    else if (parseInt(Toilets) < parseInt("2"))
+                    {
+                        total = total - ((450 / 100) * 2) * (parseInt(Toilets))
+
+                    }
+
+                    if (parseInt(totalBeds) > parseInt("3")) {
+                        total += ((450 / 100) * 7) * (parseInt(totalBeds) -3 )
+                    }
+                    else if (parseInt(totalBeds) < parseInt("3"))
+                    {
+                        total = total - ((450 / 100) * 2) * (parseInt(totalBeds))
+                    }
+                    total=total+450;
+                    //alert('Total airbnb Amount 100-120 is  '+total);
+
+                }
+                else if(Size.toString() == "125-150")
+                {
+                    if (parseInt(Bedrooms) > parseInt("4")) {
+                        total = ((500 / 100) * 7) * (parseInt(Bedrooms) -4 )
+
+                    }
+                    else if (parseInt(Bedrooms) < parseInt("4"))
+                    {
+                        total = total - ((500 / 100) * 2.5) * (parseInt(Bedrooms))
+                    }
+
+                    if (parseInt(Bathrooms) > parseInt("2")) {
+                        total += ((500 / 100) * 7.5) * (parseInt(Bathrooms) -2 )
+
+                    }
+                    else if (parseInt(Bathrooms) < parseInt("2"))
+                    {
+                        total = total - ((500 / 100) * 2) * (parseInt(Bathrooms))
+
+                    }
+
+                    if (parseInt(Toilets) > parseInt("2")) {
+                        total += ((500 / 100) * 5) * (parseInt(Toilets) -2 )
+
+                    }
+                    else if (parseInt(Toilets) < parseInt("2"))
+                    {
+                        total = total - ((500 / 100) * 2) * (parseInt(Toilets))
+
+                    }
+
+                    if (parseInt(totalBeds) > parseInt("4")) {
+                        total += ((500 / 100) * 7) * (parseInt(totalBeds) -4 )
+                    }
+                    else if (parseInt(totalBeds) < parseInt("4"))
+                    {
+                        total = total - ((500 / 100) * 2) * (parseInt(totalBeds))
+                    }
+
+                    total=total+500;
+                    //alert('Total Airbnb Amount 125-150 is '+total);
+                }
+                else if(Size.toString() == "160-190")
+                {
+                    if (parseInt(Bedrooms) > parseInt("4")) {
+                        total = ((550 / 100) * 7) * (parseInt(Bedrooms) -4 )
+
+                    }
+                    else if (parseInt(Bedrooms) < parseInt("4"))
+                    {
+                        total = total - ((550 / 100) * 2.5) * (parseInt(Bedrooms))
+                    }
+
+                    if (parseInt(Bathrooms) > parseInt("2")) {
+                        total += ((550 / 100) * 7.5) * (parseInt(Bathrooms) -2 )
+
+                    }
+                    else if (parseInt(Bathrooms) < parseInt("2"))
+                    {
+                        total = total - ((550 / 100) * 2) * (parseInt(Bathrooms))
+                    }
+
+                    if (parseInt(Toilets) > parseInt("2")) {
+                        total += ((550 / 100) * 5) * (parseInt(Toilets) -2 )
+
+                    }
+                    else if (parseInt(Toilets) < parseInt("2"))
+                    {
+                        total = total - ((550 / 100) * 2) * (parseInt(Toilets))
+                    }
+
+                    if (parseInt(totalBeds) > parseInt("4")) {
+                        total += ((550 / 100) * 7) * (parseInt(totalBeds) -4 )
+                    }
+                    else if (parseInt(totalBeds) < parseInt("4"))
+                    {
+                        total = total - ((550 / 100) * 2) * (parseInt(totalBeds))
+                    }
+                    total=total+550;
+                    //alert('Total airbnb Amount 160-190 is '+total);
+                }
+                else if(Size.toString() == "200-250")
+                {
+                    if (parseInt(Bedrooms) > parseInt("4")) {
+                        total = ((600 / 100) * 7) * (parseInt(Bedrooms) -4 )
+                    }
+                    else if (parseInt(Bedrooms) < parseInt("4"))
+                    {
+                        total = total - ((600 / 100) * 2.5) * (parseInt(Bedrooms))
+                    }
+
+                    if (parseInt(Bathrooms) > parseInt("2")) {
+                        total += ((600 / 100) * 7.5) * (parseInt(Bathrooms) -2 )
+                    }
+                    else if (parseInt(Bathrooms) < parseInt("2"))
+                    {
+                        total = total - ((600 / 100) * 2) * (parseInt(Bathrooms))
+                    }
+
+                    if (parseInt(Toilets) > parseInt("2")) {
+                        total += ((600 / 100) * 5) * (parseInt(Toilets) -2 )
+                    }
+                    else if (parseInt(Toilets) < parseInt("2"))
+                    {
+                        total = total - ((600 / 100) * 2) * (parseInt(Toilets))
+                    }
+
+                    if (parseInt(totalBeds) > parseInt("4")) {
+                        total += ((600 / 100) * 7) * (parseInt(totalBeds) -4 )
+                    }
+                    else if (parseInt(totalBeds) < parseInt("4"))
+                    {
+                        total = total - ((600 / 100) * 2) * (parseInt(totalBeds))
+                    }
+                    total=total+600;
+                    //alert('Total Airbnb Amount 200-250 is '+total);
+
+                }
+                else if(Size.toString() == "260-350")
+                {
+                    if (parseInt(Bedrooms) > parseInt("4")) {
+                        total = ((650 / 100) * 7) * (parseInt(Bedrooms) -4 )
+                        //alert(total);
+                    }
+                    else if (parseInt(Bedrooms) < parseInt("4"))
+                    {
+                        total = total - ((650 / 100) * 2.5) * (parseInt(Bedrooms))
+                    }
+
+                    if (parseInt(Bathrooms) > parseInt("2")) {
+                        total += ((650 / 100) * 7.5) * (parseInt(Bathrooms) -2 )
+                        //alert(total);
+                    }
+                    else if (parseInt(Bathrooms) < parseInt("2"))
+                    {
+                        total = total - ((650 / 100) * 2) * (parseInt(Bathrooms))
+                    }
+
+                    if (parseInt(Toilets) > parseInt("2")) {
+                        total += ((650 / 100) * 5) * (parseInt(Toilets) -2 )
+                        //alert(total);
+                    }
+                    else if (parseInt(Toilets) < parseInt("2"))
+                    {
+                        total = total - ((650 / 100) * 2) * (parseInt(Toilets))
+                    }
+
+                    if (parseInt(totalBeds) > parseInt("4")) {
+                        total += ((650 / 100) * 7) * (parseInt(totalBeds) -4 )
+                        //alert(total);
+                    }
+                    else if (parseInt(totalBeds) < parseInt("4"))
+                    {
+                        total = total - ((650 / 100) * 2) * (parseInt(totalBeds))
+                    }
+                    total=total+650;
+                    //alert('Total airbnb Amount 260-350 is '+total);
+                }
+
+           // total = total - ((total / 100) * 10);
+            //alert('2 star Amount '+total);
+        }
+        else //--------------------# 3 star price
+        {
+            if (Size.toString() == "20-40") {
+                if (parseInt(Bedrooms) > parseInt("1")) {
+                    total = ((320 / 100) * 7) * (parseInt(Bedrooms) -1 )
+                    //alert(total);
+                }
+                else if (parseInt(Bedrooms) < parseInt("1"))
+                {
+                    total = total - ((320 / 100) * 2.5) * (parseInt(Bedrooms))
+                }
+
+                if (parseInt(Bathrooms) > parseInt("1")) {
+                    total += ((320 / 100) * 7.5) * (parseInt(Bathrooms) -1 )
+                    //alert(total);
+                }
+                else if (parseInt(Bathrooms) < parseInt("1"))
+                {
+                    total = total - ((320 / 100) * 2) * (parseInt(Bathrooms))
+                }
+
+                if (parseInt(Toilets) > parseInt("1")) {
+                    total += ((320 / 100) * 5) * (parseInt(Toilets) -1 )
+                    //alert(total);
+                }
+                else if (parseInt(Toilets) < parseInt("1"))
+                {
+                    total = total - ((320 / 100) * 2) * (parseInt(Toilets))
+                }
+
+                if (parseInt(totalBeds) > parseInt("1")) {
+                    total += ((320 / 100) * 7) * (parseInt(totalBeds) -1 )
+                    //alert(total);
+                }
+                else if (parseInt(totalBeds) < parseInt("1"))
+                {
+                    total = total - ((320 / 100) * 2) * (parseInt(totalBeds))
+
+                }
+                total=total+320;
+                //alert('Total 3 star  Amount 20-40 is '+total);
+
+                //total = ((total / 100) * 30);
+                //alert('2 star Amount '+total);
+        }
+        else if(Size.toString() == "45-60")
+        {
+            if (parseInt(Bedrooms) > parseInt("1")) {
+                total = ((350 / 100) * 7) * (parseInt(Bedrooms) - 1)
+                //alert('Bedrooms'+total);
+            }
+            else if (parseInt(Bedrooms) < parseInt("1"))
+            {
+                total = total - ((350 / 100) * 2.5) * (parseInt(Bedrooms))
+            }
+
+            if (parseInt(Bathrooms) > parseInt("1")) {
+                total += ((350 / 100) * 7.5) * (parseInt(Bathrooms) - 1)
+                //alert('Bathrooms' + total);
+            }
+            else if (parseInt(Bathrooms) < parseInt("1"))
+            {
+                total = total - ((350 / 100) * 2) * (parseInt(Bathrooms))
+            }
+
+            if (parseInt(Toilets) > parseInt("1")) {
+                total += ((350 / 100) * 5) * (parseInt(Toilets) - 1)
+                //alert('Toilets' + total);
+            }
+            else if (parseInt(Toilets) < parseInt("1"))
+            {
+                total = total - ((350 / 100) * 2) * (parseInt(Toilets))
+            }
+
+            if (parseInt(totalBeds) > parseInt("1")) {
+                total += ((350 / 100) * 7) * (parseInt(totalBeds) -1 )
+                //alert('totalBeds' + total);
+            }
+            else if (parseInt(totalBeds) < parseInt("1"))
+            {
+                total = total - ((350 / 100) * 2) * (parseInt(totalBeds))
+
+            }
+            total=total+350;
+            //alert('Total 3 star Amount 45-60 is '+total);
+
+             //total = total -  ((total / 100) * 30);
+             //alert('2 star Amount '+total);
+        }
+        else if(Size.toString() == "65-90")
+        {
+            if (parseInt(Bedrooms) > parseInt("2")) {
+                total = ((370 / 100) * 7) * (parseInt(Bedrooms) -2 )
+
+            }
+            else if (parseInt(Bedrooms) < parseInt("2"))
+            {
+                total = total - ((370 / 100) * 2.5) * (parseInt(Bedrooms))
+            }
+
+            if (parseInt(Bathrooms) > parseInt("1")) {
+                total += ((370 / 100) * 7.5) * (parseInt(Bathrooms) -1 )
+            }
+            else if (parseInt(Bathrooms) < parseInt("1"))
+            {
+                total = total - ((370 / 100) * 2) * (parseInt(Bathrooms))
+            }
+
+            if (parseInt(Toilets) > parseInt("2")) {
+                total += ((370 / 100) * 5) * (parseInt(Toilets) -2 )
+            }
+            else if (parseInt(Toilets) < parseInt("2"))
+            {
+                total = total - ((370 / 100) * 2) * (parseInt(Toilets))
+            }
+
+            if (parseInt(totalBeds) > parseInt("2")) {
+                total += ((370 / 100) * 7) * (parseInt(totalBeds) -2 )
+            }
+            else  if (parseInt(totalBeds) < parseInt("2"))
+            {
+                total = total - ((370 / 100) * 2) * (parseInt(totalBeds))
+            }
+
+            total=total+370;
+            //alert('Total 3 star Amount 65-90 is '+total);
+        }
+        else if(Size.toString() == "100-120")
+        {
+            if (parseInt(Bedrooms) > parseInt("3")) {
+                total = ((390 / 100) * 7) * (parseInt(Bedrooms) -3 )
+
+            }
+            else if (parseInt(Bedrooms) < parseInt("3"))
+            {
+                total = total - ((390 / 100) * 2.5) * (parseInt(Bedrooms))
+
+            }
+
+            if (parseInt(Bathrooms) > parseInt("2")) {
+                total += ((390 / 100) * 7.5) * (parseInt(Bathrooms) -2 )
+
+            }
+            else if (parseInt(Bathrooms) < parseInt("2"))
+            {
+                total = total - ((390 / 100) * 2) * (parseInt(Bathrooms))
+
+            }
+
+            if (parseInt(Toilets) > parseInt("2")) {
+                total += ((390 / 100) * 5) * (parseInt(Toilets) -2 )
+
+            }
+            else if (parseInt(Toilets) < parseInt("2"))
+            {
+                total = total - ((390 / 100) * 2) * (parseInt(Toilets))
+            }
+
+            if (parseInt(totalBeds) > parseInt("3")) {
+                total += ((390 / 100) * 7) * (parseInt(totalBeds) -3 )
+
+            }
+            else if (parseInt(totalBeds) < parseInt("3"))
+            {
+                total = total - ((390 / 100) * 2) * (parseInt(totalBeds))
+            }
+            total=total+390;
+           // alert('Total 3 star Amount 100-120 is  '+total);
+        }
+        else if(Size.toString() == "125-150")
+        {
+            if (parseInt(Bedrooms) > parseInt("4")) {
+                total = ((400 / 100) * 7) * (parseInt(Bedrooms) -4 )
+            }
+            else if (parseInt(Bedrooms) < parseInt("4"))
+            {
+                total = total - ((400 / 100) * 2.5) * (parseInt(Bedrooms))
+
+            }
+
+            if (parseInt(Bathrooms) > parseInt("2")) {
+                total += ((400 / 100) * 7.5) * (parseInt(Bathrooms) -2 )
+
+            }
+            else if (parseInt(Bathrooms) < parseInt("2"))
+            {
+                total = total - ((400 / 100) * 2) * (parseInt(Bathrooms))
+            }
+
+            if (parseInt(Toilets) > parseInt("2")) {
+                total += ((400 / 100) * 5) * (parseInt(Toilets) -2 )
+
+            }
+            else if (parseInt(Toilets) < parseInt("2"))
+            {
+                total = total - ((400 / 100) * 2) * (parseInt(Toilets))
+
+            }
+
+            if (parseInt(totalBeds) > parseInt("4")) {
+                total += ((400 / 100) * 7) * (parseInt(totalBeds) -4 )
+            }
+            else if (parseInt(totalBeds) < parseInt("4"))
+            {
+                total = total - ((400 / 100) * 2) * (parseInt(totalBeds))
+            }
+            total=total+400;
+            //alert('Total 3 star Amount 125-150 is '+total);
+        }
+        else if(Size.toString() == "160-190")
+        {
+            if (parseInt(Bedrooms) > parseInt("4")) {
+                total = ((470 / 100) * 7) * (parseInt(Bedrooms) -4 )
+
+            }
+            else if (parseInt(Bedrooms) < parseInt("4"))
+            {
+                total = total - ((470 / 100) * 2.5) * (parseInt(Bedrooms))
+            }
+
+            if (parseInt(Bathrooms) > parseInt("2")) {
+                total += ((470 / 100) * 7.5) * (parseInt(Bathrooms) -2 )
+
+            }
+            else if (parseInt(Bathrooms) < parseInt("2"))
+            {
+                total = total - ((470 / 100) * 2) * (parseInt(Bathrooms))
+            }
+
+            if (parseInt(Toilets) > parseInt("2")) {
+                total += ((470 / 100) * 5) * (parseInt(Toilets) -2 )
+
+            }
+            else if (parseInt(Toilets) < parseInt("2"))
+            {
+                total = total - ((470 / 100) * 2) * (parseInt(Toilets))
+
+            }
+
+            if (parseInt(totalBeds) > parseInt("4")) {
+                total += ((470 / 100) * 7) * (parseInt(totalBeds) -4 )
+            }
+            else if (parseInt(totalBeds) < parseInt("4"))
+            {
+                total = total - ((470 / 100) * 2) * (parseInt(totalBeds))
+            }
+            total=total+470;
+            //alert('Total 3 star Amount 160-190 is '+total);
+
+            //total = total -  ((total / 100) * 30);
+            //alert('2 star Amount '+total);
+        }
+        else if(Size.toString() == "200-250")
+        {
+            if (parseInt(Bedrooms) > parseInt("4")) {
+                total = ((550 / 100) * 7) * (parseInt(Bedrooms) -4 )
+            }
+            else if (parseInt(Bedrooms) < parseInt("4"))
+            {
+                total = total - ((550 / 100) * 2.5) * (parseInt(Bedrooms))
+            }
+
+            if (parseInt(Bathrooms) > parseInt("2")) {
+                total += ((550 / 100) * 7.5) * (parseInt(Bathrooms) -2 )
+            }
+            else if (parseInt(Bathrooms) < parseInt("2"))
+            {
+                total = total - ((550 / 100) * 2) * (parseInt(Bathrooms))
+            }
+
+            if (parseInt(Toilets) > parseInt("2")) {
+                total += ((550 / 100) * 5) * (parseInt(Toilets) -2 )
+            }
+            else if (parseInt(Toilets) < parseInt("2"))
+            {
+                total = total - ((550 / 100) * 2) * (parseInt(Toilets))
+            }
+
+            if (parseInt(totalBeds) > parseInt("4")) {
+                total += ((550 / 100) * 7) * (parseInt(totalBeds) -4 )
+            }
+            else if (parseInt(totalBeds) < parseInt("4"))
+            {
+                total = total - ((550 / 100) * 2) * (parseInt(totalBeds))
+            }
+            total=total+550;
+            //alert('Total 3 star Amount 200-250 is '+total);
+
+            //total = total - ((total / 100) * 30);
+            //alert('2 star Amount '+total);
+        }
+        else if(Size.toString() == "260-350")
+        {
+            if (parseInt(Bedrooms) > parseInt("4")) {
+                total = ((650 / 100) * 7) * (parseInt(Bedrooms) -4 )
+            }
+            else if (parseInt(Bedrooms) < parseInt("4"))
+            {
+                total = total - ((650 / 100) * 2.5) * (parseInt(Bedrooms))
+            }
+
+            if (parseInt(Bathrooms) > parseInt("2")) {
+                total += ((650 / 100) * 7.5) * (parseInt(Bathrooms) -2 )
+            }
+            else if (parseInt(Bathrooms) < parseInt("2"))
+            {
+                total = total - ((650 / 100) * 2) * (parseInt(Bathrooms))
+            }
+
+            if (parseInt(Toilets) > parseInt("2")) {
+                total += ((650 / 100) * 5) * (parseInt(Toilets) -2 )
+            }
+            else if (parseInt(Toilets) < parseInt("2"))
+            {
+                total = total - ((650 / 100) * 2) * (parseInt(Toilets))
+            }
+
+            if (parseInt(totalBeds) > parseInt("4")) {
+                total += ((650 / 100) * 7) * (parseInt(totalBeds) -4 )
+            }
+            else if (parseInt(totalBeds) < parseInt("4"))
+            {
+                total = total - ((650 / 100) * 2) * (parseInt(totalBeds))
+            }
+            total=total+650;
+            //alert('Total 3 star Amount 260-350 is '+total);
+
+            //total = total - ((total / 100) * 30);
+            //alert('2 star Amount '+total);
+        }
+
+     }
+        Files.append('RoomPrice', total);
+
+        $.ajax({
+            url: "/Property/AddProperty",
+            data: Files,
+            type: 'POST',
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                // Show image container
+                $("#loader").show();
+            },
+            success: function (data) {
+                if (data.status) {
+                    $("#sub_user_modal #sub_user_name").text(data.SubUserEmail);
+                    $("#sub_user_modal #sub_user_password").text(data.SubUserPassword);
+                    $("#sub_user_modal").modal('show');
+                }
+                else {
+                    alert(data.message);
+                }
+            },
+            error: function (err) {
+                console.log(err);
+                // Hide image container
+                $("#loader").hide();
+                alert("@Resource.some_error_occured");
+            },
+            complete: function (data) {
+                // Hide image container
+                $("#loader").hide();
+            }
+        });
+    }
+
+    $("#close_btn").click(function () {
+        $("#sub_user_modal").modal('hide');
+        window.location.href = "/Property/PropertyList";
+    });
+
+    $('#demo').steps({
+        onChange: function (currentIndex, newIndex, stepDirection) {
+            // step2
+            if (currentIndex === 0) {
+                $("#step-footer").css('display', 'block');
+                if (stepDirection === 'forward') {
+                    return frmFirst.valid();
+                }
+                if (stepDirection === 'backward') {
+                    frmFirstValidator.resetForm();
+                }
+            }
+            if (currentIndex === 1) {
+                $("#step-footer").css('display', 'block');
+            }
+            if (currentIndex === 2) {
+                $("#step-footer").css('display', 'none');
+            }
+            return true;
+        },
+        onFinish: function () {
+
+        }
+    });
+
+    $('#ShortTermApartment').change(function () {
+        $("#AccesstoCode").attr('checked', false);
+        if (this.checked) {
+            $("#AccessCode").css('display', 'block');
+            $("#SubUserDetail").css('display', 'block');
+        }
+        else {
+            $("#AccessCode").css('display', 'none');
+            $("#SubUserDetail").css('display', 'none');
+        }
+    });
+
+</script>
+

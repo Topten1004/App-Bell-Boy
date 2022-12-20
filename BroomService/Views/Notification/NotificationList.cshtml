@@ -1,0 +1,117 @@
+﻿
+@model List<BroomService.ViewModels.NotificationViewModel>
+
+
+<!-- Choose Service box -->
+<section id="notification" class="notification">
+    <div class="container">
+        <h2>Notification</h2>
+        <p></p>
+        <div class="notification_main_box">
+            <div class="row justify-content-between">
+                <div class="col-md-8">
+                    <div class="notify_box my-4">
+                        <form>
+                            <div class="form-group">
+                                <div class="custom_input d-flex">
+                                    <input type="text" class="form-control form_edit_input" name="Search" placeholder="Search Properties...">
+                                    <button class="search-btn" type="submit"></button>
+                                </div>
+                            </div>
+                        </form>
+                        <ul class="notifi_count_box">
+                            @if (Model.Count > 0)
+                                {
+                                    for (int i = 0; i < Model.Count; i++)
+                                    {
+                                        <li>
+                                            <div class="notifi_content d-block d-sm-flex">
+                                                <div class="service_image_main">
+                                                    <div class="service_image_box">
+                                                        <img class="image_unselect" src="~/Content/images/services/professonial_service_un_select.png" alt="service">                                                        
+                                                        <a href="/Notification/Notification?id=@Model[i].Id"><img class="image_select" src="~/Content/images/services/professonial_service_select.png" alt="service"></a>
+                                                    </div>
+                                                </div>
+                                                <div class="notify_details">
+                                                    <h4>@(Model[i].ServiceName== null?"": Model[i].ServiceName) </h4>
+                                                    <span> @Model[i].CreatedDate</span>
+                                                    <div class="property_name_location">
+                                                        <div class="notify_name_property">
+                                                            @if(Model[i].PropertyName != null)
+                                                            {
+                                                                @(Model[i].PropertyName == null ? "" : Model[i].PropertyName)
+                                                            }
+                                                            else
+                                                            {
+                                                                @(Model[i].Text != null ? Model[i].Text : "")
+                                                            }
+                                                        </div>
+                                                        <div class="property_name_location_box d-flex">
+                                                            <img src="~/Content/images/pro_location.png" alt="location">
+                                                            <div class="location_value_box align-self-top">@(Model[i].PropertyAddress==null?"": Model[i].PropertyAddress) </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+
+                                }
+                            @*<li>
+                                <div class="notifi_content d-block d-sm-flex">
+                                    <div class="service_image_main">
+                                        <div class="service_image_box">
+                                            <img class="image_unselect" src="~/Content/images/services/professonial_service_un_select.png" alt="service">
+                                            <img class="image_select" src="~/Content/images/services/professonial_service_select.png" alt="service">
+                                        </div>
+                                    </div>
+                                    <div class="notify_details">
+                                        <h4>Review Approved</h4>
+                                        <span>at 23-Jan-2020 02:55:pm</span>
+                                        <div class="property_name_location">
+                                            <div class="notify_name_property">Short Term Airbnb Apartment</div>
+                                            <div class="property_name_location_box d-flex">
+                                                <img src="~/Content/images/pro_location.png" alt="location">
+                                                <div class="location_value_box align-self-top">Allenby St 12, Tel Aviv-Yafo, </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="notifi_content d-block d-sm-flex">
+                                    <div class="service_image_main">
+                                        <div class="service_image_box">
+                                            <img class="image_unselect" src="~/Content/images/services/professonial_service_un_select.png" alt="service">
+                                            <img class="image_select" src="~/Content/images/services/professonial_service_select.png" alt="service">
+                                        </div>
+                                    </div>
+                                    <div class="notify_details">
+                                        <h4>Review Approved</h4>
+                                        <span>at 23-Jan-2020 02:55:pm</span>
+                                        <div class="property_name_location">
+                                            <div class="notify_name_property">Short Term Airbnb Apartment</div>
+                                            <div class="property_name_location_box d-flex">
+                                                <img src="~/Content/images/pro_location.png" alt="location">
+                                                <div class="location_value_box align-self-top">Allenby St 12, Tel Aviv-Yafo, </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>*@
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 pl-lg-5">
+                    <div class="notification_image">
+                        <div class="w-100">
+                            <img src="/content/images/notification_bell.png" alt="settings" class="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

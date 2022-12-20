@@ -1,0 +1,193 @@
+﻿@model List<BroomService.ViewModels.JobRequestDetailViewModel>
+@using BroomService.Helpers
+@{
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Font awsome kit -->
+    <script src="https://kit.fontawesome.com/40b745dcd8.js" crossorigin="anonymous"></script>
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <title>Offers:: Broom Services</title>
+
+    <style>
+        .property_name, .property_location, .quote_price {
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .job_link {
+            text-align: center;
+            font-size: 1.3rem;
+            padding: 5px !important;
+        }
+    </style>
+</head>
+<!-- Choose Service box -->
+<section id="all_services_boxes" class="all_services_boxes">
+    <div class="container" style="min-height:350px">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> Quotes </h2>
+                <div class="row choose_service_box">
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        for (int i = 0; i < Model.Count; i++)
+                        {
+                            <div class="col-md-3 mb-4">
+                                <div class="card">
+                                    <img class="card-img-top" src="~/Content/images/logo_login.png" alt="Card image">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@Model[i].ServiceName <sub class="reqeust-status-@Model[i].JobStatus"></sub></h5>
+                                        <div class="property_name">
+                                            <span class="card-text">
+                                                <i class="fa fa-home" aria-hidden="true"></i>
+                                                @Model[i].PropertyName
+                                            </span>
+                                        </div>
+                                        <div class="property_location">
+                                            <span class="card-text">
+                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                @Model[i].PropertyAddress
+                                            </span>
+                                        </div>
+                                        @if (Model[i].JobStatus == Enums.RequestStatus.QuotePriced.GetHashCode())
+                                        {
+                                            <div class="quote_price">
+                                                <span class="card-text">
+                                                    <i class="fa fa-ils" aria-hidden="true"></i>
+                                                    Offer price : @Model[i].QuotePrice
+                                                </span>
+                                            </div>
+                                            <div class="d-flex mt-3">
+                                                <input type="hidden" value="@Model[i].JobRequestId" />
+                                                <input type="button" class="Accept btn btn-sm btn-success mr-3" value="Accept" />
+                                                <input type="button" class="Reject btn btn-sm btn-danger mr-3" value="Reject" />
+                                            </div>
+                                        }
+                                        @if (Model[i].JobStatus == Enums.RequestStatus.UnPaid.GetHashCode() && Model[i].StartDateTime > DateTime.Now)
+                                        {
+                                            <div class="quote_price">
+                                                <span class="card-text">
+                                                    <i class="fa fa-ils" aria-hidden="true"></i>
+                                                    Price : @Model[i].ServicePrice
+                                                </span>
+                                            </div>
+                                            <div class="d-flex mt-3">
+                                                <button type="button" class="btn btn-sm btn-success mr-3" onclick="PayNow('@Model[i].SaleUrl', '@Model[i].JobRequestId')">Pay Now</button>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".reqeust-status-5").text("Quote Sent");
+        $(".reqeust-status-6").text("Quote Priced");
+        $(".reqeust-status-7").text("Unpaid");
+        $(".reqeust-status-8").text("Quote Rejected");
+    });
+
+    $(".Accept").click(function () {
+
+       var jobId = $(this).prev('input[type=hidden]').val();
+        AcceptOffer(jobId);
+    });
+
+    $(".Reject").click(function () {
+
+        var jobId = $(this).prev().prev('input[type=hidden]').val();
+        RejectOffer(jobId);
+    });
+
+    function PayNow(saleUrl, jobId) {
+        if (saleUrl) {
+            window.location.href = saleUrl;
+        } else {
+            generatePayment(jobId)
+        }
+    }
+
+    function generatePayment(jobId) {
+            $.ajax({
+                url: "@Url.Action("GeneratePayPage", "Order")",
+                data: {
+                    jobRequestId: jobId
+                },
+                type: "POST",
+                error: function () {
+                    alert("An error occurred.");
+                },
+                success: function (data) {
+                    if (data && data.SaleUrl != "") {
+                        // here redirect to the payment page
+                        window.location.href = data.SaleUrl;
+                    }
+                    else {
+                        alert("Payment request failed!.")
+                    }
+                }
+            });
+    }
+
+    function AcceptOffer(jobId) {
+        $.ajax({
+            url: "@Url.Action("AcceptQuotes", "Order")",
+            data: {
+                jobId: jobId
+            },
+            type: "POST",
+            error: function () {
+                alert("An error occurred.");
+            },
+            success: function (data) {
+                if (data) {
+                    generatePayment(jobId)
+                }
+            }
+        });
+
+    }
+
+    function RejectOffer(jobId) {
+        $.ajax({
+            url: "@Url.Action("RejectQuotes", "Order")",
+            data: {
+                jobId: jobId
+            },
+            type: "POST",
+            error: function () {
+                alert("An error occurred.");
+            },
+            success: function (data) {
+                if (data == true) {
+                    window.location.reload();
+                } else {
+                    alert("Job reject failed!")
+                }
+            }
+        });
+
+    }
+</script>

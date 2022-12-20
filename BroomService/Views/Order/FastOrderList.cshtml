@@ -1,0 +1,92 @@
+﻿@using BroomService.Resources;
+@model List<BroomService.ViewModels.JobRequestViewModel>
+    <style>
+        .property_image_box img {
+            height: 95px !important;
+        }
+    </style>
+
+<section id="bookings">
+    <div class="container">
+        <div class="property-details-main">
+            <h3>Fast Orders list</h3>
+        </div>
+        <div class="row justify-content-between my-5">
+            <div class="col-12 col-md-6">
+                <form>
+                    <div class="form-group">
+                        <div class="custom_input d-flex">
+                            <input type="text" id="myInput" class="form-control form_edit_input"
+                                   name="Search" onkeyup="searchFastOrder()" placeholder="@Resource.search_properties">
+                            <button class="search-btn" type="submit"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            @if (TempData["ErrorMsg"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["ErrorMsg"]
+                </div>
+            }
+            @if (TempData["SuccessMsg"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["SuccessMsg"]
+                </div>
+            }
+        </div>
+        <div class="row">
+            @if (Model.Count > 0)
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="col-6 mb-5 property_list">
+                        <div class="property_list_slider_box mt-5">
+                            <div class="row booking_bordr">
+                                <div class="col-md-3">
+                                    <div class="property_image_box mb-0">
+                                        <img src="~/Content/images/property_image.png" alt="Image of property" />
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="booking_content mt-4 mt-md-0">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h3 class="fast-order-name">@Model[i].FastOrderName&nbsp;&nbsp;&nbsp;@Model[i].PropertyName</h3>
+                                        </div>
+                                        <div class="action-button my-2">
+
+                                            <a href="@Url.Action("FastOrderdDetail","Account",new { id= Model[i].Id})" class=" btn arrow_btn_box"><img src="/Content/images/submit_next_btn.png" alt="next arrow"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    function searchFastOrder() {
+        // Declare variables
+        var input, filter, mainDiv, a, i, txtValue;
+        input = document.getElementById('myInput');
+        filter = input.value.toUpperCase();
+        mainDiv = document.getElementsByClassName("property_list");
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < mainDiv.length; i++) {
+            var findDiv = mainDiv[i].getElementsByClassName("property_list_slider_box");
+            a = $(findDiv).find('.fast-order-name');
+            txtValue = a.text();
+
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                mainDiv[i].style.display = "";
+            } else {
+                mainDiv[i].style.display = "none";
+            }
+        }
+    }
+</script>

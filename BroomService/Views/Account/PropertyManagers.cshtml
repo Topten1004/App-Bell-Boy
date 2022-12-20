@@ -1,0 +1,247 @@
+﻿@model  BroomService.ViewModels.PropertyManagerViewModel
+
+@{
+    ViewBag.Title = "PropertyManagers";
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+}
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Font awsome kit -->
+    <script src="https://kit.fontawesome.com/40b745dcd8.js" crossorigin="anonymous"></script>
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <title>Offers:: Broom Services</title>
+
+    <style type="text/css">
+        .channel-manager {
+            margin-bottom: 20px;
+        }
+
+        .channel-manager__title {
+            border-bottom: 2px solid #263238;
+            padding: 10px;
+        }
+
+        .channel-manager__logo {
+            width: 50%;
+        }
+
+        .channel-manager__deactivate {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .channel-manager__modal-body {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<section id="bookings">
+    <div class="container">
+        <div class="login_box mx-auto">
+            <div class="login_content mx-auto">
+                <h2 class="mb-5">Property Managers</h2>
+            </div>
+            <div class="row">
+                @foreach (var channelManager in Model.ChannelManagers)
+                {
+                <div class="col-sm-4 channel-manager">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title channel-manager__title">@channelManager.Name</h4>
+                            <div class="text-center mb-3">
+                                <img class="img-fluid channel-manager__logo" src="~/Content/images/channel-managers/@Url.Content(channelManager.Logo)" alt="Card image cap">
+                            </div>
+                            @{var userChannelManager = Model.UserChannelManagers.FirstOrDefault(x => x.ChannelManagerId == channelManager.ChannelManagerId);}
+                            @if (userChannelManager != null && userChannelManager.Active)
+                            {
+                                <div class="channel-manager__deactivate">
+                                    <a class="btn btn-danger" href="/ChannelManager/Deactivate?channelManagerId=@channelManager.ChannelManagerId">Deactivate</a>
+                                    <a href="/Account/PropertySettings?userChannelManagerId=@userChannelManager.UserChannelManagerId" class="btn btn-dark"><i class="fa fa-cogs"></i></a>
+                                </div>
+                            }
+                            else
+                            {
+                                <button class="btn btn-primary btn-block" id="btn-activate-@channelManager.ChannelManagerId" onclick="showChannelManagerModal(@channelManager.ChannelManagerId)">Activate</button>
+                            }
+                        </div>
+                    </div>
+                    <div class="progress" id="progress-@channelManager.ChannelManagerId">
+                        <div id="sync-property-progress-@channelManager.ChannelManagerId" class="progress-bar progress-bar-striped bg-success" role="progressbar" style="" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                }
+            </div>
+
+            <!-- activate channel manager modal  -->
+            <div class="modal fade channel-manager__modal" id="channel-manager__modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal_max modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        @using (Html.BeginForm("Activate", "ChannelManager", FormMethod.Post, new { onsubmit = "submitActivation(event)" }))
+                        {
+                            <input type="hidden" id="channelManagerId" name="channelManagerId">
+                            <div class="modal-body">
+                                <div class="box_body channel-manager__modal-body">
+                                    <button type="button" id="close_order_service" class="close" data-dismiss="modal" aria-label="Close">
+                                        <img src="~/Content/images/close_btn.png" alt="close" />
+                                    </button>
+                                    <div class="alert alert-info" role="alert">
+                                        Enter smoobu integration credentials
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="channel_manager_token">ApiKey</label>
+                                    <input type="text" name="ApiKey" class="form-control" id="channel_manager_token" required />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-primary btn-sm">Confirm</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- deactivate channel manager modal  -->
+            <div class="modal fade channel-manager__modal" id="channel-manager-deactivate__modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal_max modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="box_body channel-manager__modal-body">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <img src="~/Content/images/close_btn.png" alt="close" />
+                                </button>
+                                <div class="alert alert-info" role="alert">
+                                    Do you really want to deactivate the channel manager?
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-primary btn-sm">Confirm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    var progress_id = "";
+    var progress_bar_id = "";
+
+    $(document).ready(function () {
+        $(".progress").hide();
+    })
+    function showChannelManagerModal(channelManagerId) {
+        $("#channelManagerId").val(channelManagerId);
+        $("#channel-manager__modal").modal('show');
+    }
+
+    function deactivateChannelManagerModal() {
+        $("#channel-manager-deactivate__modal").modal('show');
+    }
+
+    function submitActivation(event) {
+        event = event || window.event || event.srcElement;
+        event.preventDefault();
+        // validate the form
+        // if all ok then submit form.
+        $("#channel-manager__modal").modal('hide');
+        var channelManagerId = $("#channelManagerId").val();
+        var apiKey = $("#channel_manager_token").val();
+
+        var formData = new FormData();
+
+        formData.append('ChannelManagerId', channelManagerId);
+        formData.append('ApiKey', apiKey);
+
+        $.ajax({
+            url: "/ChannelManager/Activate",
+            data: formData,
+            type: 'POST',
+            cache: false,
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                $("#loader").show();
+            },
+            success: function (data) {
+                progress_bar_id = "sync-property-progress-" + channelManagerId;
+                progress_id = "progress-" + channelManagerId;
+                getApartments();
+            },
+            error: function (xhr, status, error) {
+                var errorMessage = xhr.status + ': ' + xhr.statusText;
+                alert('Error - ' + errorMessage);
+            },
+            complete: function (data) {
+                // Hide image container
+                $("#loader").hide();
+            }
+        });
+    }
+
+    function getApartments() {
+        $.ajax({
+            url: "/ChannelManager/Accomodations/",
+            type: 'GET',
+            success: function (res) {
+                var apartments = res.data;
+                SyncProperties(apartments, 0);
+            },
+            error: function () {
+                //alert('something went wrong');
+            }
+        });
+    }
+
+    function SyncProperties(apartments = [], currentIndex = 0) {
+
+        if (!apartments) return;
+
+        if (apartments.length === 0) return 0;
+
+        $("#" + progress_id).show();
+
+        var formData = new FormData();
+        formData.append("Id", apartments[currentIndex].Id);
+        formData.append("Name", apartments[currentIndex].Name);
+
+        $.ajax({
+            url: "/ChannelManager/ImportSmoobuProperty",
+            data: formData,
+            type: 'POST',
+            cache: false,
+            processData: false,
+            contentType: false,
+            success: function (res) {
+                if (currentIndex + 1 < apartments.length) {
+                    var progress = ((currentIndex + 1) * 100) / apartments.length;
+                    $("#" + progress_bar_id).css({ "width": progress + "%" });
+                    $("#" + progress_bar_id).attr({ "aria-valuenow": progress });
+                    currentIndex = currentIndex + 1;
+                    SyncProperties(apartments, currentIndex);
+                } else {
+                    $("#" + progress_bar_id).css({ "width": "100%" });
+                    $("#" + progress_bar_id).attr({ "aria-valuenow": "100" });
+                    // reload the browser
+                    window.location.reload();
+                }
+            },
+            error: function () {
+                //alert('something went wrong');
+            }
+        });
+    }
+
+</script>
+

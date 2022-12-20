@@ -1,0 +1,252 @@
+﻿@model IEnumerable<BroomService.ViewModels.AvailableTimeViewModel>
+
+@{
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+}
+<link href="~/Content/js/fullcalendar/lib/main.css" rel="stylesheet" />
+<style>
+    .bg-availability-full {
+        background-color: green !important;
+    }
+
+    .bg-availability-partial {
+        background-color: yellow !important;
+    }
+
+    .bg-availability-no {
+        background-color: red !important;
+    }
+    .custom-datepicker {
+        display: flex;
+        justify-content: space-between;
+        width: 300px;
+        border: 1px solid gray;
+        border-radius: 10px;
+        height: 40px;
+        align-items: center;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .custom-datepicker__icon {
+        cursor: pointer;
+    }
+</style>
+<section id="view_edit_page_main" class="view_edit_page">
+    <div class="container">
+
+        <!-- JobREquest Alternative timing Modal -->
+        <div class="modal fade modal_sub_user" id="JobRequestTiming" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="checklist_property_main">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <img src="~/Content/images/close_btn.png" alt="close" />
+                            </button>
+                            <h3>Select Job Start Timing</h3>
+                            <div class="col-12 text-left " id="TimeSlot">
+                            </div>
+                            <div class="col-12 text-right ">
+                                <input type="button" id="AvailableTiemSlot_Ok" onclick="" value="OK" class="btn btn-success" disabled />
+                                <input type="button" id="No" value="Cancel" class="btn btn-danger" data-dismiss="modal" aria-label="Close" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade modal_sub_user" id="AvailabilityCalendar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="checklist_property_main">
+                            <h3>Select Job Start Date</h3>
+                            <div id="calendar"></div>
+                            <div class="col-12 text-right ">
+                                <input type="button" id="No" value="Cancel" class="btn btn-danger" data-dismiss="modal" aria-label="Close" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="custom-datepicker" id="custom-datepicker">
+            <div id="custom-datepicker__date"></div>
+            <div class="custom-datepicker__icon" onclick="showCalendar()">
+                <i class="fa fa-calendar" style="font-size: 24px"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/Content/js/fullcalendar/lib/main.js"></script>
+<script>
+    var availabilityList = [];
+    var bookedList = [];
+    var startInterval = "08:00";
+    var endInterval = "17:00";
+    var calendar;
+
+    function showCalendar() {
+        $("#AvailabilityCalendar").modal('show');
+    }
+
+    function setAvailability(result = []) {
+
+        // first group availability by date
+        var availabilityGroup = {};
+
+        result.forEach(availability => {
+            if (availabilityGroup.hasOwnProperty(availability.AvailableDate)) {
+                availabilityGroup[availability.AvailableDate].push(availability);
+            } else {
+                availabilityGroup[availability.AvailableDate] = [availability]
+            }
+        });
+
+        // loop through availabilityGroup keys
+        Object.keys(availabilityGroup).forEach(key => {
+            var availability = checkAvailability(availabilityGroup[key]);
+            availabilityList.push({ key,  date: new Date(key), availability, availabilities: availabilityGroup[key] })
+        });
+    }
+
+    function checkAvailability(availabilities = []) {
+        if (!availabilities) return "no";
+
+        if (availabilities.length === 0) return "no";
+
+        // check if the availabilities from starting interval to ending interval
+        for (let i = 0; i < availabilities.length; i++) {
+            if (availabilities[i].FromTime === startInterval && availabilities[i].ToTime === endInterval) {
+                return "full";
+            }
+        }
+
+        return "partial";
+
+    }
+
+    function renderTimings(date, timeToDo = 0) {
+
+        $('#TimeSlot').empty();
+
+        var dayAvailability = availabilityList.find(x => x.key === date);
+
+        if (!dayAvailability) return;
+        // close modal
+        $('#AvailabilityCalendar').modal('hide');
+        // render the iso date and display in the format MM/DD/YYYY
+        var dateToDisplay = date.split('-').reverse().join('/');
+        $('#custom-datepicker__date').text(dateToDisplay);
+        var availabilities = dayAvailability.availabilities;
+        var nextStartTime = 0;
+        for (let i = 0; i < availabilities.length; i++) {
+            var from = availabilities[i].FromTime.split(":");
+            var from_hour = parseInt(from[0]);
+
+            var end = availabilities[i].ToTime.split(":");
+            var end_hour = parseInt(end[0]);
+
+            nextStartTime = from_hour + timeToDo;
+
+            while (nextStartTime <= end_hour && nextStartTime != 0) {
+                // check the time slot is rendered previously
+                var renderFromTime = from_hour < 10 ? "0" + from_hour : from_hour;
+                var renderToTime = nextStartTime < 10 ? "0" + nextStartTime : nextStartTime;
+                var renderTime = renderFromTime + " - " + renderToTime;
+                var renderValue = renderTime + "_" + availabilities[i].UserId;
+                var found = false;
+                $('.time-slot').each(function () {
+                    var renderedValue = $(this).val();
+                    var renderedTime = renderedValue.split("_")[0];
+                    if (renderTime === renderedTime) {
+                        found = true;
+                    }
+                });
+                if (!found) {
+                    var timeSlot = '<input type="radio" name="AvailableTimeSlot" value="' + renderValue + '" class="btn btn-success time-slot" onchange="EnableButton(this)" /> <span>' + renderTime + '</span> <br />';
+                    $('#TimeSlot').append(timeSlot);
+                }
+                from_hour = from_hour + timeToDo;
+                nextStartTime = nextStartTime + timeToDo;
+            }
+        }
+        $("#JobRequestTiming").modal('show');
+    }
+
+    function EnableButton(radio) {
+        if (radio.checked) {
+            $('#AvailableTiemSlot_Ok').prop('disabled', false);
+        }
+    }
+
+    function renderAvailability() {
+        var calendarEl = document.getElementById('calendar');
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            selectable: true,
+            headerToolbar: {
+                left: 'dayGridMonth,timeGridWeek',
+                center: 'title',
+                right: 'prev,next'
+            },
+            select: function (arg) {
+                renderTimings(arg.startStr, 2);
+            },
+            validRange: {
+                start: new Date()
+            },
+            dayCellClassNames: function (arg) {
+                for (let i = 0; i < availabilityList.length; i++) {
+                    if (arg.date.getDate() === availabilityList[i].date.getDate() && arg.date.getMonth() === availabilityList[i].date.getMonth()) {
+                        if (availabilityList[i].availability === "full") {
+                            return ['bg-availability-full']
+                        }
+                        if (availabilityList[i].availability === "partial") {
+                            return ['bg-availability-partial']
+                        }
+                        if (availabilityList[i].availability === "no") {
+                            return ['bg-availability-no']
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        $('#AvailabilityCalendar').on('shown.bs.modal', function () {
+            calendar.render();
+        });
+        // check the custom datepicker label
+        $('#custom-datepicker__date').text('MM/DD/YYYY');
+        $('#AvailableTiemSlot_Ok').click(function () {
+            var renderedValue = $("#TimeSlot input[name='AvailableTimeSlot']:checked").val();
+            console.log(renderedValue)
+            var Time = renderedValue.split("_")[0];
+            //$('#AssignedWorker').val(renderedValue.split("_")[1]);
+            //$("#JobRequestTiming").modal('hide');
+            //var date = $("#JobStartDate").val();
+            //var datetime = date + " " + Time;
+            //$("#JobStartDateTime").val(datetime);
+            $("#JobRequestTiming").modal('hide');
+        });
+
+        $.ajax({
+            url: "/Order/AvailableServiceTime",
+            type: 'POST',
+            data: {
+                 "subCategoryId": 12,
+                 "subSubCategoryId": 0,
+            },
+            success: function (data) {
+                setAvailability(data.availableTimes || []);
+                bookedList = data.bookedTimes || [];
+                renderAvailability();
+            }
+        });
+    });
+</script>

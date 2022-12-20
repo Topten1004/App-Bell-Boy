@@ -1,0 +1,111 @@
+﻿@model  BroomService.ViewModels.JobRequestViewModel
+@using BroomService.Resources
+@{
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+}
+
+<section id="bookings">
+    <div class="container">
+        <div class="login_box mx-auto">
+            <div class="login_content mx-auto">
+                <h2>@Resource.job_request_detail</h2>
+            </div>
+        </div>
+        <div>
+            <h5>Job Description</h5>
+            <h6 style="color:grey; padding-top:0.3em;">@(Model.JobDesc != null ?Model.JobDesc:"")</h6>
+            <hr />
+            <br />
+            <h5>Fast Order Name</h5>
+            <h6 style="color:grey; padding-top:0.3em;">@(Model.FastOrderName!= null? Model.FastOrderName:"")</h6>
+            <hr />
+        </div>
+        <div>
+            <br /><br />
+            <h5>Property and Service Details</h5>
+            <div class="col-8 col-md-8 col-lg-8 mb-5" style="padding-top:1em">
+                <div class="property_list_slider_box">
+                    <div class="booking_content mt-4 mt-md-0">
+                        @if (Model != null && Model.JobData != null && Model.JobData.Count > 0)
+                        {
+                                    <h6>@Model.JobData[0].PropertyName</h6>
+                        }
+
+                                    <div class="d-flex" style="padding-top:1em;">
+                            <img src="~/Content/images/address.png" />
+                            <h6>@Model.JobData[0].PropertyAddress</h6>
+                        </div>
+                        <div class="date my-2"><img src="~/Content/images/date.png" class="mr-2" alt="Date"> @Model.JobData[0].JobDateTime </div>
+                        @if (Model.JobData[0].SubSubServiceName != null && Model.JobData[0].SubSubServiceName != "")
+                                {
+                            <h6 style="padding-top:.05em;">Service Taken: @Model.JobData[0].SubSubServiceName</h6>
+                        }
+                        else
+                        {
+                            <h6 style="padding-top: .05em;">Service Taken: @Model.JobData[0].SubServiceName</h6>
+
+                            }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <br /><br />
+            <h5>Ordered Inventory</h5>
+            <div style="padding-top:1em">
+                @if (Model.JobData[0].InventoryDetails != null)
+                {
+                                if (Model.JobData[0].InventoryDetails.Count > 0)
+                                {
+                                    for (int i = 0; i < Model.JobData[0].InventoryDetails.Count; i++)
+                                    {
+                            <div class="col-8 col-md-8 col-lg-8 mb-5">
+                                <div class="property_list_slider_box">
+                                    <div class="booking_content mt-4 mt-md-0">
+                                        <h6>@Model.JobData[0].InventoryDetails[i].PropertyName</h6>
+                                        <h6 style="padding:.3em;">@Model.JobData[0].InventoryDetails[i].InventoryName  &nbsp; @Model.JobData[0].InventoryDetails[i].Qty</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div>
+            <br /><br />
+            <h5>Job Checklists</h5>
+
+            <div style="padding-top:1em">
+                @if (Model.CheckListDetails != null)
+                {
+                            if (Model.CheckListDetails.Count > 0)
+                            {
+                                for (int i = 0; i < Model.CheckListDetails.Count; i++)
+                                {
+                            <div class="col-8 col-md-8 col-lg-8 mb-5">
+                                <div class="property_list_slider_box">
+                                    <div class="booking_content mt-4 mt-md-0">
+                                        <h6>@Model.CheckListDetails[i].TaskDetail</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-12 text-right submit_box_all">
+            @{
+                            var catId = Model.JobData[0].CategoryId != null ? Model.JobData[0].CategoryId : 0;
+                            var subCatId = Model.JobData[0].SubCategoryId != null ? Model.JobData[0].SubCategoryId : 0;
+                            var subSubcatId = Model.JobData[0].SubSubCategoryId != null ? Model.JobData[0].SubSubCategoryId : 0;
+                            var PropertyId = Model.JobData[0].PropertyId != null ? Model.JobData[0].PropertyId : 0;
+                            var JobReqId = Model.JobData[0].OrderId != null ? Model.JobData[0].OrderId : 0;
+                        }
+            <a class="btn arrow_btn_box" href="@Url.Action("AddJobRequest","Order", new { categoryId=catId, subCategoryId=subCatId, subSubCategoryId=subSubcatId, propertyId=PropertyId, jobReqId = JobReqId})"><img src="~/Content/images/submit_next_btn.png" alt="next arrow"></a>
+            @*<button type="button" id="btn_submit" class="btn arrow_btn_box"><img src="~/Content/images/submit_next_btn.png" alt="next arrow"></button>*@
+        </div>
+
+    </div>
+</section>

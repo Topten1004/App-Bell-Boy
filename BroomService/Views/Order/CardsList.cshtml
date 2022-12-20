@@ -1,0 +1,197 @@
+﻿@model List<BroomService.ViewModels.CardViewModel>
+@using BroomService.Resources;
+
+<!-- Choose Service box -->
+<section id="add_payment_boxes" class="add_payment_boxes">
+    <div class="container">
+        <h2>@Resource.Click_to_select_card</h2>
+        <p></p>
+        <div class="add_payment_form">            
+            <form class="row">
+                <div class="col-md-6">
+                    <div class="cards_box">
+                        <ul id="myUL">
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <!-- Card List -->
+                                <li data-content="@Model[i]">
+                                    <div class="card_box_details" style="margin-bottom: 0px!important">
+                                        <button class="btn card_close" onclick="DeleteCard(@Model[i].CardId)"><i class="fas fa-times" aria-hidden="true"></i></button>
+                                        <div class="card_radio" id="@i">
+                                            <input type="radio" id="card+@i" name="radio-group_2" />
+                                            <label for="card+@i" class="number_count" />
+                                            <div class="d-flex">
+                                                <div class="card_Deatils align-self-center">
+                                                    <p>
+                                                        <span style="font-weight:bold">Card Number</span>
+                                                        <span> **** **** ****  @Model[i].CardNumber.Substring(Model[i].CardNumber.Length - 4, 4) </span>
+                                                    </p>
+                                                    <p class="half">
+                                                        <span style="font-weight:bold">Expire Date</span>
+                                                        <span>@Model[i].ExpireMonth / @Model[i].ExpireYear</span>
+                                                    </p>
+                                                    <p class="half">
+                                                        <span style="font-weight:bold">Cvv</span>
+                                                        <span>***</span>
+                                                    </p>
+                                                    <p>
+                                                        <span style="font-weight:bold">Name On Card</span>
+                                                        <span>@Model[i].NameOnCard</span>
+                                                    </p>
+                                                </div>
+                                                <div class="card_icon align-self-center" style="margin-right:20px">
+                                                    @if (Model[i].CardType?.ToUpper() == Resource.visa)
+                                                    {
+                                                        <img src="~/Content/images/visa_logo.png" class="img-fluid" alt="card" />
+                                                    }
+                                                    else if (@Model[i].CardType?.ToUpper() == Resource.mastercard)
+                                                    {
+                                                        <img src="~/Content/images/mastercard.png" class="img-fluid" alt="card" />
+                                                    }
+                                                    else if (@Model[i].CardType?.ToUpper() == Resource.amercianexpress)
+                                                    {
+                                                        <img src="~/Content/images/americanexpress.png" class="img-fluid" alt="card" />
+                                                    }
+                                                    else if (@Model[i].CardType?.ToUpper() == Resource.discover)
+                                                    {
+                                                        <img src="~/Content/images/discover.png" class="img-fluid" alt="card" />
+                                                    }
+                                                    else if (@Model[i].CardType?.ToUpper() == Resource.jcb)
+                                                    {
+                                                        <img src="~/Content/images/jcb.png" class="img-fluid" alt="card" />
+                                                    }
+                                                </div>4
+                                            </div>
+                                            @*</label>*@
+                                        </div>
+                                    </div>
+                                    @*<div style="margin-top: -21px;margin-bottom: 44px; margin-left: 308px;position: relative;">
+                         <a href="@Url.Action("AddNewCard","Order", new { id = Model[i].CardId })">Edit/Update</a>
+                    </div>*@
+                                </li>
+
+                            }
+                        </ul>
+                        <div class="col-12 p-0">
+                            <div class="form-group text-center add_new_card_btn">
+                                <a href="/Order/AddNewCard" class="login-btn">
+                                    <span>Enter Card Detail</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div>
+
+                          
+                            <a href="javascript:void(0);" onclick="history.go(-1);">
+                                <button type="button" data-direction="prev"
+                                        class="step-btn btn arrow_btn_box ">
+                                    <img src="~/Content/images/submit_prev_btn.png" alt="Prev arrow" />
+                                </button>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+                @*<div class="col-md-6">
+                    <div class="right_box_job_details">
+                        <h3>Luxury Apartment</h3>
+                        <div class="type_propety_box">
+                            Type of Property: <span>House\Appartment </span>
+                        </div>
+                        <div class="type_service_box_2">Short Term Airbnb Apartment</div>
+                        <div class="property_box_location d-flex">
+                            <img src="~/Content/images/pro_location.png" alt="location">
+                            <div class="location_value align-self-top">Allenby St 12, Tel Aviv-Yafo, </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 mb-4">
+                                <div class="list_review_services">
+                                    <div class="d-block d-sm-flex d-md-block d-lg-flex">
+                                        <div class="service_image_main">
+                                            <div class="service_image_box">
+                                                <img class="image_unselect" src="~/Content/images/services/professonial_service_un_select.png" alt="service">
+                                                <img class="image_select" src="~/Content/images/services/professonial_service_select.png" alt="service">
+                                            </div>
+                                        </div>
+                                        <div class="servies_details align-self-center">
+                                            <h3>Professional Cleaning &amp; Closet Organization</h3>
+                                            <p class="service_content">3-Feb-2020, 9:00-11:00</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mb-4">
+                                <div class="list_review_services">
+                                    <div class="d-block d-sm-flex d-md-block d-lg-flex">
+                                        <div class="service_image_main">
+                                            <div class="service_image_box">
+                                                <img class="image_unselect" src="~/Content/images/services/fix_instal_un_select.png" alt="service">
+                                                <img class="image_select" src="~/Content/images/services/fix_instal_select.png" alt="service">
+                                            </div>
+                                        </div>
+                                        <div class="servies_details align-self-center">
+                                            <h3>Windows Cleaning</h3>
+                                            <p class="service_content">3-Feb-2020, 9:00-11:00</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+    var selectCardIndex = 0;
+    var getId;
+        $('#myUL li .card_radio').click(function () {
+            selectCardIndex = $(this).attr('id');
+
+                                         $.ajax({
+                                             url: "@Url.Action("SelectCard", "Order")",
+                                             data: { "id": selectCardIndex },
+                                            dataType: "json",
+                                            type: "Post",
+                                            'async': false,
+                                            error: function () {
+                                            },
+                                            success: function (data) {
+                                                if (data.status) {
+                                                    var clos = window.location.href;
+                                                    window.close(clos);
+                                                   // window.history.back();
+                                                }
+                                                else if (data == "Session Expired") {
+                                                    window.location.href = "/Account/Login";
+                                                }
+                                               }
+                                           });
+    });
+
+
+   function DeleteCard(cardId)
+    {
+           $.ajax({
+              url: "@Url.Action("DeleteCard", "Order")",
+              data: { "CardId": cardId },
+              type: "Post",
+              error: function () {
+                    alert("Some error occured.");
+               },
+              success: function (data) {
+                          if (data) {                       
+                             alert("Card Successfully deleted");
+                                location.reload();
+                          }
+                         else {
+                              alert("Something went Wrong.");
+                         }
+                  }
+        });
+        }
+
+</script>
+

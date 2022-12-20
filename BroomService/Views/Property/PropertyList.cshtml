@@ -1,0 +1,349 @@
+﻿@using BroomService.Resources
+
+@model List<BroomService.ViewModels.PropertyViewModel>
+
+<section id="property-listing">
+    <div class="container">
+        <div class="property-details-main">
+            <h3>@Resource.property_listing</h3>
+            <p>List of properties added/imported</p>
+        </div>
+        <div class="row justify-content-between my-5">
+            <div class="col-12 col-md-6">
+                <form>
+                    <div class="form-group">
+                        <div class="custom_input d-flex">
+                            <input type="text" id="myInput" class="form-control form_edit_input"
+                                   name="Search" onkeyup="searchPropertyFunction()" placeholder="@Resource.search_properties">
+                            <button class="search-btn" type="submit"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            @if (Convert.ToInt32(Session["UserType"]) != 7)
+            {
+                <div class="col-12 col-md-4 text-md-right d-flex justify-content-end align-items-center">
+                    <a href="#" data-toggle="modal" data-target="#add_property_modal" class="add-property-btn">
+                        <img src="~/Content/images/add_pro_ic.png" alt="add"> @Resource.add_property
+                    </a>
+                </div>
+            }
+            @if (TempData["ErrorMsg"] != null)
+            {
+                <div class="alert alert-danger" role="alert">
+                    @TempData["ErrorMsg"]
+                </div>
+            }
+            @if (TempData["SuccessMsg"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["SuccessMsg"]
+                </div>
+            }
+        </div>
+        <div class="row">
+            @if (Model.Count > 0)
+            {
+                for (int i = 0; i < Model.Count; i++)
+                {
+                    <div class="col-12 col-md-6 col-lg-4 mb-5 property_list">
+                        <div class="property_list_slider_box">
+                            <div class="property_image_box">
+
+                                @if (Model[i].PropertyImages == null)
+                                {
+
+                                    <img src="~/Content/images/property_image.png" alt="Image of property" />
+
+                                }
+
+                                else if (Model[i].PropertyImages.Count == 1)
+                                {
+
+                                    if (Model[i].PropertyImages.Count > 0)
+                                    {
+                                        List<BroomService.ViewModels.PropertyImageVM> getImageData = new List<BroomService.ViewModels.PropertyImageVM>();
+                                        {
+                                            getImageData = Model[i].PropertyImages.Where(a => a.IsImage == true).ToList();
+                                        }
+                                        if (getImageData.Count > 0)
+                                        {
+                                            <img src="~/Images/Property/@getImageData[0].ImageUrl" alt="Image of property" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Content/images/property_image.png" alt="Image of property" />
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/images/property_image.png" alt="Image of property" />
+                                    }
+
+                                }
+
+                                else if (Model[i].PropertyImages.Count == 0)
+                                {
+                                    <img src="~/Content/images/property_image.png" alt="Image of property" />
+                                }
+
+                                else
+                                {
+                                    <img src="~/Content/images/property_image.png" alt="Image of property" />
+                                }
+                            </div>
+                            <div class="property_content">
+                                <div class="d-flex justify-content-between align-items-center mb-3 name_edit">
+                                    <h3>@Model[i].PropertyModel.Name </h3>
+                                    @if (Model[i].PropertyModel.ShortTermApartment.HasValue)
+                                    {
+                                        if (Model[i].PropertyModel.ShortTermApartment.Value)
+                                        {
+                                            <span class="propetry-status-online"></span>
+                                        }
+                                        else
+                                        {
+                                            <span class="propetry-status-offline"></span>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <span class="propetry-status-offline"></span>
+                                    }
+                                </div>
+                                <p>@Resource.type_of_property: @Model[i].PropertyModel.Type</p>
+                                @if (Model[i].PropertyModel.ShortTermApartment.HasValue)
+                                {
+                                    if (Model[i].PropertyModel.ShortTermApartment.Value)
+                                    {
+                                        <p class="link">@Resource.short_term_apartment</p>
+                                    }
+                                }
+
+                                <div class="action-button my-4" id="@Model[i].PropertyModel.Id">
+                                    @if (Convert.ToInt32(Session["UserType"]) != 7)
+                                    {
+                                        <a href="/Order/GetFastOrdersByPropertyId?PropertyId=@Model[i].PropertyModel.Id">@Resource.fast_order <i class="fas fa-truck"></i></a>
+
+                                    }
+                                    <a href="/Order/CategoryList?propertyId=@Model[i].PropertyModel.Id">@Resource.order_service <i class="fas fa-shopping-cart"></i></a>
+                                    @if (Convert.ToInt32(Session["UserType"]) != 7)
+                                    {
+                                        <a href="#" class="@Model[i].PropertyModel.AccessToProperty" id="@Model[i].PropertyModel.BuildingCode" onclick="loadAccessCodeModal(this);">@Resource.change_access <i class="fas fa-universal-access"></i> </a>
+                                        <br />
+                                        <a href="/Property/EditProperty?id=@Model[i].PropertyModel.Id">Edit Property <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    }
+                                </div>
+                                @if (Convert.ToInt32(Session["UserType"]) != 7)
+                                {
+                                    <div class="a_down">
+                                        <a href="/Property/PropertyDetails?id=@Model[i].PropertyModel.Id">
+                                            <img src="~/Content/images/down_arrow.png" alt="down arrow" />
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            <div class="col-12 custom-pagination">
+                <ul class="pagination d-flex justify-content-center" id="myUL">
+                    <li class="page-item "><a class="page-link" href="@Url.Action("PropertyList", "Property", new { type="decrement" })"><i class="fas fa-chevron-left" aria-hidden="true"></i></a></li>
+                    @for (int i = Convert.ToInt32(ViewBag.Pageval_Min); i <= Convert.ToInt32(ViewBag.PropertyCount); i++)
+                    {
+                        <li class="page-item @(ViewBag.ActivePage == i ? "active" : "")"><a class="page-link" href="@Url.Action("PropertyList", "Property", new { pageNumber = i })">@i</a></li>
+                    }
+                    <li class="page-item"><a class="page-link" href="@Url.Action("PropertyList", "Property", new { type="increment" })"><i class="fas fa-chevron-right" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Footer -->
+<!-- Access Code -->
+<div class="modal fade modal_sub_user" id="access-code-modal">
+    <div class="modal-dialog modal_max modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="box_body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3 class="manage-heading">@Resource.manage_access_code</h3>
+                    <form>
+                        <div class="col-12 form-group">
+                            <label>@Resource.access_to_property</label>
+                            <div class="custom_input">
+                                <input type="text" class="form-control form_edit_input"
+                                       name="access_property" id="access_property"
+                                       placeholder="@Resource.access_property_options">
+
+                            </div>
+                            <div class="col-12 form-group">
+                                <label>@Resource.building_code</label>
+                                <div class="custom_input">
+                                    <input type="text" class="form-control form_edit_input"
+                                           name="building_code" id="building_code"
+                                           placeholder="@Resource.enter_building_code">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group submit_box_all text-center building-btn">
+                            <button type="button" id="access_property_submit_btn" class="btn arrow_btn_box">
+                                <img src="~/Content/images/submit_next_btn.png" alt="next arrow">
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var propertyId;
+    function loadAccessCodeModal(item) {
+        var getId = $(item).attr('id');
+        var getClass = $(item).attr('class');
+        $("#building_code").val(getId);
+        $("#access_property").val(getClass);
+        $('#access-code-modal').modal('show');
+        propertyId = $(item).parent().attr('id');
+    }
+
+    $("#access_property_submit_btn").click(function () {
+        $.ajax({
+            url: "@Url.Action("EditAccessCodeDetails", "Property")",
+            data: {
+                propertyID: propertyId,
+                 buildingCode: $("#building_code").val(),
+                 accessToProperty: $("#access_property").val(),
+             },
+            dataType: "json",
+            type: "POST",
+            error: function () {
+                // alert(" An error occurred.");
+            },
+             success: function (data) {
+                 alert(data);
+                 window.location.reload();
+            }
+        });
+    });
+</script>
+<!-- Add Multiple_p -->
+<div class="modal fade modal_sub_user" id="add_property_modal">
+    <div class="modal-dialog modal_max modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="box_body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3 class="manage-heading">@Resource.add_property</h3>
+                    <p class="login_sub_user">@Resource.choose_from_list</p>
+                    <form>
+                        <div class="col-12 add_property_box_popup form-group">
+                            <a onclick="AddPropertyManual();">
+                                <div class="custom_input d-flex mb-5">
+                                    <input type="radio" id="test1" name="radio-group">
+                                    <label for="test1">@Resource.add_manual</label>
+                                </div>
+                            </a>
+                            <a onclick="AddMultipleProperties();">
+                                <div class="custom_input d-flex">
+                                    <input type="radio" id="test2" name="radio-group">
+                                    <label for="test2">@Resource.import_from_file</label>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="form-group submit_box_all text-center property_popup_btn">
+                            <button type="submit" class="btn arrow_btn_box">
+                                <img src="~/Content/images/down_arrow.png" alt="next arrow">
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Multiple Property Access -->
+<div class="modal fade modal_sub_user" id="add_multiple_property_modal">
+    <div class="modal-dialog modal_max modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="box_body" style="padding:30px;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <img src="~/Content/images/close_btn.png" alt="close" />
+                    </button>
+                    <h3 class="manage-heading">@Resource.properties</h3>
+                    <p class="login_sub_user">
+                        @Resource.upload_excel_files_several_files
+                    </p>
+                    @using (Html.BeginForm("UploadExcel", "Property", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div class="col-12 add_property_box_popup form-group">
+                            <div>
+                                @Resource.recommend_to_use_template<br>
+                                <ul>
+                                    <li>
+                                        <a href="/Property/DownloadExcel" class="text-info">
+                                            @Resource.download_template
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="btn btn-default btn-block btn-file p-sm">
+                                    <input type="file" id="fileUpload" name="FileUpload"
+                                           class="col-md-12" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 text-right submit_box_all" style="margin-bottom:0px;">
+                            <button type="submit" id="btn_submit" class="btn arrow_btn_box"><img src="~/Content/images/submit_next_btn.png" alt="next arrow"></button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function searchPropertyFunction() {
+        // Declare variables
+        var input, filter, mainDiv, a, i, txtValue;
+        input = document.getElementById('myInput');
+        filter = input.value.toUpperCase();
+        mainDiv = document.getElementsByClassName("property_list");
+        // Loop through all list items, and hide those who don't match the search query
+        for (i = 0; i < mainDiv.length; i++) {
+            var findDiv = mainDiv[i].getElementsByClassName("property_list_slider_box");
+            a = $(findDiv).find('.name_edit');
+            txtValue = a.find('h3').text();
+
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                mainDiv[i].style.display = "";
+            } else {
+                mainDiv[i].style.display = "none";
+            }
+        }
+    }
+
+    function AddPropertyManual() {
+        $("#add_property_modal").modal('hide');
+        window.location.href = "/Property/AddProperty?id=0";
+    }
+
+
+    function AddMultipleProperties() {
+        $("#add_property_modal").modal('hide');
+        $("#add_multiple_property_modal").modal('show');
+    }
+</script>
